@@ -24,8 +24,9 @@
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.MainActivity" />
-        <activity android:name=".ui.activity.AndroidSwipActivity" />
-        <activity android:name="com.common.view.base.WebViewActivity" />
+        <activity
+            android:name=".ui.activity.AndroidSwipActivity"
+            android:theme="@style/ThemeSwipeBack" />
     </application>
 
 </manifest>
