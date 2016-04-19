@@ -1,6 +1,19 @@
 ## BasicApp功能介绍
 >   欢迎Follow我的Github:https://github.com/meikoz
 
+## Usage Gradle
+```
+repositories {
+    maven { url "https://jitpack.io" }
+}
+```
+
+```
+dependencies {
+    compile 'com.github.meikoz:basic:1.0'
+}
+```
+
 #### v1.0功能简介
 -   Retrofit            网络请求封装
 -   ServiceFactory      管理所有根据业务区分的Service
