@@ -11,6 +11,7 @@ import com.common.view.base.BaseActivity;
 import com.matto.R;
 import com.matto.model.MainLogic;
 import com.matto.ui.fragment.DiscoveryFragment;
+import com.matto.ui.fragment.HomeFragment;
 import com.matto.ui.fragment.ShowMeFragment;
 import com.matto.ui.view.MainView;
 
@@ -42,7 +43,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void switchHome() {
-        startFragment(new DiscoveryFragment());
+        startFragment(new HomeFragment());
     }
 
     @Override

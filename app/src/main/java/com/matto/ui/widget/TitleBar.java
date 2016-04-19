@@ -1,4 +1,4 @@
-package com.common.view.base;
+package com.matto.ui.widget;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,14 +11,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.common.R;
 import com.common.utils.DisplayUtil;
+import com.matto.R;
 
 /**
  * author miekoz on 2016/3/15.
  * email  meikoz@126.com
  */
-public class EasyToolBar extends RelativeLayout implements View.OnClickListener {
+public class TitleBar extends RelativeLayout implements View.OnClickListener {
 
     LinearLayout mlvTitleRight;
     TextView mTvTitle;
@@ -27,12 +27,12 @@ public class EasyToolBar extends RelativeLayout implements View.OnClickListener 
     private OnClickTitleBarBackCallback mCallBack;
     private TextView mTvRightText;
 
-    public EasyToolBar(Context context) {
+    public TitleBar(Context context) {
         super(context);
         onInit();
     }
 
-    public EasyToolBar(Context context, AttributeSet attrs) {
+    public TitleBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         onInit();
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.titlebarview);

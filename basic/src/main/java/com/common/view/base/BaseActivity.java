@@ -7,6 +7,8 @@ import android.view.Window;
 
 import com.common.R;
 
+import java.util.logging.Logger;
+
 import butterknife.ButterKnife;
 
 /**
@@ -15,7 +17,6 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends FragmentActivity {
 
-    protected EasyToolBar mTitleBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,15 +28,6 @@ public abstract class BaseActivity extends FragmentActivity {
     protected abstract int getLayoutResource();
 
     protected abstract void onInitView();
-
-    protected void initTitleBar(String title) {
-        findTitleBar();
-        mTitleBar.setTitle(title);
-    }
-
-    private void findTitleBar() {
-        mTitleBar = (EasyToolBar) findViewById(R.id.toolbar);
-    }
 
     @Override
     protected void onDestroy() {

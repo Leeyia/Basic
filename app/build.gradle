@@ -20,7 +20,7 @@ android {
 }
 
 repositories {
-    maven { url "https://jitpack.matto" }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {

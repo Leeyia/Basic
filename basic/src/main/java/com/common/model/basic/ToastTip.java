@@ -2,7 +2,7 @@ package com.common.model.basic;
 
 import android.widget.Toast;
 
-import com.common.EasyApplication;
+import com.common.BasicApplication;
 
 /**
  * author meikoz on 2016/4/13.
@@ -18,7 +18,7 @@ public class ToastTip {
             if (message.length() > 10) {
                 duration = Toast.LENGTH_LONG;
             }
-            mToast = Toast.makeText(EasyApplication.getInstance(), message, duration);
+            mToast = Toast.makeText(BasicApplication.getInstance(), message, duration);
         } else {
             mToast.setText(message);
         }

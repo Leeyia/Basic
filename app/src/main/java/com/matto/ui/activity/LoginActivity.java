@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import com.common.model.basic.ToastTip;
 import com.common.view.base.BaseActivity;
+import com.matto.ui.widget.TitleBar;
 import com.matto.R;
 import com.common.model.control.LogicProxy;
 import com.matto.model.LoginLogic;
@@ -31,6 +32,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Bind(R.id.edit_passwrod)
     EditText mEditPasswrod;
 
+    @Bind(R.id.title_bar)
+    TitleBar titlebar;
+
     LoginLogic mLoginLogic;
 
     @Override
@@ -40,18 +44,19 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     protected void onInitView() {
+        titlebar.setTitle("登录页面");
         mLoginLogic = LogicProxy.getInstance().getBindViewProxy(LoginLogic.class, this);
     }
 
     @OnClick(R.id.btn_login)
     void login() {
         mLoginLogic.login("zhangsan", "123");
+        startActivity(new Intent(LoginActivity.this, AndroidSwipActivity.class));
     }
 
     @Override
     public void onLoginSuccess() {
         ToastTip.show("登录成功");
-        MainActivity.start(LoginActivity.this);
     }
 
     @Override

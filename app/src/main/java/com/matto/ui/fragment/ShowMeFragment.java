@@ -10,7 +10,7 @@ import com.matto.R;
 public class ShowMeFragment extends BaseFragment {
     @Override
     protected int getLayoutResource() {
-        return R.layout.activity_hosting;
+        return R.layout.activity_listview;
     }
 
     @Override

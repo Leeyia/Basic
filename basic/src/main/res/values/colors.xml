@@ -27,4 +27,6 @@
     <color name="divider_background_dark">#12FFFFFF</color>
 
     <color name="view_black_default">#e0e0e0</color>
+
+    <color name="black_p50">#7f000000</color>
 </resources>

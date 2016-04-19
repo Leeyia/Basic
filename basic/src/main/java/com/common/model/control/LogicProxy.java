@@ -28,7 +28,6 @@ public class LogicProxy {
     //private Object m_proxy;
 
     public void init(Class... clss) {
-        Log.d("PROXY", "准备初始化Proxy");
         List<Class> list = new LinkedList<Class>();
         for (Class cls : clss) {
             if (cls.isAnnotationPresent(Implement.class)) {
@@ -49,7 +48,6 @@ public class LogicProxy {
     }
 
     public <T> T getProxy(Class cls) {
-        Log.d("PROXY", "获取Proxy");
         //return (T) m_proxy;
         return (T) m_objects.get(cls);
     }
