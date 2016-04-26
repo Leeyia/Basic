@@ -27,5 +27,4 @@ public class BasicApplication extends Application {
         mContext = getApplicationContext();
     }
 
-
 }

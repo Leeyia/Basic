@@ -1,6 +1,7 @@
-package com.matto.model;
+package com.matto.presenter.impl;
 
 import com.matto.R;
+import com.matto.presenter.MainLogic;
 import com.matto.ui.view.MainView;
 
 /**

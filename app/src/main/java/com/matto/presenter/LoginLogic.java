@@ -1,7 +1,8 @@
-package com.matto.model;
+package com.matto.presenter;
 
 import com.common.model.control.MvpLogic;
 import com.common.model.annotation.Implement;
+import com.matto.presenter.impl.LoginLogicImpl;
 import com.matto.ui.view.LoginView;
 
 

@@ -1,7 +1,8 @@
-package com.matto.model;
+package com.matto.presenter;
 
 import com.common.model.annotation.Implement;
 import com.common.model.control.MvpLogic;
+import com.matto.presenter.impl.MainLogicImpl;
 import com.matto.ui.view.MainView;
 
 /**

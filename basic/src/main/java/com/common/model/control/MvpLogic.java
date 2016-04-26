@@ -5,6 +5,5 @@ package com.common.model.control;
  * email  meikoz@126.com
  */
 public interface MvpLogic<T> {
-
     void attachView(T mvpView);
 }

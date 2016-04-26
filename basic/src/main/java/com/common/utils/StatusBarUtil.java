@@ -1,4 +1,4 @@
-package com.common.view.base;
+package com.common.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

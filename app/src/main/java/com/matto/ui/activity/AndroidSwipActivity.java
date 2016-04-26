@@ -3,7 +3,7 @@ package com.matto.ui.activity;
 import android.os.Bundle;
 
 import com.common.view.base.SwipeBackActivity;
-import com.common.view.base.SwipeBackLayout;
+import com.common.view.widget.SwipeBackLayout;
 import com.matto.R;
 
 /**

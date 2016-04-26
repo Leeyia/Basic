@@ -86,5 +86,4 @@ public class GlideProxy {
                 .into(imageView);
     }
 
-
 }

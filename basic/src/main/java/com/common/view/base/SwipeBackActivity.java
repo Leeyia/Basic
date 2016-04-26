@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
 import com.common.R;
+import com.common.view.widget.SwipeBackLayout;
 
 /**
  * Created by Eric on 15/3/3.

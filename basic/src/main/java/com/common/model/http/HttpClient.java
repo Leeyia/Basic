@@ -1,6 +1,8 @@
 package com.common.model.http;
 
 import com.common.BasicApplication;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpClient {
 
     private static HttpClient mInstance;
-    private Retrofit retrofit;
+    private Retrofit singleton;
 
     public static HttpClient getIns(String base_url) {
         if (mInstance == null) {
@@ -46,8 +48,7 @@ public class HttpClient {
                 .cache(cache)
                 .build();
 
-
-        retrofit = new Retrofit.Builder()
+        singleton = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -56,6 +57,6 @@ public class HttpClient {
     }
 
     public <T> T createService(Class<T> clz) {
-        return retrofit.create(clz);
+        return singleton.create(clz);
     }
 }

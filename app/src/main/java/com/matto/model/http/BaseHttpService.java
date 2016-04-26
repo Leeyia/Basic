@@ -1,7 +1,7 @@
 package com.matto.model.http;
 
 
-import com.matto.pojo.Gank;
+import com.matto.model.pojo.Gank;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -12,7 +12,7 @@ import retrofit2.http.Path;
  * author miekoz on 2016/3/17.
  * email  meikoz@126.com
  */
-public interface MainService {
+public interface BaseHttpService {
 
     /**
      * 使用缓存机制

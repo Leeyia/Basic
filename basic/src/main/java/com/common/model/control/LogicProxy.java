@@ -1,7 +1,5 @@
 package com.common.model.control;
 
-import android.util.Log;
-
 import com.common.model.annotation.Implement;
 
 import java.lang.annotation.Annotation;
@@ -25,7 +23,6 @@ public class LogicProxy {
     }
 
     private Map<Class, Object> m_objects;
-    //private Object m_proxy;
 
     public void init(Class... clss) {
         List<Class> list = new LinkedList<Class>();
@@ -48,7 +45,6 @@ public class LogicProxy {
     }
 
     public <T> T getProxy(Class cls) {
-        //return (T) m_proxy;
         return (T) m_objects.get(cls);
     }
 

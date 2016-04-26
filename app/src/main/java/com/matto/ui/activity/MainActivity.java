@@ -9,7 +9,7 @@ import android.view.View;
 import com.common.model.control.LogicProxy;
 import com.common.view.base.BaseActivity;
 import com.matto.R;
-import com.matto.model.MainLogic;
+import com.matto.presenter.MainLogic;
 import com.matto.ui.fragment.DiscoveryFragment;
 import com.matto.ui.fragment.HomeFragment;
 import com.matto.ui.fragment.ShowMeFragment;

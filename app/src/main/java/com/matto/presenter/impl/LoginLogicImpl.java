@@ -1,10 +1,11 @@
-package com.matto.model;
+package com.matto.presenter.impl;
 
 import android.util.Log;
 
-import com.matto.model.http.MainService;
-import com.matto.model.http.ServiceFactory;
-import com.matto.pojo.Gank;
+import com.matto.model.http.BaseHttpService;
+import com.matto.model.http.Factory;
+import com.matto.model.pojo.Gank;
+import com.matto.presenter.LoginLogic;
 import com.matto.ui.view.LoginView;
 
 import retrofit2.Call;
@@ -17,7 +18,7 @@ import retrofit2.Response;
  */
 public class LoginLogicImpl implements LoginLogic {
 
-    MainService mainService;
+    BaseHttpService mainService;
     LoginView mView;
 
     @Override
@@ -43,7 +44,7 @@ public class LoginLogicImpl implements LoginLogic {
     @Override
     public void attachView(LoginView mvpView) {
         this.mView = mvpView;
-        this.mainService = ServiceFactory.getMainIns();
+        this.mainService = Factory.getMainIns();
     }
 
 }

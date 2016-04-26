@@ -9,7 +9,7 @@ import com.common.view.base.BaseActivity;
 import com.matto.ui.widget.TitleBar;
 import com.matto.R;
 import com.common.model.control.LogicProxy;
-import com.matto.model.LoginLogic;
+import com.matto.presenter.LoginLogic;
 import com.matto.ui.view.LoginView;
 
 import butterknife.Bind;
