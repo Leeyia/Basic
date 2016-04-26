@@ -15,7 +15,7 @@ import com.common.view.widget.SwipeBackLayout;
 /**
  * Created by Eric on 15/3/3.
  */
-public abstract class SwipeBackActivity extends AppCompatActivity implements SwipeBackLayout.SwipeBackListener {
+public abstract class BaseSwipeBackActivity extends AppCompatActivity implements SwipeBackLayout.SwipeBackListener {
 
     private SwipeBackLayout swipeBackLayout;
     private ImageView ivShadow;
