@@ -23,7 +23,7 @@ Application 初始化IPresenter
 IPresenter 中Implemet关联自己的实现类 extends MvpLogic<T>
 ```
 @Implement(LoginLogicImpl.class)
-public interface LoginLogic extends MvpLogic<LoginView> {
+public interface LoginLogic extends BaseLogic<LoginView> {
 
     void login(String name, String passwrod);
 }
