@@ -1,6 +1,7 @@
 package com.matto.ui.fragment;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -22,6 +23,7 @@ import com.common.view.widget.AutoLoadMoreRecyclerView;
 import com.matto.R;
 import com.matto.model.bean.Classify;
 import com.matto.presenter.CompeteLogic;
+import com.matto.ui.activity.SwipBackActivity;
 import com.matto.ui.view.CompeteView;
 
 import java.util.ArrayList;
@@ -98,6 +100,7 @@ public class CompeteFragment extends BaseFragment implements CompeteView {
             @Override
             public void onItemClick(View view, int position) {
                 Snackbar.make(mReclyView, position + "", Snackbar.LENGTH_LONG).show();
+                startActivity(new Intent(getActivity(), SwipBackActivity.class));
             }
         });
     }

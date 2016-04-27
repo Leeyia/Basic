@@ -10,7 +10,7 @@ import com.matto.R;
  * author meikoz on 2016/4/19.
  * email  meikoz@126.com
  */
-public class AndroidSwipActivity extends BaseSwipeBackActivity {
+public class SwipBackActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

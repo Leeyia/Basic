@@ -50,7 +50,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.btn_login)
     void login() {
         mLoginLogic.login("zhangsan", "123");
-        startActivity(new Intent(LoginActivity.this, AndroidSwipActivity.class));
+        startActivity(new Intent(LoginActivity.this, SwipBackActivity.class));
     }
 
     @Override
