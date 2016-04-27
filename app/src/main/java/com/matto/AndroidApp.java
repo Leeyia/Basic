@@ -16,8 +16,7 @@ public class AndroidApp extends BasicApplication {
     public void onCreate() {
         super.onCreate();
 
-        LogicProxy.getInstance().bind(
-                LoginLogic.class, MainLogic.class, CompeteLogic.class
-        );
+        LogicProxy.getInstance().init(
+                LoginLogic.class, MainLogic.class, CompeteLogic.class);
     }
 }

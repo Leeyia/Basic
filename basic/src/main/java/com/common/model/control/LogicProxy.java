@@ -24,7 +24,7 @@ public class LogicProxy {
 
     private Map<Class, Object> m_objects;
 
-    public void bind(Class... clss) {
+    public void init(Class... clss) {
         List<Class> list = new LinkedList<Class>();
         for (Class cls : clss) {
             if (cls.isAnnotationPresent(Implement.class)) {
