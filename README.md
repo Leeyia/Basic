@@ -20,7 +20,7 @@ Application 初始化IPresenter
                  LoginLogic.class, MainLogic.class, CompeteLogic.class ...);
 ```
 
-IPresenter 中Implemet关联自己的实现类 extends MvpLogic<T>
+IPresenter 中Implemet关联自己的实现类 extends BaseLogic<T>
 ```
 @Implement(LoginLogicImpl.class)
 public interface LoginLogic extends BaseLogic<LoginView> {
