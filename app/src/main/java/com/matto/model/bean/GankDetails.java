@@ -1,4 +1,4 @@
-package com.matto.model.pojo;
+package com.matto.model.bean;
 
 /**
  * author miekoz on 2016/3/17.

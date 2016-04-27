@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/basic/src/main/java/com/common/view/base/SwipeBackActivity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/java/com/common/view/base/BaseRecyclerAdapter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/java/com/common/view/base/BaseRecyclerViewHolder.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/java/com/common/view/base/BaseSpacesItemDecoration.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/java/com/common/view/base/BaseSwipeBackActivity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/java/com/common/view/callback/OnItemClickAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/java/com/common/view/callback/OnItemClickListener.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/basic/src/main/java/com/common/view/widget/SwipeBackLayout.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/java/com/common/view/widget/refresh" charset="GBK" />
     <file url="file://$PROJECT_DIR$/basic/src/main/res/anim/hold_long.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/res/anim/image_load.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/res/anim/item_bottom_in.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/res/anim/item_bottom_in.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/basic/src/main/res/anim/move_right_in_activity.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/basic/src/main/res/anim/move_right_out_activity.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/basic/src/main/res/layout/item_footer.xml" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

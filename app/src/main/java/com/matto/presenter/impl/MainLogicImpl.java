@@ -17,13 +17,13 @@ public class MainLogicImpl implements MainLogic {
 
         switch (id) {
             case R.id.navigation_selection:
-                mMainView.switchHome();
+                mMainView.switchCompete();
                 break;
             case R.id.navigation_discovery:
                 mMainView.switchDiscovery();
                 break;
             case R.id.navigation_about:
-                mMainView.switchShomeMe();
+                mMainView.switchAbout();
                 break;
             default:
                 break;

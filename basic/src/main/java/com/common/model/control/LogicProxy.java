@@ -24,7 +24,7 @@ public class LogicProxy {
 
     private Map<Class, Object> m_objects;
 
-    public void init(Class... clss) {
+    public void bind(Class... clss) {
         List<Class> list = new LinkedList<Class>();
         for (Class cls : clss) {
             if (cls.isAnnotationPresent(Implement.class)) {
@@ -48,7 +48,7 @@ public class LogicProxy {
         return (T) m_objects.get(cls);
     }
 
-    public <T> T getBindViewProxy(Class cls, Object o) {
+    public <T> T bind(Class cls, Object o) {
         Object ret = m_objects.get(cls);
         ((MvpLogic) ret).attachView(o);
         return (T) ret;

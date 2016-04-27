@@ -1,4 +1,4 @@
-package com.matto.model.pojo;
+package com.matto.model.bean;
 
 import java.util.List;
 

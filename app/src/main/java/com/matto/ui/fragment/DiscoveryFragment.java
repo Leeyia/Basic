@@ -14,7 +14,7 @@ public class DiscoveryFragment extends BaseFragment {
     }
 
     @Override
-    protected void onInitData() {
+    protected void onInitView() {
 
     }
 }

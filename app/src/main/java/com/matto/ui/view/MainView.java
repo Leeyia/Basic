@@ -5,9 +5,7 @@ package com.matto.ui.view;
  * email  meikoz@126.com
  */
 public interface MainView {
-    void switchHome();
-
+    void switchCompete();
     void switchDiscovery();
-
-    void switchShomeMe();
+    void switchAbout();
 }

@@ -1,4 +1,4 @@
-package com.common.view.widget;
+package com.common.view.callback;
 
 import android.view.View;
 
@@ -6,7 +6,7 @@ import android.view.View;
  * author meikoz on 2016/4/18.
  * email  meikoz@126.com
  */
-public abstract class OnClickEvent implements View.OnClickListener{
+public abstract class OnSingleClick implements View.OnClickListener{
     public static long lastTime;
 
     public abstract void singleClick(View v);

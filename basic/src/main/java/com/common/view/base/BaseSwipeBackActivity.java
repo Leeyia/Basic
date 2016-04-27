@@ -38,7 +38,7 @@ public abstract class BaseSwipeBackActivity extends AppCompatActivity implements
         swipeBackLayout = new SwipeBackLayout(this);
         swipeBackLayout.setOnSwipeBackListener(this);
         ivShadow = new ImageView(this);
-        ivShadow.setBackgroundColor(getResources().getColor(R.color.black_p50));
+        ivShadow.setBackgroundColor(getResources().getColor(R.color.theme_black_7f));
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         container.addView(ivShadow, params);
         container.addView(swipeBackLayout);

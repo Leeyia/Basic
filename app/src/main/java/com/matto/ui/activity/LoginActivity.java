@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.EditText;
 
-import com.common.model.basic.ToastTip;
 import com.common.view.base.BaseActivity;
 import com.matto.ui.widget.TitleBar;
 import com.matto.R;
@@ -45,7 +44,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     protected void onInitView() {
         titlebar.setTitle("登录页面");
-        mLoginLogic = LogicProxy.getInstance().getBindViewProxy(LoginLogic.class, this);
+        mLoginLogic = LogicProxy.getInstance().bind(LoginLogic.class, this);
     }
 
     @OnClick(R.id.btn_login)
@@ -56,11 +55,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void onLoginSuccess() {
-        ToastTip.show("登录成功");
     }
 
     @Override
     public void onLoginFail() {
-        ToastTip.show("登录失败");
     }
 }

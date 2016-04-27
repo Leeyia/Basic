@@ -2,6 +2,7 @@ package com.matto;
 
 import com.common.BasicApplication;
 import com.common.model.control.LogicProxy;
+import com.matto.presenter.CompeteLogic;
 import com.matto.presenter.LoginLogic;
 import com.matto.presenter.MainLogic;
 
@@ -15,8 +16,8 @@ public class AndroidApp extends BasicApplication {
     public void onCreate() {
         super.onCreate();
 
-        LogicProxy.getInstance().init(
-                LoginLogic.class, MainLogic.class
+        LogicProxy.getInstance().bind(
+                LoginLogic.class, MainLogic.class, CompeteLogic.class
         );
     }
 }

@@ -1,25 +1,23 @@
 package com.matto.ui.activity;
 
-
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.common.model.control.LogicProxy;
 import com.common.view.base.BaseActivity;
 import com.matto.R;
 import com.matto.presenter.MainLogic;
+import com.matto.ui.fragment.CompeteFragment;
 import com.matto.ui.fragment.DiscoveryFragment;
-import com.matto.ui.fragment.HomeFragment;
-import com.matto.ui.fragment.ShowMeFragment;
+import com.matto.ui.fragment.UserFragment;
 import com.matto.ui.view.MainView;
 
 import butterknife.OnClick;
 
-
 public class MainActivity extends BaseActivity implements MainView {
 
+    MainLogic mainLogic;
 
     public static void start(Activity context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -27,7 +25,6 @@ public class MainActivity extends BaseActivity implements MainView {
         context.finish();
     }
 
-    MainLogic mainLogic;
 
     @Override
     protected int getLayoutResource() {
@@ -36,32 +33,27 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     protected void onInitView() {
-        if (mainLogic == null)
-            mainLogic = LogicProxy.getInstance().getBindViewProxy(MainLogic.class, this);
-        switchHome();
+        mainLogic = LogicProxy.getInstance().bind(MainLogic.class, this);
+        switchCompete();
     }
 
     @Override
-    public void switchHome() {
-        startFragment(new HomeFragment());
+    public void switchCompete() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, new CompeteFragment()).commit();
     }
 
     @Override
     public void switchDiscovery() {
-        startFragment(new DiscoveryFragment());
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, new DiscoveryFragment()).commit();
     }
 
     @Override
-    public void switchShomeMe() {
-        startFragment(new ShowMeFragment());
-    }
-
-    void startFragment(Fragment fragment) {
+    public void switchAbout() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout, fragment)
-                .commit();
+                .replace(R.id.frame_layout, new UserFragment()).commit();
     }
-
 
     @OnClick({R.id.navigation_selection, R.id.navigation_discovery, R.id.navigation_about})
     void onClick(View view) {

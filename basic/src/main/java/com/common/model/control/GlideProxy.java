@@ -37,8 +37,8 @@ public class GlideProxy {
     public void loadResImage(Context context, int resId, ImageView imageView) {
         Glide.with(context)
                 .load(resourceIdToUri(context, resId))
-                .placeholder(R.color.view_black_default)
-                .error(R.color.view_black_default)
+                .placeholder(R.color.material_white70)
+                .error(R.color.material_white70)
                 .crossFade()
                 .into(imageView);
     }
@@ -47,8 +47,8 @@ public class GlideProxy {
     public void loadLocalImage(Context context, String path, ImageView imageView) {
         Glide.with(context)
                 .load("file://" + path)
-                .placeholder(R.color.view_black_default)
-                .error(R.color.view_black_default)
+                .placeholder(R.color.material_white70)
+                .error(R.color.material_white70)
                 .crossFade()
                 .into(imageView);
     }
@@ -57,8 +57,8 @@ public class GlideProxy {
     public void loadCircleImage(Context context, String url, ImageView imageView) {
         Glide.with(context)
                 .load(url)
-                .placeholder(R.color.view_black_default)
-                .error(R.color.view_black_default)
+                .placeholder(R.color.material_white70)
+                .error(R.color.material_white70)
                 .crossFade()
                 .transform(new GlideCircleTransform(context))
                 .into(imageView);
@@ -68,8 +68,8 @@ public class GlideProxy {
     public void loadCircleResImage(Context context, int resId, ImageView imageView) {
         Glide.with(context)
                 .load(resourceIdToUri(context, resId))
-                .placeholder(R.color.view_black_default)
-                .error(R.color.view_black_default)
+                .placeholder(R.color.material_white70)
+                .error(R.color.material_white70)
                 .crossFade()
                 .transform(new GlideCircleTransform(context))
                 .into(imageView);
@@ -79,8 +79,8 @@ public class GlideProxy {
     public void loadCircleLocalImage(Context context, String path, ImageView imageView) {
         Glide.with(context)
                 .load("file://" + path)
-                .placeholder(R.color.view_black_default)
-                .error(R.color.view_black_default)
+                .placeholder(R.color.material_white70)
+                .error(R.color.material_white70)
                 .crossFade()
                 .transform(new GlideCircleTransform(context))
                 .into(imageView);

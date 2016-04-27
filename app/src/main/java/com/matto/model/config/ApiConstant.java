@@ -6,5 +6,5 @@ package com.matto.model.config;
  */
 public interface ApiConstant {
 
-    String BASE_URL = "http://gank.avosapps.com/api/";
+    String BASE_URL = "http://www.tngou.net/";
 }

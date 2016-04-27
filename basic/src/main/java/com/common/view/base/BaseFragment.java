@@ -27,13 +27,13 @@ public abstract class BaseFragment extends Fragment {
         if (parentView !=null) parentView.removeView(rootView);
 
         ButterKnife.bind(this, rootView);
-        onInitData();
+        onInitView();
         return rootView;
     }
 
     protected abstract int getLayoutResource();
 
-    protected abstract void onInitData();
+    protected abstract void onInitView();
 
     public String getName() {
         return BaseFragment.class.getName();

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.joanzapata.android.BaseAdapterHelper;
 import com.joanzapata.android.QuickAdapter;
-import com.matto.model.pojo.Gank;
+import com.matto.model.bean.Gank;
 
 import java.util.List;
 

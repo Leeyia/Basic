@@ -38,8 +38,8 @@
             <shape>
                 <corners android:radius="5dip" />
                 <gradient
-                    android:endColor="@color/colorAccent"
-                    android:startColor="@color/colorAccent" />
+                    android:endColor="@color/material_pink_a200"
+                    android:startColor="@color/material_pink_a200" />
             </shape>
         </clip>
     </item>
