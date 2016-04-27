@@ -50,7 +50,7 @@ public class LogicProxy {
 
     public <T> T bind(Class cls, Object o) {
         Object ret = m_objects.get(cls);
-        ((MvpLogic) ret).attachView(o);
+        ((BaseLogic) ret).attachView(o);
         return (T) ret;
     }
 }

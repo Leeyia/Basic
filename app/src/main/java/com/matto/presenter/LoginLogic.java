@@ -1,6 +1,6 @@
 package com.matto.presenter;
 
-import com.common.model.control.MvpLogic;
+import com.common.model.control.BaseLogic;
 import com.common.model.annotation.Implement;
 import com.matto.presenter.impl.LoginLogicImpl;
 import com.matto.ui.view.LoginView;
@@ -12,7 +12,7 @@ import com.matto.ui.view.LoginView;
  */
 
 @Implement(LoginLogicImpl.class)
-public interface LoginLogic extends MvpLogic<LoginView> {
+public interface LoginLogic extends BaseLogic<LoginView> {
 
     void login(String name, String passwrod);
 }
