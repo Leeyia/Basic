@@ -2,5 +2,6 @@
 <resources>
     <color name="theme_black_7f">#7f000000</color>
     <color name="material_white70">#b2FFFFFF</color>
+    <color name="material_back70">#b2000000</color>
     <color name="material_pink_a200">#ff80ab</color>
 </resources>
