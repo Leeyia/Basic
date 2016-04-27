@@ -35,7 +35,7 @@
         android:id="@+id/ll_navi_top"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/material_pink_a200"
+        android:background="@color/material_white70"
         android:orientation="vertical" />
 
 </RelativeLayout>

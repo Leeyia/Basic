@@ -36,7 +36,7 @@ public class UserFragment extends BaseFragment {
 
     @Override
     protected void onInitView() {
-        StatusBarUtil.setColor(getActivity(), R.color.material_pink_a200);
+        StatusBarUtil.setColor(getActivity(), R.color.material_white70);
         mNavitop.getBackground().setAlpha(0);
         mNotifyNavi.setCallback(new NotifyScrollView.Callback() {
             @Override
