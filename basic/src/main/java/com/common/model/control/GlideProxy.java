@@ -16,15 +16,14 @@ public class GlideProxy {
 
     public static final String ANDROID_RESOURCE = "android.resource://";
     public static final String FOREWARD_SLASH = "/";
-
+    private static GlideProxy instance;
     private GlideProxy() {}
 
-    private static class GlideControlHolder {
-        private static GlideProxy instance = new GlideProxy();
-    }
-
     public static GlideProxy getInstance() {
-        return GlideControlHolder.instance;
+        if (instance ==null){
+            instance = new GlideProxy();
+        }
+        return instance;
     }
 
     // 将资源ID转为Uri

@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by snower on 16-1-13.
+ * author meikoz on 2016/4/13.
+ * email  meikoz@126.com
  */
 public class LogicProxy {
     private static final LogicProxy m_instance = new LogicProxy();
