@@ -1,49 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
     <FrameLayout
-        android:layout_weight="1"
-        android:id="@+id/frame_layout"
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appbar"
-        android:elevation="5dp"
-        android:scrollbars="none"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:layout_above="@+id/navigateTabBar" />
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/white">
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:background="#dedede" />
 
-        <TextView
-            android:id="@+id/navigation_selection"
-            android:text="精选"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/navigation_discovery"
-            android:text="发现"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/navigation_about"
-            android:text="关于"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-</LinearLayout>
+    <com.android.core.widget.TabStripView
+        android:id="@+id/navigateTabBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        app:containerId="@id/main_container"
+        app:navigateTabSelectedTextColor="@color/colorPrimary"
+        app:navigateTabTextColor="@color/abc_tab_text_normal"
+        app:navigateTabTextSize="9sp" />
+</RelativeLayout>

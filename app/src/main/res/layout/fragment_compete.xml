@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
 
-    <com.common.view.widget.AutoLoadMoreRecyclerView
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/recly_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

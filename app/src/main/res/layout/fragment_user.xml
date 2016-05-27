@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.common.view.widget.NotifyScrollView
+    <ScrollView
         android:id="@+id/notify_sv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -29,13 +29,13 @@
                 android:background="#0000ff" />
 
         </LinearLayout>
-    </com.common.view.widget.NotifyScrollView>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/ll_navi_top"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/material_white70"
+        android:background="@color/colorAccent"
         android:orientation="vertical" />
 
 </RelativeLayout>
