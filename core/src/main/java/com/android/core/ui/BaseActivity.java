@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.android.core.model.control.LogicProxy;
+
 import butterknife.ButterKnife;
 
 /**
@@ -40,6 +42,11 @@ public abstract class BaseActivity extends Activity {
     public void startActivity(Intent intent) {
         super.startActivity(intent);
         // 打开Activity动画
+    }
+
+    //获得该页面的实例
+    public <T> T getLogicImpl(Class cls, Object o) {
+        return LogicProxy.getInstance().bind(cls, o);
     }
 
     @Override

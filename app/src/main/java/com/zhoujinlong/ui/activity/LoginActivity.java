@@ -44,7 +44,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     protected void onInitView() {
         titlebar.setTitle("登录页面");
-        mLoginLogic = LogicProxy.getInstance().bind(LoginLogic.class, this);
+        mLoginLogic = getLogicImpl(LoginLogic.class, this);
     }
 
     @Override
