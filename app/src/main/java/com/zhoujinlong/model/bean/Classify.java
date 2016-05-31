@@ -3,8 +3,9 @@ package com.zhoujinlong.model.bean;
 import java.util.List;
 
 /**
- * author meikoz on 2016/4/27.
- * email  meikoz@126.com
+ * @author: 蜡笔小新
+ * @date: 2016-05-31 14:15
+ * @GitHub: https://github.com/meikoz
  */
 public class Classify {
     private boolean status;

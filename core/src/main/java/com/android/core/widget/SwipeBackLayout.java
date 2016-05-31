@@ -30,17 +30,9 @@ import android.widget.AbsListView;
 import android.widget.ScrollView;
 
 /**
- * Swipe or Pull to finish a Activity.
- * <p/>
- * This layout must be a root layout and contains only one direct child view.
- * <p/>
- * The activity must use a theme that with translucent style.
- * <style name="Theme.Swipe.Back" parent="AppTheme">
- * <item name="android:windowIsTranslucent">true</item>
- * <item name="android:windowBackground">@android:color/transparent</item>
- * </style>
- * <p/>
- * Created by Eric on 15/1/8.
+ * @author: 蜡笔小新
+ * @date: 2016-05-31 14:15
+ * @GitHub: https://github.com/meikoz
  */
 public class SwipeBackLayout extends ViewGroup {
 

@@ -4,19 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.EditText;
 
-import com.android.core.model.control.LogicProxy;
 import com.android.core.ui.BaseActivity;
 import com.zhoujinlong.ui.widget.TitleBar;
 import com.zhoujinlong.R;
 import com.zhoujinlong.presenter.LoginLogic;
-import com.zhoujinlong.ui.view.LoginView;
+import com.zhoujinlong.presenter.view.LoginView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * author meikoz on 2016/4/13.
- * email  meikoz@126.com
+ * @author: 蜡笔小新
+ * @date: 2016-05-31 10:51
+ * @GitHub: https://github.com/meikoz
  */
 public class LoginActivity extends BaseActivity implements LoginView {
 
@@ -55,11 +55,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.btn_login)
     void login() {
         mLoginLogic.login("zhangsan", "123");
-        startActivity(new Intent(LoginActivity.this, SwipBackActivity.class));
     }
 
     @Override
     public void onLoginSuccess() {
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.zhoujinlong.presenter.impl;
 import com.zhoujinlong.model.http.BaseHttpService;
 import com.zhoujinlong.model.http.Factory;
 import com.zhoujinlong.presenter.LoginLogic;
-import com.zhoujinlong.ui.view.LoginView;
+import com.zhoujinlong.presenter.view.LoginView;
 
 /**
  * author meikoz on 2016/4/13.
@@ -16,7 +16,10 @@ public class LoginLogicImpl implements LoginLogic {
 
     @Override
     public void login(String name, String passwrod) {
-
+        if (name.equals("zhangsan") && passwrod.equals("123"))
+            mView.onLoginSuccess();
+        else
+            mView.onLoginFail();
     }
 
     @Override

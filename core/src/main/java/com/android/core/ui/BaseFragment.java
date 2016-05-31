@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.core.model.control.LogicProxy;
+
 import butterknife.ButterKnife;
 
 /**
@@ -33,6 +35,11 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void onInitView();
 
     protected abstract void onInitData();
+
+    //获得该页面的实例
+    public <T> T getLogicImpl(Class cls, Object o) {
+        return LogicProxy.getInstance().bind(cls, o);
+    }
 
     @Override
     public void onDestroyView() {

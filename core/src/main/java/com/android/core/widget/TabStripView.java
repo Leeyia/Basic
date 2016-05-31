@@ -24,9 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @ClassName: TabStripView.java
  * @author: 蜡笔小新
- * @date: 2016-05-26 10:31
+ * @date: 2016-05-31 14:15
+ * @GitHub: https://github.com/meikoz
  */
 public class TabStripView extends LinearLayout implements View.OnClickListener {
 

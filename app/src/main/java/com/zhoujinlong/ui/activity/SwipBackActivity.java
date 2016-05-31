@@ -1,5 +1,7 @@
 package com.zhoujinlong.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.core.ui.BaseSwipeBackActivity;
@@ -11,6 +13,11 @@ import com.zhoujinlong.R;
  * email  meikoz@126.com
  */
 public class SwipBackActivity extends BaseSwipeBackActivity {
+
+    public static void start(Context context) {
+        Intent intent = new Intent(context, SwipBackActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

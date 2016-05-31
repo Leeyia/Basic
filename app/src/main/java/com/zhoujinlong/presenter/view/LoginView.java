@@ -1,4 +1,4 @@
-package com.zhoujinlong.ui.view;
+package com.zhoujinlong.presenter.view;
 
 /**
  * author meikoz on 2016/4/19.

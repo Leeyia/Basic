@@ -5,17 +5,19 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <include layout="@layout/view_tool_bar"/>
+    <include layout="@layout/view_tool_bar" />
 
     <EditText
         android:id="@+id/edit_username"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="zhangsan" />
 
     <EditText
         android:id="@+id/edit_passwrod"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="123" />
 
     <Button
         android:id="@+id/btn_login"

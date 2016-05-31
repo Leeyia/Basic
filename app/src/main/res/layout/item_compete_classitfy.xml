@@ -7,15 +7,14 @@
     <ImageView
         android:id="@+id/sv_classitfy_img"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/app_logo"
+        android:layout_height="120dp"
+        android:background="@color/abc_theme_black_7f"
         android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/sv_classitfy_des"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
         android:gravity="center"
         android:textColor="@color/white" />
 </FrameLayout>

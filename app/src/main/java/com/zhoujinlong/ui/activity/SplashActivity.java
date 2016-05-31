@@ -51,7 +51,7 @@ public class SplashActivity extends BaseActivity {
         AnimationUtil.setAnimationListener(animation, new AnimationUtil.AnimListener() {
             @Override
             public void onAnimFinish() {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
 //                finish();
 //                LoginActivity.start(SplashActivity.this);
             }
