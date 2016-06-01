@@ -14,20 +14,16 @@ dependencies {
 }
 ```
 
-Application 初始化IPresenter 
-```
- LogicProxy.getInstance().init(
-                 LoginLogic.class, MainLogic.class, CompeteLogic.class ...);
-```
-
-IPresenter 中Implemet关联自己的实现类 extends BaseLogic<T>
-```
-@Implement(LoginLogicImpl.class)
-public interface LoginLogic extends BaseLogic<LoginView> {
-
-    void login(String name, String passwrod);
-}
-```
+- 自动轮播图
+- LoadingView
+- 上拉加载下拉刷新
+- 右划关闭页面
+- NaviTab底部导航
+- 网络请求Retrofit管理类
+- 图片加载Glide
+- BaseActivity/BaseFragment
+- Mvp框架支持
+- 统一处理列表页面请求成功逻辑
 
 
 
