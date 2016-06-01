@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.core.util.ScreenUtil;
+import com.android.core.control.ScreenUtil;
 import com.zhoujinlong.R;
 
 /**

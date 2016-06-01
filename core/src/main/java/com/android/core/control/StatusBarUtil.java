@@ -1,4 +1,4 @@
-package com.android.core.util;
+package com.android.core.control;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

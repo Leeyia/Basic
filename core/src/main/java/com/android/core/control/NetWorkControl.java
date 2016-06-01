@@ -1,4 +1,4 @@
-package com.android.core.util;
+package com.android.core.control;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * @date: 2016-05-31 14:15
  * @GitHub: https://github.com/meikoz
  */
-public class NetWorkUtil {
+public class NetWorkControl {
 
 	/**
 	 * 检测网络是否连接

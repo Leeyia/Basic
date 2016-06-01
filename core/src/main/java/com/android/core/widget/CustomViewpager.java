@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.android.core.R;
 import com.android.core.iface.CustomInterface;
-import com.android.core.util.ScreenUtil;
+import com.android.core.control.ScreenUtil;
 
 /**
  * @author: 蜡笔小新

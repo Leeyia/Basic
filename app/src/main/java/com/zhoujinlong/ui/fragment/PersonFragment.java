@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.android.core.ui.BaseFragment;
-import com.android.core.util.StatusBarUtil;
+import com.android.core.control.StatusBarUtil;
 import com.zhoujinlong.R;
 
 import butterknife.Bind;

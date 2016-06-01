@@ -6,7 +6,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.android.core.ui.BaseActivity;
-import com.android.core.util.StatusBarUtil;
+import com.android.core.control.StatusBarUtil;
 import com.zhoujinlong.R;
 import com.zhoujinlong.util.AnimationUtil;
 

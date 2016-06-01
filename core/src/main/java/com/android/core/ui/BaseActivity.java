@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Window;
 
 import com.android.core.model.control.LogicProxy;
+import com.android.core.widget.LoadingView;
 
 import butterknife.ButterKnife;
 
@@ -16,12 +17,15 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends Activity {
 
+    private LoadingView mLoadingView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(getLayoutResource());
         ButterKnife.bind(this);
+        mLoadingView = new LoadingView(this);
         onInitView();
         onInitData();
     }
@@ -42,6 +46,14 @@ public abstract class BaseActivity extends Activity {
     public void startActivity(Intent intent) {
         super.startActivity(intent);
         // 打开Activity动画
+    }
+
+    public void showLoadView() {
+        mLoadingView.show();
+    }
+
+    public void hideLoadView() {
+        mLoadingView.hide();
     }
 
     //获得该页面的实例

@@ -30,7 +30,7 @@ dependencies {
     compile 'com.jcodecraeer:xrecyclerview:1.2.7'
     compile 'com.jakewharton:butterknife:7.0.1'
 
-    // Glide
+    compile 'com.github.ybq:Android-SpinKit:1.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
     //squareup

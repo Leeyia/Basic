@@ -1,4 +1,4 @@
-package com.android.core.util;
+package com.android.core.control;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.net.Uri;
  * @date: 2016-05-26 17:47
  * @GitHub: https://github.com/meikoz
  */
-public class MobileUtil {
+public class MobileControl {
     //调起拨号键
     public static void startPanel(Context context, String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_DIAL);

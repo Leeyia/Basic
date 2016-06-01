@@ -3,14 +3,11 @@ package com.zhoujinlong.ui.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.android.core.ui.BaseFragment;
-import com.android.core.util.StatusBarUtil;
+import com.android.core.control.XRecyclerViewControl;
 import com.android.core.widget.CustomViewpager;
-import com.android.core.widget.SpacesItemDecoration;
-import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.zhoujinlong.R;
 import com.zhoujinlong.adapter.CustomViewPageAdapter;
@@ -49,7 +46,6 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
 
     @Override
     protected void onInitView() {
-        StatusBarUtil.setTransparent(getActivity());
     }
 
     @Override
@@ -70,15 +66,7 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        //分割线
-        mRecyclerView.addItemDecoration(new SpacesItemDecoration(1));
-        mRecyclerView.setLayoutManager(layoutManager);
-
-        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-        mRecyclerView.setArrowImageView(R.drawable.abc_icon_down_arrow);
+        XRecyclerViewControl.init().setLinearLayout(getActivity(), mRecyclerView);
 
         View header = View.inflate(getActivity(), R.layout.abc_viewpager_view, null);
         mViewpage = (CustomViewpager) header.findViewById(R.id.viewpager);
@@ -111,6 +99,7 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
      */
     @Override
     public void onShowListData(Classify listData, boolean isMore) {
+        hideLoadingView();
         if (listData.isStatus()) {
             if (!isMore)
                 classifys.clear();
@@ -121,6 +110,7 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
 
     @Override
     public void onRefresh() {
+        showLoadingView();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

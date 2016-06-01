@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.core.model.control.LogicProxy;
+import com.android.core.widget.LoadingView;
 
 import butterknife.ButterKnife;
 
@@ -18,6 +19,7 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseFragment extends Fragment {
     protected View rootView;
+    private LoadingView mLoginView;
 
     @Nullable
     @Override
@@ -25,6 +27,7 @@ public abstract class BaseFragment extends Fragment {
         if (rootView == null)
             rootView = inflater.inflate(getLayoutResource(), container, false);
         ButterKnife.bind(this, rootView);
+        mLoginView = new LoadingView(getActivity());
         onInitView();
         onInitData();
         return rootView;
@@ -35,6 +38,14 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void onInitView();
 
     protected abstract void onInitData();
+
+    public void showLoadingView() {
+        mLoginView.show();
+    }
+
+    public void hideLoadingView() {
+        mLoginView.hide();
+    }
 
     //获得该页面的实例
     public <T> T getLogicImpl(Class cls, Object o) {

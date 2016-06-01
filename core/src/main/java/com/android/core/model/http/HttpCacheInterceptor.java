@@ -3,7 +3,7 @@ package com.android.core.model.http;
 import android.util.Log;
 
 import com.android.core.MainApp;
-import com.android.core.util.NetWorkUtil;
+import com.android.core.control.NetWorkControl;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class HttpCacheInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        if (!NetWorkUtil.isNetConnected(MainApp.getContext())) {
+        if (!NetWorkControl.isNetConnected(MainApp.getContext())) {
             request = request.newBuilder()
                     .cacheControl(CacheControl.FORCE_CACHE)
                     .build();
@@ -30,7 +30,7 @@ public class HttpCacheInterceptor implements Interceptor {
         }
 
         Response originalResponse = chain.proceed(request);
-        if (NetWorkUtil.isNetConnected(MainApp.getContext())) {
+        if (NetWorkControl.isNetConnected(MainApp.getContext())) {
             //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
             String cacheControl = request.cacheControl().toString();
             return originalResponse.newBuilder()

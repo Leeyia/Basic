@@ -1,4 +1,4 @@
-package com.android.core.util;
+package com.android.core.control;
 
 import android.content.Context;
 import android.content.res.TypedArray;
