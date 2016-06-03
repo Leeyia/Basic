@@ -26,7 +26,7 @@ public class HttpCacheInterceptor implements Interceptor {
             request = request.newBuilder()
                     .cacheControl(CacheControl.FORCE_CACHE)
                     .build();
-            Log.d("okhttp", "no network");
+            Log.d("com.android.core", "no network");
         }
 
         Response originalResponse = chain.proceed(request);

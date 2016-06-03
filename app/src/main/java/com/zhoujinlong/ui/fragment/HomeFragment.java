@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.android.core.control.Toast;
 import com.android.core.ui.BaseFragment;
 import com.android.core.control.XRecyclerViewControl;
 import com.android.core.widget.CustomViewpager;
@@ -80,6 +81,7 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
         recyclerAdapter = new HomeRecyclerAdapter(getActivity(), R.layout.item_compete_classitfy, classifys);
         mRecyclerView.setAdapter(recyclerAdapter);
         mRecyclerView.setLoadingListener(this);
+        showLoadingView();
         onRefresh();
     }
 
@@ -91,7 +93,9 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
 
     @Override
     public void onLoadComplete() {
+        Toast.show("请求成功");
         //加载完成需要做的操作
+        hideLoadingView();
     }
 
     /**
@@ -99,7 +103,6 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
      */
     @Override
     public void onShowListData(Classify listData, boolean isMore) {
-        hideLoadingView();
         if (listData.isStatus()) {
             if (!isMore)
                 classifys.clear();
@@ -110,7 +113,7 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
 
     @Override
     public void onRefresh() {
-        showLoadingView();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
