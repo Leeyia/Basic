@@ -1,6 +1,6 @@
 package com.zhoujinlong.model.http;
 
-import com.android.core.model.http.HttpClient;
+import com.android.core.model.api.HttpClient;
 import com.zhoujinlong.model.config.ApiConstant;
 
 import java.util.HashMap;

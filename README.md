@@ -24,6 +24,7 @@ dependencies {
 - BaseActivity/BaseFragment
 - Mvp框架支持
 - 统一处理列表页面请求成功逻辑
+- crash exception 抓取功能
 
 
 

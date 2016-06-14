@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.android.core.R;
-import com.android.core.iface.CustomInterface;
 import com.android.core.control.ScreenUtil;
+import com.android.core.control.CustomInterface;
 
 /**
  * @author: 蜡笔小新

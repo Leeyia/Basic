@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * @date: 2016-05-31 14:15
  * @GitHub: https://github.com/meikoz
  */
-public class NetWorkControl {
+public class NetWorkHelper {
 
 	/**
 	 * 检测网络是否连接

@@ -1,4 +1,4 @@
-package com.android.core.logcat;
+package com.android.core.control.logcat;
 
 import android.text.TextUtils;
 

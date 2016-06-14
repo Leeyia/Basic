@@ -3,7 +3,8 @@ package com.android.core;
 import android.app.Application;
 import android.content.Context;
 
-import com.android.core.logcat.Logcat;
+import com.android.core.control.logcat.Logcat;
+
 
 /**
  * @author: 蜡笔小新

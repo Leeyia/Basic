@@ -1,4 +1,4 @@
-package com.android.core.model.http;
+package com.android.core.model.api;
 
 import com.android.core.MainApp;
 

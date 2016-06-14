@@ -1,12 +1,18 @@
 package com.zhoujinlong.model.http;
 
 
+import com.google.gson.JsonElement;
 import com.zhoujinlong.model.bean.Classify;
+
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 /**
  * @author: 蜡笔小新

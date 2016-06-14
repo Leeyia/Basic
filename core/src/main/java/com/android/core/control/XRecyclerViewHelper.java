@@ -12,16 +12,17 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
  * @date: 2016-06-01 17:42
  * @GitHub: https://github.com/meikoz
  */
-public class XRecyclerViewControl {
-    static XRecyclerViewControl ourInstance;
+public class XRecyclerViewHelper {
 
-    public XRecyclerViewControl() {
+    static XRecyclerViewHelper ourInstance;
+
+    public XRecyclerViewHelper() {
 
     }
 
-    public static XRecyclerViewControl init() {
+    public static XRecyclerViewHelper init() {
         if (ourInstance == null)
-            ourInstance = new XRecyclerViewControl();
+            ourInstance = new XRecyclerViewHelper();
         return ourInstance;
     }
 

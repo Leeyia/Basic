@@ -1,13 +1,12 @@
 package com.zhoujinlong.ui.fragment;
 
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
 import com.android.core.control.Toast;
 import com.android.core.ui.BaseFragment;
-import com.android.core.control.XRecyclerViewControl;
+import com.android.core.control.XRecyclerViewHelper;
 import com.android.core.widget.CustomViewpager;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.zhoujinlong.R;
@@ -67,7 +66,7 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        XRecyclerViewControl.init().setLinearLayout(getActivity(), mRecyclerView);
+        XRecyclerViewHelper.init().setLinearLayout(getActivity(), mRecyclerView);
 
         View header = View.inflate(getActivity(), R.layout.abc_viewpager_view, null);
         mViewpage = (CustomViewpager) header.findViewById(R.id.viewpager);

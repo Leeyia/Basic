@@ -2,6 +2,7 @@ package com.zhoujinlong;
 
 import com.android.core.MainApp;
 import com.android.core.model.control.LogicProxy;
+import com.android.core.control.crash.AndroidCrash;
 import com.zhoujinlong.presenter.LoginLogic;
 import com.zhoujinlong.presenter.MainLogic;
 
@@ -17,5 +18,7 @@ public class AndroidApp extends MainApp {
 
         LogicProxy.getInstance().init(
                 LoginLogic.class, MainLogic.class);
+
+        AndroidCrash.getInstance().init(this);
     }
 }

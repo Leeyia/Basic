@@ -1,4 +1,4 @@
-package com.android.core.iface;
+package com.android.core.control;
 
 import android.support.v4.view.PagerAdapter;
 

@@ -1,4 +1,4 @@
-package com.android.core.logcat;
+package com.android.core.control.logcat;
 
 /**
  * @author: 蜡笔小新
