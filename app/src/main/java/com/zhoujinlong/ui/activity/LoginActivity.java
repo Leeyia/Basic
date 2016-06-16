@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.EditText;
 
+import com.android.core.control.logcat.Logcat;
 import com.android.core.ui.BaseActivity;
 import com.zhoujinlong.ui.widget.TitleBar;
 import com.zhoujinlong.R;

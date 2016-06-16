@@ -18,18 +18,12 @@ public class LoadSuccessLogicImpl<T> implements LoadSuccessLogic<T> {
      * @param isMore
      */
     public void onLoadListSuccessHandle(Response<T> response, boolean isMore) {
+        //加载完成
         view.onLoadComplete();
         T body = response.body();
         if (body != null) {
             view.onShowListData(body, isMore);
         }
-//        else {
-//            if (isMore) {
-//                //加载更多 Toast "没有更多数据"
-//            } else {
-////                Toast "没有更多数据"
-//            }
-//        }
     }
 
     @Override
