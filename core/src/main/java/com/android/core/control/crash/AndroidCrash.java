@@ -1,7 +1,12 @@
 package com.android.core.control.crash;
 
 import android.content.Context;
+import android.os.Looper;
 import android.os.Process;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author: 蜡笔小新
@@ -13,7 +18,7 @@ public class AndroidCrash implements Thread.UncaughtExceptionHandler {
     private static AndroidCrash sInstance = new AndroidCrash();
     private Thread.UncaughtExceptionHandler mDefaultCrashHandler;
     private Context mContext;
-
+    private HttpReportCallback mCallback;
 
     public AndroidCrash() {
     }
@@ -29,23 +34,52 @@ public class AndroidCrash implements Thread.UncaughtExceptionHandler {
     }
 
     @Override
-    public void uncaughtException(Thread thread, Throwable ex) {
+    public void uncaughtException(final Thread thread, final Throwable ex) {
+        long current = System.currentTimeMillis();
+        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(current));
+        final File file = new File(LogWriter.PATH + LogWriter.FILE_NAME + time + LogWriter.FILE_NAME_SUFFIX);
+
         //捕捉异常信息到SD
-        LogWriter.writeLog(mContext, ex);
-        //上传到服务器
-        uploadException2remote();
+        LogWriter.writeLog(mContext, ex, file, time, new LogWriter.WriteCallback() {
+            @Override
+            public void writeSuccess() {
+                if (mCallback != null) {
+                    //上传到服务器
+                    uploadException2remote(file);
+                }
+            }
+        });
+
         ex.printStackTrace();
+
         //如果系统提供了默认的一场处理，则交给系统去结束异常，否则自己处理
-        if (mDefaultCrashHandler != null)
-            mDefaultCrashHandler.uncaughtException(thread, ex);
-        else
-            Process.killProcess(Process.myPid());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                try {
+                    //处理错误
+                    if (mDefaultCrashHandler != null)
+                        mDefaultCrashHandler.uncaughtException(thread, ex);
+                    else
+                        Process.killProcess(Process.myPid());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Looper.loop();
+            }
+        }).start();
+
     }
 
-    private void uploadException2remote() {
+    //不调用这个方法 callback 是null 所以就会上传服务器的方法
+    public AndroidCrash setCrashReporter(HttpReportCallback callback) {
+        this.mCallback = callback;
+        return this;
+    }
+
+    private void uploadException2remote(File file) {
         //上传服务器
-
+        mCallback.uploadException2remote(file);
     }
-
-
 }

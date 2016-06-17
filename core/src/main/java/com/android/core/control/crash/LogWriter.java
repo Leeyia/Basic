@@ -22,15 +22,13 @@ import java.util.Date;
  * @GitHub: https://github.com/meikoz
  */
 public class LogWriter {
-
     private static final boolean DEBUG = true;
-    private static final String PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/androidcrash/log/";
-    private static final String FILE_NAME = "crash";
-    private static final String FILE_NAME_SUFFIX = ".txt";
+    public static final String PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/androidcrash/log/";
+    public static final String FILE_NAME = "crash";
+    public static final String FILE_NAME_SUFFIX = ".txt";
+    private static File file;
 
-    public static synchronized void writeLog(Context context, Throwable ex) {
-        Logcat.d(PATH);
-        Toast.show(PATH);
+    public static synchronized void writeLog(Context context, Throwable ex, File file, String time, WriteCallback writeCallback) {
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             if (DEBUG) {
                 Logcat.w("sdcard unmounted,skip dump exception");
@@ -43,10 +41,6 @@ public class LogWriter {
             dir.mkdirs();
         }
 
-        long current = System.currentTimeMillis();
-        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(current));
-        File file = new File(PATH + FILE_NAME + time + FILE_NAME_SUFFIX);
-
         try {
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
             pw.println(time);
@@ -54,10 +48,12 @@ public class LogWriter {
             pw.println();
             ex.printStackTrace(pw);
             pw.close();
+            writeCallback.writeSuccess();
         } catch (Exception e) {
             Logcat.e("write crash exception failed");
         }
     }
+
 
     private static void writeMobileInfo(Context context, PrintWriter pw) throws PackageManager.NameNotFoundException {
 
@@ -80,5 +76,9 @@ public class LogWriter {
 
         pw.print("Model：");
         pw.println(Build.MODEL);
+    }
+
+    public interface WriteCallback {
+        void writeSuccess();
     }
 }
