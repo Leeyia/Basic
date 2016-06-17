@@ -21,6 +21,7 @@ public class AndroidApp extends MainApp {
 
         LogicProxy.getInstance().init(
                 LoginLogic.class, MainLogic.class);
+
         //Android crash 上传服务器回掉
         HttpReportCallback report = new HttpReportCallback() {
             @Override
