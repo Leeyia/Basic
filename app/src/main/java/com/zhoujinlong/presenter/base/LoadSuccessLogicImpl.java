@@ -1,5 +1,7 @@
 package com.zhoujinlong.presenter.base;
 
+import com.android.core.control.Toast;
+
 import retrofit2.Response;
 
 /**
@@ -28,6 +30,7 @@ public class LoadSuccessLogicImpl<T> implements LoadSuccessLogic<T> {
 
     @Override
     public void onLoadFail(String msg) {
+        Toast.show(msg);
         //提示请求失败
     }
 

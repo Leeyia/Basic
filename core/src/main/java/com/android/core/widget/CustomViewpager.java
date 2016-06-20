@@ -25,7 +25,6 @@ public class CustomViewpager extends RelativeLayout implements CustomInterface {
     private ViewPager vpAd;
     private LinearLayout llIndexContainer;
 
-
     private final int AUTO_SCORLL = 1;
     private boolean isStart;
     private Handler mHandler;

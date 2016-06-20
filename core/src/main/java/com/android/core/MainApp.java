@@ -29,6 +29,6 @@ public class MainApp extends Application {
         super.onCreate();
         ourInstance = this;
         mContext = getApplicationContext();
-        Logcat.init("com.android.core").hideThreadInfo().methodCount(3);
+        Logcat.init("com.android.logcat").hideThreadInfo().methodCount(3);
     }
 }

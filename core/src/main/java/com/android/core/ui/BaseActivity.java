@@ -10,6 +10,7 @@ import com.android.core.control.logcat.Logcat;
 import com.android.core.widget.LoadingView;
 
 import butterknife.ButterKnife;
+import retrofit2.Call;
 
 /**
  * @author: 蜡笔小新
@@ -68,4 +69,5 @@ public abstract class BaseActivity extends Activity {
         super.finish();
         // 关闭动画
     }
+
 }

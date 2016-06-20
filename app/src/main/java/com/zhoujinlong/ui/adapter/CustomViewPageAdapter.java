@@ -1,4 +1,4 @@
-package com.zhoujinlong.adapter;
+package com.zhoujinlong.ui.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

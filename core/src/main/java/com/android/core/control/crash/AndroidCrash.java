@@ -27,19 +27,21 @@ public class AndroidCrash implements Thread.UncaughtExceptionHandler {
         return sInstance;
     }
 
+    //初始化
     public void init(Context context) {
         mDefaultCrashHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
         mContext = context.getApplicationContext();
     }
 
+    //应用异常系统会调用此方法
     @Override
     public void uncaughtException(final Thread thread, final Throwable ex) {
         long current = System.currentTimeMillis();
         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(current));
         final File file = new File(LogWriter.PATH + LogWriter.FILE_NAME + time + LogWriter.FILE_NAME_SUFFIX);
 
-        //捕捉异常信息到SD
+        //为了防止上传时文件没有写入完成
         LogWriter.writeLog(mContext, ex, file, time, new LogWriter.WriteCallback() {
             @Override
             public void writeSuccess() {
