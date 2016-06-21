@@ -1,12 +1,9 @@
 package com.zhoujinlong.presenter.impl;
 
-import com.zhoujinlong.model.bean.Classify;
 import com.zhoujinlong.model.http.BaseHttpService;
 import com.zhoujinlong.model.http.Factory;
 import com.zhoujinlong.presenter.LoginLogic;
 import com.zhoujinlong.presenter.view.LoginView;
-
-import retrofit2.Response;
 
 /**
  * author meikoz on 2016/4/13.

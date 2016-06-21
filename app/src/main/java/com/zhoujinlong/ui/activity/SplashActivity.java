@@ -5,10 +5,11 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
+import com.android.core.control.Glides;
 import com.android.core.ui.BaseActivity;
 import com.android.core.control.StatusBarUtil;
 import com.zhoujinlong.R;
-import com.zhoujinlong.util.AnimationUtil;
+import com.zhoujinlong.util.HandlerTip;
 
 import butterknife.Bind;
 
@@ -20,7 +21,7 @@ public class SplashActivity extends BaseActivity {
 
     @Bind(R.id.splash_view)
     ImageView splashView;
-    long milliseconds = 1500;
+    int milliseconds = 1500;
 
     @Override
     protected int getLayoutResource() {
@@ -31,31 +32,23 @@ public class SplashActivity extends BaseActivity {
     protected void onInitView() {
         //设置状态栏透明
         StatusBarUtil.setTranslucentBackground(this);
-        //开始执行动画,开始跳转
-        startScaleAnimation();
+        ScaleAnimation animation = new ScaleAnimation(1f, 1.1f, 1f, 1.1f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(milliseconds);//设置动画持续时间
+        animation.setFillAfter(true);
+        splashView.setAnimation(animation);
+        Glides.getInstance().loadAnima(this, R.drawable.splash_background, animation, splashView);
+        HandlerTip.getInstance().postDelayed(milliseconds, new HandlerTip.HandlerCallback() {
+            @Override
+            public void postDelayed() {
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                finish();
+            }
+        });
     }
 
     @Override
     protected void onInitData() {
 
     }
-
-    private void startScaleAnimation() {
-        /** 设置位移动画 向右位移150 */
-        ScaleAnimation animation = new ScaleAnimation(1f, 1.2f, 1f, 1.2f,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animation.setDuration(milliseconds);//设置动画持续时间
-        animation.setFillAfter(true);
-        splashView.setAnimation(animation);
-        animation.startNow();
-        AnimationUtil.setAnimationListener(animation, new AnimationUtil.AnimListener() {
-            @Override
-            public void onAnimFinish() {
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-//                finish();
-//                LoginActivity.start(SplashActivity.this);
-            }
-        });
-    }
-
 }
