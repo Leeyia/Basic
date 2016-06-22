@@ -10,12 +10,13 @@ import com.android.core.control.XRecyclerViewHelper;
 import com.android.core.widget.CustomViewpager;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.zhoujinlong.R;
+import com.zhoujinlong.presenter.MainLogicImpl;
+import com.zhoujinlong.presenter.core.BaseListView;
 import com.zhoujinlong.ui.adapter.CustomViewPageAdapter;
 import com.zhoujinlong.ui.adapter.HomeRecyclerAdapter;
 import com.android.core.adapter.RecyclerAdapter;
 import com.zhoujinlong.model.bean.Classify;
 import com.zhoujinlong.presenter.MainLogic;
-import com.zhoujinlong.presenter.base.CommonView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +29,13 @@ import butterknife.ButterKnife;
  * @date: 2016-05-31 10:51
  * @GitHub: https://github.com/meikoz
  */
-public class HomeFragment extends BaseFragment implements CommonView<Classify>, XRecyclerView.LoadingListener {
+public class HomeFragment extends BaseFragment implements BaseListView<Classify>, XRecyclerView.LoadingListener {
 
     @Bind(R.id.recly_view)
     XRecyclerView mRecyclerView;
 
     private List<Classify.TngouEntity> classifys = new ArrayList<>();
     private CustomViewpager mViewpage;
-    private MainLogic mHomeLogic;
     private RecyclerAdapter recyclerAdapter;
     private int page = 1;
 
@@ -50,7 +50,7 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
 
     @Override
     protected void onInitData() {
-        mHomeLogic = getLogicImpl(MainLogic.class, this);
+        mPresenter = getLogicImpl(MainLogic.class, this);
     }
 
     // 广告数据
@@ -85,23 +85,20 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-    @Override
-    public void onLoadComplete() {
-        Toast.show("请求成功");
+    public void onLoadComplete(boolean isMore) {
         //加载完成需要做的操作
         hideLoadingView();
+        if (isMore)
+            mRecyclerView.loadMoreComplete();
+        else
+            mRecyclerView.refreshComplete();
     }
 
     /**
      * 网络加载成功后显示数据
      */
     @Override
-    public void onShowListData(Classify listData, boolean isMore) {
+    public void onResponseLData(Classify listData, boolean isMore) {
         if (listData.isStatus()) {
             if (!isMore)
                 classifys.clear();
@@ -112,25 +109,13 @@ public class HomeFragment extends BaseFragment implements CommonView<Classify>, 
 
     @Override
     public void onRefresh() {
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mHomeLogic.onLoadRemoteData(false, 1);
-                mRecyclerView.refreshComplete();
-            }
-        }, 2000);
+        ((MainLogicImpl) mPresenter).onLoadRemoteData(false, 1);
     }
 
     @Override
     public void onLoadMore() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                page++;
-                mHomeLogic.onLoadRemoteData(true, page);
-                mRecyclerView.loadMoreComplete();
-            }
-        }, 2000);
+        page++;
+        ((MainLogicImpl) mPresenter).onLoadRemoteData(true, page);
     }
+
 }

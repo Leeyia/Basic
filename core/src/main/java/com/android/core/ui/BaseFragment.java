@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.core.model.control.BasePresenter;
 import com.android.core.model.control.LogicProxy;
+import com.android.core.model.control.BaseView;
 import com.android.core.widget.LoadingView;
 
 import butterknife.ButterKnife;
@@ -20,6 +22,7 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment {
     protected View rootView;
     private LoadingView mLoginView;
+    protected BasePresenter mPresenter;
 
     @Nullable
     @Override
@@ -48,7 +51,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     //获得该页面的实例
-    public <T> T getLogicImpl(Class cls, Object o) {
+    public <T> T getLogicImpl(Class cls, BaseView o) {
         return LogicProxy.getInstance().bind(cls, o);
     }
 
@@ -56,6 +59,8 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+        if (mPresenter != null)
+            mPresenter.detachView();
     }
 
 }

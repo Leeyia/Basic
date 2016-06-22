@@ -1,7 +1,6 @@
 package com.zhoujinlong.presenter;
 
 import com.android.core.model.annotation.Implement;
-import com.zhoujinlong.presenter.impl.MainLogicImpl;
 
 /**
  * @author: 蜡笔小新

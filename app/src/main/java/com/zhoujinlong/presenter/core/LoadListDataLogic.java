@@ -1,6 +1,4 @@
-package com.zhoujinlong.presenter.base;
-
-import com.android.core.model.control.BaseLogic;
+package com.zhoujinlong.presenter.core;
 
 import retrofit2.Response;
 
@@ -9,7 +7,7 @@ import retrofit2.Response;
  * @date: 2016-05-31 14:39
  * @GitHub: https://github.com/meikoz
  */
-public interface LoadSuccessLogic<T> extends BaseLogic<CommonView<T>> {
+public interface LoadListDataLogic<T> {
 
     void onLoadListSuccessHandle(Response<T> response, boolean isMore);
 

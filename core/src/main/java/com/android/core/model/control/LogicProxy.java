@@ -51,9 +51,9 @@ public class LogicProxy {
         return (T) m_objects.get(cls);
     }
 
-    public <T> T bind(Class cls, Object o) {
+    public <T> T bind(Class cls, BaseView o) {
         Object ret = m_objects.get(cls);
-        ((BaseLogic) ret).attachView(o);
+        ((BasePresenter) ret).attachView(o);
         return (T) ret;
     }
 }

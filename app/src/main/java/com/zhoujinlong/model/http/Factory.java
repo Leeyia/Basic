@@ -24,7 +24,7 @@ public class Factory {
 
     private static Map<Class, Object> m_service = new HashMap();
 
-    public static <T> T provideService(Class cls) {
+    private static <T> T provideService(Class cls) {
         Object serv = m_service.get(cls);
         if (serv == null) {
             synchronized (cls) {

@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.android.core.model.control.BasePresenter;
 import com.android.core.model.control.LogicProxy;
 import com.android.core.control.logcat.Logcat;
+import com.android.core.model.control.BaseView;
 import com.android.core.widget.LoadingView;
 
 import butterknife.ButterKnife;
-import retrofit2.Call;
 
 /**
  * @author: 蜡笔小新
@@ -20,6 +21,7 @@ import retrofit2.Call;
 public abstract class BaseActivity extends Activity {
 
     private LoadingView mLoadingView;
+    protected BasePresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +42,6 @@ public abstract class BaseActivity extends Activity {
     protected abstract void onInitData();
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
-
-    @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
         // 打开Activity动画
@@ -60,7 +56,7 @@ public abstract class BaseActivity extends Activity {
     }
 
     //获得该页面的实例
-    public <T> T getLogicImpl(Class cls, Object o) {
+    public <T> T getLogicImpl(Class cls, BaseView o) {
         return LogicProxy.getInstance().bind(cls, o);
     }
 
@@ -68,6 +64,14 @@ public abstract class BaseActivity extends Activity {
     public void finish() {
         super.finish();
         // 关闭动画
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+        if (mPresenter != null)
+            mPresenter.detachView();
     }
 
 }

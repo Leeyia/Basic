@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.EditText;
 
-import com.android.core.control.logcat.Logcat;
+import com.android.core.control.Toast;
+import com.zhoujinlong.presenter.core.LoadView;
 import com.android.core.ui.BaseActivity;
-import com.zhoujinlong.ui.widget.TitleBar;
 import com.zhoujinlong.R;
+import com.zhoujinlong.model.bean.Classify;
 import com.zhoujinlong.presenter.LoginLogic;
-import com.zhoujinlong.presenter.view.LoginView;
+import com.zhoujinlong.presenter.LoginLogicImpl;
+import com.zhoujinlong.ui.widget.TitleBar;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -19,7 +21,7 @@ import butterknife.OnClick;
  * @date: 2016-05-31 10:51
  * @GitHub: https://github.com/meikoz
  */
-public class LoginActivity extends BaseActivity implements LoginView {
+public class LoginActivity extends BaseActivity implements LoadView<Classify> {
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, LoginActivity.class);
@@ -35,8 +37,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Bind(R.id.title_bar)
     TitleBar titlebar;
 
-    LoginLogic mLoginLogic;
-
     @Override
     protected int getLayoutResource() {
         return R.layout.activity_login;
@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     protected void onInitView() {
         titlebar.setTitle("登录页面");
-        mLoginLogic = getLogicImpl(LoginLogic.class, this);
+        mPresenter = getLogicImpl(LoginLogic.class, this);
     }
 
     @Override
@@ -55,15 +55,26 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @OnClick(R.id.btn_login)
     void login() {
-        mLoginLogic.login("zhangsan", "123");
+        showLoadView();
+        ((LoginLogicImpl) mPresenter).login("zhangsan", "123");
     }
 
     @Override
-    public void onLoginSuccess() {
+    public void onFailure(String msg) {
+        hideLoadView();
+        Toast.show(msg);
+    }
+
+    @Override
+    public void onLoadComplete() {
+        hideLoadView();
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
     @Override
-    public void onLoginFail() {
+    public void onLoadSuccessResponse(Classify body) {
+//        Toast.show(body.getTngou().toString());
     }
+
+
 }

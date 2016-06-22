@@ -1,6 +1,7 @@
-package com.zhoujinlong.presenter.base;
+package com.zhoujinlong.presenter.core;
 
 import com.android.core.control.Toast;
+import com.android.core.model.control.BasePresenter;
 
 import retrofit2.Response;
 
@@ -9,9 +10,9 @@ import retrofit2.Response;
  * @date: 2016-05-31 11:51
  * @GitHub: https://github.com/meikoz
  */
-public class LoadSuccessLogicImpl<T> implements LoadSuccessLogic<T> {
+public class LoadListDataLogicImpl<T> extends BasePresenter<BaseListView> implements LoadListDataLogic<T> {
 
-    CommonView view;
+//    BaseListView view;
 
     /**
      * 处理获取列表成功回调的公共函数
@@ -21,10 +22,10 @@ public class LoadSuccessLogicImpl<T> implements LoadSuccessLogic<T> {
      */
     public void onLoadListSuccessHandle(Response<T> response, boolean isMore) {
         //加载完成
-        view.onLoadComplete();
+        getView().onLoadComplete(isMore);
         T body = response.body();
         if (body != null) {
-            view.onShowListData(body, isMore);
+            getView().onResponseLData(body, isMore);
         }
     }
 
@@ -34,8 +35,4 @@ public class LoadSuccessLogicImpl<T> implements LoadSuccessLogic<T> {
         //提示请求失败
     }
 
-    @Override
-    public void attachView(CommonView<T> v) {
-        view = v;
-    }
 }
