@@ -48,11 +48,6 @@ public class LoginActivity extends BaseActivity implements LoadView<Classify> {
         mPresenter = getLogicImpl(LoginLogic.class, this);
     }
 
-    @Override
-    protected void onInitData() {
-
-    }
-
     @OnClick(R.id.btn_login)
     void login() {
         showLoadView();
@@ -75,6 +70,4 @@ public class LoginActivity extends BaseActivity implements LoadView<Classify> {
     public void onLoadSuccessResponse(Classify body) {
 //        Toast.show(body.getTngou().toString());
     }
-
-
 }

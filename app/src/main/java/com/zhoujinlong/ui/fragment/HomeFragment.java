@@ -46,10 +46,6 @@ public class HomeFragment extends BaseFragment implements BaseListView<Classify>
 
     @Override
     protected void onInitView() {
-    }
-
-    @Override
-    protected void onInitData() {
         mPresenter = getLogicImpl(MainLogic.class, this);
     }
 

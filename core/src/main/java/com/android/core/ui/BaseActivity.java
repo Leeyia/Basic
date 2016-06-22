@@ -32,14 +32,11 @@ public abstract class BaseActivity extends Activity {
         ButterKnife.bind(this);
         mLoadingView = new LoadingView(this);
         onInitView();
-        onInitData();
     }
 
     protected abstract int getLayoutResource();
 
     protected abstract void onInitView();
-
-    protected abstract void onInitData();
 
     @Override
     public void startActivity(Intent intent) {

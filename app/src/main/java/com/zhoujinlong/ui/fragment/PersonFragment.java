@@ -39,9 +39,6 @@ public class PersonFragment extends BaseFragment {
 
     }
 
-    @Override
-    protected void onInitData() {
 
-    }
 
 }

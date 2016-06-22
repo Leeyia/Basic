@@ -32,15 +32,12 @@ public abstract class BaseFragment extends Fragment {
         ButterKnife.bind(this, rootView);
         mLoginView = new LoadingView(getActivity());
         onInitView();
-        onInitData();
         return rootView;
     }
 
     protected abstract int getLayoutResource();
 
     protected abstract void onInitView();
-
-    protected abstract void onInitData();
 
     public void showLoadingView() {
         mLoginView.show();
