@@ -4,8 +4,8 @@ import com.android.core.MainApp;
 import com.android.core.control.crash.HttpReportCallback;
 import com.android.core.model.control.LogicProxy;
 import com.android.core.control.crash.AndroidCrash;
-import com.zhoujinlong.presenter.LoginLogic;
-import com.zhoujinlong.presenter.MainLogic;
+import com.zhoujinlong.presenter.ILogin;
+import com.zhoujinlong.presenter.IMain;
 
 import java.io.File;
 
@@ -20,7 +20,7 @@ public class AndroidApp extends MainApp {
         super.onCreate();
 
         LogicProxy.getInstance().init(
-                LoginLogic.class, MainLogic.class);
+                ILogin.class, IMain.class);
 
         //Android crash 上传服务器回掉
         HttpReportCallback report = new HttpReportCallback() {

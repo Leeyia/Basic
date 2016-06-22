@@ -1,28 +1,25 @@
 package com.zhoujinlong.ui.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 
-import com.android.core.control.Toast;
 import com.android.core.ui.BaseFragment;
 import com.android.core.control.XRecyclerViewHelper;
 import com.android.core.widget.CustomViewpager;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.zhoujinlong.R;
-import com.zhoujinlong.presenter.MainLogicImpl;
+import com.zhoujinlong.presenter.MainLogic;
 import com.zhoujinlong.presenter.core.BaseListView;
 import com.zhoujinlong.ui.adapter.CustomViewPageAdapter;
 import com.zhoujinlong.ui.adapter.HomeRecyclerAdapter;
 import com.android.core.adapter.RecyclerAdapter;
 import com.zhoujinlong.model.bean.Classify;
-import com.zhoujinlong.presenter.MainLogic;
+import com.zhoujinlong.presenter.IMain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * @author: 蜡笔小新
@@ -46,7 +43,7 @@ public class HomeFragment extends BaseFragment implements BaseListView<Classify>
 
     @Override
     protected void onInitView() {
-        mPresenter = getLogicImpl(MainLogic.class, this);
+        mPresenter = getLogicImpl(IMain.class, this);
     }
 
     // 广告数据
@@ -105,13 +102,13 @@ public class HomeFragment extends BaseFragment implements BaseListView<Classify>
 
     @Override
     public void onRefresh() {
-        ((MainLogicImpl) mPresenter).onLoadRemoteData(false, 1);
+        ((MainLogic) mPresenter).onLoadRemoteData(false, 1);
     }
 
     @Override
     public void onLoadMore() {
         page++;
-        ((MainLogicImpl) mPresenter).onLoadRemoteData(true, page);
+        ((MainLogic) mPresenter).onLoadRemoteData(true, page);
     }
 
 }

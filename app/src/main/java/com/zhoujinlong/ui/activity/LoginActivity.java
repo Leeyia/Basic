@@ -9,8 +9,8 @@ import com.zhoujinlong.presenter.core.LoadView;
 import com.android.core.ui.BaseActivity;
 import com.zhoujinlong.R;
 import com.zhoujinlong.model.bean.Classify;
+import com.zhoujinlong.presenter.ILogin;
 import com.zhoujinlong.presenter.LoginLogic;
-import com.zhoujinlong.presenter.LoginLogicImpl;
 import com.zhoujinlong.ui.widget.TitleBar;
 
 import butterknife.Bind;
@@ -45,13 +45,13 @@ public class LoginActivity extends BaseActivity implements LoadView<Classify> {
     @Override
     protected void onInitView() {
         titlebar.setTitle("登录页面");
-        mPresenter = getLogicImpl(LoginLogic.class, this);
+        mPresenter = getLogicImpl(ILogin.class, this);
     }
 
     @OnClick(R.id.btn_login)
     void login() {
         showLoadView();
-        ((LoginLogicImpl) mPresenter).login("zhangsan", "123");
+        ((LoginLogic) mPresenter).login("zhangsan", "123");
     }
 
     @Override
