@@ -67,6 +67,14 @@
         return LogicProxy.getInstance().bind(cls, o);
     }
     
+    //BaseActivity 中的onDestroy方法会判断mPresenter不为空的情况下 销毁presenter绑定的view
+        @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mPresenter != null)
+           mPresenter.detachView();
+        }
+    
     //获取当前页面的实例<子LoginActivity> 这样是不是代码就简洁了好多
     ILoginImpl  mPresenter = getLogicImpl(ILogin.class, this);
     mPresenter.onLogin(username,password);
