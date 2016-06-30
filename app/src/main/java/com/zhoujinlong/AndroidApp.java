@@ -2,6 +2,7 @@ package com.zhoujinlong;
 
 import com.android.core.MainApp;
 import com.android.core.control.crash.HttpReportCallback;
+import com.android.core.control.logcat.Logcat;
 import com.android.core.model.control.LogicProxy;
 import com.android.core.control.crash.AndroidCrash;
 import com.zhoujinlong.presenter.ILogin;
@@ -30,5 +31,7 @@ public class AndroidApp extends MainApp {
             }
         };
         AndroidCrash.getInstance().setCrashReporter(report).init(this);
+        if (BuildConfig.DEBUG)
+            Logcat.init("com.android.logcat").hideThreadInfo().methodCount(3);
     }
 }

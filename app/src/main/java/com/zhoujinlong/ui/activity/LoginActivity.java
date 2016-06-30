@@ -46,12 +46,13 @@ public class LoginActivity extends BaseActivity implements LoadView<Classify> {
     protected void onInitView() {
         titlebar.setTitle("登录页面");
         mPresenter = getLogicImpl(ILogin.class, this);
+        ((LoginLogic) mPresenter).login("zhangsan", "123");
     }
 
     @OnClick(R.id.btn_login)
     void login() {
         showLoadView();
-        ((LoginLogic) mPresenter).login("zhangsan", "123");
+
     }
 
     @Override

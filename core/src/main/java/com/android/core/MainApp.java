@@ -3,8 +3,6 @@ package com.android.core;
 import android.app.Application;
 import android.content.Context;
 
-import com.android.core.control.logcat.Logcat;
-
 
 /**
  * @author: 蜡笔小新
@@ -29,6 +27,6 @@ public class MainApp extends Application {
         super.onCreate();
         ourInstance = this;
         mContext = getApplicationContext();
-        Logcat.init("com.android.logcat").hideThreadInfo().methodCount(3);
+
     }
 }
