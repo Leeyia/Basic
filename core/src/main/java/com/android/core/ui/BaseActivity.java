@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 
-import com.android.core.model.control.BasePresenter;
-import com.android.core.model.control.LogicProxy;
+import com.android.core.model.mvp.BasePresenter;
+import com.android.core.model.mvp.LogicProxy;
 import com.android.core.control.logcat.Logcat;
-import com.android.core.model.control.BaseView;
+import com.android.core.model.mvp.BaseView;
 import com.android.core.widget.LoadingView;
 
 import butterknife.ButterKnife;

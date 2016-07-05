@@ -1,6 +1,6 @@
 package com.zhoujinlong.presenter.core;
 
-import com.android.core.model.control.BaseView;
+import com.android.core.model.mvp.BaseView;
 
 /**
  * @author: 蜡笔小新

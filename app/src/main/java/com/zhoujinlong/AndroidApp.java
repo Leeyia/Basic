@@ -3,7 +3,7 @@ package com.zhoujinlong;
 import com.android.core.MainApp;
 import com.android.core.control.crash.HttpReportCallback;
 import com.android.core.control.logcat.Logcat;
-import com.android.core.model.control.LogicProxy;
+import com.android.core.model.mvp.LogicProxy;
 import com.android.core.control.crash.AndroidCrash;
 import com.zhoujinlong.presenter.ILogin;
 import com.zhoujinlong.presenter.IMain;

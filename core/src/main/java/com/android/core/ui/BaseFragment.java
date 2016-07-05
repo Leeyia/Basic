@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.core.model.control.BasePresenter;
-import com.android.core.model.control.LogicProxy;
-import com.android.core.model.control.BaseView;
+import com.android.core.model.mvp.BasePresenter;
+import com.android.core.model.mvp.LogicProxy;
+import com.android.core.model.mvp.BaseView;
 import com.android.core.widget.LoadingView;
 
 import butterknife.ButterKnife;

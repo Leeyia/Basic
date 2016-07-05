@@ -1,4 +1,4 @@
-package com.android.core.model.api;
+package com.android.core.api;
 
 import android.util.Log;
 

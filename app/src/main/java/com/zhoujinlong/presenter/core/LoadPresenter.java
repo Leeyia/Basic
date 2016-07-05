@@ -1,6 +1,6 @@
 package com.zhoujinlong.presenter.core;
 
-import com.android.core.model.control.BasePresenter;
+import com.android.core.model.mvp.BasePresenter;
 
 import retrofit2.Response;
 
