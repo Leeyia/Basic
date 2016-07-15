@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.racofix.view.widget.UiScrollView
+        android:id="@+id/slv_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadeScrollbars="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black">
+
+                <ImageView
+                    android:id="@+id/iv_user_avatar"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="30dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_user_avatar"
+                    android:text="蜡笔小新 先生"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/ic_global_user_edit" />
+            </RelativeLayout>
+
+            <include layout="@layout/content_order_layout" />
+
+            <include layout="@layout/content_user_modules" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:background="@color/fill_color">
+
+                <TextView
+                    android:id="@+id/iv_global_adv"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="15dp"
+                    android:background="@color/colorAccent"
+                    android:gravity="center"
+                    android:scaleType="centerCrop"
+                    android:text="办理会员卡"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </com.racofix.view.widget.UiScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rlt_navi_top"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorAccent">
+
+        <TextView
+            android:id="@+id/tv_navi_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="蜡笔小新Zz"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/icon_profile_setting" />
+
+    </RelativeLayout>
+</FrameLayout>

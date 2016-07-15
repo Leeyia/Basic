@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.zhoujinlong"
+        applicationId "com.racofix"
         minSdkVersion 19
         targetSdkVersion 22
         versionCode 1
