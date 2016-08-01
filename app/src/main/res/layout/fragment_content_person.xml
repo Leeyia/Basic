@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.racofix.view.widget.UiScrollView
+    <com.racofix.widget.UiScrollView
         android:id="@+id/slv_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             </RelativeLayout>
         </LinearLayout>
 
-    </com.racofix.view.widget.UiScrollView>
+    </com.racofix.widget.UiScrollView>
 
     <RelativeLayout
         android:id="@+id/rlt_navi_top"

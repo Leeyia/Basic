@@ -3,18 +3,18 @@ package com.racofix.view.fragment;
 import android.os.Bundle;
 import android.view.View;
 
-import com.android.core.ui.BaseFragment;
+import com.android.core.adapter.RecyclerAdapter;
+import com.android.core.base.AbsBaseFragment;
 import com.android.core.control.XRecyclerViewHelper;
+import com.android.core.model.LoadListDataLogic;
 import com.android.core.widget.CustomViewpager;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.racofix.R;
-import com.racofix.presenter.MainLogic;
-import com.racofix.presenter.core.BaseListView;
+import com.racofix.model.repo.Classify;
+import com.racofix.presenter.MainContract;
+import com.racofix.presenter.MainPresenter;
 import com.racofix.view.adapter.CustomViewPageAdapter;
 import com.racofix.view.adapter.HomeRecyclerAdapter;
-import com.android.core.adapter.RecyclerAdapter;
-import com.racofix.model.pojo.Classify;
-import com.racofix.presenter.IMain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import butterknife.Bind;
  * @date: 2016-05-31 10:51
  * @GitHub: https://github.com/meikoz
  */
-public class HomeFragment extends BaseFragment implements BaseListView<Classify>, XRecyclerView.LoadingListener {
+public class HomeFragment extends AbsBaseFragment implements LoadListDataLogic.LoadListView<Classify>, XRecyclerView.LoadingListener {
 
     @Bind(R.id.recly_view)
     XRecyclerView mRecyclerView;
@@ -43,7 +43,7 @@ public class HomeFragment extends BaseFragment implements BaseListView<Classify>
 
     @Override
     protected void onInitView() {
-        mPresenter = getLogicImpl(IMain.class, this);
+        mPresenter = getLogicImpl(MainContract.class, this);
     }
 
     // 广告数据
@@ -73,42 +73,38 @@ public class HomeFragment extends BaseFragment implements BaseListView<Classify>
         recyclerAdapter = new HomeRecyclerAdapter(getActivity(), R.layout.item_compete_classitfy, classifys);
         mRecyclerView.setAdapter(recyclerAdapter);
         mRecyclerView.setLoadingListener(this);
-        showLoadingView();
+        showProgress("正在加载");
         onRefresh();
     }
 
     @Override
     public void onLoadComplete(boolean isMore) {
         //加载完成需要做的操作
-        hideLoadingView();
+        hideProgress();
         if (isMore)
             mRecyclerView.loadMoreComplete();
         else
             mRecyclerView.refreshComplete();
     }
 
-    /**
-     * 网络加载成功后显示数据
-     */
-    @Override
-    public void onResponseLData(Classify listData, boolean isMore) {
-        if (listData.isStatus()) {
-            if (!isMore)
-                classifys.clear();
-            classifys.addAll(listData.getTngou());
-            recyclerAdapter.notifyDataSetChanged();
-        }
-    }
-
     @Override
     public void onRefresh() {
-        ((MainLogic) mPresenter).onLoadRemoteData(false, 1);
+        ((MainPresenter) mPresenter).onLoadRemoteData(false, 1);
     }
 
     @Override
     public void onLoadMore() {
         page++;
-        ((MainLogic) mPresenter).onLoadRemoteData(true, page);
+        ((MainPresenter) mPresenter).onLoadRemoteData(true, page);
     }
 
+    @Override
+    public void onLoadCompleteData(Classify body, boolean isMore) {
+        if (body.isStatus()) {
+            if (!isMore)
+                classifys.clear();
+            classifys.addAll(body.getTngou());
+            recyclerAdapter.notifyDataSetChanged();
+        }
+    }
 }

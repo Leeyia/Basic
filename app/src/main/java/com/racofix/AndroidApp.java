@@ -1,12 +1,12 @@
 package com.racofix;
 
 import com.android.core.MainApp;
+import com.android.core.control.crash.AndroidCrash;
 import com.android.core.control.crash.HttpReportCallback;
 import com.android.core.control.logcat.Logcat;
-import com.android.core.model.mvp.LogicProxy;
-import com.android.core.control.crash.AndroidCrash;
-import com.racofix.presenter.ILogin;
-import com.racofix.presenter.IMain;
+import com.android.core.model.LogicProxy;
+import com.racofix.presenter.LoginContract;
+import com.racofix.presenter.MainContract;
 
 import java.io.File;
 
@@ -21,7 +21,7 @@ public class AndroidApp extends MainApp {
         super.onCreate();
 
         LogicProxy.getInstance().init(
-                ILogin.class, IMain.class);
+                LoginContract.class, MainContract.class);
 
         //Android crash 上传服务器回掉
         HttpReportCallback report = new HttpReportCallback() {
@@ -32,6 +32,6 @@ public class AndroidApp extends MainApp {
         };
         AndroidCrash.getInstance().setCrashReporter(report).init(this);
         if (BuildConfig.DEBUG)
-            Logcat.init("com.android.logcat").hideThreadInfo().methodCount(3);
+            Logcat.init("com.android.racofix").hideThreadInfo().methodCount(3);
     }
 }

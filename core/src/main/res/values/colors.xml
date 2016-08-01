@@ -3,4 +3,5 @@
     <color name="abc_theme_black_7f">#7f000000</color>
     <color name="abc_tab_text_normal">#212121</color>
     <color name="abc_white">#ffffff</color>
+    <color name="colorPrimary">#2196F3</color>
 </resources>

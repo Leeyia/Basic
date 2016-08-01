@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.EditText;
 
-import com.android.core.control.Toast;
-import com.racofix.presenter.core.LoadView;
-import com.android.core.ui.BaseActivity;
+import com.android.core.base.AbsBaseActivity;
+import com.android.core.model.LoadEveryLogic;
 import com.racofix.R;
-import com.racofix.model.pojo.Classify;
-import com.racofix.presenter.ILogin;
-import com.racofix.presenter.LoginLogic;
+import com.racofix.model.repo.Classify;
+import com.racofix.presenter.LoginContract;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -20,7 +18,7 @@ import butterknife.OnClick;
  * @date: 2016-05-31 10:51
  * @GitHub: https://github.com/meikoz
  */
-public class LoginActivity extends BaseActivity implements LoadView<Classify> {
+public class LoginActivity extends AbsBaseActivity implements LoadEveryLogic.LoadEveryView<Classify> {
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, LoginActivity.class);
@@ -34,7 +32,7 @@ public class LoginActivity extends BaseActivity implements LoadView<Classify> {
     EditText mEditPasswrod;
 
     @Bind(R.id.title_bar)
-    com.racofix.view.widget.TitleBar titlebar;
+    com.racofix.widget.TitleBar titlebar;
 
     @Override
     protected int getLayoutResource() {
@@ -44,30 +42,23 @@ public class LoginActivity extends BaseActivity implements LoadView<Classify> {
     @Override
     protected void onInitView() {
         titlebar.setTitle("登录页面");
-        mPresenter = getLogicImpl(ILogin.class, this);
-        ((LoginLogic) mPresenter).login("zhangsan", "123");
+        mPresenter = getLogicImpl(LoginContract.class, this);
     }
 
     @OnClick(R.id.btn_login)
     void login() {
-        showLoadView();
-
+        showProgress("正在登陆");
+        ((LoginContract) mPresenter).onLogin("zhangsan", "456");
     }
 
     @Override
-    public void onFailure(String msg) {
-        hideLoadView();
-        Toast.show(msg);
-    }
-
-    @Override
-    public void onLoadComplete() {
-        hideLoadView();
+    public void onLoadComplete(Classify body) {
+        hideProgress();
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
     @Override
-    public void onLoadSuccessResponse(Classify body) {
-//        Toast.show(body.getTngou().toString());
+    public void onLoadFailer(String msg) {
+        showErrorMessage("网络错误", msg);
     }
 }

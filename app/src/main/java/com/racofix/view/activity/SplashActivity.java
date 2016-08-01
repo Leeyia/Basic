@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.android.core.control.Glides;
 import com.android.core.control.HandlerTip;
-import com.android.core.ui.BaseActivity;
+import com.android.core.base.AbsBaseActivity;
 import com.android.core.control.StatusBarUtil;
 import com.racofix.R;
 
@@ -17,7 +17,7 @@ import butterknife.Bind;
  * author meikoz on 2016/3/30.
  * email  meikoz@126.com
  */
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends AbsBaseActivity {
 
     @Bind(R.id.splash_view)
     ImageView splashView;

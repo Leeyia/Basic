@@ -1,6 +1,6 @@
 package com.racofix.api;
 
-import com.racofix.model.pojo.Classify;
+import com.racofix.model.repo.Classify;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

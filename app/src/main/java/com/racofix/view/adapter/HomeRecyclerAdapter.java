@@ -10,7 +10,7 @@ import com.android.core.adapter.RecyclerAdapter;
 import com.android.core.adapter.RecyclerViewHolder;
 import com.bumptech.glide.Glide;
 import com.racofix.R;
-import com.racofix.model.pojo.Classify;
+import com.racofix.model.repo.Classify;
 import com.racofix.view.activity.SwipBackActivity;
 
 import java.util.List;

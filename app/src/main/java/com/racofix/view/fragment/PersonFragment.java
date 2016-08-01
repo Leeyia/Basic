@@ -7,9 +7,9 @@ import android.widget.TextView;
 
 import com.android.core.control.Glides;
 import com.android.core.control.ScreenUtil;
-import com.android.core.ui.BaseFragment;
+import com.android.core.base.AbsBaseFragment;
 import com.racofix.R;
-import com.racofix.view.widget.UiScrollView;
+import com.racofix.widget.UiScrollView;
 
 import butterknife.Bind;
 
@@ -18,7 +18,7 @@ import butterknife.Bind;
  * @date: 2016-07-08 14:38
  * @GitHub: https://github.com/meikoz
  */
-public class PersonFragment extends BaseFragment {
+public class PersonFragment extends AbsBaseFragment {
     @Bind(R.id.iv_user_avatar)
     ImageView mUserAvatar;
 
