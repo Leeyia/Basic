@@ -26,22 +26,23 @@ public class HttpCacheInterceptor implements Interceptor {
             request = request.newBuilder()
                     .cacheControl(CacheControl.FORCE_CACHE)
                     .build();
-            Log.d("com.android.core", "no network");
         }
 
-        Response originalResponse = chain.proceed(request);
+        Response response = chain.proceed(request);
+
         if (NetWorkHelper.isNetConnected(MainApp.getContext())) {
-            //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
-            String cacheControl = request.cacheControl().toString();
-            return originalResponse.newBuilder()
-                    .header("Cache-Control", cacheControl)
+            int maxAge = 60 * 60; // read from cache for 1 minute
+            response.newBuilder()
                     .removeHeader("Pragma")
+                    .header("Cache-Control", "public, max-age=" + maxAge)
                     .build();
         } else {
-            return originalResponse.newBuilder()
-                    .header("Cache-Control", "public, only-if-cached, max-stale=2419200")
+            int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
+            response.newBuilder()
                     .removeHeader("Pragma")
+                    .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
                     .build();
         }
+        return response;
     }
 }

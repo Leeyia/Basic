@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@color/abc_theme_black_7f"
-        android:scaleType="centerCrop" />
+        android:scaleType="fitStart" />
 
     <TextView
         android:id="@+id/sv_classitfy_des"

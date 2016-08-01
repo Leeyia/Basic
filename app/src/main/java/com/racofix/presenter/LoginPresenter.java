@@ -25,7 +25,7 @@ public class LoginPresenter extends LoadEveryLogicImpl<Classify> implements Logi
 
             @Override
             public void onFailure(Call<Classify> call, Throwable t) {
-                onFaailer(t.getMessage());
+                onFailer(t.getMessage());
             }
         });
     }

@@ -5,7 +5,7 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 
 import com.android.core.R;
-import com.android.core.widget.GlideCircleTransform;
+import com.android.core.widget.glide.GlideCircleTransform;
 import com.bumptech.glide.Glide;
 
 /**

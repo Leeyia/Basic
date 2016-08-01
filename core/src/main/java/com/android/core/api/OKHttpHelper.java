@@ -33,8 +33,8 @@ public class OKHttpHelper {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        File cacheFile = new File(MainApp.getInstance().getCacheDir(), "android");
-        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
+        File cacheFile = new File(MainApp.getInstance().getCacheDir(), "OkHttpCache");
+        Cache cache = new Cache(cacheFile,  10 * 1024 * 1024); //100Mb
 
         OkHttpClient okHttpClient = null;
         try {
