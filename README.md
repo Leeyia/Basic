@@ -1,6 +1,6 @@
 ## BasicApp功能介绍
 >   欢迎Follow我的Github:https://github.com/meikoz
->   如果有不理解的 可以加q 93682011
+>   如果有不理解的 可以加q群 544704949
 
 ## Usage Gradle
 ```
