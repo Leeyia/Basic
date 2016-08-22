@@ -11,7 +11,7 @@ repositories {
 
 ```
 dependencies {
-    compile 'com.github.meikoz:basic:2.0.3'
+    compile 'com.github.meikoz:basic:2.0.6'
 }
 ```
 
