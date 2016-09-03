@@ -1,31 +1,22 @@
-## BasicApp功能介绍
->   欢迎Follow我的Github:https://github.com/meikoz
->   如果有不理解的 可以加q群 544704949
+
+## Basic Describe
+Basic 是一个Android基础开发框架，封装了retrofit + okhttp + logger 操作的框架，使其更简单易用且入口统一。
+封装mvp设计模式让其更简单易懂，最终实现快速开发APP。我们提倡用最少的代码，完成最多的操作，用最高的效率，完成最复杂的功能。
+BasePersenter统一处理所有P 逻辑，网络请求retrofit2.0 支持缓存功能，强大的日志框架快速锁定Class，多种样式刷新加载样式，快速实现轮播广告图，底部导航功能。
 
 ## Usage Gradle
+build.gradle中添加：
 ```
 repositories {
     maven { url "https://jitpack.io" }
 }
-```
 
-```
 dependencies {
     compile 'com.github.meikoz:basic:2.0.6'
 }
 ```
 
-## Basic框架支持的功能##
--   Mvp模式
--   网络请求的封装
--   强大的漂亮日志
--   列表数据的统一业务处理
--   多种样式上拉加载、下拉刷新
--   App crash 异常的处理
--   Loading页面的统一处理
--   快速实现广告轮播图、引导页功能
--   快速实现底部导航功能
--   右滑页面关闭当前Activity
--   没有网的情况下加载图片缓存
-
+## Usage Help
+很遗憾，没有帮助文档，但这几篇博客也许能帮到你:
+[Mvp模块](https://github.com/meikoz/Basic/wiki/Mvp)
 
