@@ -19,5 +19,5 @@ dependencies {
 ## Usage Help
 很遗憾，没有帮助文档，但这几篇博客也许能帮到你:
 
-[Mvp模块](https://github.com/meikoz/Basic/wiki/Mvp)
+[Mvp模块](https://github.com/meikoz/Basic/blob/master/Android%E4%B8%AD%E5%AE%9E%E7%8E%B0mvp%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B0%E6%80%9D%E8%B7%AF.md)
 
