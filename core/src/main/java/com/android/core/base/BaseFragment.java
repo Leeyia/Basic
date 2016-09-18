@@ -1,38 +1,52 @@
 package com.android.core.base;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.core.control.ToastUtil;
 import com.android.core.control.logcat.Logcat;
-import com.android.core.model.LogicProxy;
+import com.android.core.presenter.LogicProxy;
 import com.android.core.widget.dialog.DialogManager;
 
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-
 /**
  * @author: 蜡笔小新
- * @date: 2016-05-26 17:17
+ * @date: 2016-05-26 17:19
  * @GitHub: https://github.com/meikoz
  */
-public abstract class AbsBaseActivity extends Activity implements BaseView {
+public abstract class BaseFragment extends Fragment implements BaseView {
 
-    protected Context mContext = null;//context
     protected BasePresenter mPresenter;
+    protected Context mContext;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (getLayoutResource() != 0) {
+            return inflater.inflate(getLayoutResource(), null);
+        } else {
+            return super.onCreateView(inflater, container, savedInstanceState);
+        }
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logcat.d("Activity Location (%s.java:0)", getClass().getSimpleName());
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mContext = this;
-        setContentView(getLayoutResource());
-        ButterKnife.bind(this);
+        Logcat.d("Fragment Location (%s.java:0)", getClass().getSimpleName());
+        mContext = getActivity();
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
         onInitView();
     }
 
@@ -40,11 +54,6 @@ public abstract class AbsBaseActivity extends Activity implements BaseView {
 
     protected abstract void onInitView();
 
-    @Override
-    public void startActivity(Intent intent) {
-        super.startActivity(intent);
-        // 打开Activity动画
-    }
 
     //获得该页面的实例
     public <T> T getLogicImpl(Class cls, BaseView o) {
@@ -52,14 +61,8 @@ public abstract class AbsBaseActivity extends Activity implements BaseView {
     }
 
     @Override
-    public void finish() {
-        super.finish();
-        // 关闭动画
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         ButterKnife.unbind(this);
         if (mPresenter != null)
             mPresenter.detachView();
@@ -70,13 +73,14 @@ public abstract class AbsBaseActivity extends Activity implements BaseView {
         ToastUtil.show(msg);
     }
 
-    public void showProgress(String message) {
-        DialogManager.showProgressDialog(mContext, message);
+    @Override
+    public void showProgress(String msg) {
+        DialogManager.showProgressDialog(mContext, msg);
     }
 
     @Override
-    public void showProgress(String message, int progress) {
-        DialogManager.showProgressDialog(mContext, message, progress);
+    public void showProgress(String msg, int progress) {
+        DialogManager.showProgressDialog(mContext, msg, progress);
     }
 
     @Override
@@ -93,5 +97,4 @@ public abstract class AbsBaseActivity extends Activity implements BaseView {
             }
         });
     }
-
 }

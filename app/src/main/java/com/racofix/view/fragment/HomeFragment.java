@@ -4,15 +4,17 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.android.core.adapter.RecyclerAdapter;
-import com.android.core.base.AbsBaseFragment;
+import com.android.core.base.BaseFragment;
+import com.android.core.base.rx.RxView;
 import com.android.core.control.XRecyclerViewHelper;
-import com.android.core.model.LoadListDataLogic;
+import com.android.core.presenter.DataLayerLogicImpl;
+import com.android.core.presenter.LoadListDataLogic;
 import com.android.core.widget.CustomViewpager;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.racofix.R;
 import com.racofix.model.repo.Classify;
-import com.racofix.presenter.MainContract;
-import com.racofix.presenter.MainPresenter;
+import com.racofix.presenter.MainLogicI;
+import com.racofix.presenter.MainLogicImpl;
 import com.racofix.view.adapter.CustomViewPageAdapter;
 import com.racofix.view.adapter.HomeRecyclerAdapter;
 
@@ -26,7 +28,7 @@ import butterknife.Bind;
  * @date: 2016-05-31 10:51
  * @GitHub: https://github.com/meikoz
  */
-public class HomeFragment extends AbsBaseFragment implements LoadListDataLogic.LoadListView<Classify>, XRecyclerView.LoadingListener {
+public class HomeFragment extends BaseFragment implements RxView<Classify>, XRecyclerView.LoadingListener {
 
     @Bind(R.id.recly_view)
     XRecyclerView mRecyclerView;
@@ -43,7 +45,7 @@ public class HomeFragment extends AbsBaseFragment implements LoadListDataLogic.L
 
     @Override
     protected void onInitView() {
-        mPresenter = getLogicImpl(MainContract.class, this);
+        mPresenter = getLogicImpl(MainLogicI.class, this);
     }
 
     // 广告数据
@@ -78,28 +80,23 @@ public class HomeFragment extends AbsBaseFragment implements LoadListDataLogic.L
     }
 
     @Override
-    public void onLoadComplete(boolean isMore) {
-        //加载完成需要做的操作
-        hideProgress();
-        if (isMore)
-            mRecyclerView.loadMoreComplete();
-        else
-            mRecyclerView.refreshComplete();
-    }
-
-    @Override
     public void onRefresh() {
-        ((MainPresenter) mPresenter).onLoadRemoteData(false, 1);
+        ((MainLogicImpl) mPresenter).onLoadRemoteData(false, 1);
     }
 
     @Override
     public void onLoadMore() {
         page++;
-        ((MainPresenter) mPresenter).onLoadRemoteData(true, page);
+        ((MainLogicImpl) mPresenter).onLoadRemoteData(true, page);
     }
 
     @Override
-    public void onLoadCompleteData(Classify body, boolean isMore) {
+    public void onReceiveData2Api(Classify body, boolean isMore) {
+        if (isMore)
+            mRecyclerView.loadMoreComplete();
+        else
+            mRecyclerView.refreshComplete();
+
         if (body.isStatus()) {
             if (!isMore)
                 classifys.clear();

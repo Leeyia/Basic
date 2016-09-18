@@ -1,4 +1,4 @@
-package com.android.core.model.annotation;
+package com.android.core.presenter.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

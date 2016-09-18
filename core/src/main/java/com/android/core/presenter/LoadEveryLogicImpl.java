@@ -1,4 +1,4 @@
-package com.android.core.model;
+package com.android.core.presenter;
 
 import com.android.core.base.BasePresenter;
 

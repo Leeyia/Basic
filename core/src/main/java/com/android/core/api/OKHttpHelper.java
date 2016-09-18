@@ -25,6 +25,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
  * @date: 2016-07-05 17:23
  * @GitHub: https://github.com/meikoz
  */
+@Deprecated
 public class OKHttpHelper {
 
     private static SSLSocketFactory socketFactory;

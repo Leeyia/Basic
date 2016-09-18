@@ -1,9 +1,9 @@
-package com.android.core.model;
+package com.android.core.presenter;
 
 
 import com.android.core.base.BasePresenter;
 import com.android.core.base.BaseView;
-import com.android.core.model.annotation.Implement;
+import com.android.core.presenter.annotation.Implement;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;

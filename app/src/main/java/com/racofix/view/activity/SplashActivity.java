@@ -5,9 +5,8 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
-import com.android.core.control.Glides;
 import com.android.core.control.HandlerTip;
-import com.android.core.base.AbsBaseActivity;
+import com.android.core.base.BaseActivity;
 import com.android.core.control.StatusBarUtil;
 import com.racofix.R;
 
@@ -17,7 +16,7 @@ import butterknife.Bind;
  * author meikoz on 2016/3/30.
  * email  meikoz@126.com
  */
-public class SplashActivity extends AbsBaseActivity {
+public class SplashActivity extends BaseActivity {
 
     @Bind(R.id.splash_view)
     ImageView splashView;
@@ -37,7 +36,7 @@ public class SplashActivity extends AbsBaseActivity {
         animation.setDuration(milliseconds);//设置动画持续时间
         animation.setFillAfter(true);
         splashView.setAnimation(animation);
-        Glides.getInstance().loadAnima(this, R.drawable.splash_background, animation, splashView);
+//        Glides.getInstance().loadAnima(this, R.drawable.splash_background, animation, splashView);
         HandlerTip.getInstance().postDelayed(milliseconds, new HandlerTip.HandlerCallback() {
             @Override
             public void postDelayed() {

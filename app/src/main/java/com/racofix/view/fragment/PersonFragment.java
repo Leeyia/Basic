@@ -5,9 +5,8 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.android.core.control.Glides;
 import com.android.core.control.ScreenUtil;
-import com.android.core.base.AbsBaseFragment;
+import com.android.core.base.BaseFragment;
 import com.racofix.R;
 import com.racofix.widget.UiScrollView;
 
@@ -18,7 +17,7 @@ import butterknife.Bind;
  * @date: 2016-07-08 14:38
  * @GitHub: https://github.com/meikoz
  */
-public class PersonFragment extends AbsBaseFragment {
+public class PersonFragment extends BaseFragment {
     @Bind(R.id.iv_user_avatar)
     ImageView mUserAvatar;
 
@@ -38,7 +37,7 @@ public class PersonFragment extends AbsBaseFragment {
 
     @Override
     protected void onInitView() {
-        Glides.getInstance().loadCircle(getActivity(), R.drawable.abc_adv_3, mUserAvatar);
+//        Glides.getInstance().loadCircle(getActivity(), R.drawable.abc_adv_3, mUserAvatar);
 //        Glides.getInstance().load(getActivity(), R.drawable.abc_welcome_bg, mGlobalAdv);
         mNaviView.getBackground().mutate().setAlpha(0);
         mSlvView.setCallback(new UiScrollView.Callback() {

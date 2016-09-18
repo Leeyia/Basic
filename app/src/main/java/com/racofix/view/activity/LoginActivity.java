@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.EditText;
 
-import com.android.core.base.AbsBaseActivity;
-import com.android.core.model.LoadEveryLogic;
+import com.android.core.base.BaseActivity;
+import com.android.core.base.rx.RxView;
 import com.racofix.R;
 import com.racofix.model.repo.Classify;
-import com.racofix.presenter.LoginContract;
+import com.racofix.presenter.LoginLogicI;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -18,7 +18,7 @@ import butterknife.OnClick;
  * @date: 2016-05-31 10:51
  * @GitHub: https://github.com/meikoz
  */
-public class LoginActivity extends AbsBaseActivity implements LoadEveryLogic.LoadEveryView<Classify> {
+public class LoginActivity extends BaseActivity implements RxView<Classify> {
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, LoginActivity.class);
@@ -42,23 +42,19 @@ public class LoginActivity extends AbsBaseActivity implements LoadEveryLogic.Loa
     @Override
     protected void onInitView() {
         titlebar.setTitle("登录页面");
-        mPresenter = getLogicImpl(LoginContract.class, this);
+        mPresenter = getLogicImpl(LoginLogicI.class, this);
     }
 
     @OnClick(R.id.btn_login)
     void login() {
         showProgress("正在登陆");
-        ((LoginContract) mPresenter).onLogin("zhangsan", "456");
+        ((LoginLogicI) mPresenter).onLogin("zhangsan", "456");
     }
 
+
     @Override
-    public void onLoadComplete(Classify body) {
-        hideProgress();
+    public void onReceiveData2Api(Classify classify, boolean isMore) {
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
-    @Override
-    public void onLoadFailer(String msg) {
-        showErrorMessage("网络错误", msg);
-    }
 }

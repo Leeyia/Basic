@@ -1,6 +1,7 @@
 package com.racofix.api;
 
-import com.android.core.api.HttpClient;
+import com.android.core.BuildConfig;
+import com.android.core.api.RestApi;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,10 +12,10 @@ import java.util.Map;
  * @date: 2016-05-31 14:15
  * @GitHub: https://github.com/meikoz
  */
-public class Factory {
+public class ApiFactory {
 
-    public static BaseHttpService provideHttpService() {
-        return provideService(BaseHttpService.class);
+    public static ApiServiceI createApi() {
+        return provideService(ApiServiceI.class);
     }
 
     private static Map<Class, Object> m_service = new HashMap();
@@ -25,7 +26,7 @@ public class Factory {
             synchronized (cls) {
                 serv = m_service.get(cls);
                 if (serv == null) {
-                    serv = HttpClient.getIns(ApiConstant.BASE_URL).createService(cls);
+                    serv = RestApi.getIns().createService(BuildConfig.DEBUG, cls);
                     m_service.put(cls, serv);
                 }
             }

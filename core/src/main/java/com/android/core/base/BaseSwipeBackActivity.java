@@ -17,7 +17,7 @@ import com.android.core.widget.SwipeBackLayout;
  * @date: 2016-05-31 14:15
  * @GitHub: https://github.com/meikoz
  */
-public abstract class AbsBaseSwipeBackActivity extends AppCompatActivity implements SwipeBackLayout.SwipeBackListener {
+public abstract class BaseSwipeBackActivity extends AppCompatActivity implements SwipeBackLayout.SwipeBackListener {
 
     private SwipeBackLayout swipeBackLayout;
     private ImageView ivShadow;
