@@ -6,4 +6,7 @@ package com.racofix.model;
  * @GitHub: https://github.com/meikoz
  */
 public class LocalStorage {
+    public void getInstance(){
+        DataModel.getInstance().hashCode();
+    }
 }
