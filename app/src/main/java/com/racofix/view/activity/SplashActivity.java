@@ -1,13 +1,13 @@
 package com.racofix.view.activity;
 
 import android.content.Intent;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
+import android.os.Handler;
 import android.widget.ImageView;
 
-import com.android.core.control.HandlerTip;
 import com.android.core.base.BaseActivity;
 import com.android.core.control.StatusBarUtil;
+import com.android.core.control.image.ImageLoader;
+import com.android.core.control.image.ImageLoaderProxy;
 import com.racofix.R;
 
 import butterknife.Bind;
@@ -31,18 +31,20 @@ public class SplashActivity extends BaseActivity {
     protected void onInitView() {
         //设置状态栏透明
         StatusBarUtil.setTranslucentBackground(this);
-        ScaleAnimation animation = new ScaleAnimation(1f, 1.1f, 1f, 1.1f,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animation.setDuration(milliseconds);//设置动画持续时间
-        animation.setFillAfter(true);
-        splashView.setAnimation(animation);
-//        Glides.getInstance().loadAnima(this, R.drawable.splash_background, animation, splashView);
-        HandlerTip.getInstance().postDelayed(milliseconds, new HandlerTip.HandlerCallback() {
+
+        ImageLoaderProxy.getInstance().animate(this,
+                new ImageLoader.Builder()
+                        .load(R.drawable.splash_background)
+                        .animate(R.anim.sacle_largen_view)
+                        .into(splashView)
+                        .build());
+
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void postDelayed() {
+            public void run() {
                 startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 finish();
             }
-        });
+        }, milliseconds);
     }
 }

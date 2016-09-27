@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/tab_icon"
-        android:layout_width="24.0dip"
+        android:layout_width="30.0dip"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scaleType="centerInside" />
@@ -16,7 +16,8 @@
         android:id="@+id/tab_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dip"
+        android:layout_marginBottom="6dip"
+        android:text="ceshi"
         android:textColor="@color/abc_tab_text_normal"
         android:textSize="9.0sp" />
 

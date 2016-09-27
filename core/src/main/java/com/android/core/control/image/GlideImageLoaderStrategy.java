@@ -1,23 +1,12 @@
-package com.android.core.widget.glide;
-
-import android.content.Context;
-
-import com.android.core.control.NetWorkHelper;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.data.DataFetcher;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.model.stream.StreamModelLoader;
-
-import java.io.IOException;
-import java.io.InputStream;
+package com.android.core.control.image;
 
 /**
  * @author: 蜡笔小新
  * @date: 2016-08-01 16:42
  * @GitHub: https://github.com/meikoz
  */
-public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
+
+/*public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
     @Override
     public void loadImage(Context ctx, ImageLoader img) {
         boolean flag = NetWorkHelper.isWifiConnected(ctx);
@@ -43,16 +32,16 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
         }
     }
 
-    /**
+    *//**
      * load image with Glide
-     */
+     *//*
     private void loadNormal(Context ctx, ImageLoader img) {
         Glide.with(ctx).load(img.getUrl()).placeholder(img.getPlaceHolder()).into(img.getImgView());
     }
 
-    /**
+    *//**
      * load cache image with Glide
-     */
+     *//*
     private void loadCache(Context ctx, ImageLoader img) {
         Glide.with(ctx).using(new StreamModelLoader<String>() {
             @Override
@@ -85,4 +74,4 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
     public void loadCircleImage(Context ctx, ImageLoader img) {
         Glide.with(ctx).load(img.getUrl()).placeholder(img.getPlaceHolder()).transform(new GlideCircleTransform(ctx)).into(img.getImgView());
     }
-}
+}*/

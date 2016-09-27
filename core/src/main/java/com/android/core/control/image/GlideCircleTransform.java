@@ -1,4 +1,4 @@
-package com.android.core.widget.glide;
+package com.android.core.control.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;

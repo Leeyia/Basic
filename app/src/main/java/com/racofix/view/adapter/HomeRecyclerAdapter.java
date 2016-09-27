@@ -7,8 +7,9 @@ import android.widget.ImageView;
 
 import com.android.core.adapter.RecyclerAdapter;
 import com.android.core.adapter.RecyclerViewHolder;
-import com.android.core.widget.glide.ImageLoader;
-import com.android.core.widget.glide.ImageLoaderUtil;
+import com.android.core.control.image.GlideCircleTransform;
+import com.android.core.control.image.ImageLoader;
+import com.android.core.control.image.ImageLoaderProxy;
 import com.racofix.R;
 import com.racofix.model.repo.Classify;
 import com.racofix.view.activity.SwipBackActivity;
@@ -33,11 +34,14 @@ public class HomeRecyclerAdapter extends RecyclerAdapter<Classify.TngouEntity> {
 //        Uri uri = Uri.parse(URL_Base + item.getImg());
         String url = URL_Base + item.getImg();
         ImageView view = holder.getView(R.id.sv_classitfy_img);
-        ImageLoaderUtil.getInstance().loadCircleImage(mContext, new ImageLoader.Builder()
-                .url(url)
-                .placeHolder(R.color.abc_theme_black_7f)
-                .imgView(view)
-                .build());
+        ImageLoaderProxy.getInstance().load(mContext,
+                new ImageLoader.Builder()
+                        .load(url)
+                        .placeHolder(R.color.abc_theme_black_7f)
+                        .error(R.color.colorPlaceHolder)
+                        .transform(new GlideCircleTransform(mContext))
+                        .into(view)
+                        .build());
         holder.setText(R.id.sv_classitfy_des, item.getTitle());
         holder.setOnClickListener(R.id.sv_classitfy_img, new View.OnClickListener() {
             @Override

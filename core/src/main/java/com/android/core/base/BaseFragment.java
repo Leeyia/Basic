@@ -39,7 +39,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logcat.d("Fragment Location (%s.java:0)", getClass().getSimpleName());
+        Logcat.d("Class Name (%s.java:0)", getClass().getSimpleName());
         mContext = getActivity();
     }
 

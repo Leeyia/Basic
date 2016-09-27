@@ -31,9 +31,10 @@ public class MainActivity extends FragmentActivity {
         //恢复选项状态
         navigateTabBar.onRestoreInstanceState(savedInstanceState);
 
-        navigateTabBar.addTab(HomeFragment.class, new TabStripView.TabParam(R.drawable.ic_tab_bar_home, R.drawable.ic_tab_bar_home_selected, R.string.abc_tab_text_home));
-        navigateTabBar.addTab(DiscoveryFragment.class, new TabStripView.TabParam(R.drawable.ic_tab_bar_find, R.drawable.ic_tab_bar_find_selected, R.string.abc_tab_text_find));
-        navigateTabBar.addTab(PersonFragment.class, new TabStripView.TabParam(R.drawable.ic_tab_bar_person, R.drawable.ic_tab_bar_person_selected, R.string.abc_tab_text_person));
+        navigateTabBar.addTab(HomeFragment.class, new TabStripView.TabParam(R.drawable.ic_tab_strip_icon_feed, R.drawable.ic_tab_strip_icon_feed_selected, R.string.abc_tab_text_home));
+        navigateTabBar.addTab(DiscoveryFragment.class, new TabStripView.TabParam(R.drawable.ic_tab_strip_icon_category, R.drawable.ic_tab_strip_icon_category_selected, R.string.abc_tab_text_find));
+        navigateTabBar.addTab(HomeFragment.class, new TabStripView.TabParam(R.drawable.ic_tab_strip_icon_feed, R.drawable.ic_tab_strip_icon_feed_selected, R.string.abc_tab_text_home));
+        navigateTabBar.addTab(PersonFragment.class, new TabStripView.TabParam(R.drawable.ic_tab_strip_icon_profile, R.drawable.ic_tab_strip_icon_profile_selected, R.string.abc_tab_text_person));
     }
 
 

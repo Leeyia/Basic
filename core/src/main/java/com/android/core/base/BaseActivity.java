@@ -28,7 +28,7 @@ public abstract class BaseActivity extends Activity implements BaseView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logcat.d("Activity Location (%s.java:0)", getClass().getSimpleName());
+        Logcat.d("ClassName (%s.java:0)", getClass().getSimpleName());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         mContext = this;
         setContentView(getLayoutResource());
@@ -47,8 +47,8 @@ public abstract class BaseActivity extends Activity implements BaseView {
     }
 
     //获得该页面的实例
-    public <T> T getLogicImpl(Class cls, BaseView o) {
-        return LogicProxy.getInstance().bind(cls, o);
+    public <T> T getLogicImpl(Class cls, BaseView var1) {
+        return LogicProxy.getInstance().bind(cls, var1);
     }
 
     @Override
