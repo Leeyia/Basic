@@ -56,19 +56,16 @@ public class LogicProxy {
      * @return
      */
     public <T> T bind(Class cls, BaseView var1) {
-
         if (!m_objects.containsKey(cls)) {
             init(cls);
-        } else {
-            BasePresenter presenter = ((BasePresenter) m_objects.get(cls));
-            if (var1 != presenter.getView()) {
-                if (presenter.getView() == null) presenter.attachView(var1);
-                else {
-                    init(cls);
-                }
-            }
         }
         BasePresenter presenter = ((BasePresenter) m_objects.get(cls));
-        return (T) presenter;
+        if (var1 != presenter.getView()) {
+            if (presenter.getView() == null)
+                presenter.attachView(var1);
+            else
+                bind(cls,var1);
+        }
+        return (T) m_objects.get(cls);
     }
 }
