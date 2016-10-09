@@ -1,8 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.1"
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -40,84 +37,27 @@ dependencies {
     compile 'com.jcodecraeer:xrecyclerview:1.2.7'
 }
 
-// 定义两个链接，下面会用到。
-def siteUrl = 'https://github.com/racofix/basic' // 项目主页。
-def gitUrl = 'https://github.com/racofix/basic.git' // Git仓库的url。
+ext {
+    bintrayRepo = 'maven' //bintray上的仓库名，一般为maven
+    bintrayName = 'basic'//bintray上的项目名
 
-// 唯一包名compile 'com.racofix:core:1.0.1'
-group = "com.racofix"
-install {
-    repositories.mavenInstaller {
-        // 生成pom.xml和参数
-        pom {
-            project {
-                packaging 'aar'
-                name 'basic'// 可选，项目名称。
-                description 'mvp easy dev'// 可选，项目描述。
-                url siteUrl
+    publishedGroupId = 'com.racofix.basic'//JCenter的GroupId
+    artifact = 'core'//JCenter的ArtifactId
 
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
+    siteUrl = 'https://github.com/racofix/basic'
+    gitUrl = 'https://github.com/racofix/basic.git'
 
-                //填写开发者基本信息 需要修改。
-                developers {
-                    developer {
-                        id 'racofix' // 开发者的id。
-                        name 'racofix' // 开发者名字。
-                        email 'jinlong.zhou@leediancn.com' // 开发者邮箱。
-                    }
-                }
+    libraryVersion = '1.0.1'
+    libraryName = 'core'//项目名字，没什么用
+    libraryDescription = 'mvp easy dev'//项目描述，没什么用
 
-                scm {
-                    connection gitUrl // Git仓库地址。
-                    developerConnection gitUrl // Git仓库地址。
-                    url siteUrl // 项目主页。
-                }
-            }
-        }
-    }
-}
-// 生成jar包的task，不需要修改。
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-// 生成jarDoc的task，不需要修改。
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    // destinationDir = file("../javadoc/")
-    failOnError false // 忽略注释语法错误，如果用jdk1.8你的注释写的不规范就编译不过。
-}
-// 生成javaDoc的jar，不需要修改。
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
+    developerId = 'racofix' //开发者id
+    developerName = 'racofix'
+    developerEmail = 'jinlong.zhou@leediancn.com'
 
-// 这里是读取Bintray相关的信息，我们上传项目到github上的时候会把gradle文件传上去，所以不要把帐号密码的信息直接写在这里，写在local.properties中，这里动态读取。
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-bintray {
-    user = properties.getProperty("bintray.user") // Bintray的用户名。
-    key = properties.getProperty("bintray.apikey") // Bintray刚才保存的ApiKey。
-
-    configurations = ['archives']
-    pkg {
-        repo = "maven"  // 上传到maven库。
-        name = "basic"
-        // 发布到Bintray上的项目名字，这里的名字不是compile 'com.yanzhenjie:andserver:1.0.1'中的andserver。
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true // 是否是公开项目。
-    }
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
 }
+apply from: 'https://raw.githubusercontent.com/Jude95/JCenter/master/install.gradle'
+apply from: 'https://raw.githubusercontent.com/Jude95/JCenter/master/bintray.gradle'
