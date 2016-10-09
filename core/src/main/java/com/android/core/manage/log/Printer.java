@@ -1,10 +1,5 @@
 package com.android.core.manage.log;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-06-02 17:25
- * @GitHub: https://github.com/meikoz
- */
 public interface Printer {
     
     Printer t(String var1, int var2);

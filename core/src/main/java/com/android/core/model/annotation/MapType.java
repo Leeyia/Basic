@@ -6,11 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.HashMap;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-05-31 14:15
- * @GitHub: https://github.com/meikoz
- */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MapType {

@@ -12,11 +12,6 @@ import android.widget.RelativeLayout.LayoutParams;
 import com.android.core.R;
 import com.android.core.ui.SwipeBackLayout;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-05-31 14:15
- * @GitHub: https://github.com/meikoz
- */
 public abstract class BaseSwipeBackActivity extends AppCompatActivity implements SwipeBackLayout.SwipeBackListener {
 
     private SwipeBackLayout swipeBackLayout;

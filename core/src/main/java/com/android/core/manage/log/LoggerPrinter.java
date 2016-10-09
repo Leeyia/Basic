@@ -15,11 +15,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-06-02 17:23
- * @GitHub: https://github.com/meikoz
- */
 public class LoggerPrinter implements Printer {
     private static final int DEBUG = 3;
     private static final int ERROR = 6;

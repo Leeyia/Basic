@@ -2,10 +2,6 @@ package com.android.core.manage.image;
 
 import android.content.Context;
 
-/**
- * Created by zjl on 16-9-27.
- */
-
 public interface ImageLoadToolI {
 
     void load(Context context, ImageLoader var1);

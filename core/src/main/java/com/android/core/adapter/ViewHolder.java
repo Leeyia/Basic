@@ -9,11 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-05-31 14:15
- * @GitHub: https://github.com/meikoz
- */
 public class ViewHolder {
     private final SparseArray<View> mViews;
     private int mPosition;
@@ -32,12 +27,6 @@ public class ViewHolder {
     /**
      * 拿到一个ViewHolder对象
      *
-     * @param context
-     * @param convertView
-     * @param parent
-     * @param layoutId
-     * @param position
-     * @return
      */
     public static ViewHolder get(Context context, View convertView,
                                  ViewGroup parent, int layoutId, int position) {
@@ -53,9 +42,6 @@ public class ViewHolder {
 
     /**
      * 通过控件的Id获取对于的控件，如果没有则加入views
-     *
-     * @param viewId
-     * @return
      */
     public <T extends View> T getView(int viewId) {
         View view = mViews.get(viewId);
@@ -69,9 +55,6 @@ public class ViewHolder {
     /**
      * 为TextView设置字符串
      *
-     * @param viewId
-     * @param text
-     * @return
      */
     public ViewHolder setText(int viewId, CharSequence text) {
         TextView view = getView(viewId);
@@ -83,9 +66,6 @@ public class ViewHolder {
     /**
      * 为TextView设置字符串，颜色
      *
-     * @param viewId
-     * @param text
-     * @return
      */
     public ViewHolder setText(int viewId, CharSequence text, int resId) {
         TextView view = getView(viewId);
@@ -96,10 +76,6 @@ public class ViewHolder {
 
     /**
      * 为ImageView设置图片
-     *
-     * @param viewId
-     * @param drawableId
-     * @return
      */
     public ViewHolder setImageResource(int viewId, int drawableId) {
         ImageView view = getView(viewId);
@@ -111,9 +87,6 @@ public class ViewHolder {
     /**
      * 为ImageView设置图片
      *
-     * @param viewId
-     * @param
-     * @return
      */
     public ViewHolder setImageBitmap(int viewId, Bitmap bm) {
         ImageView view = getView(viewId);
@@ -124,9 +97,6 @@ public class ViewHolder {
     /**
      * 为ImageView设置图片
      *
-     * @param
-     * @param
-     * @return
      */
 //    public ViewHolder setImageByUrl(int viewId, String url) {
 //        ImageLoader.getInstance(3, Type.LIFO).loadImage(url,

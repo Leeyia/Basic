@@ -9,9 +9,6 @@ import java.net.SocketTimeoutException;
 
 import rx.Subscriber;
 
-/**
- * 回调封装
- */
 public abstract class RxSubscriber<D> extends Subscriber<D> {
 
     public BaseView mView;
@@ -65,8 +62,6 @@ public abstract class RxSubscriber<D> extends Subscriber<D> {
 
     /**
      * 同意返回数据
-     *
-     * @param d
      */
     protected abstract void onResponse(D d);
 }

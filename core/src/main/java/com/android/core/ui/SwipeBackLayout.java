@@ -29,11 +29,6 @@ import android.webkit.WebView;
 import android.widget.AbsListView;
 import android.widget.ScrollView;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-05-31 14:15
- * @GitHub: https://github.com/meikoz
- */
 public class SwipeBackLayout extends ViewGroup {
 
     private static final String TAG = "SwipeBackLayout";
@@ -86,7 +81,6 @@ public class SwipeBackLayout extends ViewGroup {
     /**
      * Set the anchor of calling finish.
      *
-     * @param offset
      */
     public void setFinishAnchor(float offset) {
         finishAnchor = offset;
@@ -97,7 +91,6 @@ public class SwipeBackLayout extends ViewGroup {
     /**
      * Whether allow to finish activity by fling the layout.
      *
-     * @param b
      */
     public void setEnableFlingBack(boolean b) {
         enableFlingBack = b;
@@ -153,7 +146,6 @@ public class SwipeBackLayout extends ViewGroup {
     /**
      * Find out the scrollable child view from a ViewGroup.
      *
-     * @param viewGroup
      */
     private void findScrollView(ViewGroup viewGroup) {
         scrollChild = viewGroup;

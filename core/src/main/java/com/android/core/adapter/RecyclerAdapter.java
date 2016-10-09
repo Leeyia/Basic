@@ -8,11 +8,6 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-05-31 14:15
- * @GitHub: https://github.com/meikoz
- */
 public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
     protected Context mContext;
     protected int mLayoutId;

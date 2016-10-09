@@ -10,11 +10,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-09-14 14:15
- * @GitHub: https://github.com/meikoz
- */
 public class RestApi {
 
     private static RestApi mInstance;

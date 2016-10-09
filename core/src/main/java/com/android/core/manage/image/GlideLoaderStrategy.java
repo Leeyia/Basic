@@ -5,11 +5,6 @@ import android.text.TextUtils;
 
 import com.bumptech.glide.Glide;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-08-01 16:42
- * @GitHub: https://github.com/meikoz
- */
 public class GlideLoaderStrategy {
 
     // 加载图片方法

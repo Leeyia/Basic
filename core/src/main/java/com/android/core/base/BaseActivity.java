@@ -12,12 +12,6 @@ import com.android.core.model.LogicProxy;
 
 import butterknife.ButterKnife;
 
-/**
- * @User: 蜡笔小新
- * @date: 16-9-30
- * @GitHub: https://github.com/meikoz
- */
-
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
     protected abstract int getLayoutResource();

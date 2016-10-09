@@ -2,11 +2,6 @@ package com.android.core.manage.image;
 
 import android.content.Context;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-08-01 16:42
- * @GitHub: https://github.com/meikoz
- */
 public class ImageLoadTool implements ImageLoadToolI {
 
     static ImageLoadTool mProxy;

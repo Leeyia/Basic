@@ -20,11 +20,6 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-05-31 14:15
- * @GitHub: https://github.com/meikoz
- */
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
     private int mPosition;
@@ -62,8 +57,6 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     /**
      * 通过viewId获取控件
      *
-     * @param viewId
-     * @return
      */
     public <T extends View> T getView(int viewId) {
         View view = mViews.get(viewId);
@@ -81,9 +74,6 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     /**
      * 设置TextView的值
      *
-     * @param viewId
-     * @param text
-     * @return
      */
     public RecyclerViewHolder setText(int viewId, String text) {
         TextView tv = getView(viewId);

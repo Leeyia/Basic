@@ -3,9 +3,6 @@ package com.android.core.base.rx;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 
-/**
- * Created by zjl on 16-9-18.
- */
 public class SubscriberCallBack<T> extends Subscriber<T> {
 
     private ApiCallback<T> apiCallback;

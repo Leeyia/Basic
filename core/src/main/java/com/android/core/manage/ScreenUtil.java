@@ -8,11 +8,6 @@ import android.view.WindowManager;
 
 import com.android.core.R;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-05-26 17:46
- * @GitHub: https://github.com/meikoz
- */
 public class ScreenUtil {
 
     private static final int[] APPCOMPAT_CHECK_ATTRS = {R.attr.colorPrimary};
@@ -58,8 +53,6 @@ public class ScreenUtil {
     /**
      * 获取屏幕的高
      *
-     * @param context
-     * @return
      */
     public static int getScreenHeight(Context context) {
         return context.getResources().getDisplayMetrics().heightPixels;

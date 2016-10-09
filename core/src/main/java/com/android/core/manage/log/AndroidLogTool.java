@@ -2,11 +2,6 @@ package com.android.core.manage.log;
 
 import android.util.Log;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-06-02 17:21
- * @GitHub: https://github.com/meikoz
- */
 public class AndroidLogTool implements LogTool{
 
     public AndroidLogTool() {

@@ -9,11 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-05-31 14:15
- * @GitHub: https://github.com/meikoz
- */
 public abstract class CommonAdapter<T> extends BaseAdapter {
     protected LayoutInflater mInflater;
     protected Context mContext;
@@ -38,7 +33,6 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
     /**
      * 刷新数据
-     * @param datas
      */
     public void refreshDatas(List<T> datas){
         mDatas.clear();
