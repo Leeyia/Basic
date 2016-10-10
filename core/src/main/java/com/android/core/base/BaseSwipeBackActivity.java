@@ -12,7 +12,7 @@ import android.widget.RelativeLayout.LayoutParams;
 import com.android.core.R;
 import com.android.core.ui.SwipeBackLayout;
 
-public abstract class BaseSwipeBackActivity extends AppCompatActivity implements SwipeBackLayout.SwipeBackListener {
+public abstract class BaseSwipeBackActivity extends BaseActivity implements SwipeBackLayout.SwipeBackListener {
 
     private SwipeBackLayout swipeBackLayout;
     private ImageView ivShadow;

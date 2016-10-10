@@ -30,12 +30,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         super.onCreate(savedInstanceState);
         Logger.d("name (%s.java:0)", getClass().getSimpleName());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mContext = this;
-        ButterKnife.bind(this);
-        this.onInitView(savedInstanceState);
         if (getLayoutResource() != -1)
             setContentView(getLayoutResource());
-        this.onInitData2Api();
+        ButterKnife.bind(this);
+        // 初始化view
+        onInitView(savedInstanceState);
+        // 初始化数据
+        onInitData2Api();
     }
 
     //获得该页面的实例
@@ -57,10 +58,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     @Override
     protected void onStart() {
+        super.onStart();
         if (mPresenter != null && !mPresenter.isViewBind()) {
             LogicProxy.getInstance().bind(getLogic(), this);
         }
-        super.onStart();
     }
 
     @Override
@@ -72,5 +73,4 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     protected BasePresenter mPresenter;
-    protected Context mContext = null;//context
 }

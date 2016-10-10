@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">basic</string>
+    <string name="tab_bar_text_feed">精选</string>
+    <string name="tab_bar_text_category">发现</string>
+    <string name="tab_bar_text_pgc">作者</string>
+    <string name="tab_bar_text_profile">我的</string>
+
 </resources>

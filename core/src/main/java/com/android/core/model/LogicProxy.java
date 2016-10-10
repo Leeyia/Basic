@@ -42,18 +42,31 @@ public class LogicProxy {
             }
         }
     }
-
-    public <T> T bind(Class cls, BaseView var1) {
-        if (!m_objects.containsKey(cls)) {
-            init(cls);
+    // 初始化presenter add map
+    public <T> T bind(Class clzz, BaseView var1) {
+        if (!m_objects.containsKey(clzz)) {
+            init(clzz);
         }
-        BasePresenter presenter = ((BasePresenter) m_objects.get(cls));
+        BasePresenter presenter = ((BasePresenter) m_objects.get(clzz));
         if (var1 != presenter.getView()) {
             if (presenter.getView() == null)
                 presenter.attachView(var1);
             else
-                bind(cls,var1);
+                bind(clzz, var1);
         }
-        return (T) m_objects.get(cls);
+        return (T) presenter;
+    }
+
+    // 解除绑定 移除map
+    public void unbind(Class clzz, BaseView var1) {
+        if (m_objects.containsKey(clzz)) {
+            BasePresenter presenter = ((BasePresenter) m_objects.get(clzz));
+            if (var1 != presenter.getView()) {
+                if (presenter.getView() != null)
+                    presenter.detachView();
+                m_objects.remove(clzz);
+            }
+
+        }
     }
 }

@@ -75,7 +75,7 @@ public class RestApi {
 
 
     // create okHttpClient singleton
-    public OkHttpClient createOkHttpClient(boolean debug) {
+    OkHttpClient createOkHttpClient(boolean debug) {
         return new OkHttpClient.Builder()
                 .addNetworkInterceptor(new HttpCacheInterceptor())
                 .addInterceptor(
