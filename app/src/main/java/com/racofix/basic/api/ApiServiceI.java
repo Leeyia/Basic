@@ -11,6 +11,8 @@ import retrofit2.http.GET;
 
 public interface ApiServiceI {
 
+    String BASE_URL = "http://github.com/meikoz";
+
     @GET("user/login")
     Call<String> onUserLogin(String username, String password);
 }
