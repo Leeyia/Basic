@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <declare-styleable name="titlebarview">
-        <attr name="title_text" format="string|reference"/>
-        <attr name="backfinish_enable" format="boolean"/>
-    </declare-styleable>
-
-</resources>

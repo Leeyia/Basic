@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">BasicApp</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="abc_tab_text_home">首页</string>
-    <string name="abc_tab_text_find">发现</string>
-    <string name="abc_tab_text_person">个人</string>
-</resources>
