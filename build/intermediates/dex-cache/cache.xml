@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\会写代码的小新\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\adapter-rxjava\2.1.0\693eddc23e87ab13f9cf5001707ce8e7e1d1ff01\adapter-rxjava-2.1.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="693eddc23e87ab13f9cf5001707ce8e7e1d1ff01">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\adapter-rxjava-2.1.0_cd294910527a4189785c4916b6c94ea0dbe76532.jar" />
+    </item>
+    <item
+        jar="E:\develop\repository\basic-backups\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="292a9fa091757208efa65e77eef63088247e51f3">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.2.0_3db4caeb0335d36550d7673ebee68ac2ed30891d.jar" />
+    </item>
+    <item
+        jar="E:\develop\repository\basic-backups\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.1.0_dd215ff3cbf4ea3e8b13cd297ddd272212c06d54.jar" />
+    </item>
+    <item
+        jar="E:\develop\repository\basic-backups\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.2.0_e7ff66d3f84a5b5f40dcc93dd58f40615fb7a134.jar" />
+    </item>
+    <item
+        jar="C:\Users\会写代码的小新\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\gson-2.7_d075e3d704c84a6c2cf3565337d12447be3c1405.jar" />
+    </item>
+    <item
+        jar="C:\Users\会写代码的小新\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\glide-3.7.0_c3b178af0236cee5a857ac5c2ff7cb0a4ae9f696.jar" />
+    </item>
+    <item
+        jar="C:\Users\会写代码的小新\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.9.0\f824591a0016efbaeddb8300bee54832a1398cfa\okio-1.9.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\okio-1.9.0_3cbdeeeaa711b627cd4283376e428530c2c8a346.jar" />
+    </item>
+    <item
+        jar="C:\Users\会写代码的小新\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.1.0\2de7cd8b95b7021b1d597f049bcb422055119f2c\retrofit-2.1.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\retrofit-2.1.0_dfc8fbfa9e8ec17a4188ca51da2dc40b646307f6.jar" />
+    </item>
+    <item
+        jar="E:\develop\repository\basic-backups\app\build\intermediates\exploded-aar\io.reactivex\rxandroid\1.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="927e8ef5711b115b65b2f35495d77352be2b3c09">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\io.reactivex-rxandroid-1.2.0_cdc17e0a26857ada65778ffb2edd3fd9f265f179.jar" />
+    </item>
+    <item
+        jar="C:\Users\会写代码的小新\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.1.0\aa557d71ead91cbf26e0c316a0f593d168303309\converter-gson-2.1.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\converter-gson-2.1.0_85162efe3468b7bdcdadd6a58195bb78bee93899.jar" />
+    </item>
+    <item
+        jar="C:\Users\会写代码的小新\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.5\ece7b5d0870e66d8226dab6dcf47a2b12afff061\rxjava-1.1.5.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="ece7b5d0870e66d8226dab6dcf47a2b12afff061">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\rxjava-1.1.5_7548f7d459df58b405002444bb8a48f841a3bde9.jar" />
+    </item>
+    <item
+        jar="E:\develop\tools\android-windows-sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.0\support-annotations-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c5bf571bb10462bd90e5419ade67793f71acbc87">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.0_fafe8dedeb6a49714c0599a973670da15ab8e1d4.jar" />
+    </item>
+    <item
+        jar="E:\develop\repository\basic-backups\app\build\intermediates\exploded-aar\com.racofix.basic\core\1.0.2\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="bd4759005ec36bb47eaaf73dcfea5cfb25a8565c">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\com.racofix.basic-core-1.0.2_17e927fb58bcf7820cea339b3e50cdf1e3afe1d8.jar" />
+    </item>
+    <item
+        jar="E:\develop\repository\basic-backups\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\libs\internal_impl-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="6e239441500605809818997dd63b62a947195f8c">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\internal_impl-23.2.0_6b68195bf67a82ce35b9983ecbcca7077b10ad83.jar" />
+    </item>
+    <item
+        jar="C:\Users\会写代码的小新\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.4.1\c7c4f9e35c2fd5900da24f9872e3971801f08ce0\okhttp-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\okhttp-3.4.1_9bb725516fe710e8b91a770ffe748eaf21282802.jar" />
+    </item>
+    <item
+        jar="C:\Users\会写代码的小新\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\7.0.1\d5d13ea991eab0252e3710e5df3d6a9d4b21d461\butterknife-7.0.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1_fa843fb9310a8bdf3a71ae3cd4d057cbf410375f.jar" />
+    </item>
+    <item
+        jar="E:\develop\repository\basic-backups\app\build\intermediates\exploded-aar\com.jcodecraeer\xrecyclerview\1.2.7\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="0724e4d93c85866c8953b74776fa320efa122205">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\com.jcodecraeer-xrecyclerview-1.2.7_79e8e5f456788dc9a477cc30034b25eb59c28b14.jar" />
+    </item>
+    <item
+        jar="E:\develop\repository\basic-backups\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8c108c22c99e794eff255bb34d2a461200c4cbb0">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.2.0_f161a9658929d9e73acbe483b66de3488172b46b.jar" />
+    </item>
+    <item
+        jar="C:\Users\会写代码的小新\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\logging-interceptor\3.4.1\381fc1096ba65040d8e80ea43b2e1d9bad02345e\logging-interceptor-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="381fc1096ba65040d8e80ea43b2e1d9bad02345e">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\logging-interceptor-3.4.1_f146c3d53e31da4853e5e3695e53884709e0fb44.jar" />
+    </item>
+    <item
+        jar="E:\develop\repository\basic-backups\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="6e3578f92f7462d1a935a1d36173e3bdd1234976">
+        <dex dex="E:\develop\repository\basic-backups\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.2.0_bc38b5d8cc5a7cd8ea0155e72b5ececf43d1d8df.jar" />
+    </item>
+
+</items>
