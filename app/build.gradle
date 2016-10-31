@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+    defaultConfig {
+        applicationId "com.meikoz.basic"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    testCompile 'junit:junit:4.12'
+    compile project(':core')
+}
+
+ext {
+    bintrayRepo = 'maven' //bintray上的仓库名，一般为maven
+    bintrayName = 'Basic'//bintray上的项目名
+
+    publishedGroupId = 'com.meikoz.basic'//JCenter的GroupId
+    artifact = 'core'//JCenter的ArtifactId
+
+    siteUrl = 'https://github.com/racofix/basic'
+    gitUrl = 'https://github.com/racofix/basic.git'
+
+    libraryVersion = '1.0.0'
+    libraryName = 'core'//项目名字，没什么用
+    libraryDescription = 'android-core lib'//项目描述，没什么用
+
+    developerId = 'racofix' //开发者id
+    developerName = 'racofix'
+    developerEmail = 'jinlong.zhou@leediancn.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
