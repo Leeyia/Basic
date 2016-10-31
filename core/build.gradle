@@ -27,5 +27,41 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:24.2.0'
-    testCompile 'junit:junit:4.12'
+    //squareup
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    compile 'io.reactivex:rxjava:1.1.5'
+    compile 'io.reactivex:rxandroid:1.2.0'
+    compile 'com.jcodecraeer:xrecyclerview:1.2.7'
 }
+
+ext {
+    bintrayRepo = 'Maven' //bintray上的仓库名，一般为maven
+    bintrayName = 'basic'//bintray上的项目名
+
+    publishedGroupId = 'com.meikoz.basic'//JCenter的GroupId
+    artifact = 'core'//JCenter的ArtifactId
+
+    siteUrl = 'https://github.com/meikoz/Basic'
+    gitUrl = 'https://github.com/meikoz/Basic.git'
+
+    libraryVersion = '1.0.2'
+    libraryName = 'Basic'//项目名字，没什么用
+    libraryDescription = 'lib'//项目描述，没什么用
+
+    developerId = 'meikoz' //开发者id
+    developerName = 'meikoz'
+    developerEmail = 'zhoujinlongdev@sina.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
