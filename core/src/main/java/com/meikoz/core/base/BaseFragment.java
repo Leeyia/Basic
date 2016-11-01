@@ -19,10 +19,12 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
     protected abstract void onInitView(Bundle savedInstanceState);
 
-    protected abstract Class getLogic();
+    protected Class getLogicClazz() {
+        return null;
+    }
 
     protected void onInitData2Api() {
-        if (getLogic() != null)
+        if (getLogicClazz() != null)
             mPresenter = getLogicImpl();
     }
 
@@ -30,12 +32,13 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (getLayoutResource() != 0) {
-            mContentView = inflater.inflate(getLayoutResource(), null);
+            rootView = inflater.inflate(getLayoutResource(), null);
         } else {
-            mContentView = super.onCreateView(inflater, container, savedInstanceState);
+            rootView = super.onCreateView(inflater, container, savedInstanceState);
         }
+        ButterKnife.bind(this, rootView);
         this.onInitView(savedInstanceState);
-        return mContentView;
+        return rootView;
     }
 
     @Override
@@ -48,20 +51,18 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
         onInitData2Api();
     }
 
     //获得该页面的实例
     public <T> T getLogicImpl() {
-        return LogicProxy.getInstance().bind(getLogic(), this);
+        return LogicProxy.getInstance().bind(getLogicClazz(), this);
     }
-
 
     @Override
     public void onStart() {
         if (mPresenter != null && !mPresenter.isViewBind()) {
-            LogicProxy.getInstance().bind(getLogic(), this);
+            LogicProxy.getInstance().bind(getLogicClazz(), this);
         }
         super.onStart();
     }
@@ -75,6 +76,6 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     }
 
     protected BasePresenter mPresenter;
-    protected View mContentView;
+    protected View rootView;
     protected Context mContext = null;//context
 }

@@ -1,6 +1,5 @@
 package com.meikoz.core.base;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,14 +12,18 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
+    protected BasePresenter mPresenter;
+
     protected abstract int getLayoutResource();
 
-    protected abstract void onInitView(Bundle savedInstanceState);
+    protected abstract void onInitView(Bundle bundle);
 
-    protected abstract Class getLogic();
+    protected Class getLogicClazz() {
+        return null;
+    }
 
-    protected void onInitData2Api() {
-        if (getLogic() != null)
+    protected void onInitData2Remote() {
+        if (getLogicClazz() != null)
             mPresenter = getLogicImpl();
     }
 
@@ -29,37 +32,23 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         super.onCreate(savedInstanceState);
         Logger.d("name (%s.java:0)", getClass().getSimpleName());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        if (getLayoutResource() != -1)
+        if (getLayoutResource() != 0)
             setContentView(getLayoutResource());
         ButterKnife.bind(this);
-        // 初始化view
-        onInitView(savedInstanceState);
-        // 初始化数据
-        onInitData2Api();
+        this.onInitView(savedInstanceState);
+        this.onInitData2Remote();
     }
 
     //获得该页面的实例
     public <T> T getLogicImpl() {
-        return LogicProxy.getInstance().bind(getLogic(), this);
-    }
-
-    @Override
-    public void startActivity(Intent intent) {
-        super.startActivity(intent);
-        // 打开Activity动画
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        // 关闭动画
+        return LogicProxy.getInstance().bind(getLogicClazz(), this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         if (mPresenter != null && !mPresenter.isViewBind()) {
-            LogicProxy.getInstance().bind(getLogic(), this);
+            LogicProxy.getInstance().bind(getLogicClazz(), this);
         }
     }
 
@@ -71,5 +60,4 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
             mPresenter.detachView();
     }
 
-    protected BasePresenter mPresenter;
 }

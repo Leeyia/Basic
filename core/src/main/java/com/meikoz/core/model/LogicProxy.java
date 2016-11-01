@@ -24,10 +24,10 @@ public class LogicProxy {
     private Map<Class, Object> m_objects;
 
     public void init(Class... clss) {
-        List<Class> list = new LinkedList<Class>();
+//        List<Class> list = new LinkedList<Class>();
         for (Class cls : clss) {
             if (cls.isAnnotationPresent(Implement.class)) {
-                list.add(cls);
+//                list.add(cls);
                 for (Annotation ann : cls.getDeclaredAnnotations()) {
                     if (ann instanceof Implement) {
                         try {
@@ -42,6 +42,7 @@ public class LogicProxy {
             }
         }
     }
+
     // 初始化presenter add map
     public <T> T bind(Class clzz, BaseView var1) {
         if (!m_objects.containsKey(clzz)) {
@@ -49,10 +50,10 @@ public class LogicProxy {
         }
         BasePresenter presenter = ((BasePresenter) m_objects.get(clzz));
         if (var1 != presenter.getView()) {
-            if (presenter.getView() == null)
-                presenter.attachView(var1);
-            else
-                bind(clzz, var1);
+            if (presenter.getView() != null) {
+                presenter.detachView();
+            }
+            presenter.attachView(var1);
         }
         return (T) presenter;
     }
