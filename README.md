@@ -1,4 +1,4 @@
-## Basic Architecture help Android developers more easy to develop（Basic架构帮助安卓开发者更容易开发）
+## Basic Architecture help Android developers more easy to develop
 一个帮助开发者快速搭建的Android-mvp框架
 
 ## Where is the use ?
