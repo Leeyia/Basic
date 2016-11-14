@@ -1,8 +1,8 @@
-## Welcome :)
-Frame basic to help Android developers more simple and easy to carry out development projects
+## Basic Architecture help Android developers more easy to develop（Basic架构帮助安卓开发者更容易开发）
+一个帮助开发者快速搭建的Android-mvp框架
 
 ## Where is the use ?
-Simple Mvp,Retrofit,Beautiful log tool,ImageLoader base on "Glide",Base Activity,Fragment,SwipBack,...I will continue to update it
+Simple Mvp、Retrofit、Beautiful log tool、ImageLoader base on "Glide"、Base(Activity、Fragment、SwipBack)... I will continue to update it
 
 ## Usage Gradle
 build.gradle：
