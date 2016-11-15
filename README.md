@@ -5,7 +5,7 @@
 Simple Mvp、Retrofit、Beautiful log tool、ImageLoader base on "Glide"、Base(Activity、Fragment、SwipBack)... I will continue to update it
 
 ## Usage Gradle
-[详细使用方法请参考wiki](https://github.com/meikoz/Basic/wiki/Basic-Usage)
+[详细使用方法及扩展功能,请参考wiki](https://github.com/meikoz/Basic/wiki/Usage)
 
 build.gradle：
 ```
