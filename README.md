@@ -2,10 +2,21 @@
 一个帮助开发者快速搭建的Android-mvp框架
 
 ## Where is the use ?
-Simple Mvp、Retrofit、Beautiful log tool、ImageLoader base on "Glide"、Base(Activity、Fragment、SwipBack)... I will continue to update it
+- 新颖的Mvp模式
+- 网络请求的封装
+- 强大的漂亮日志
+- 列表数据的统一业务处理
+- 多种样式上拉加载、下拉刷新
+- App crash 异常的处理
+- 快速实现广告轮播图、引导页功能
+- 快速实现底部导航功能
+- 右滑页面关闭当前Activity
+- 万能的Adapter
+- 通知栏沉浸式
+- Glide加载圆角图片 GlideCircleTransform
 
 ## Usage Gradle
-[详细使用方法请参考wiki](https://github.com/meikoz/Basic/wiki/Basic-Usage)
+[详细使用方法及扩展功能,请参考wiki](https://github.com/meikoz/Basic/wiki/Usage)
 
 build.gradle：
 ```
