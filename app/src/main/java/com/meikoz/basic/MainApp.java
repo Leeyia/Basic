@@ -14,6 +14,10 @@ public class MainApp extends MainApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.init(getPackageName()).hideThreadInfo().methodCount(3);
+        Logger
+                .init(getPackageName())
+                .methodCount(3)
+                .hideThreadInfo()
+                .logLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE);
     }
 }

@@ -23,7 +23,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         return null;
     }
 
-    protected void onInitData2Api() {
+    protected void onInitData2Remote() {
         if (getLogicClazz() != null)
             mPresenter = getLogicImpl();
     }
@@ -51,7 +51,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        onInitData2Api();
+        onInitData2Remote();
     }
 
     //获得该页面的实例

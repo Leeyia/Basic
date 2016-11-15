@@ -1,16 +1,16 @@
-package com.meikoz.basic;
+package com.meikoz.basic.ui;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.meikoz.basic.R;
+import com.meikoz.basic.presenter.MainLogicI;
+import com.meikoz.basic.presenter.MainLogicImpl;
 import com.meikoz.core.base.BaseFragment;
 import com.meikoz.core.manage.log.Logger;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * @User: 蜡笔小新
@@ -39,13 +39,4 @@ public class MainFragment extends BaseFragment {
         });
     }
 
-    @Override
-    protected Class getLogicClazz() {
-        return MainLogicI.class;
-    }
-
-    @Override
-    protected void onInitData2Api() {
-        super.onInitData2Api();
-    }
 }

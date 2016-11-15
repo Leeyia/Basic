@@ -7,6 +7,7 @@ public final class Settings {
     private int methodOffset = 0;
     private LogTool logTool;
     private LogLevel logLevel;
+    private boolean DEBUG = true;
 
     public Settings() {
         this.logLevel = LogLevel.FULL;
@@ -17,8 +18,13 @@ public final class Settings {
         return this;
     }
 
+    public Settings debug(boolean debug) {
+        this.DEBUG = debug;
+        return this;
+    }
+
     public Settings methodCount(int methodCount) {
-        if(methodCount < 0) {
+        if (methodCount < 0) {
             methodCount = 0;
         }
 
@@ -58,7 +64,7 @@ public final class Settings {
     }
 
     public LogTool getLogTool() {
-        if(this.logTool == null) {
+        if (this.logTool == null) {
             this.logTool = new AndroidLogTool();
         }
 
