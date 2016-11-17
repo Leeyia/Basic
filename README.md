@@ -21,7 +21,7 @@
 build.gradle：
 ```
 dependencies {
-    compile 'com.meikoz.basic:core:1.0.2'
+    compile 'com.meikoz.basic:core:1.0.5'
 }
 ```
 
