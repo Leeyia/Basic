@@ -5,4 +5,5 @@
     <color name="abc_white">#ffffff</color>
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPlaceHolder">#f2f2f2</color>
+    <color name="clarity">#00ffffff</color>
 </resources>
