@@ -45,7 +45,7 @@ ext {
     siteUrl = 'https://github.com/meikoz/Basic'
     gitUrl = 'https://github.com/meikoz/Basic.git'
 
-    libraryVersion = '1.0.3'
+    libraryVersion = '1.0.6'
     libraryName = 'Basic'//项目名字，没什么用
     libraryDescription = 'lib'//项目描述，没什么用
 
