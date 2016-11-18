@@ -17,7 +17,7 @@ import com.meikoz.core.R;
  * @GitHub: https://github.com/meikoz
  */
 
-public class CustomDialog {
+public class SweetAlertDialog {
 
     private Context context;
     private int titleIds;
@@ -36,7 +36,7 @@ public class CustomDialog {
     private View mCenterLine;
 
 
-    public CustomDialog(Builder builder) {
+    public SweetAlertDialog(Builder builder) {
         this.context = builder.mContext;
         this.titleIds = builder.mTitleResId;
         this.title = builder.mTitle;
@@ -53,14 +53,14 @@ public class CustomDialog {
      * 初始化布局文件
      */
     private void initView() {
-        View rootView = LayoutInflater.from(context).inflate(R.layout.dialog_view_content, null);
+        View rootView = LayoutInflater.from(context).inflate(R.layout.sweet_alert_dialog_view, null);
         mContentTitle = (TextView) rootView.findViewById(R.id.tv_dialog_title);
         mContentMessage = (TextView) rootView.findViewById(R.id.tv_dialog_message);
         mLeftTxt = (TextView) rootView.findViewById(R.id.dialog_left_txt);
         mRightTxt = (TextView) rootView.findViewById(R.id.dialog_right_txt);
         mCenterLine = rootView.findViewById(R.id.dialog_line);
         // 定义Dialog布局和参数
-        mDialog = new Dialog(context, R.style.CustomDialogStyle);
+        mDialog = new Dialog(context, R.style.Sweet_Alert_Dialog);
         mDialog.setContentView(rootView);
         mDialog.setCanceledOnTouchOutside(false);
         updateDialogUI();
@@ -171,8 +171,8 @@ public class CustomDialog {
             return this;
         }
 
-        public CustomDialog show() {
-            return new CustomDialog(this);
+        public SweetAlertDialog show() {
+            return new SweetAlertDialog(this);
         }
     }
 
