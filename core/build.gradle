@@ -35,7 +35,91 @@ dependencies {
     compile 'com.jcodecraeer:xrecyclerview:1.2.7'
 }
 
-ext {
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+version = "1.0.5"
+def siteUrl = 'https://github.com/meikoz/Basic'    // project homepage
+def gitUrl = 'https://github.com/meikoz/Basic.git' // project git
+group = "com.meikoz.basic"
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                name 'core For Android'//一些描述
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {//开发者信息
+                        id 'meikoz'
+                        name 'meikoz'
+                        email 'zhoujinlongdev@sina.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+javadoc {
+    options{
+        encoding 'UTF-8'
+        charSet 'UTF-8'
+        author true
+    }
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "Maven"
+        name = "basic"                // project name in maven
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+
+/*ext {
     bintrayRepo = 'Maven' //bintray上的仓库名，一般为maven
     bintrayName = 'basic'//bintray上的项目名
 
@@ -45,7 +129,7 @@ ext {
     siteUrl = 'https://github.com/meikoz/Basic'
     gitUrl = 'https://github.com/meikoz/Basic.git'
 
-    libraryVersion = '1.0.6'
+    libraryVersion = '1.0.7'
     libraryName = 'Basic'//项目名字，没什么用
     libraryDescription = 'lib'//项目描述，没什么用
 
@@ -56,6 +140,6 @@ ext {
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
-}
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+}*/
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
