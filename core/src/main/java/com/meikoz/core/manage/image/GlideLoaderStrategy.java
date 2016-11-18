@@ -13,7 +13,6 @@ public class GlideLoaderStrategy {
                 .load(TextUtils.isEmpty(var1.getUrl()) ? var1.getUrlRes() : var1.getUrl()) //可以加载本地资源
                 .placeholder(var1.getPlaceHolder())
                 .error(var1.getError())
-                .transform(var1.getTransformation())
                 .into(var1.getImgView());
     }
 
