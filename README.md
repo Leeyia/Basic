@@ -25,6 +25,11 @@ dependencies {
 }
 ```
 
+## To do something v2.0.0
+- 网络请求前增加LoadingView，加完完成消失
+- 加载失败统一失败页面，支持重新请求
+- Activity销毁掉，关闭网络请求功能 避免报错
+
 ## Email
 zhoujinlongdev@163.com
 
