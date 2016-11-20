@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RestApi {
 
     private static RestApi mInstance;
-    private boolean isDebug = false;
+    public static boolean isDebug = false;
 
     public static synchronized RestApi getInstance() {
         if (mInstance == null)
@@ -21,7 +21,7 @@ public class RestApi {
         return mInstance;
     }
 
-    public void init(boolean isDebug) {
+    public void deBug(boolean isDebug) {
         this.isDebug = isDebug;
     }
 
