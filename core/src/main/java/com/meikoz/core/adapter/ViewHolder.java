@@ -26,7 +26,6 @@ public class ViewHolder {
 
     /**
      * 拿到一个ViewHolder对象
-     *
      */
     public static ViewHolder get(Context context, View convertView,
                                  ViewGroup parent, int layoutId, int position) {

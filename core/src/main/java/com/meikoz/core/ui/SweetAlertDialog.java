@@ -10,13 +10,6 @@ import android.widget.TextView;
 
 import com.meikoz.core.R;
 
-
-/**
- * @User: 蜡笔小新
- * @date: 16-11-17
- * @GitHub: https://github.com/meikoz
- */
-
 public class SweetAlertDialog {
 
     private Context context;

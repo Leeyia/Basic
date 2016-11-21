@@ -25,8 +25,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void onInitData2Remote() {
         if (getLogicClazz() != null)
             mPresenter = getLogicImpl();
-        else
-            throw new NullPointerException("activity must rewrite getLogicClazz() && getLogicClazz() !=null");
     }
 
     @Override
