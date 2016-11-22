@@ -23,14 +23,54 @@ public class MainActivity extends BaseActivity implements MainLogicI.MainView {
             @Override
             public void onClick(View v) {
                 new SweetAlertDialog.Builder(MainActivity.this)
-                        .setTitle(R.string.app_name)
-                        .setMessage("您确定要删除此品牌么?")
+                        .setTitle("标题")
+                        .setMessage("描述详细内容?")
+                        .setCancelable(true)
+                        .setPositiveButton("确认", new SweetAlertDialog.OnDialogClickListener() {
+                            @Override
+                            public void onClick(Dialog dialog, int which) {
+                                Toast.makeText(MainActivity.this, "确定操作" + which, Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SweetAlertDialog.Builder(MainActivity.this)
+                        .setTitle("标题")
+                        .setMessage("描述详细内容?")
                         .setCancelable(false)
                         .setPositiveButton("确认", new SweetAlertDialog.OnDialogClickListener() {
                             @Override
                             public void onClick(Dialog dialog, int which) {
                                 Toast.makeText(MainActivity.this, "确定操作" + which, Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        findViewById(R.id.third).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SweetAlertDialog.Builder(MainActivity.this)
+                        .setTitle("标题")
+                        .setMessage("描述详细内容?")
+                        .setCancelable(false)
+                        .setNegativeButton("左边", new SweetAlertDialog.OnDialogClickListener() {
+                            @Override
+                            public void onClick(Dialog dialog, int which) {
+                                Toast.makeText(MainActivity.this, "左边" + which, Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setPositiveButton("确认", new SweetAlertDialog.OnDialogClickListener() {
+                            @Override
+                            public void onClick(Dialog dialog, int which) {
+                                Toast.makeText(MainActivity.this, "确定" + which, Toast.LENGTH_SHORT).show();
                             }
                         })
                         .show();

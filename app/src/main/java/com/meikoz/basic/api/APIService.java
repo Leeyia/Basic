@@ -12,6 +12,7 @@ import retrofit2.http.Query;
  */
 
 public interface APIService {
+    String BASE_URL ="https://github.com/";
     @GET("api/v1/user")
     Call<Response> getUserInfo(@Query("uid") int uid);
 }

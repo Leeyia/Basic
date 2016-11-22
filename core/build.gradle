@@ -118,28 +118,12 @@ bintray {
         publish = true
     }
 }
-
-/*ext {
-    bintrayRepo = 'Maven' //bintray上的仓库名，一般为maven
-    bintrayName = 'basic'//bintray上的项目名
-
-    publishedGroupId = 'com.meikoz.basic'//JCenter的GroupId
-    artifact = 'core'//JCenter的ArtifactId
-
-    siteUrl = 'https://github.com/meikoz/Basic'
-    gitUrl = 'https://github.com/meikoz/Basic.git'
-
-    libraryVersion = '1.0.7'
-    libraryName = 'Basic'//项目名字，没什么用
-    libraryDescription = 'lib'//项目描述，没什么用
-
-    developerId = 'meikoz' //开发者id
-    developerName = 'meikoz'
-    developerEmail = 'zhoujinlongdev@sina.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}*/
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+javadoc {
+    options{
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
