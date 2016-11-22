@@ -259,6 +259,25 @@ Logger.v(message);
 Logger.json(message);
 ![漂亮的日志.png](http://upload-images.jianshu.io/upload_images/893513-11a5574bd288548e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+#### feature 5：Android Crash异常处理
+```
+Application onreate方法中初始化 异常保存本地,可以进行服务上传
+AndroidCrash.getInstance().init(this);
+```
+
+#### feature 6：快速实现广告轮播图CustomViewpager
+```
+CustomViewPageAdapter adapter = new CustomViewPageAdapter(getActivity(), getAdData());
+mViewpage.updateIndicatorView(getAdData().size(), 0);
+mViewpage.setAdapter(adapter);
+mViewpage.startScorll();
+```
+
+
+#### feature 7：实现右滑关闭当前页面
+
+![Paste_Image.png](http://upload-images.jianshu.io/upload_images/893513-ebe288b8a20f38e0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ## To do something v2.0.0
 - 网络请求前增加LoadingView，加完完成消失
 - 加载失败统一失败页面，支持重新请求
