@@ -85,7 +85,7 @@ public class BaseApp extends MainApplication {
     }
 }
 ```
-- RestApi.getInstance().deBug(true); 是为了Debug打印日志,请上线前删掉此方法***重要***
+- RestApi.getInstance().deBug(true); 是为了Debug打印日志,请上线前删掉此方法(重要)
 
 ####Step 3:
 app usage mvp pattern,  View and Presenter need things.
