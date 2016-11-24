@@ -22,4 +22,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':core')
 //    compile 'com.meikoz.basic.core:1.0.7'
+    compile 'com.meikoz.tabstrip:tabstrip:1.0.0'
 }

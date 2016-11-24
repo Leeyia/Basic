@@ -1,6 +1,7 @@
 package com.meikoz.basic.api;
 
 import com.meikoz.core.api.RestApi;
+import com.meikoz.core.ui.TabStripView;
 
 /**
  * @User: 蜡笔小新
