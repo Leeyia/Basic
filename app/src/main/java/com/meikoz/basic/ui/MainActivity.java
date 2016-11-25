@@ -1,7 +1,6 @@
 package com.meikoz.basic.ui;
 
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,20 +34,11 @@ public class MainActivity extends BaseActivity {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         int itemId = item.getItemId();
         switch (itemId) {
-            case R.id.action_horizontal_stepview:
+            case R.id.action_network_sample:
                 fragmentTransaction.replace(R.id.container, new NetworkFragment()).commit();
                 break;
 
-            case R.id.action_drawcanvas:
-                mSweetAlertDialogFragment = new SweetAlertDialogFragment();
-                fragmentTransaction.replace(R.id.container, mSweetAlertDialogFragment).commit();
-                break;
-            case R.id.action_vertical_reverse:
-                mSweetAlertDialogFragment = new SweetAlertDialogFragment();
-                fragmentTransaction.replace(R.id.container, mSweetAlertDialogFragment).commit();
-                break;
-
-            case R.id.action_vertical_forward:
+            case R.id.action_sweetalert_sample:
                 mSweetAlertDialogFragment = new SweetAlertDialogFragment();
                 fragmentTransaction.replace(R.id.container, mSweetAlertDialogFragment).commit();
                 break;

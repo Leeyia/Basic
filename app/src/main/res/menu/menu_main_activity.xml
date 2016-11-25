@@ -4,33 +4,15 @@
       tools:context=".ui.MainActivity">
 
     <item
-        android:id="@+id/action_horizontal_stepview"
+        android:id="@+id/action_network_sample"
         android:orderInCategory="100"
         android:title="retrofit + mvp"
         app:showAsAction="withText"/>
 
     <item
-        android:id="@+id/action_drawcanvas"
+        android:id="@+id/action_sweetalert_sample"
         android:orderInCategory="100"
-        android:title="Draw Canvas"
-        app:showAsAction="withText"/>
-
-    <item
-        android:id="@+id/action_vertical_forward"
-        android:orderInCategory="100"
-        android:title="Vertical Stepview Forward"
-        app:showAsAction="withText"/>
-
-    <item
-        android:id="@+id/action_vertical_reverse"
-        android:orderInCategory="100"
-        android:title="Vertical Stepview Reverse"
-        app:showAsAction="withText"/>
-
-    <item
-        android:id="@+id/action_test_horizontal_stepview"
-        android:orderInCategory="100"
-        android:title="Test HorizontalStepView"
+        android:title="SweetAlertDialog"
         app:showAsAction="withText"/>
 
 </menu>
