@@ -98,6 +98,7 @@ public interface APIService {
 ```
 ## See Details
 > [详细链接请点击](https://github.com/meikoz/Basic/wiki/Usage)
+> [Eyepetizer示例Demo](https://github.com/meikoz/Eyepetizer)
 
 ## To do something v2.0.0
 - 网络请求前增加LoadingView，加完完成消失
