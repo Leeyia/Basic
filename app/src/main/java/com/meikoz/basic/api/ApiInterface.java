@@ -1,11 +1,11 @@
 package com.meikoz.basic.api;
 
+import com.meikoz.basic.bean.Gank;
 import com.meikoz.core.api.RestApi;
 
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit2.http.Path;
 
 /**
  * @User: 蜡笔小新
@@ -14,10 +14,11 @@ import retrofit2.http.Query;
  */
 
 public interface ApiInterface {
-    String BASE_URL = "http://www.tngou.net/";
 
-    @GET("tnfs/api/list")
-    Call<Response> getImageClassify(@Query("id") int id);
+    String BASE_URL = "http://gank.io/api/";
+
+    @GET("data/福利/{size}/{page}")
+    Call<Gank> onLoadNetworkData(@Path("size") int size, @Path("page") int page);
 
     class ApiFactory {
         public static ApiInterface createApi() {

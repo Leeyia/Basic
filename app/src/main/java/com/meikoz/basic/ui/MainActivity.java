@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.meikoz.basic.R;
+import com.meikoz.basic.ui.fragment.NetworkFragment;
 import com.meikoz.basic.ui.fragment.SweetAlertDialogFragment;
 import com.meikoz.core.base.BaseActivity;
 
@@ -19,7 +20,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onInitView(Bundle bundle) {
-        getFragmentManager().beginTransaction().replace(R.id.container, new SweetAlertDialogFragment()).commit();
+        getFragmentManager().beginTransaction().replace(R.id.container, new NetworkFragment()).commit();
     }
 
     @Override
@@ -35,8 +36,7 @@ public class MainActivity extends BaseActivity {
         int itemId = item.getItemId();
         switch (itemId) {
             case R.id.action_horizontal_stepview:
-                mSweetAlertDialogFragment = new SweetAlertDialogFragment();
-                fragmentTransaction.replace(R.id.container, mSweetAlertDialogFragment).commit();
+                fragmentTransaction.replace(R.id.container, new NetworkFragment()).commit();
                 break;
 
             case R.id.action_drawcanvas:

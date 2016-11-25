@@ -74,7 +74,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
         convert(hepler, mDatas.get(position));
     }
 
-    public abstract void convert(RecyclerViewHolder hepler, T t);
+    public abstract void convert(RecyclerViewHolder holder, T t);
 
     @Override
     public int getItemCount() {

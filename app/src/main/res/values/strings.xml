@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Basic</string>
+    <string name="abc_tab_text_home">标准模式</string>
+    <string name="abc_tab_text_find">mvp模式</string>
+    <string name="abc_tab_text_feed">mvprx模式</string>
+
 </resources>
