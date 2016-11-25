@@ -60,11 +60,13 @@ public class MvcNetworkFragment extends BaseFragment implements XRecyclerView.Lo
     }
 
     private void onLoadNetworkData(int size, final int page) {
-        ApiInterface.ApiFactory.createApi().onLoadNetworkData(10, 1).enqueue(new Callback<Gank>() {
+        ApiInterface.ApiFactory.createApi().onLoadNetworkData(size, page).enqueue(new Callback<Gank>() {
             @Override
             public void onResponse(Call<Gank> call, Response<Gank> response) {
                 if (!response.body().isError()) {
                     onLoadComplete(page);
+                    if (page == 0)
+                        mNetworkDatas.clear();
                     List<Gank.ResultsBean> results = response.body().getResults();
                     mNetworkDatas.addAll(results);
                     mAdapter.notifyDataSetChanged();

@@ -27,5 +27,6 @@ public class NetworkAdapter extends RecyclerAdapter<Gank.ResultsBean> {
     public void convert(RecyclerViewHolder holder, Gank.ResultsBean item) {
         Glide.with(mContext).load(item.getUrl())
                 .into((ImageView) holder.getView(R.id.iv_home_img));
+        holder.setText(R.id.tv_home_title, item.getDesc());
     }
 }

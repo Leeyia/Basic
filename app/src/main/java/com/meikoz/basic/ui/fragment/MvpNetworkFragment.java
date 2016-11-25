@@ -76,9 +76,10 @@ public class MvpNetworkFragment extends BaseFragment implements XRecyclerView.Lo
     }
 
     private void onLoadComplete(int page) {
-        if (page == 0)
+        if (page == 0) {
+            mNetworkDatas.clear();
             mRecyclerView.refreshComplete();
-        else
+        } else
             mRecyclerView.loadMoreComplete();
     }
 
