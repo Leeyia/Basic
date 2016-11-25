@@ -1,16 +1,16 @@
 package com.meikoz.basic.ui;
 
-import android.app.Dialog;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.meikoz.basic.R;
-import com.meikoz.basic.presenter.MainLogicI;
+import com.meikoz.basic.ui.fragment.SweetAlertDialogFragment;
 import com.meikoz.core.base.BaseActivity;
-import com.meikoz.core.ui.SweetAlertDialog;
 
-public class MainActivity extends BaseActivity implements MainLogicI.MainView {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected int getLayoutResource() {
@@ -19,77 +19,40 @@ public class MainActivity extends BaseActivity implements MainLogicI.MainView {
 
     @Override
     protected void onInitView(Bundle bundle) {
-        findViewById(R.id.main_content).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SweetAlertDialog.Builder(MainActivity.this)
-                        .setTitle("标题")
-                        .setMessage("描述详细内容?")
-                        .setCancelable(true)
-                        .setPositiveButton("确认", new SweetAlertDialog.OnDialogClickListener() {
-                            @Override
-                            public void onClick(Dialog dialog, int which) {
-                                Toast.makeText(MainActivity.this, "确定操作" + which, Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .show();
-            }
-        });
-
-        findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SweetAlertDialog.Builder(MainActivity.this)
-                        .setTitle("标题")
-                        .setMessage("描述详细内容?")
-                        .setCancelable(false)
-                        .setPositiveButton("确认", new SweetAlertDialog.OnDialogClickListener() {
-                            @Override
-                            public void onClick(Dialog dialog, int which) {
-                                Toast.makeText(MainActivity.this, "确定操作" + which, Toast.LENGTH_SHORT).show();
-                                dialog.dismiss();
-                            }
-                        })
-                        .show();
-            }
-        });
-
-        findViewById(R.id.third).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SweetAlertDialog.Builder(MainActivity.this)
-                        .setTitle("标题")
-                        .setMessage("描述详细内容?")
-                        .setCancelable(false)
-                        .setNegativeButton("左边", new SweetAlertDialog.OnDialogClickListener() {
-                            @Override
-                            public void onClick(Dialog dialog, int which) {
-                                Toast.makeText(MainActivity.this, "左边" + which, Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setPositiveButton("确认", new SweetAlertDialog.OnDialogClickListener() {
-                            @Override
-                            public void onClick(Dialog dialog, int which) {
-                                Toast.makeText(MainActivity.this, "确定" + which, Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .show();
-            }
-        });
+        getFragmentManager().beginTransaction().replace(R.id.container, new SweetAlertDialogFragment()).commit();
     }
 
     @Override
-    protected Class getLogicClazz() {
-        return MainLogicI.class;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main_activity, menu);
+        return true;
     }
 
     @Override
-    protected void onInitData2Remote() {
-        super.onInitData2Remote();
-    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        SweetAlertDialogFragment mSweetAlertDialogFragment;
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case R.id.action_horizontal_stepview:
+                mSweetAlertDialogFragment = new SweetAlertDialogFragment();
+                fragmentTransaction.replace(R.id.container, mSweetAlertDialogFragment).commit();
+                break;
 
-    @Override
-    public void onLoadSuccessHandler(String responce) {
+            case R.id.action_drawcanvas:
+                mSweetAlertDialogFragment = new SweetAlertDialogFragment();
+                fragmentTransaction.replace(R.id.container, mSweetAlertDialogFragment).commit();
+                break;
+            case R.id.action_vertical_reverse:
+                mSweetAlertDialogFragment = new SweetAlertDialogFragment();
+                fragmentTransaction.replace(R.id.container, mSweetAlertDialogFragment).commit();
+                break;
 
+            case R.id.action_vertical_forward:
+                mSweetAlertDialogFragment = new SweetAlertDialogFragment();
+                fragmentTransaction.replace(R.id.container, mSweetAlertDialogFragment).commit();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
