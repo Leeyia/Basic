@@ -2,11 +2,10 @@
 > u feel useful please star,continuous update this basic!
 
 ## Where is the use ?
-- 新颖的Mvp模式
-- 网络请求的封装
-- 强大的漂亮日志
-- 列表数据的统一业务处理
-- 多种样式上拉加载、下拉刷新
+- 新颖Mvp模式
+- 网络请求的封装 retrofit + rxjava +okhttp
+- 强大的漂亮日志 
+- 加载/刷新 多样
 - App crash 异常的处理
 - 快速实现广告轮播图、引导页功能
 - 快速实现底部导航功能
@@ -97,6 +96,8 @@ public interface APIService {
     Call<Response> getUserInfo(@Query("uid") int uid);
 }
 ```
+## See Details
+> [详细链接请点击](https://github.com/meikoz/Basic/wiki/Usage)
 
 ## To do something v2.0.0
 - 网络请求前增加LoadingView，加完完成消失
