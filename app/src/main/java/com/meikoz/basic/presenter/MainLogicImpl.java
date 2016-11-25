@@ -1,6 +1,6 @@
 package com.meikoz.basic.presenter;
 
-import com.meikoz.basic.api.ApiManager;
+import com.meikoz.basic.api.ApiInterface;
 import com.meikoz.core.base.BasePresenter;
 
 import retrofit2.Call;
@@ -16,7 +16,7 @@ import retrofit2.Response;
 public class MainLogicImpl extends BasePresenter<MainLogicI.MainView> implements MainLogicI {
     @Override
     public void onLoadData2Remote() {
-        ApiManager.createApi().getUserInfo(1).enqueue(new Callback<Response>() {
+        ApiInterface.ApiFactory.createApi().getImageClassify(1).enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, Response<Response> response) {
                 getView().onLoadSuccessHandler("请求成功,返回数据");

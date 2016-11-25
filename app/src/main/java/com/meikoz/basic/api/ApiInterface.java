@@ -20,7 +20,7 @@ public interface ApiInterface {
     Call<Response> getImageClassify(@Query("id") int id);
 
     class ApiFactory {
-        static ApiInterface createApi() {
+        public static ApiInterface createApi() {
             return RestApi.getInstance().create(ApiInterface.class);
         }
     }
