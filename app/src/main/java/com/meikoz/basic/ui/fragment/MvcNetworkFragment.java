@@ -1,5 +1,6 @@
 package com.meikoz.basic.ui.fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,6 +35,11 @@ public class MvcNetworkFragment extends BaseFragment implements XRecyclerView.Lo
     XRecyclerView mRecyclerView;
     private List<Gank.ResultsBean> mNetworkDatas = new ArrayList<>();
     private NetworkAdapter mAdapter;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
 
     @Override
     protected int getLayoutResource() {

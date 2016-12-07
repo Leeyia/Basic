@@ -6,11 +6,11 @@ import rx.schedulers.Schedulers;
 
 public class TransformUtils {
 
-    public static <T> Observable.Transformer<T, T> defaultSchedulers() {
+    public static <T> Observable.Transformer<T, T> thread() {
         return new Observable.Transformer<T, T>() {
             @Override
-            public Observable<T> call(Observable<T> tObservable) {
-                return tObservable.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io());
+            public Observable<T> call(Observable<T> observable) {
+                return observable.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io());
             }
         };
     }
@@ -18,8 +18,8 @@ public class TransformUtils {
     public static <T> Observable.Transformer<T, T> all_io() {
         return new Observable.Transformer<T, T>() {
             @Override
-            public Observable<T> call(Observable<T> tObservable) {
-                return tObservable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io());
+            public Observable<T> call(Observable<T> observable) {
+                return observable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io());
             }
         };
     }
