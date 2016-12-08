@@ -6,7 +6,7 @@ import rx.schedulers.Schedulers;
 
 public class TransformUtils {
 
-    public static <T> Observable.Transformer<T, T> thread() {
+    public static <T> Observable.Transformer<T, T> targetThread() {
         return new Observable.Transformer<T, T>() {
             @Override
             public Observable<T> call(Observable<T> observable) {
