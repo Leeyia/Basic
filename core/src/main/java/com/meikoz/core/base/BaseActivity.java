@@ -56,8 +56,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
+        LogicProxy.getInstance().unbind(getLogicClazz(), this);
         if (mPresenter != null)
             mPresenter.detachView();
     }
-
 }
