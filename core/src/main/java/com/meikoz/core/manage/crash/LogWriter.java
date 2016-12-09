@@ -13,11 +13,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-06-14 10:19
- * @GitHub: https://github.com/meikoz
- */
 public class LogWriter {
 
     private static final boolean DEBUG = true;

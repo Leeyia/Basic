@@ -2,12 +2,6 @@ package com.meikoz.core.manage.interfacee;
 
 import android.widget.ImageView;
 
-/**
- * @User: 蜡笔小新
- * @date: 16-12-7
- * @GitHub: https://github.com/meikoz
- */
-
 public interface ImageLoadInterface {
     void loadNet(ImageView target, String url);
 

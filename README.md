@@ -17,7 +17,7 @@
 Setup 'Basic' dependencies in build.gradle file:
 ```
 dependencies {
-    compile 'com.meikoz.basic:core:1.0.5'
+    compile 'com.meikoz.basic:core:1.0.6'
 }
 ```
 ####Step 2:

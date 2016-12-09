@@ -12,19 +12,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-05-26 17:41
- * @GitHub: https://github.com/meikoz
- */
 public class StatusBarUtil {
     public static final int DEFAULT_STATUS_BAR_ALPHA = 112;
 
     /**
      * 设置状态栏颜色
-     *
-     * @param activity 需要设置的 activity
-     * @param color    状态栏颜色值
+     * <p>
+     * 需要设置的 activity
+     * 状态栏颜色值
      */
     public static void setColor(Activity activity, int color) {
         setColor(activity, color, DEFAULT_STATUS_BAR_ALPHA);
@@ -32,10 +27,10 @@ public class StatusBarUtil {
 
     /**
      * 设置状态栏颜色
-     *
-     * @param activity       需要设置的activity
-     * @param color          状态栏颜色值
-     * @param statusBarAlpha 状态栏透明度
+     * <p>
+     * 需要设置的activity
+     * 状态栏颜色值
+     * 状态栏透明度
      */
     public static void setColor(Activity activity, int color, int statusBarAlpha) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -84,7 +79,7 @@ public class StatusBarUtil {
 
     /**
      * 使状态栏半透明
-     *
+     * <p>
      * 适用于图片作为背景的界面,此时需要图片填充到状态栏
      *
      * @param activity 需要设置的activity
@@ -103,7 +98,7 @@ public class StatusBarUtil {
 
     /**
      * 使状态栏半透明
-     *
+     * <p>
      * 适用于图片作为背景的界面,此时需要图片填充到状态栏
      *
      * @param activity       需要设置的activity
@@ -132,7 +127,7 @@ public class StatusBarUtil {
 
     /**
      * 使状态栏透明(5.0以上半透明效果,不建议使用)
-     *
+     * <p>
      * 适用于图片作为背景的界面,此时需要图片填充到状态栏
      *
      * @param activity 需要设置的activity

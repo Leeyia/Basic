@@ -38,7 +38,7 @@ dependencies {
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.5"
+version = "1.0.6"
 def siteUrl = 'https://github.com/meikoz/Basic'    // project homepage
 def gitUrl = 'https://github.com/meikoz/Basic.git' // project git
 group = "com.meikoz.basic"

@@ -10,11 +10,6 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * @author: 蜡笔小新
- * @date: 2016-06-14 09:53
- * @GitHub: https://github.com/meikoz
- */
 public class AndroidCrash implements Thread.UncaughtExceptionHandler {
 
     private static AndroidCrash sInstance = new AndroidCrash();
