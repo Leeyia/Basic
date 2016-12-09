@@ -1,11 +1,11 @@
 package com.meikoz.basic.presenter;
 
-import com.meikoz.basic.bean.Gank;
+import com.meikoz.basic.model.Gank;
 import com.meikoz.core.base.BaseView;
 import com.meikoz.core.model.annotation.Implement;
 
 @Implement(NetworkLogicImpl.class)
-public interface NetworkLogicI {
+public interface NetworkContact {
 
     void onLoadNetworkData(int size, final int page);
 

@@ -1,4 +1,4 @@
-package com.meikoz.basic.bean;
+package com.meikoz.basic.model;
 
 import java.util.List;
 

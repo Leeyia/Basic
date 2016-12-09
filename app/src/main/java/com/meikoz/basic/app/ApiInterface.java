@@ -1,6 +1,6 @@
-package com.meikoz.basic.api;
+package com.meikoz.basic.app;
 
-import com.meikoz.basic.bean.Gank;
+import com.meikoz.basic.model.Gank;
 import com.meikoz.core.api.RestApi;
 
 import retrofit2.Call;

@@ -1,4 +1,4 @@
-package com.meikoz.core.manage;
+package com.meikoz.core.util;
 
 import android.content.Context;
 import android.content.res.TypedArray;

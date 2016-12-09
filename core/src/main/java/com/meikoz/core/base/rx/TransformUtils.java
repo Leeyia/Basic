@@ -1,4 +1,4 @@
-package com.meikoz.core.api;
+package com.meikoz.core.base.rx;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

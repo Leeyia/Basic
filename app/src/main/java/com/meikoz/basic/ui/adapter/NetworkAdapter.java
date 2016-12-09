@@ -1,11 +1,11 @@
-package com.meikoz.basic.adapter;
+package com.meikoz.basic.ui.adapter;
 
 import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.meikoz.basic.R;
-import com.meikoz.basic.bean.Gank;
+import com.meikoz.basic.model.Gank;
 import com.meikoz.core.adapter.RecyclerAdapter;
 import com.meikoz.core.adapter.RecyclerViewHolder;
 

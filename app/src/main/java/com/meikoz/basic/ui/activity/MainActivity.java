@@ -1,16 +1,14 @@
-package com.meikoz.basic.ui;
+package com.meikoz.basic.ui.activity;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 import com.meikoz.basic.R;
 import com.meikoz.basic.ui.fragment.NetworkFragment;
 import com.meikoz.basic.ui.fragment.SweetAlertDialogFragment;
 import com.meikoz.core.base.BaseActivity;
-import com.meikoz.core.manage.glide.ImageFactory;
 
 public class MainActivity extends BaseActivity {
 
@@ -20,8 +18,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void onInitView(Bundle bundle) {
-        ImageFactory.getInstance().loadNet(new ImageView(this), "http://www.baidu.image.url");
+    protected void onInitialization(Bundle bundle) {
         getFragmentManager().beginTransaction().replace(R.id.container, new NetworkFragment()).commit();
     }
 

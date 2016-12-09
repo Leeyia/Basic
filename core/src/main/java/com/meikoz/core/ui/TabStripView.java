@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.meikoz.core.R;
-import com.meikoz.core.manage.ScreenUtil;
+import com.meikoz.core.util.ScreenUtil;
 
 import java.util.ArrayList;
 import java.util.List;

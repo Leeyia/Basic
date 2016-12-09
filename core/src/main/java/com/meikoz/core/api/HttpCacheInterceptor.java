@@ -1,7 +1,7 @@
 package com.meikoz.core.api;
 
 import com.meikoz.core.MainApplication;
-import com.meikoz.core.manage.NetWorkHelper;
+import com.meikoz.core.util.ConnectionUtil;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class HttpCacheInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        if (!NetWorkHelper.isNetConnected(MainApplication.getContext())) {
+        if (!ConnectionUtil.isInternetConnection(MainApplication.getContext())) {
             request = request.newBuilder()
                     .cacheControl(CacheControl.FORCE_CACHE)
                     .build();
@@ -23,7 +23,7 @@ public class HttpCacheInterceptor implements Interceptor {
 
         Response response = chain.proceed(request);
 
-        if (NetWorkHelper.isNetConnected(MainApplication.getContext())) {
+        if (ConnectionUtil.isInternetConnection(MainApplication.getContext())) {
             int maxAge = 60 * 60; // read from cache for 1 minute
             response.newBuilder()
                     .removeHeader("Pragma")

@@ -1,5 +1,6 @@
 package com.meikoz.basic;
 
+import com.meikoz.basic.app.Constants;
 import com.meikoz.core.MainApplication;
 import com.meikoz.core.api.RestApi;
 
@@ -12,7 +13,7 @@ import com.meikoz.core.api.RestApi;
 public class MainApp extends MainApplication {
     @Override
     public void onCreate() {
-        RestApi.getInstance().deBug(true);
+        RestApi.getInstance().bug(Constants.Config.DEVELOPER_MODE);
         super.onCreate();
     }
 }

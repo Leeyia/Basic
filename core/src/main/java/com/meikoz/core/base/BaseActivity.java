@@ -16,7 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     protected abstract int getLayoutResource();
 
-    protected abstract void onInitView(Bundle bundle);
+    protected abstract void onInitialization(Bundle bundle);
 
     protected Class getLogicClazz() {
         return null;
@@ -35,7 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         if (getLayoutResource() != 0)
             setContentView(getLayoutResource());
         ButterKnife.bind(this);
-        this.onInitView(savedInstanceState);
+        this.onInitialization(savedInstanceState);
         this.onInitData2Remote();
     }
 

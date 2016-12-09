@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/abc_oval_shape_white"
+        android:background="@drawable/abc_oval_white"
         android:orientation="vertical"
         android:paddingTop="20dp">
 

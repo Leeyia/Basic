@@ -7,11 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.meikoz.basic.R;
-import com.meikoz.basic.adapter.NetworkAdapter;
-import com.meikoz.basic.api.ApiInterface;
-import com.meikoz.basic.api.Config;
-import com.meikoz.basic.bean.Gank;
-import com.meikoz.basic.presenter.NetworkLogicI;
+import com.meikoz.basic.ui.adapter.NetworkAdapter;
+import com.meikoz.basic.app.Constants;
+import com.meikoz.basic.model.Gank;
+import com.meikoz.basic.presenter.NetworkContact;
 import com.meikoz.basic.presenter.NetworkLogicImpl;
 import com.meikoz.core.base.BaseFragment;
 import com.meikoz.core.ui.SweetAlertDialog;
@@ -27,13 +26,13 @@ import butterknife.Bind;
  * @GitHub: https://github.com/meikoz
  */
 
-public class MvpNetworkFragment extends BaseFragment implements XRecyclerView.LoadingListener, NetworkLogicI.NetworkView {
+public class MvpNetworkFragment extends BaseFragment implements XRecyclerView.LoadingListener, NetworkContact.NetworkView {
 
     @Bind(R.id.network_recycler_view)
     XRecyclerView mRecyclerView;
     private List<Gank.ResultsBean> mNetworkDatas = new ArrayList<>();
     private NetworkAdapter mAdapter;
-    private int page = Config.page;
+    private int page = Constants.page;
 
     @Override
     protected int getLayoutResource() {
@@ -55,7 +54,7 @@ public class MvpNetworkFragment extends BaseFragment implements XRecyclerView.Lo
 
     @Override
     protected Class getLogicClazz() {
-        return NetworkLogicI.class;
+        return NetworkContact.class;
     }
 
     @Override
@@ -66,13 +65,13 @@ public class MvpNetworkFragment extends BaseFragment implements XRecyclerView.Lo
 
     @Override
     public void onRefresh() {
-        ((NetworkLogicImpl) mPresenter).onLoadNetworkData(Config.size, Config.page);
+        ((NetworkLogicImpl) mPresenter).onLoadNetworkData(Constants.size, Constants.page);
     }
 
     @Override
     public void onLoadMore() {
         page++;
-        ((NetworkLogicImpl) mPresenter).onLoadNetworkData(Config.size, page);
+        ((NetworkLogicImpl) mPresenter).onLoadNetworkData(Constants.size, page);
     }
 
     private void onLoadComplete(int page) {

@@ -21,7 +21,7 @@ public class RestApi {
         return mInstance;
     }
 
-    public void deBug(boolean isDebug) {
+    public void bug(boolean isDebug) {
         this.isDebug = isDebug;
     }
 

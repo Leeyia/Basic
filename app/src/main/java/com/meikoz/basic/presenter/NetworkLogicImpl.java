@@ -1,7 +1,7 @@
 package com.meikoz.basic.presenter;
 
-import com.meikoz.basic.api.ApiInterface;
-import com.meikoz.basic.bean.Gank;
+import com.meikoz.basic.app.ApiInterface;
+import com.meikoz.basic.model.Gank;
 import com.meikoz.core.base.BasePresenter;
 
 import retrofit2.Call;
@@ -14,7 +14,7 @@ import retrofit2.Response;
  * @GitHub: https://github.com/meikoz
  */
 
-public class NetworkLogicImpl extends BasePresenter<NetworkLogicI.NetworkView> implements NetworkLogicI {
+public class NetworkLogicImpl extends BasePresenter<NetworkContact.NetworkView> implements NetworkContact {
 
     @Override
     public void onLoadNetworkData(int size, final int page) {

@@ -8,10 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.meikoz.basic.R;
-import com.meikoz.basic.adapter.NetworkAdapter;
-import com.meikoz.basic.api.ApiInterface;
-import com.meikoz.basic.api.Config;
-import com.meikoz.basic.bean.Gank;
+import com.meikoz.basic.ui.adapter.NetworkAdapter;
+import com.meikoz.basic.app.ApiInterface;
+import com.meikoz.basic.app.Constants;
+import com.meikoz.basic.model.Gank;
 import com.meikoz.core.base.BaseFragment;
 import com.meikoz.core.ui.SweetAlertDialog;
 
@@ -62,7 +62,7 @@ public class MvcNetworkFragment extends BaseFragment implements XRecyclerView.Lo
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onLoadNetworkData(Config.size, Config.page);
+        onLoadNetworkData(Constants.size, Constants.page);
     }
 
     private void onLoadNetworkData(int size, final int page) {
@@ -99,14 +99,14 @@ public class MvcNetworkFragment extends BaseFragment implements XRecyclerView.Lo
 
     @Override
     public void onRefresh() {
-        onLoadNetworkData(Config.size, Config.page);
+        onLoadNetworkData(Constants.size, Constants.page);
     }
 
     @Override
     public void onLoadMore() {
-        int page = Config.page;
+        int page = Constants.page;
         page++;
-        onLoadNetworkData(Config.size, page);
+        onLoadNetworkData(Constants.size, page);
     }
 
     private void onLoadComplete(int page) {
