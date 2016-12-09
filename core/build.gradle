@@ -35,7 +35,6 @@ dependencies {
     compile 'com.jcodecraeer:xrecyclerview:1.2.7'
 }
 
-
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
