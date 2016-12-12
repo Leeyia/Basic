@@ -1,5 +1,8 @@
 ## Welcome!
-> u feel useful please star,continuous update this basic!
+Architecture is like teenage sex，everybody talks about it，nobody
+really knows what is it。
+> u feel useful please star，continuous update this basic!
+万水千山总是情，给个star行不行?
 
 ## Where is the use ?
 - 新颖Mvp模式
