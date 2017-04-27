@@ -1,4 +1,4 @@
-package com.meikoz.core.api;
+package com.meikoz.core.net;
 
 import com.meikoz.core.MainApplication;
 import com.meikoz.core.util.ConnectionUtil;

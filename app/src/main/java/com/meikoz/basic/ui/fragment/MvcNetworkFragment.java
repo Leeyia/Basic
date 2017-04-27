@@ -13,7 +13,7 @@ import com.meikoz.basic.app.ApiInterface;
 import com.meikoz.basic.app.Constants;
 import com.meikoz.basic.model.Gank;
 import com.meikoz.core.base.BaseFragment;
-import com.meikoz.core.ui.SweetAlertDialog;
+import com.meikoz.core.view.SweetAlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;

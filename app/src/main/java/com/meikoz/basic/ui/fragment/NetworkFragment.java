@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.meikoz.basic.R;
 import com.meikoz.core.base.BaseFragment;
-import com.meikoz.core.ui.TabStripView;
+import com.meikoz.core.view.TabStripView;
 
 import butterknife.Bind;
 

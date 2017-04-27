@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
 import com.meikoz.core.R;
-import com.meikoz.core.ui.SwipeBackLayout;
+import com.meikoz.core.view.SwipeBackLayout;
 
 public abstract class BaseSwipeBackActivity extends BaseActivity implements SwipeBackLayout.SwipeBackListener {
 

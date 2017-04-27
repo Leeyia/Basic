@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.meikoz.core.ui;
+package com.meikoz.core.view;
 
 import android.app.Activity;
 import android.content.Context;

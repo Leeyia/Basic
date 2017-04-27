@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.meikoz.basic.R;
 import com.meikoz.core.base.BaseFragment;
-import com.meikoz.core.ui.SweetAlertDialog;
+import com.meikoz.core.view.SweetAlertDialog;
 import butterknife.OnClick;
 
 /**

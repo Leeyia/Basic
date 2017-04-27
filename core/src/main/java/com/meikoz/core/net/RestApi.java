@@ -1,4 +1,4 @@
-package com.meikoz.core.api;
+package com.meikoz.core.net;
 
 import android.text.TextUtils;
 

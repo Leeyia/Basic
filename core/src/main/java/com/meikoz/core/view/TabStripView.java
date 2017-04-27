@@ -1,4 +1,4 @@
-package com.meikoz.core.ui;
+package com.meikoz.core.view;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;

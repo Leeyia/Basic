@@ -3,7 +3,7 @@ package com.meikoz.core;
 import android.app.Application;
 import android.content.Context;
 
-import com.meikoz.core.api.RestApi;
+import com.meikoz.core.net.RestApi;
 import com.meikoz.core.manage.log.LogLevel;
 import com.meikoz.core.manage.log.Logger;
 

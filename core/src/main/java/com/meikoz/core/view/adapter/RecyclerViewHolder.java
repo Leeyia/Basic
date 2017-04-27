@@ -1,4 +1,4 @@
-package com.meikoz.core.adapter;
+package com.meikoz.core.view.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

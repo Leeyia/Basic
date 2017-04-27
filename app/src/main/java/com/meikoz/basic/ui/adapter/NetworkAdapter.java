@@ -6,8 +6,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.meikoz.basic.R;
 import com.meikoz.basic.model.Gank;
-import com.meikoz.core.adapter.RecyclerAdapter;
-import com.meikoz.core.adapter.RecyclerViewHolder;
+import com.meikoz.core.view.adapter.RecyclerAdapter;
+import com.meikoz.core.view.adapter.RecyclerViewHolder;
 
 import java.util.List;
 

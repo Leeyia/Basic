@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"/>
 
-    <com.meikoz.core.ui.TabStripView
+    <com.meikoz.core.view.TabStripView
         android:id="@+id/navigateTabBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"

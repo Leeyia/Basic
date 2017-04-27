@@ -1,7 +1,7 @@
 package com.meikoz.basic.app;
 
 import com.meikoz.basic.model.Gank;
-import com.meikoz.core.api.RestApi;
+import com.meikoz.core.net.RestApi;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

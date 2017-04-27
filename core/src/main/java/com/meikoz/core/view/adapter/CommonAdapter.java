@@ -1,4 +1,4 @@
-package com.meikoz.core.adapter;
+package com.meikoz.core.view.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

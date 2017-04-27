@@ -13,7 +13,7 @@ import com.meikoz.basic.model.Gank;
 import com.meikoz.basic.presenter.NetworkContact;
 import com.meikoz.basic.presenter.NetworkLogicImpl;
 import com.meikoz.core.base.BaseFragment;
-import com.meikoz.core.ui.SweetAlertDialog;
+import com.meikoz.core.view.SweetAlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
