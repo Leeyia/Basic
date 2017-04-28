@@ -3,7 +3,7 @@ package com.meikoz.basic.model;
 import android.widget.ImageView;
 
 import com.meikoz.core.manage.imageloader.ImageControl;
-import com.meikoz.core.manage.imageloader.ImageLoaderConfig;
+import com.meikoz.core.manage.imageloader.LoaderConfig;
 
 import java.util.List;
 
@@ -119,10 +119,13 @@ public class Gank {
     }
 
     public void loadImage(ImageView target) {
-        ImageControl.getInstance(new ImageLoaderStrategy()).load(ImageLoaderConfig.STRING_URL,
-                new ImageLoaderConfig.Builder()
-                        .load("http://www.baidu.com/image/panda.png")
-                        .into(target)
-                        .build());
+        LoaderConfig config = new LoaderConfig.Builder()
+                .load("stringurl")
+                .into(target)
+                .build();
+        
+        ImageControl
+                .getInstance(new ImageLoaderStrategy())
+                .load(LoaderConfig.LOADER_IMAGE_DEFAULT, config);
     }
 }

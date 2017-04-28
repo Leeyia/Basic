@@ -6,5 +6,5 @@ package com.meikoz.core.manage.imageloader;
  */
 
 public interface Strategy {
-    void load(int loadMode, ImageLoaderConfig mConfig);
+    void load(int loadMode, LoaderConfig mConfig);
 }

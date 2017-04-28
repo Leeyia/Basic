@@ -3,6 +3,7 @@ package com.meikoz.core.manage.imageloader;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.request.animation.ViewPropertyAnimation;
 import com.meikoz.core.R;
 
 /**
@@ -10,52 +11,35 @@ import com.meikoz.core.R;
  * @DATE: 2017/4/27
  */
 
-public class ImageLoaderConfig {
+public class LoaderConfig {
 
-    public static final int STRING_URL = 0;
+    public static final int LOADER_IMAGE_DEFAULT = 0;
+    public static final int LOADER_IMAGE_TRANSFORM = 1;
+    public static final int LOADER_IMAGE_ANIMATE = 2;
+    public static final int LOADER_IMAGE_NOERROR = 3;
 
-    private String stringUrl;
-    private Integer resourceUrl;
-    private ImageView targetV;
-    private BitmapTransformation transform;
-    private Integer placeHoldId;
-    private int errorId;
+    public String stringUrl;
+    public Integer resourceUrl;
+    public ImageView targetV;
+    public BitmapTransformation transform;
+    public Integer placeHoldId;
+    public Integer errorId;
+    public Integer animateId;
+    public ViewPropertyAnimation.Animator animator;
 
-    private ImageLoaderConfig() {
+    private LoaderConfig() {
 
     }
 
-    private ImageLoaderConfig(Builder builder) {
+    private LoaderConfig(Builder builder) {
         this.stringUrl = builder.stringUrl;
         this.resourceUrl = builder.resourceUrl;
         this.targetV = builder.targetV;
         this.transform = builder.transform;
         this.placeHoldId = builder.placeHoldId;
         this.errorId = builder.errorId;
-    }
-
-    public String getStringUrl() {
-        return stringUrl;
-    }
-
-    public Integer getResourceUrl() {
-        return resourceUrl;
-    }
-
-    public ImageView getTargetV() {
-        return targetV;
-    }
-
-    public BitmapTransformation getTransform() {
-        return transform;
-    }
-
-    public Integer getPlaceHoldId() {
-        return placeHoldId;
-    }
-
-    public int getErrorId() {
-        return errorId;
+        this.animateId = builder.animateId;
+        this.animator = builder.animator;
     }
 
     public static class Builder {
@@ -64,13 +48,17 @@ public class ImageLoaderConfig {
         private ImageView targetV;
         private BitmapTransformation transform;
         private Integer placeHoldId;
-        private int errorId;
+        private Integer errorId;
+        private Integer animateId;
+        private ViewPropertyAnimation.Animator animator;
 
         public Builder() {
             this.stringUrl = "";
             this.resourceUrl = R.color.colorPlaceHolder;
             this.placeHoldId = R.color.colorPlaceHolder;
             this.errorId = R.color.colorPlaceHolder;
+            this.animateId = 0;
+            this.animator = animator;
             this.targetV = null;
             this.transform = null;
         }
@@ -95,18 +83,28 @@ public class ImageLoaderConfig {
             return this;
         }
 
-        public Builder placeHolder(int placeHolder) {
+        public Builder placeHolder(Integer placeHolder) {
             this.placeHoldId = placeHolder;
             return this;
         }
 
-        public Builder error(int error) {
+        public Builder error(Integer error) {
             this.errorId = error;
             return this;
         }
 
-        public ImageLoaderConfig build() {
-            return new ImageLoaderConfig(this);
+        public Builder animateId(Integer errorId) {
+            this.errorId = errorId;
+            return this;
+        }
+
+        public Builder animator(ViewPropertyAnimation.Animator animator) {
+            this.animator = animator;
+            return this;
+        }
+
+        public LoaderConfig build() {
+            return new LoaderConfig(this);
         }
     }
 }

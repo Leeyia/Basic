@@ -1,7 +1,5 @@
 package com.meikoz.core.manage.imageloader;
 
-import android.content.Context;
-
 /**
  * @USER: zhoujinlong
  * @DATE: 2017/4/27
@@ -26,7 +24,7 @@ public class ImageControl implements Strategy {
     }
 
     @Override
-    public void load(int loadMode, ImageLoaderConfig mConfig) {
+    public void load(int loadMode, LoaderConfig mConfig) {
         mStrategy.load(loadMode, mConfig);
     }
 }
