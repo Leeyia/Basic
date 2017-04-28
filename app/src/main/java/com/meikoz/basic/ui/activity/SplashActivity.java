@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.meikoz.basic.R;
-import com.meikoz.basic.app.ImageControl;
+import com.meikoz.basic.model.GlideLoaderStrategy;
 import com.meikoz.core.base.BaseActivity;
 import com.meikoz.core.util.StatusBarUtil;
 
@@ -21,7 +21,7 @@ import butterknife.Bind;
 public abstract class SplashActivity extends BaseActivity {
 
     @Bind(R.id.iv_splash_background)
-    ImageView mImageView;
+    ImageView targetImageV;
 
     @Override
     protected int getLayoutResource() {
@@ -33,10 +33,8 @@ public abstract class SplashActivity extends BaseActivity {
     @Override
     protected void onInitialization(Bundle bundle) {
         StatusBarUtil.setTranslucentBackground(this);
-
-        ImageControl.getInstance()
-                .loadNet(mImageView, "http://ww2.sinaimg.cn/large/610dc034jw1fak99uh554j20u00u0n09.jpg", R.anim.sacle_largen_view);
-
+        GlideLoaderStrategy.displayImage("http://ww2.sinaimg.cn/large/610dc034jw1fak99uh554j20u00u0n09.jpg",
+                targetImageV);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

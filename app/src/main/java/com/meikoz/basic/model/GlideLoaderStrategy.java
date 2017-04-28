@@ -1,9 +1,11 @@
 package com.meikoz.basic.model;
 
 import android.text.TextUtils;
+import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
+import com.meikoz.core.manage.image.ImageControl;
 import com.meikoz.core.manage.image.LoaderConfig;
 import com.meikoz.core.manage.image.Strategy;
 
@@ -45,5 +47,14 @@ public class GlideLoaderStrategy implements Strategy {
                     manager.animate(mConfig.animator);
                 break;
         }
+    }
+
+    public static void displayImage(String url, ImageView targetV) {
+        LoaderConfig config = new LoaderConfig.Builder()
+                .load(url)
+                .into(targetV)
+                .build();
+        ImageControl.getInstance(new GlideLoaderStrategy())
+                .load(LoaderConfig.LOADER_IMAGE_NOERROR, config);
     }
 }
