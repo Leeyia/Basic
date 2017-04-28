@@ -1,4 +1,4 @@
-package com.meikoz.core.manage.imageloader;
+package com.meikoz.core.manage.image;
 
 import android.widget.ImageView;
 

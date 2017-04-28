@@ -4,7 +4,7 @@ import com.meikoz.basic.app.Constants;
 import com.meikoz.core.MainApplication;
 import com.meikoz.core.net.RestApi;
 import com.meikoz.core.manage.crash.AndroidCrash;
-import com.meikoz.core.manage.interfacee.HttpReportCallback;
+import com.meikoz.core.manage.crash.HttpReportCallback;
 
 import java.io.File;
 

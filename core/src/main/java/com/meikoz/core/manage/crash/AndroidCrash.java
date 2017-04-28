@@ -4,8 +4,6 @@ import android.content.Context;
 import android.os.Looper;
 import android.os.Process;
 
-import com.meikoz.core.manage.interfacee.HttpReportCallback;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -4,8 +4,8 @@ import android.text.TextUtils;
 
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
-import com.meikoz.core.manage.imageloader.LoaderConfig;
-import com.meikoz.core.manage.imageloader.Strategy;
+import com.meikoz.core.manage.image.LoaderConfig;
+import com.meikoz.core.manage.image.Strategy;
 
 import java.io.Serializable;
 
@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @DATE: 2017/4/27
  */
 
-public class ImageLoaderStrategy implements Strategy {
+public class GlideLoaderStrategy implements Strategy {
 
     @Override
     public void load(int mode, LoaderConfig mConfig) {
