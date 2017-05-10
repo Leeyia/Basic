@@ -2,7 +2,7 @@ package com.meikoz.basic.model;
 
 import android.widget.ImageView;
 
-import com.meikoz.core.manage.image.ImageControl;
+import com.meikoz.core.manage.image.ImageLoaderManager;
 import com.meikoz.core.manage.image.LoaderConfig;
 
 import java.util.List;
@@ -124,8 +124,8 @@ public class Gank {
                 .into(target)
                 .build();
 
-        ImageControl
+        ImageLoaderManager
                 .getInstance(new GlideLoaderStrategy())
-                .load(LoaderConfig.LOADER_IMAGE_DEFAULT, config);
+                .display(LoaderConfig.LOADER_IMAGE_DEFAULT, config);
     }
 }

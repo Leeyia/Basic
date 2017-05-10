@@ -5,11 +5,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
-import com.meikoz.core.manage.image.ImageControl;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.meikoz.core.manage.image.ImageLoaderManager;
 import com.meikoz.core.manage.image.LoaderConfig;
 import com.meikoz.core.manage.image.Strategy;
-
-import java.io.Serializable;
 
 /**
  * @USER: zhoujinlong
@@ -18,43 +17,73 @@ import java.io.Serializable;
 
 public class GlideLoaderStrategy implements Strategy {
 
-    @Override
-    public void load(int mode, LoaderConfig mConfig) {
-        if (mConfig.targetV == null)
-            throw new NullPointerException("ImageView is null!");
-
-        DrawableRequestBuilder<? extends Serializable> manager = Glide.with(mConfig.targetV.getContext())
-                .load(TextUtils.isEmpty(mConfig.stringUrl) ? mConfig.resourceUrl : mConfig.stringUrl);
-
-        switch (mode) {
-            case LoaderConfig.LOADER_IMAGE_DEFAULT:
-                manager.placeholder(mConfig.placeHoldId).error(mConfig.errorId);
-                break;
-
-            case LoaderConfig.LOADER_IMAGE_TRANSFORM:
-                if (mConfig.transform == null)
-                    throw new NullPointerException("transform is null!");
-
-                manager.transform(mConfig.transform);
-                break;
-
-            case LoaderConfig.LOADER_IMAGE_ANIMATE:
-                if (mConfig.animateId == 0 && mConfig.animator == null)
-                    throw new NullPointerException("animate is null!");
-                if (mConfig.animateId != 0)
-                    manager.animate(mConfig.animateId);
-                else
-                    manager.animate(mConfig.animator);
-                break;
-        }
-    }
-
     public static void displayImage(String url, ImageView targetV) {
         LoaderConfig config = new LoaderConfig.Builder()
                 .load(url)
                 .into(targetV)
                 .build();
-        ImageControl.getInstance(new GlideLoaderStrategy())
-                .load(LoaderConfig.LOADER_IMAGE_NOERROR, config);
+        ImageLoaderManager.getInstance(new GlideLoaderStrategy())
+                .display(LoaderConfig.LOADER_IMAGE_NOERROR, config);
+    }
+
+    public static void displayImage(String url, ImageView targetV, int placeHolderId) {
+        LoaderConfig config = new LoaderConfig.Builder()
+                .load(url)
+                .placeHolder(placeHolderId)
+                .error(placeHolderId)
+                .into(targetV)
+                .build();
+        ImageLoaderManager.getInstance(new GlideLoaderStrategy())
+                .display(LoaderConfig.LOADER_IMAGE_NOERROR, config);
+    }
+
+    public static void displayImage(String url, ImageView targetV, int placeHolderId, BitmapTransformation transform) {
+        LoaderConfig config = new LoaderConfig.Builder()
+                .load(url)
+                .placeHolder(placeHolderId)
+                .error(placeHolderId)
+                .transform(transform)
+                .into(targetV)
+                .build();
+        ImageLoaderManager.getInstance(new GlideLoaderStrategy())
+                .display(LoaderConfig.LOADER_IMAGE_TRANSFORM, config);
+    }
+
+    public static void displayImage(String url, ImageView targetV, int placeHolderId, int animateId) {
+        LoaderConfig config = new LoaderConfig.Builder()
+                .load(url)
+                .placeHolder(placeHolderId)
+                .error(placeHolderId)
+                .animateId(animateId)
+                .into(targetV)
+                .build();
+        ImageLoaderManager.getInstance(new GlideLoaderStrategy())
+                .display(LoaderConfig.LOADER_IMAGE_ANIMATE, config);
+    }
+
+    @Override
+    public void load(LoaderConfig config) {
+        configurationBuilder(config).into(config.targetV);
+    }
+
+    @Override
+    public void transform(LoaderConfig config) {
+        configurationBuilder(config).transform(config.transform).into(config.targetV);
+    }
+
+    @Override
+    public void animate(LoaderConfig config) {
+        if (config.animateId != 0)
+            configurationBuilder(config).animate(config.animateId).into(config.targetV);
+        else
+            configurationBuilder(config).animate(config.animator).into(config.targetV);
+    }
+
+    private DrawableRequestBuilder configurationBuilder(LoaderConfig config) {
+        return Glide
+                .with(config.targetV.getContext())
+                .load(TextUtils.isEmpty(config.stringUrl) ? config.resourceUrl : config.stringUrl)
+                .placeholder(config.placeHoldId)
+                .error(config.errorId);
     }
 }
