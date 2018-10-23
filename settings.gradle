@@ -1,0 +1,1 @@
+include ':app', ':things:http', ':things:mvp', ':things:bluetooth', ':things:support'
