@@ -2,5 +2,5 @@ apply from: rootProject.file('library.gradle')
 
 dependencies {
     implementation deps.retrofit.runtime
-//    implementation project(path: ':internal-base:logger')
+    implementation project(path: ':things:logger')
 }

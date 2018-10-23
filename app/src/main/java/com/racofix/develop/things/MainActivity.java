@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.racofix.develop.bluetooth.BluetoothKit;
 import com.racofix.develop.bluetooth.ScanConfig;
 
 public class MainActivity extends Activity {
@@ -18,5 +19,9 @@ public class MainActivity extends Activity {
                 .scanBetween(1000)
                 .startsWithFilter("0000fff")
                 .build();
+
+        BluetoothKit
+                .getInstance(this)
+                .setScanConfig(config);
     }
 }
