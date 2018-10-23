@@ -1,0 +1,16 @@
+ext.deps = [:]
+def versions = [:]
+versions.support = "26.1.0"
+versions.retrofit = "2.4.0"
+
+// support 相关的逻辑
+def support = [:]
+support.annotations = "com.android.support:support-annotations:$versions.support"
+deps.support = support
+
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+deps.retrofit =retrofit
+
+ext.deps = deps

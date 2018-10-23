@@ -1,1 +1,6 @@
-include ':app', ':things:http', ':things:mvp', ':things:bluetooth', ':things:support'
+include ':app',
+        ':things:http',
+        ':things:mvp',
+        ':things:bluetooth',
+        ':things:support',
+        ':things:logger'
