@@ -52,6 +52,7 @@ public class GbkCode {
             return 15;
         else
             return -1;
+
     }
 
     public static String decode(String hexStr) throws UnsupportedEncodingException {
@@ -70,6 +71,22 @@ public class GbkCode {
         return new String(bytes, "GBK");
     }
 
+    public static byte[] decodeByte(String hexStr) throws UnsupportedEncodingException {
+        if (null == hexStr || "".equals(hexStr) || (hexStr.length()) % 2 != 0) {
+            return null;
+        }
+
+        int byteLength = hexStr.length() / 2;
+        byte[] bytes = new byte[byteLength];
+
+        int temp = 0;
+        for (int i = 0; i < byteLength; i++) {
+            temp = hex2Dec(hexStr.charAt(2 * i)) * 16 + hex2Dec(hexStr.charAt(2 * i + 1));
+            bytes[i] = (byte) (temp < 128 ? temp : temp - 256);
+        }
+        return bytes;
+    }
+
     /*
      * 将字符串编码成16进制数字,适用于所有字符（包括中文）
      */
@@ -80,6 +97,7 @@ public class GbkCode {
         // 将字节数组中每个字节拆解成2位16进制整数
         for (int i = 0; i < bytes.length; i++) {
             sb.append(hexString.charAt((bytes[i] & 0xf0) >> 4));
+            sb.append(hexString.charAt((bytes[i] & 0x0f) >> 0));
         }
         return sb.toString();
     }
@@ -103,12 +121,17 @@ public class GbkCode {
         return (byte) "0123456789ABCDEF".indexOf(c);
     }
 
-
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String han = "汉";
-        String result = encode(han);
-        System.out.println("转化后：" + hexStringToBytes(result).length);
-//        System.out.println("转化后16进制：" + Integer.parseInt(result.substring(2), 16));
-        System.out.println("反转结果：" + decode(result));
+        String han = "汉字";
+        byte[] gbks = han.getBytes("GBK");
+        System.out.println("转化后3：" + gbks[0]+gbks[1]+gbks[2]+gbks[3]);
+
+
+//        String result = encode(han);
+//        System.out.println("转化后1：" + result);
+//        System.out.println("转化后2：" + result.getBytes("GBK")[0]);
+//
+//        System.out.println("转化后4：" + decodeByte(result)[0] + decodeByte(result)[1] + decodeByte(result)[2] + decodeByte(result)[3]);
+//        System.out.println("反转结果：" + decode(result));
     }
 }
