@@ -1,0 +1,12 @@
+package com.racofix.develop.logger;
+
+public final class LogUtil {
+
+    public static void e(String tag, String message) {
+
+    }
+
+    public static void d(String message) {
+
+    }
+}

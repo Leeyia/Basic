@@ -3,11 +3,18 @@ package com.racofix.develop.things;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
+import com.racofix.develop.bluetooth.BleDevice;
+import com.racofix.develop.bluetooth.BleScanCallback;
 import com.racofix.develop.bluetooth.BluetoothKit;
 import com.racofix.develop.bluetooth.ScanConfig;
 
-public class MainActivity extends Activity {
+import java.util.List;
+
+public class MainActivity extends Activity implements BleScanCallback {
+
+    private BluetoothKit kit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -15,13 +22,32 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         ScanConfig config = new ScanConfig.Builder()
-                .scanPeriod(1000)
-                .scanBetween(1000)
-                .startsWithFilter("0000fff")
+                .scanPeriodMills(1000)
+                .scanBetweenMills(5000)
+                .scanBLEFilters("0000fff")
+                .openPeriod(true)
                 .build();
 
-        BluetoothKit
-                .getInstance(this)
-                .setScanConfig(config);
+        kit = BluetoothKit.getInstance(this);
+        kit.setScanConfig(config);
+        kit.setBleScanCallback(this);
+        kit.startLeScan();
+
+    }
+
+    @Override
+    public void onLeScan(BleDevice device) {
+        Log.d("test", device.getDevice().getName() + " rssi: " + device.getRssi());
+    }
+
+    @Override
+    public void onScanPeriodFinish(List<BleDevice> devices) {
+        Log.i("test", "onScanPeriodFinish = " + devices.size() + "个");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        kit.stopLeScan();
     }
 }
