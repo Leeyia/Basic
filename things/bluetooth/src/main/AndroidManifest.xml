@@ -1,2 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.racofix.develop.bluetooth" />
+    package="com.racofix.develop.bluetooth">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+</manifest>

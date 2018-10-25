@@ -5,10 +5,12 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.os.Handler;
+import android.os.ParcelUuid;
 
 import com.racofix.develop.logger.LogUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BluetoothKit {
@@ -20,7 +22,7 @@ public class BluetoothKit {
     private ScanConfig scanConfig;
     private BleScanCallback scanCallback;
     private BleGattCallback mGattCallback;
-    private List<BleDevice> devices = new ArrayList<>();
+    private List<BleDevice> devices;
 
     private final BluetoothLogic mBluetoothLogic;
     private static volatile BluetoothKit mKit;
@@ -40,12 +42,108 @@ public class BluetoothKit {
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi, byte[] scanRecord) {
             if (BluetoothKit.this.scanCallback != null) {
-                BleDevice bleDevice = new BleDevice(device, rssi, scanRecord);
-                BluetoothKit.this.scanCallback.onLeScan(bleDevice);
-                BluetoothKit.this.devices.add(bleDevice);
+                addDevice(device, rssi, scanRecord);
             }
         }
     };
+
+    private void addDevice(BluetoothDevice device, int rssi, byte[] scanRecord) {
+        //Bluetooth 扫描不去重并且不过滤
+        if (!this.scanConfig.isRemoveDuplicated() && !isDeviceFiltered()) {
+            addDevice2List(device, rssi, scanRecord);
+            return;
+        }
+
+        //Bluetooth 扫描不去重并且不过滤
+        if (!this.scanConfig.isRemoveDuplicated() && isDeviceFiltered()) {
+            if (filterResulted(device)) {
+                addDevice2List(device, rssi, scanRecord);
+            }
+            return;
+        }
+
+        //Bluetooth 扫描去重并考虑过滤不过滤
+        if (this.scanConfig.isRemoveDuplicated()) {
+            boolean deviceFound = false;
+            for (BleDevice listDev : devices) {
+                if (listDev.getDevice().getAddress().equals(device.getAddress())) {
+                    deviceFound = true;
+                    break;
+                }
+            }
+            if (!deviceFound) {
+                if (isDeviceFiltered()) {
+                    if (filterResulted(device)) {
+                        addDevice2List(device, rssi, scanRecord);
+                    }
+                } else {
+                    addDevice2List(device, rssi, scanRecord);
+                }
+            }
+        }
+/*
+        if (!this.scanConfig.isRemoveDuplicated()) {
+            if (isDeviceFiltered()) {
+                if (filterResulted(device)) {
+                    addDevice2List(device, rssi, scanRecord);
+                }
+            } else {
+                addDevice2List(device, rssi, scanRecord);
+            }
+        } else {
+            boolean deviceFound = false;
+            for (BleDevice listDev : devices) {
+                if (listDev.getDevice().getAddress().equals(device.getAddress())) {
+                    deviceFound = true;
+                    break;
+                }
+            }
+            if (!deviceFound) {
+                if (isDeviceFiltered()) {
+                    if (filterResulted(device)) {
+                        addDevice2List(device, rssi, scanRecord);
+                    }
+                } else {
+                    addDevice2List(device, rssi, scanRecord);
+                }
+            }
+        }*/
+    }
+
+    /**
+     * 添加蓝牙到集合中
+     *
+     * @param device
+     * @param rssi
+     * @param scanRecord
+     */
+    private void addDevice2List(BluetoothDevice device, int rssi, byte[] scanRecord) {
+        BleDevice bleDevice = new BleDevice(device, rssi, scanRecord);
+        BluetoothKit.this.scanCallback.onLeScan(bleDevice);
+        BluetoothKit.this.devices.add(bleDevice);
+    }
+
+    /**
+     * 是否开启过滤
+     *
+     * @return
+     */
+    private boolean isDeviceFiltered() {
+        return this.scanConfig.getScanFilters() != null && this.scanConfig.getScanFilters().length > 0;
+
+    }
+
+    /**
+     * 蓝牙是否符合过滤标准[name address]
+     * v2 添加 uuid
+     *
+     * @param device
+     * @return 结果
+     */
+    private boolean filterResulted(BluetoothDevice device) {
+        List<String> filters = Arrays.asList(this.scanConfig.getScanFilters());
+        return (filters.contains(device.getName()) || filters.contains(device.getAddress()));
+    }
 
     /**
      * BluetoothKit 实例
@@ -70,6 +168,7 @@ public class BluetoothKit {
      */
     private BluetoothKit(Context context) {
         this.handler = new Handler();
+        this.devices = new ArrayList<>();
         this.mBluetoothLogic = new BluetoothLogicImpl(context);
     }
 
@@ -114,7 +213,7 @@ public class BluetoothKit {
                 this.scanPeriodStarted = true;
                 if (this.scannerEnable) {
                     this.mBluetoothLogic.getBluetoothAdapter().startLeScan(callback);
-                    if (BluetoothKit.this.scanConfig.isOpenPeriod()) {
+                    if (BluetoothKit.this.scanConfig.periodOpened()) {
                         LogUtil.d("Bluetooth open period scanner");
                         this.handler.postDelayed(this.scanPeriodStopRunnanle, this.scanConfig.getScanPeriod());
                     } else {

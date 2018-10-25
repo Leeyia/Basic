@@ -16,8 +16,12 @@ public class ScanConfig {
         return this.builder.filters;
     }
 
-    public boolean isOpenPeriod() {
-        return this.builder.isOpenPeriod;
+    public boolean periodOpened() {
+        return this.builder.periodOpened;
+    }
+
+    public boolean isRemoveDuplicated() {
+        return this.builder.removeDuplicated;
     }
 
     private ScanConfig(Builder builder) {
@@ -28,7 +32,8 @@ public class ScanConfig {
         private long periodMills;
         private long betweenMills;
         private String[] filters;
-        private boolean isOpenPeriod;
+        private boolean periodOpened;
+        private boolean removeDuplicated;
 
         public Builder scanPeriodMills(long periodMills) {
             this.periodMills = periodMills;
@@ -40,13 +45,29 @@ public class ScanConfig {
             return this;
         }
 
+        /**
+         * 需要过滤的条件
+         * @param filters [Bluetooth name or address]
+         * @return
+         */
         public Builder scanBLEFilters(String... filters) {
             this.filters = filters;
             return this;
         }
 
-        public Builder openPeriod(boolean isOpenPeriod) {
-            this.isOpenPeriod = isOpenPeriod;
+        public Builder periodOpen(boolean isOpenPeriod) {
+            this.periodOpened = isOpenPeriod;
+            return this;
+        }
+
+        /**
+         * 返回蓝牙列表是否去重
+         *
+         * @param removeDuplicated
+         * @return Builder
+         */
+        public Builder removeDuplicate(boolean removeDuplicated) {
+            this.removeDuplicated = removeDuplicated;
             return this;
         }
 

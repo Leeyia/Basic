@@ -1,8 +1,12 @@
 package com.racofix.develop.bluetooth;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 
 import com.racofix.develop.logger.LogUtil;
 
@@ -38,4 +42,5 @@ class BluetoothLogicImpl implements BluetoothLogic {
         }
         return this.mBluetoothAdapter;
     }
+
 }
