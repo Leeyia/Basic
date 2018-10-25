@@ -1,4 +1,4 @@
-package com.racofix.develop.things;
+package com.racofix.develop.things.base;
 
 import android.content.Context;
 import android.graphics.Bitmap;

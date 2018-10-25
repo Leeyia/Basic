@@ -1,4 +1,4 @@
-package com.racofix.develop.things;
+package com.racofix.develop.things.ui;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -15,6 +15,9 @@ import com.racofix.develop.bluetooth.BleDevice;
 import com.racofix.develop.bluetooth.BleScanCallback;
 import com.racofix.develop.bluetooth.BluetoothKit;
 import com.racofix.develop.bluetooth.ScanConfig;
+import com.racofix.develop.things.R;
+import com.racofix.develop.things.base.CommonAdapter;
+import com.racofix.develop.things.base.ViewHolder;
 
 import java.util.List;
 
