@@ -3,9 +3,10 @@ package com.racofix.develop.bluetooth;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
 import android.content.Context;
 import android.os.Handler;
-import android.os.ParcelUuid;
 
 import com.racofix.develop.logger.LogUtil;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class BluetoothKit {
 
+    private Context context;
     private Handler handler;
     private boolean scannerEnable;
     private boolean scanPeriodStarted;
@@ -22,6 +24,14 @@ public class BluetoothKit {
     private ScanConfig scanConfig;
     private BleScanCallback scanCallback;
     private BleGattCallback mGattCallback;
+
+    private String mBluetoothDeviceAddress;
+    private BluetoothGatt mBluetoothGatt;
+    private int mConnectionState = STATE_DISCONNECTED;
+    private static final int STATE_DISCONNECTED = 0;
+    private static final int STATE_CONNECTING = 1;
+    private static final int STATE_CONNECTED = 2;
+
     private List<BleDevice> devices;
 
     private final BluetoothLogic mBluetoothLogic;
@@ -167,6 +177,8 @@ public class BluetoothKit {
      * @param context
      */
     private BluetoothKit(Context context) {
+
+        this.context = context;
         this.handler = new Handler();
         this.devices = new ArrayList<>();
         this.mBluetoothLogic = new BluetoothLogicImpl(context);
@@ -201,6 +213,50 @@ public class BluetoothKit {
             LogUtil.d("bluetooth scanning already stop,remove cycle start");
             this.handler.removeCallbacks(this.scanPeriodStartRunnanle);
         }
+    }
+
+
+    /**
+     * Connects to the GATT server hosted on the Bluetooth LE device.
+     *
+     * @param address The device address of the destination device.
+     * @return Return true if the connection is initiated successfully. The connection result
+     * is reported asynchronously through the
+     * {@code BluetoothGattCallback#onConnectionStateChange(android.bluetooth.BluetoothGatt, int, int)}
+     * callback.
+     */
+    public boolean connect(final String address) {
+        if (this.mBluetoothLogic.getBluetoothAdapter() == null || address == null) {
+            LogUtil.w("BluetoothAdapter not initialized or unspecified address.");
+            return false;
+        }
+
+        // Previously connected device.  Try to reconnect.
+        if (mBluetoothDeviceAddress != null && address.equals(mBluetoothDeviceAddress)
+                && mBluetoothGatt != null) {
+            LogUtil.d("Trying to use an existing mBluetoothGatt for connection.");
+            if (mBluetoothGatt.connect()) {
+                mConnectionState = STATE_CONNECTING;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        final BluetoothDevice device = this.mBluetoothLogic.getBluetoothAdapter().getRemoteDevice(address);
+        if (device == null) {
+            LogUtil.w("Device not found.  Unable to connect.");
+            return false;
+        }
+        // We want to directly connect to the device, so we are setting the autoConnect
+        // parameter to false.
+        mBluetoothGatt = device.connectGatt(context, false, new BluetoothGattCallback() {
+        });
+        LogUtil.d("Trying to create a new connection.");
+        mBluetoothDeviceAddress = address;
+        mConnectionState = STATE_CONNECTING;
+
+        return true;
     }
 
     /**

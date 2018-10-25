@@ -9,4 +9,8 @@ public final class LogUtil {
     public static void d(String message) {
 
     }
+
+    public static void w(String message) {
+
+    }
 }

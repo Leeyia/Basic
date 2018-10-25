@@ -101,7 +101,8 @@ public class MainActivity extends Activity implements BleScanCallback, AdapterVi
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        BleDevice item = adapter.getItem(i);
+        kit.connect(item.getDevice().getAddress());
     }
 
     @Override
