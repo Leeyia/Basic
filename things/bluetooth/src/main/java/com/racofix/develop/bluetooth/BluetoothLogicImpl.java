@@ -1,12 +1,9 @@
 package com.racofix.develop.bluetooth;
 
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 
 import com.racofix.develop.logger.LogUtil;
 
@@ -20,6 +17,7 @@ class BluetoothLogicImpl implements BluetoothLogic {
         this.context = context;
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public BluetoothAdapter getBluetoothAdapter() {
 
@@ -40,6 +38,11 @@ class BluetoothLogicImpl implements BluetoothLogic {
             LogUtil.e("", "Unable to obtain a BluetoothAdapter.");
             return null;
         }
+
+        if (!this.mBluetoothAdapter.isEnabled()) {
+            this.mBluetoothAdapter.enable();
+        }
+
         return this.mBluetoothAdapter;
     }
 
