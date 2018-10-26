@@ -7,20 +7,19 @@ import android.content.Context;
 
 import com.racofix.develop.logger.LogUtil;
 
-class BluetoothLogicImpl implements BluetoothLogic {
+class BluetoothAdapter2Impl implements BluetoothAdapter2 {
 
     private final Context context;
     private BluetoothManager mBluetoothManager;
     private BluetoothAdapter mBluetoothAdapter;
 
-    public BluetoothLogicImpl(Context context) {
+    public BluetoothAdapter2Impl(Context context) {
         this.context = context;
     }
 
     @SuppressLint("MissingPermission")
     @Override
     public BluetoothAdapter getBluetoothAdapter() {
-
         if (this.context == null) {
             LogUtil.e("", "Unable to obtain a BluetoothAdapter because context null");
             return null;
@@ -44,6 +43,11 @@ class BluetoothLogicImpl implements BluetoothLogic {
         }
 
         return this.mBluetoothAdapter;
+    }
+
+    @Override
+    public boolean isEnable() {
+        return this.getBluetoothAdapter().isEnabled();
     }
 
 }

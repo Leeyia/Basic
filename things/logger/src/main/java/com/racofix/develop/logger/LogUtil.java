@@ -13,4 +13,8 @@ public final class LogUtil {
     public static void w(String message) {
 
     }
+
+    public static void i(String message) {
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.racofix.develop.bluetooth;
+package com.racofix.develop.bluetooth.model;
 
 import android.bluetooth.BluetoothDevice;
 
@@ -6,6 +6,9 @@ public class BleDevice {
 
     private BluetoothDevice device;
     private int rssi;
+    private long updateTimeMillis;
+    public boolean connected;
+    public boolean connecting;
     private byte[] scanRecord;
 
     public BleDevice(BluetoothDevice device, int rssi, byte[] scanRecord) {

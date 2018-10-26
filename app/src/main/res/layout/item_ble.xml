@@ -2,16 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="10dp">
 
-    <TextView
-        android:id="@+id/ble_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/ble_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Holy"
+            android:textColor="@color/textBlack1"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/ble_mac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="H5:JL:33:44:SS"
+            android:textColor="@color/textBlack1" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/ble_mac"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_gravity="center_vertical"
+        android:id="@+id/ble_connect_state"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/textBlack0"
+        android:gravity="center"
+        android:padding="7dp"
+        android:text="connect"
+        android:textColor="@color/textWhite"
+        android:textSize="14sp" />
 </LinearLayout>

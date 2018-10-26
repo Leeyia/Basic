@@ -1,6 +1,6 @@
 package com.racofix.develop.bluetooth;
 
-public class ScanConfig {
+public class BluetoothConfig {
 
     private Builder builder;
 
@@ -24,11 +24,11 @@ public class ScanConfig {
         return this.builder.removeDuplicated;
     }
 
-    private ScanConfig(Builder builder) {
+    private BluetoothConfig(Builder builder) {
         this.builder = builder;
     }
 
-    public static class Builder implements BaseBuilder<ScanConfig> {
+    public static class Builder {
         private long periodMills;
         private long betweenMills;
         private String[] filters;
@@ -47,6 +47,7 @@ public class ScanConfig {
 
         /**
          * 需要过滤的条件
+         *
          * @param filters [Bluetooth name or address]
          * @return
          */
@@ -71,9 +72,8 @@ public class ScanConfig {
             return this;
         }
 
-        @Override
-        public ScanConfig build() {
-            return new ScanConfig(this);
+        public BluetoothConfig build() {
+            return new BluetoothConfig(this);
         }
     }
 }

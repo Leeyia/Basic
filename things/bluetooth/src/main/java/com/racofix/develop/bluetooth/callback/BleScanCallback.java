@@ -1,4 +1,6 @@
-package com.racofix.develop.bluetooth;
+package com.racofix.develop.bluetooth.callback;
+
+import com.racofix.develop.bluetooth.model.BleDevice;
 
 import java.util.List;
 
