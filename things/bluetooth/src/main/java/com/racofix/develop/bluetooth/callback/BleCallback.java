@@ -11,5 +11,5 @@ public interface BleCallback {
     int FAIL_DISCONNECTED = 200;
     int FAIL_OTHER = 201;
 
-    void onFail(int failCode, String info, BleDevice device);
+    void failure(int failCode, String info, BleDevice device);
 }

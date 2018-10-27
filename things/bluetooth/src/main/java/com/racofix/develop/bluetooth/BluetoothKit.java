@@ -1,6 +1,7 @@
 package com.racofix.develop.bluetooth;
 
-import com.racofix.develop.bluetooth.callback.BleConnectCallback;
+import android.bluetooth.BluetoothAdapter;
+
 import com.racofix.develop.bluetooth.callback.BleScanCallback;
 import com.racofix.develop.bluetooth.model.BleDevice;
 
@@ -10,15 +11,7 @@ public interface BluetoothKit {
 
     void stopLeScan();
 
-    void connect(String address, BleConnectCallback connectCallback);
-
-    void connect(BleDevice device, BleConnectCallback connectCallback);
-
-    void disconnect(String address);
-
-    void disconnect(BleDevice device);
-
-    void disconnectAll();
+    BluetoothGattControll getGattControll();
 
     void checkBleGattInterceptor();
 
@@ -28,13 +21,11 @@ public interface BluetoothKit {
 
     boolean isOpenFiltered();
 
-    boolean isConnectCallbackNotNull() throws NullPointerException;
-
     void setBluetoothConfig(BluetoothConfig config);
 
     void setBluetoothScanCallback(BleScanCallback scanCallback);
 
-    void setBluetoothConnectCallback(BleConnectCallback connectCallback);
-
     void onDestory();
+
+    BluetoothAdapter getBluetoothAdapter();
 }

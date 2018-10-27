@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.racofix.develop.bluetooth.model.BleDevice;
 import com.racofix.develop.bluetooth.BluetoothConfig;
@@ -33,6 +32,7 @@ public class BluetoothActivity extends Activity implements BleScanCallback, View
 
         findViewById(R.id.cancel_btn).setOnClickListener(this);
         ListView mBleListView = findViewById(R.id.ble_list_view);
+        String text = "8045002690020000000000000000000000000000000263C1100D00000000C8F0CEC2CAB3C6B7D3E3F6DF3635306763C1100D10001000C8F0CEC2CAB3C6B7D3E3F6DF3635306700";
 
         adapter = new CommonAdapter<BleDevice>(this, R.layout.item_ble) {
             @Override
@@ -42,32 +42,32 @@ public class BluetoothActivity extends Activity implements BleScanCallback, View
                 helper.setText(R.id.ble_connect_state, item.connected ? "connect" : "disconnect");
 
                 helper.getConvertView().setOnClickListener(view -> {
+
                     if (!item.connected) {
 
-                        kit.connect(item, new BleConnectCallback() {
+                        kit.getGattControll().connect(5000, item, new BleConnectCallback() {
                             @Override
-                            public void onStart(boolean newState, String info, BleDevice device) {
-                                Log.e(TAG, "start connecting = " + newState + "     info: " + info);
+                            public void onStart(boolean connectState, String info, BleDevice device) {
+
                             }
 
                             @Override
                             public void onConnect(BleDevice device) {
-                                adapter.notifyDataSetChanged();
+                                CharacteristicActy.startup(BluetoothActivity.this, device.getDevice().getAddress());
                             }
 
                             @Override
                             public void onTimeout(BleDevice device) {
-                                Toast.makeText(BluetoothActivity.this, "connect timeout!", Toast.LENGTH_SHORT).show();
+
                             }
 
                             @Override
                             public void onDisconnect(BleDevice device) {
-                                adapter.notifyDataSetChanged();
+
                             }
                         });
                     } else {
-                        kit.disconnect(item);
-                        adapter.notifyDataSetChanged();
+                        CharacteristicActy.startup(BluetoothActivity.this, item.getDevice().getAddress());
                     }
                 });
             }
@@ -77,7 +77,8 @@ public class BluetoothActivity extends Activity implements BleScanCallback, View
         BluetoothConfig config = new BluetoothConfig.Builder()
                 .scanPeriodMills(1000)
                 .scanBetweenMills(5000)
-                .scanBLEFilters("Holy", "MI Band 2")
+                .scanBLEFilters("mxdble-peripheral")
+//                .scanBLEFilters("Holy", "MI Band 2")
                 .periodOpen(true)
                 .removeDuplicate(false)
                 .build();
@@ -110,6 +111,10 @@ public class BluetoothActivity extends Activity implements BleScanCallback, View
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.start_btn:
+
+                break;
+
             case R.id.cancel_btn:
                 kit.stopLeScan();
                 break;

@@ -6,7 +6,6 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.os.Handler;
 
-import com.racofix.develop.bluetooth.callback.BleConnectCallback;
 import com.racofix.develop.bluetooth.callback.BleScanCallback;
 import com.racofix.develop.bluetooth.model.BleDevice;
 import com.racofix.develop.logger.LogUtil;
@@ -25,13 +24,11 @@ public class BluetoothKitImpl implements BluetoothKit {
 
     private List<BleDevice> scanDevices;
     private final Object mLock1 = new Object();
-    private final Object mLock2 = new Object();
 
     private BleScanCallback scanCallback;
-    private BleConnectCallback connectCallback;
-
     private BluetoothConfig scanConfig;
-    private GattConnect mGattInterceptor;
+
+    private BluetoothGattControll gattControll;
     private BluetoothAdapter2 bluetoothAdapter2;
     private static volatile BluetoothKit mKit;
 
@@ -120,58 +117,17 @@ public class BluetoothKitImpl implements BluetoothKit {
     }
 
     @Override
-    public void connect(String address, BleConnectCallback connectCallback) {
-        BluetoothDevice device = this.bluetoothAdapter2.getBluetoothAdapter().getRemoteDevice(address);
-    }
-
-    /**
-     * synchronized 控制
-     *
-     * @param device
-     * @param connectCallback
-     */
-    @Override
-    public void connect(BleDevice device, BleConnectCallback connectCallback) {
-        this.connectCallback = connectCallback;
-        this.checkBleGattInterceptor();
-        this.mGattInterceptor.connect(10000, device, connectCallback);
-    }
-
-    @Override
-    public void disconnect(BleDevice device) {
-        Util.checkNotNull(device, "device");
-        this.disconnect(device.getDevice().getAddress());
-    }
-
-    @Override
-    public void disconnect(String address) {
-        checkBluetoothAddress(address);
+    public BluetoothGattControll getGattControll() {
         checkBleGattInterceptor();
-        mGattInterceptor.disconnect(address);
-    }
-
-    @Override
-    public void disconnectAll() {
-        checkBleGattInterceptor();
-        mGattInterceptor.disconnectAll();
-    }
-
-    private void checkBluetoothAddress(String address) {
-        if (!BluetoothAdapter.checkBluetoothAddress(address)) {
-            throw new IllegalArgumentException("Invalid address: " + address);
-        }
+        return this.gattControll;
     }
 
     @Override
     public void checkBleGattInterceptor() {
-        if (!isConnectCallbackNotNull()) {
-            return;
-        }
-
-        if (mGattInterceptor == null) {
+        if (gattControll == null) {
             synchronized (mLock1) {
-                if (mGattInterceptor == null)
-                    mGattInterceptor = new GattConnectImpl(context);
+                if (gattControll == null)
+                    this.gattControll = new BluetoothGattControllImpl(context);
             }
         }
     }
@@ -182,9 +138,9 @@ public class BluetoothKitImpl implements BluetoothKit {
     public void onDestory() {
         this.stopLeScan();
 
-        if (mGattInterceptor != null) {
-            mGattInterceptor.onDestory();
-            mGattInterceptor = null;
+        if (gattControll != null) {
+            gattControll.onDestory();
+            gattControll = null;
         }
 
         //fixme not make sure release
@@ -193,6 +149,11 @@ public class BluetoothKitImpl implements BluetoothKit {
             if (adapter.isEnabled()) adapter.disable();
             bluetoothAdapter2 = null;
         }
+    }
+
+    @Override
+    public BluetoothAdapter getBluetoothAdapter() {
+        return this.bluetoothAdapter2.getBluetoothAdapter();
     }
 
     /**
@@ -207,7 +168,7 @@ public class BluetoothKitImpl implements BluetoothKit {
 
     @Override
     public boolean isConnected(BleDevice device) {
-        return false;
+        return device.connected;
     }
 
     /**
@@ -220,18 +181,6 @@ public class BluetoothKitImpl implements BluetoothKit {
         return this.scanConfig.getScanFilters() != null && this.scanConfig.getScanFilters().length > 0;
     }
 
-
-    /**
-     * 连接回调是否Null
-     *
-     * @return 状态
-     */
-
-    @Override
-    public boolean isConnectCallbackNotNull() throws NullPointerException {
-        return this.connectCallback != null;
-    }
-
     @Override
     public void setBluetoothConfig(BluetoothConfig config) {
         this.scanConfig = config;
@@ -242,10 +191,6 @@ public class BluetoothKitImpl implements BluetoothKit {
         this.scanCallback = scanCallback;
     }
 
-    @Override
-    public void setBluetoothConnectCallback(BleConnectCallback connectCallback) {
-        this.connectCallback = connectCallback;
-    }
 
     /**
      * 过滤设备

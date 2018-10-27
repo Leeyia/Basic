@@ -22,7 +22,7 @@ import com.racofix.develop.bluetooth.callback.BleNotifyCallback;
 import com.racofix.develop.bluetooth.callback.BleReadCallback;
 import com.racofix.develop.bluetooth.callback.BleRssiCallback;
 import com.racofix.develop.bluetooth.callback.BleWriteByBatchCallback;
-import com.racofix.develop.bluetooth.callback.BleWriteCallback;
+import com.racofix.develop.bluetooth.callback.OnWriteCallback;
 import com.racofix.develop.bluetooth.model.BleDevice;
 import com.racofix.develop.bluetooth.model.CharacteristicEntity;
 import com.racofix.develop.bluetooth.model.ServiceEntity;
@@ -42,7 +42,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by pw on 2018/9/13.
  */
-public class GattConnectImpl implements GattConnect {
+public class BluetoothGattControllImpl implements BluetoothGattControll {
 
     private static final String CHARACTERISTIC_CONFIG = "00002902-0000-1000-8000-00805f9b34fb";
 
@@ -56,10 +56,10 @@ public class GattConnectImpl implements GattConnect {
     private Map<String, Map<ServiceEntity, List<CharacteristicEntity>>> mServicesMap;
     private Map<UuidIdentify, BleNotifyCallback> mNotifyCallbackMap;
     private Map<UuidIdentify, BleReadCallback> mReadCallbackMap;
-    private Map<UuidIdentify, BleWriteCallback> mWrtieCallbackMap;
+    private Map<UuidIdentify, OnWriteCallback> mWrtieCallbackMap;
     private List<String> mConnectedDevices;
 
-    public GattConnectImpl(@NonNull Context context) {
+    public BluetoothGattControllImpl(@NonNull Context context) {
         mContext = context;
         mHandler = new Handler(Looper.getMainLooper());
         mConnectCallbackMap = new ConcurrentHashMap<>();
@@ -188,14 +188,14 @@ public class GattConnectImpl implements GattConnect {
             if (identify == null) {
                 return;
             }
-            final BleWriteCallback callback = mWrtieCallbackMap.get(identify);
+            final OnWriteCallback callback = mWrtieCallbackMap.get(identify);
             final BleDevice device = getBleDeviceFromMap(address, mConnectCallbackMap);
             final byte[] data = characteristic.getValue();
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     if (callback != null) {
-                        callback.onWrite(data, device);
+                        callback.writed(data, device);
                     }
                 }
             });
@@ -426,7 +426,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER,
+                    callback.failure(BleCallback.FAIL_OTHER,
                             "this characteristic doesn't support notification or indication", device);
                 }
             });
@@ -436,7 +436,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER, "setting characteristic notification fail", device);
+                    callback.failure(BleCallback.FAIL_OTHER, "setting characteristic notification fail", device);
                 }
             });
         }
@@ -475,7 +475,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER, "the characteristic is not readable", device);
+                    callback.failure(BleCallback.FAIL_OTHER, "the characteristic is not readable", device);
                 }
             });
             return;
@@ -484,19 +484,19 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER, "read fail because of unknown reason", device);
+                    callback.failure(BleCallback.FAIL_OTHER, "read fail because of unknown reason", device);
                 }
             });
         }
     }
 
     @Override
-    public void write(final BleDevice device, String serviceUuid, String writeUuid, byte[] data, final BleWriteCallback callback) {
-        checkNotNull(callback, BleWriteCallback.class);
+    public void write(final BleDevice device, String serviceUuid, String writeUuid, byte[] data, final OnWriteCallback callback) {
+        checkNotNull(callback, OnWriteCallback.class);
         if (!checkConnection(device, callback)) {
             return;
         }
-        BluetoothGatt gatt = mGattMap.get(device.getDevice());
+        BluetoothGatt gatt = mGattMap.get(device.getDevice().getAddress());
         if (!checkUuid(serviceUuid, writeUuid, gatt, device, callback)) {
             return;
         }
@@ -516,7 +516,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER, "the characteristic is not writeable", device);
+                    callback.failure(BleCallback.FAIL_OTHER, "the characteristic is not writeable", device);
                 }
             });
             return;
@@ -525,7 +525,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER, "write fail because of unknown reason", device);
+                    callback.failure(BleCallback.FAIL_OTHER, "writed fail because of unknown reason", device);
                 }
             });
         }
@@ -537,9 +537,9 @@ public class GattConnectImpl implements GattConnect {
         checkNotNull(callback, BleWriteByBatchCallback.class);
         final List<byte[]> byteList = getBatchData(writedData, lengthPerPackage);
         if (byteList.size() > 0) {
-            BleWriteCallback writeCallback = new BleWriteCallback() {
+            OnWriteCallback writeCallback = new OnWriteCallback() {
                 @Override
-                public void onWrite(byte[] data, BleDevice device) {
+                public void writed(byte[] bytes, BleDevice device) {
                     byteList.remove(0);
                     if (byteList.size() != 0) {
                         write(device, serviceUuid, writeUuid, byteList.get(0), this);
@@ -549,8 +549,8 @@ public class GattConnectImpl implements GattConnect {
                 }
 
                 @Override
-                public void onFail(int failCode, String info, BleDevice device) {
-                    callback.onFail(failCode, info, device);
+                public void failure(int failCode, String info, BleDevice device) {
+                    callback.failure(failCode, info, device);
                 }
             };
             write(device, serviceUuid, writeUuid, byteList.get(0), writeCallback);
@@ -601,7 +601,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER, "fail to read rssi because of unknown reason", device);
+                    callback.failure(BleCallback.FAIL_OTHER, "fail to read rssi because of unknown reason", device);
                 }
             });
         }
@@ -615,7 +615,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER,
+                    callback.failure(BleCallback.FAIL_OTHER,
                             "The minimum android api version which setMtu supports is 21", device);
                 }
             });
@@ -633,7 +633,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER, "fail to read rssi because of unknown reason", device);
+                    callback.failure(BleCallback.FAIL_OTHER, "fail to read rssi because of unknown reason", device);
                 }
             });
         }
@@ -680,7 +680,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_DISCONNECTED,
+                    callback.failure(BleCallback.FAIL_DISCONNECTED,
                             "Connection between master device and target remote device has not been established yet", device);
                 }
             });
@@ -696,7 +696,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER,
+                    callback.failure(BleCallback.FAIL_OTHER,
                             "the remote device doesn't contain this service uuid", device);
                 }
             });
@@ -707,7 +707,7 @@ public class GattConnectImpl implements GattConnect {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFail(BleCallback.FAIL_OTHER,
+                    callback.failure(BleCallback.FAIL_OTHER,
                             "the service of remote device doesn't contain this characteristic uuid", device);
                 }
             });

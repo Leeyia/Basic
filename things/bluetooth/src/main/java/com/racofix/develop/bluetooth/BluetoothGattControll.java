@@ -9,7 +9,7 @@ import com.racofix.develop.bluetooth.callback.BleNotifyCallback;
 import com.racofix.develop.bluetooth.callback.BleReadCallback;
 import com.racofix.develop.bluetooth.callback.BleRssiCallback;
 import com.racofix.develop.bluetooth.callback.BleWriteByBatchCallback;
-import com.racofix.develop.bluetooth.callback.BleWriteCallback;
+import com.racofix.develop.bluetooth.callback.OnWriteCallback;
 import com.racofix.develop.bluetooth.model.BleDevice;
 import com.racofix.develop.bluetooth.model.CharacteristicEntity;
 import com.racofix.develop.bluetooth.model.ServiceEntity;
@@ -17,7 +17,7 @@ import com.racofix.develop.bluetooth.model.ServiceEntity;
 import java.util.List;
 import java.util.Map;
 
-public interface GattConnect {
+public interface BluetoothGattControll {
     void connect(int connectTimeout, BleDevice device, BleConnectCallback callback);
 
     void disconnect(String address);
@@ -30,7 +30,7 @@ public interface GattConnect {
 
     void read(BleDevice device, String serviceUuid, String readUuid, BleReadCallback callback);
 
-    void write(BleDevice device, String serviceUuid, String writeUuid, byte[] data, BleWriteCallback callback);
+    void write(BleDevice device, String serviceUuid, String writeUuid, byte[] data, OnWriteCallback callback);
 
     void writeByBatch(BleDevice device, String serviceUuid, String writeUuid, byte[] data, int lengthPerPackage, BleWriteByBatchCallback callback);
 
