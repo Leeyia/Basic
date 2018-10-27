@@ -1,10 +1,7 @@
 package com.racofix.develop.things.ui;
 
 import android.app.Activity;
-import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,13 +11,9 @@ import com.racofix.develop.bluetooth.BluetoothKit;
 import com.racofix.develop.bluetooth.BluetoothKitImpl;
 import com.racofix.develop.bluetooth.callback.OnWriteCallback;
 import com.racofix.develop.bluetooth.model.BleDevice;
-import com.racofix.develop.bluetooth.model.CharacteristicEntity;
-import com.racofix.develop.bluetooth.model.ServiceEntity;
 import com.racofix.develop.things.GbkCode;
 
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 public class CharacteristicActy extends Activity {
 
@@ -36,7 +29,6 @@ public class CharacteristicActy extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         address = getIntent().getStringExtra("bluetoothAddress");
         String message = "8045002690020000000000000000000000000000000263C1100D00000000C8F0CEC2CAB3C6B7D3E3F6DF3635306763C1100D10001000C8F0CEC2CAB3C6B7D3E3F6DF3635306700";
         byte[] values = GbkCode.hexStringToBytes(message);
