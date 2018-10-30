@@ -4,13 +4,12 @@ dependencies {
 
 }
 
-
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 def siteUrl = 'https://github.com/meikoz/DevelopThings'    // project homepage
 def gitUrl = 'https://github.com/meikoz/DevelopThings.git' // project git
-version = "0.0.1"
+version = "0.0.3"
 group = "com.racofix.things"
 
 install {

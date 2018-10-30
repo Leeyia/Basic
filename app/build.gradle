@@ -32,10 +32,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    implementation project(path: ':things:mvp')
     implementation project(path: ':things:http')
     implementation project(path: ':things:support')
     implementation project(path: ':things:bluetooth')
-
 //    implementation 'com.racofix.develop:things-http:1.0.0'
 //    implementation 'com.racofix.things:bluetooth:1.0.0'
 }
