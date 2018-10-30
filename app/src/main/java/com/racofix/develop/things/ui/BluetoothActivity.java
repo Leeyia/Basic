@@ -75,10 +75,9 @@ public class BluetoothActivity extends Activity implements BleScanCallback, View
         mBleListView.setAdapter(adapter);
 
         BluetoothConfig config = new BluetoothConfig.Builder()
-                .scanPeriodMills(1000)
-                .scanBetweenMills(5000)
-                .scanBLEFilters("mxdble-peripheral")
-//                .scanBLEFilters("Holy", "MI Band 2")
+                .scanPeriodMills(5000)
+                .scanBetweenMills(1000)
+                .scanBLEFilters("mxdble-peripheral", "Holy")
                 .periodOpen(true)
                 .removeDuplicate(false)
                 .build();
