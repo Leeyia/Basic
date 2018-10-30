@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.racofix.develop.mvp.BaseActivity;
+import com.racofix.develop.mvp.HttpVo;
 import com.racofix.develop.mvp.annotation.Logic;
 import com.racofix.develop.things.R;
 
@@ -17,12 +18,12 @@ public class MainActivity extends BaseActivity<LoginLogic> implements HttpVo<Str
     }
 
     @Override
-    public void successful(String s) {
-        
+    public void onResponse(String s) {
+
     }
 
     @Override
-    public void failed(String message) {
+    public void onFailure(String message) {
 
     }
 }

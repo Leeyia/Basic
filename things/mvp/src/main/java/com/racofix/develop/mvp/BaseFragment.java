@@ -7,8 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.racofix.develop.mvp.annotation.LogicProviders;
-
 public class BaseFragment<T extends LogicI> extends Fragment implements Vo {
 
     protected T mLogicImpl;

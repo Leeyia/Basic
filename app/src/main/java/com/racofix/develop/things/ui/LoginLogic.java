@@ -2,6 +2,7 @@ package com.racofix.develop.things.ui;
 
 import android.util.Log;
 
+import com.racofix.develop.mvp.HttpVo;
 import com.racofix.develop.mvp.LogicImpl;
 
 public class LoginLogic extends LogicImpl<HttpVo<String>> {
@@ -11,7 +12,7 @@ public class LoginLogic extends LogicImpl<HttpVo<String>> {
         super.onLogicCreated();
         Log.d("sssss", "onLogicCreated()");
 
-        getVo().successful("zhangsan");
+        getVo().onResponse("zhangsan");
     }
 
     @Override

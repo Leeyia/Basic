@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 
-import com.racofix.develop.mvp.annotation.LogicProviders;
-
 public abstract class BaseActivity<T extends LogicI> extends FragmentActivity implements Vo {
 
     protected T mLogicImpl;

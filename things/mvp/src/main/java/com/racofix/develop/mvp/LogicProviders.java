@@ -1,6 +1,7 @@
-package com.racofix.develop.mvp.annotation;
+package com.racofix.develop.mvp;
 
 import com.racofix.develop.mvp.LogicI;
+import com.racofix.develop.mvp.annotation.Logic;
 
 public class LogicProviders {
 
