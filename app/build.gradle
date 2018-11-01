@@ -36,6 +36,7 @@ dependencies {
     implementation project(path: ':things:http')
     implementation project(path: ':things:support')
     implementation project(path: ':things:bluetooth')
-//    implementation 'com.racofix.develop:things-http:1.0.0'
-//    implementation 'com.racofix.things:bluetooth:1.0.0'
+
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
 }
