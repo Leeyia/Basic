@@ -11,7 +11,6 @@ public class LoginLogic extends LogicImpl<HttpVo<String>> {
     public void onLogicCreated() {
         super.onLogicCreated();
         Log.d("sssss", "onLogicCreated()");
-
         getVo().onResponse("zhangsan");
     }
 
