@@ -1,6 +1,8 @@
 include ':app',
-        ':basics:http',
         ':basics:mvp',
-        ':basics:bluetooth',
+        ':basics:http',
         ':basics:support',
-        ':basics:logger'
+
+        ':basics:crash',
+        ':basics:logger',
+        ':basics:bluetooth'
