@@ -1,5 +1,5 @@
 ## 组件库
-- [x] [mvp + viewmodel](./basics/mvp)
+- [x] [mvp](./basics/mvp)
 - [ ] http
 - [ ] logger
 - [ ] base
