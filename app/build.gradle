@@ -32,10 +32,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation project(path: ':things:mvp')
-    implementation project(path: ':things:http')
-    implementation project(path: ':things:support')
-    implementation project(path: ':things:bluetooth')
+    implementation project(path: ':basics:mvp')
+    implementation project(path: ':basics:http')
+    implementation project(path: ':basics:support')
+    implementation project(path: ':basics:bluetooth')
 
     implementation deps.retrofit.runtime
     implementation deps.retrofit.gson

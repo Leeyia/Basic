@@ -1,11 +1,15 @@
-# DevelopThings
-安卓开发组件库
+## 组件库
+- [x] mvp + viewmodel
+- [ ] http
+- [ ] logger
+- [ ] base
+- [ ] image
+- [ ] bluetooth
+
+<!--## Java开发手册-->
+<!--- [x] 代码规范-->
+<!--- [x] 性能优化-->
+<!--- [x] 项目开发注意事项-->
+<!--- [x] 内存释放，资源释放-->
 
 
-## 2018年底目标
-- [x] 企业级组件库(http/mvp/bluetooth/logger)
-- [ ] 知识体系梳理
-- [ ] 读两遍 Effective Java 书
-- [ ] 理解每一行代码的意义/熟练使用设计模式
-- [ ] 数据结构/算法
-- [ ] 更新简历

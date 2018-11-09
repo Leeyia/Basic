@@ -1,6 +1,6 @@
 include ':app',
-        ':things:http',
-        ':things:mvp',
-        ':things:bluetooth',
-        ':things:support',
-        ':things:logger'
+        ':basics:http',
+        ':basics:mvp',
+        ':basics:bluetooth',
+        ':basics:support',
+        ':basics:logger'
