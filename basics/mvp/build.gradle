@@ -1,5 +1,13 @@
-apply from: rootProject.file('library.gradle')
+apply from: rootProject.file('configure/library.gradle')
+apply from: rootProject.file('configure/bintrayUpload.gradle')
 
 dependencies {
     api deps.support.lifecycle
+}
+
+bintray {
+    pkg {
+        repo = "basic2"
+        name = "mvp"
+    }
 }

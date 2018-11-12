@@ -39,4 +39,10 @@ dependencies {
 
     implementation deps.retrofit.runtime
     implementation deps.retrofit.gson
+
+//    implementation 'com.racofix.basic2:http:1.0.6'
+
+//    implementation 'com.racofix.basic:basic-http:1.0.0'
+//    implementation 'com.racofix.basic:basic-logger:1.0.0'
+//    implementation 'com.racofix.basic:basic-bluetooth:1.0.0'
 }
