@@ -2,14 +2,14 @@ package com.racofix.basic.things.ui;
 
 import com.racofix.basic.mvp.BaseLogic;
 
-public interface LoginContract {
+public interface LoginLogic {
 
     interface Logic {
         void login(String username, String password);
     }
 
     interface Vo extends BaseLogic.Vo {
-        void successful(String message);
+        void successful(String msg);
 
         void failed(String failMsg);
     }

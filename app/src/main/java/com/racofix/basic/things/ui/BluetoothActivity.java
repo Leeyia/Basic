@@ -28,7 +28,7 @@ public class BluetoothActivity extends Activity implements BleScanCallback, View
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         findViewById(R.id.cancel_btn).setOnClickListener(this);
         ListView mBleListView = findViewById(R.id.ble_list_view);

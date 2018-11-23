@@ -8,14 +8,13 @@ import com.racofix.basic.mvp.annotation.Implement;
 import com.racofix.basic.things.R;
 
 @Implement(LoginLogicImpl.class)
-public class MainActivity extends BaseAct<LoginLogicImpl> implements LoginContract.Vo {
+public class LoginActivity extends BaseAct<LoginLogicImpl> implements LoginLogic.Vo {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        getLogic().login("s", "s");
+        setContentView(R.layout.activity_login);
+        getLogic().login("admin", "admin");
     }
 
     @Override

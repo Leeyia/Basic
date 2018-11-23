@@ -16,96 +16,87 @@ implementation 'com.racofix.basic2:mvp:1.0.0'
 
 
 ## What
-design our BaseLogic (Presenter) and Vo (View)
+design our LoginLogic(Presenter Contract) and LoginLogic.Vo (View)
+
 ```
-public interface BaseLogic<V extends BaseLogic.Vo> {
+public interface LoginLogic {
 
-    Bundle getStateBundle();
+    interface Logic {
+        void login(String username, String password);
+    }
 
-    void attachLifecycle(Lifecycle lifecycle);
+    interface Vo extends BaseLogic.Vo {
+        void successful(String msg);
 
-    void detachLifecycle(Lifecycle lifecycle);
-
-    void attachVo(V vo);
-
-    void detachVo();
-
-    V getVo();
-
-    boolean isVoAttached();
-
-    void onLogicCreated();
-
-    void onLogicDestroy();
-
-    /*Base View*/
-    interface Vo {
-
+        void failed(String failMsg);
     }
 }
 ```
 
-create BaseLogicImpl that implements our BaseLogic.
+create LoginLogicImpl that implements our LoginLogic.
 ```
-public class BaseLogicImpl<V extends BaseLogic.Vo> implements BaseLogic<V>, LifecycleObserver {
+public class LoginLogicImpl extends BaseLogicImpl<LoginLogic.Vo> implements LoginLogic.Logic {
 
-    private Bundle stateBundle;
-    private WeakReference<V> wrf;
-
-    @Override
-    public Bundle getStateBundle() {
-        return stateBundle == null
-                ? stateBundle = new Bundle()
-                : stateBundle;
-    }
-
-    @Override
-    final public void attachLifecycle(Lifecycle lifecycle) {
-        lifecycle.addObserver(this);
-    }
-
-    @Override
-    final public void detachLifecycle(Lifecycle lifecycle) {
-        lifecycle.removeObserver(this);
-    }
-
-    @Override
-    final public void attachVo(V vo) {
-        this.wrf = new WeakReference<>(vo);
-    }
-
-    @Override
-    final public void detachVo() {
-        this.wrf.clear();
-        this.wrf = null;
-    }
-
-    @Override
-    final public boolean isVoAttached() {
-        return this.wrf != null && this.wrf.get() != null;
-    }
-
-    @Override
-    final public V getVo() {
-        return isVoAttached() ? wrf.get() : null;
-    }
-
-    /*Logic Created */
     @Override
     public void onLogicCreated() {
-
+        super.onLogicCreated();
+        // LoginLogicImpl Created
     }
 
     @Override
     public void onLogicDestroy() {
-        if (stateBundle != null && !stateBundle.isEmpty()) {
-            stateBundle.clear();
-        }
+        super.onLogicDestroy();
+        // LoginLogicImpl Destroy
+    }
+
+    @Override
+    public void login(String username, String password) {
+
     }
 }
 ```
-So, we have a Presenter, which attaches and detaches the View and Lifecycle Observer.
-With the next step, let’s create our Activity. Here we have a problem: the presenter will be recreating every time after the orientation change.
+
+Activity usage LoginLogicImpl method, LoginLogic.Vo call results
+```
+<!--@Implement for init LoginLogicImpl instance-->
+@Implement(LoginLogicImpl.class)
+public class LoginActivity extends BaseAct<LoginLogicImpl> implements LoginLogic.Vo {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        getLogic().login("admin", "admin");
+    }
+
+    @Override
+    public void successful(String message) {
+
+    }
+
+    @Override
+    public void failed(String failMsg) {
+
+    }
+}
+```
+
+## License
+```
+Copyright 2018 meikoz.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
 
 
 
