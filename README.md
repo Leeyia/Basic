@@ -1,6 +1,6 @@
 ## 组件库
-- [x] [Basic-Mvp](./basics/mvp) 简洁/方便/解耦
-- [ ] [Basic Http](./basics/http)
+- [x] [Mvp](./basics/mvp) 简洁/方便/解耦
+- [ ] [Http](./basics/http)
 - [ ] logger
 - [ ] base
 - [ ] image
