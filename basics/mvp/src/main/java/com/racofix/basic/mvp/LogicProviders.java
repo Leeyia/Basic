@@ -1,20 +1,25 @@
 package com.racofix.basic.mvp;
 
-import com.racofix.basic.mvp.annotation.Logic;
+import android.util.Log;
 
-public class LogicProviders {
+import com.racofix.basic.mvp.annotation.Implement;
 
-    public static LogicI init(Class<?> clazz) {
+public final class LogicProviders {
+
+    private LogicProviders() {
+    }
+
+    public static BaseLogic init(Class<?> clazz) {
         try {
-            Logic annotation = clazz.getAnnotation(Logic.class);
+            Implement annotation = clazz.getAnnotation(Implement.class);
             if (annotation != null)
-                return (LogicI) annotation.value().newInstance();
+                return (BaseLogic) annotation.value().newInstance();
             return null;
         } catch (InstantiationException e) {
-//            throw new RuntimeException("Cannot create an instance of " + clazz, e);
+            Log.e(LogicProviders.class.getSimpleName(), "Cannot create an instance of " + clazz, e);
             return null;
         } catch (IllegalAccessException e) {
-//            throw new RuntimeException("Cannot create an instance of " + clazz, e);
+            Log.e(LogicProviders.class.getSimpleName(), "Cannot create an instance of " + clazz, e);
             return null;
         }
     }

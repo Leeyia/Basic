@@ -5,9 +5,12 @@ dependencies {
     api deps.support.lifecycle
 }
 
+version = "1.0.0"
+group = "com.racofix.basic2"
+
 bintray {
     pkg {
-        repo = "Basic"
+        repo = "basic"
         name = "mvp"
     }
 }
