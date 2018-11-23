@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import java.lang.ref.WeakReference;
 
-public class LogicImpl<V extends Vo> implements LogicI<V>, LifecycleObserver {
+public class LogicImpl<V extends LogicVo> implements LogicI<V>, LifecycleObserver {
 
     private Bundle stateBundle;
     private WeakReference<V> wrf;

@@ -2,16 +2,16 @@ package com.racofix.basic.things.ui;
 
 import android.util.Log;
 
-import com.racofix.basic.mvp.HttpVo;
 import com.racofix.basic.mvp.LogicImpl;
 
-public class LoginLogic extends LogicImpl<HttpVo<String>> {
+public class LoginLogic extends LogicImpl<LoginVo<String>> {
 
     @Override
     public void onLogicCreated() {
         super.onLogicCreated();
         Log.d("sssss", "onLogicCreated()");
-        getVo().onResponse("zhangsan");
+
+        getVo().success("onLogicCreated");
     }
 
     @Override

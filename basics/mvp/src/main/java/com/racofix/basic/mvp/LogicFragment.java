@@ -2,10 +2,12 @@ package com.racofix.basic.mvp;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
+import android.view.View;
 
-public abstract class BaseActivity<T extends LogicI> extends FragmentActivity implements Vo {
+public class LogicFragment<T extends LogicI> extends Fragment implements LogicVo {
 
     protected T mLogicImpl;
 
@@ -14,8 +16,9 @@ public abstract class BaseActivity<T extends LogicI> extends FragmentActivity im
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         BaseViewModel<T> viewModel = ViewModelProviders.of(this).get(BaseViewModel.class);
         if (getLogicIml() != null) {
             if (viewModel.getLogicImpl() == null) {
@@ -24,14 +27,16 @@ public abstract class BaseActivity<T extends LogicI> extends FragmentActivity im
             }
 
             mLogicImpl = viewModel.getLogicImpl();
-            mLogicImpl.attachLifecycle(BaseActivity.this.getLifecycle());
-            mLogicImpl.attachVo(BaseActivity.this);
+            if (mLogicImpl != null) {
+                mLogicImpl.attachLifecycle(LogicFragment.this.getLifecycle());
+                mLogicImpl.attachVo(LogicFragment.this);
+            }
         }
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         if (mLogicImpl != null) {
             mLogicImpl.detachLifecycle(getLifecycle());
             mLogicImpl.detachVo();

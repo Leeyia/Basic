@@ -7,11 +7,10 @@ import com.racofix.basic.http.ApiService;
 import com.racofix.basic.http.CityInfo;
 import com.racofix.basic.http.RealCallback;
 import com.racofix.basic.http.model.HttpManager;
-import com.racofix.basic.mvp.BaseActivity;
-import com.racofix.basic.mvp.HttpVo;
+import com.racofix.basic.mvp.LogicAct;
 import com.racofix.basic.things.R;
 
-public class MainActivity extends BaseActivity<LoginLogic> implements HttpVo<String> {
+public class MainActivity extends LogicAct<LoginLogic> implements LoginVo<String> {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,12 +31,7 @@ public class MainActivity extends BaseActivity<LoginLogic> implements HttpVo<Str
     }
 
     @Override
-    public void onResponse(String s) {
-
-    }
-
-    @Override
-    public void onFailure(String message) {
+    public void success(String s) {
 
     }
 }

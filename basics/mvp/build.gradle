@@ -7,7 +7,7 @@ dependencies {
 
 bintray {
     pkg {
-        repo = "basic2"
+        repo = "Basic"
         name = "mvp"
     }
 }

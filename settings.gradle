@@ -5,4 +5,5 @@ include ':app',
 
         ':basics:crash',
         ':basics:logger',
-        ':basics:bluetooth'
+        ':basics:bluetooth',
+        ':basics:pattern'

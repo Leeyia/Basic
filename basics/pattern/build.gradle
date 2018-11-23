@@ -2,12 +2,4 @@ apply from: rootProject.file('configure/library.gradle')
 //apply from: rootProject.file('configure/bintrayUpload.gradle')
 
 dependencies {
-    api project(path: ':basics:logger')
 }
-
-//bintray {
-//    pkg {
-//        repo = "basic2"
-//        name = "bluetooth"
-//    }
-//}

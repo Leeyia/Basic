@@ -3,7 +3,7 @@ package com.racofix.basic.mvp;
 import android.arch.lifecycle.Lifecycle;
 import android.os.Bundle;
 
-public interface LogicI<V extends Vo> {
+public interface LogicI<V extends LogicVo> {
 
     Bundle getStateBundle();
 
