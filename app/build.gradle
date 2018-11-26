@@ -34,7 +34,6 @@ dependencies {
 
     implementation project(path: ':basics:mvp')
     implementation project(path: ':basics:http')
-    implementation project(path: ':basics:support')
     implementation project(path: ':basics:bluetooth')
 
     implementation deps.retrofit.runtime

@@ -1,5 +1,0 @@
-apply from: rootProject.file('configure/library.gradle')
-
-dependencies {
-
-}
