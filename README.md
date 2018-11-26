@@ -2,35 +2,35 @@
 
 module|describe|status
 ---|:-:|---:
-[Mvp](./basics/mvp)|简洁/方便/解耦|√
-[Http](./basics/http)|简洁/方便/解耦|√
-[logger](./basics/http)|简洁/方便/解耦|√
-[base](./basics/http)|简洁/方便/解耦|√
-[image](./basics/http)|简洁/方便/解耦|√
-[bluetooth](./basics/http)|简洁/方便/解耦|√
+[MVP](./basics/mvp)|屏幕方向改变Persenter状态保持/可观察Activity/Fragment生命周期|√
+[HTTP](./basics/http)|简洁/方便/解耦|X
 
 ## 更新日志
-
-**v2.0.0：2018.11.09**
-- 全面升级AAC，引入谷歌lifecycle组件；
-- 修改Base基类，满足新一套模式；
-- 升级第三方依赖库；
-- 修改例子程序；
+**v2.0：2018.11**
+- MVP结合谷歌Lifecycle组件库
+- ViewModel、Lifecycle和Persenter生命周期绑定，可以定制管理Activity生命周期
+- 通过注解实现Persenter初始化和View绑定
 ---
 
 
-**v1.0.0：2015**
-- MVP设计模式 方便/简洁/不需要关心实例化
-- Android 开发常用工具
+**v1.0：2015.xx**
+- MVP
+- 开发常用工具库
 
 
-## 2018目标 
-2018.11.12 - 2018.12.31
-- [ ] 早睡（23点之前休息）
-- [ ] 书籍 (大话设计模式 09/400)
-- [ ] 博客
-- [ ] 更新简历 (性能优化、模块设计、架构设计、代码质量）
-- [ ] 设计模式 (单例、工厂、构造者、代理、观察者)
-- [ ] 控制游戏时间
-- [ ] Basic 框架/简介
-- [ ] 减肥（早粥、午好、晚青菜/水果/粥）
+## License
+```
+Copyright 2018 meikoz.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
