@@ -14,8 +14,8 @@ Download [the latest JAR](https://github.com/meikoz/Basic/tree/master/basics/mvp
 implementation 'com.racofix.basic2:mvp:1.0.0'
 ```
 
-#### Sample Login:
-**1.design our Presenter Contract and View**
+#### Login Sample:
+**1. design our Presenter Contract and View**
 ```
 public interface LoginLogic {
 
@@ -31,7 +31,7 @@ public interface LoginLogic {
 }
 ```
 
-**2.create LoginLogicImpl extends LogicImpl<LoginLogic.Vo> that implements our LoginLogic.Vo**
+**2. create LoginLogicImpl extends LogicImpl<LoginLogic.Vo> that implements our LoginLogic.Vo**
 ```
 public class LoginLogicImpl extends BaseLogicImpl<LoginLogic.Vo> implements LoginLogic.Logic {
 
@@ -52,7 +52,7 @@ public class LoginLogicImpl extends BaseLogicImpl<LoginLogic.Vo> implements Logi
 }
 ```
 
-**3.create LoginActivity extends BaseActivity<LoginLogicImpl> implements LoginLogic.Vo, @Implement Presenter class**
+**3. create LoginActivity extends BaseActivity<LoginLogicImpl> implements LoginLogic.Vo, @Implement Presenter class**
 ```
 @Implement(LoginLogicImpl.class)
 public class LoginActivity extends BaseActivity<LoginLogicImpl> implements LoginLogic.Vo {
