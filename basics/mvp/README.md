@@ -86,23 +86,23 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
 ### [BaseActivity](./src/main/java/com/racofix/basic/mvp/BaseActivity.java)
 (1). 通过providerLogic()方法解析注解Implement实例化Presenter.
 ```
-private T providerLogic() {
-    return (T) LogicProviders.init(this.getClass());
-}
+    private T providerLogic() {
+        return (T) LogicProviders.init(this.getClass());
+    }
 ```
 
 (2). 将实例化的Presenter绑定ViewModel, 将Activity的生命周期通过Lifecycle交给Presenter后并绑定View.
 ```
-LogicViewModel<T> viewModel = ViewModelProviders.of(this).get(LogicViewModel.class);
-if (viewModel.getLogicImpl() == null) {
-    viewModel.setLogicImpl(providerLogic());
-}
+    LogicViewModel<T> viewModel = ViewModelProviders.of(this).get(LogicViewModel.class);
+    if (viewModel.getLogicImpl() == null) {
+        viewModel.setLogicImpl(providerLogic());
+    }
 
-this.mLogicWrf = new WeakReference<>(viewModel.getLogicImpl());
-if (checkLogicNonNull()) {
-    getLogicImpl().bindLifecycle(this.getLifecycle());
-    getLogicImpl().bindVo(this);
-}
+    this.mLogicWrf = new WeakReference<>(viewModel.getLogicImpl());
+    if (checkLogicNonNull()) {
+        getLogicImpl().bindLifecycle(this.getLifecycle());
+        getLogicImpl().bindVo(this);
+    }
 ```
 
 (3). Activity页面销毁后onDestroy方法中移除生命周期方法并释放View资源
@@ -116,8 +116,88 @@ if (checkLogicNonNull()) {
         }
     }
 ```
-TODO
 
+### [LogicImpl](./src/main/java/com/racofix/basic/mvp/LogicImpl.java)
+(1). Persenter绑定/解绑 Activity/Fragment 生命周期
+```
+   @Override
+    final public void bindLifecycle(Lifecycle lifecycle) {
+        lifecycle.addObserver(this);
+    }
+
+    @Override
+    final public void unbindLifecycle(Lifecycle lifecycle) {
+        lifecycle.removeObserver(this);
+    }
+```
+
+(2). Persenter绑定/解绑View, 使用WeakReference保存View
+```
+    @Override
+    final public void bindVo(V vo) {
+        this.wrf = new WeakReference<>(vo);
+    }
+
+    @Override
+    final public void unbindVo() {
+        this.wrf.clear();
+        this.wrf = null;
+    }
+```
+
+(3). Persenter生命周期 Created/Destroy
+```
+    @Override
+    public void onLogicCreated() {
+    }
+
+    @Override
+    public void onLogicDestroy() {
+        if (stateBundle != null && !stateBundle.isEmpty()) {
+        stateBundle.clear();
+     }
+    }
+```
+### [LogicViewModel](./src/main/java/com/racofix/basic/mvp/LogicViewModel.java)
+(1). ViewModel绑定 Persenter并调用onLogicCreated()方法.
+```
+    void setLogicImpl(T mLogic) {
+        if (this.mLogicImpl == null && mLogic != null) {
+            this.mLogicImpl = mLogic;
+            this.mLogicImpl.onLogicCreated();
+        }
+    }
+```
+(2). 应用界面被销毁会调用ViewModel的onCleared()方法, 调用Persenter的onLogicDestroy, 释放资源
+```
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        if (this.mLogicImpl != null) {
+            this.mLogicImpl.onLogicDestroy();
+            this.mLogicImpl = null;
+        }
+    }
+```
+
+### [LogicProviders](./src/main/java/com/racofix/basic/mvp/LogicProviders.java)
+(1). 通过注解反射方法实例化 Persenter
+```
+   public static LogicI init(Class<?> clazz) {
+        try {
+            Implement annotation = clazz.getAnnotation(Implement.class);
+            if (annotation != null)
+                return (LogicI) annotation.value().newInstance();
+            return null;
+        } catch (InstantiationException e) {
+            Log.e(LogicProviders.class.getSimpleName(), "Cannot create an instance of " + clazz, e);
+            return null;
+        } catch (IllegalAccessException e) {
+            Log.e(LogicProviders.class.getSimpleName(), "Cannot create an instance of " + clazz, e);
+            return null;
+        }
+    }
+```
 
 ## License
 ```
