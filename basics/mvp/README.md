@@ -80,7 +80,7 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
 ```
 
 
-## 解析
+## 源码解析
 ![](https://upload-images.jianshu.io/upload_images/893513-071dc47f4a67d508.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### [BaseActivity](./src/main/java/com/racofix/basic/mvp/BaseActivity.java)
