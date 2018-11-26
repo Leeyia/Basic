@@ -1,11 +1,11 @@
 ## 简介
 Android Architecture components 和 MVP 模式结合使用，帮助您方便管理生命周期、设计健壮、可测试和可维护的程序。
-
-## 优点
 - MVP (Model view Presenter) 
 - Lifecycle 可感知生命周期组件
 - ViewModel 提供UI界面和数据进行通信
 
+
+## 优点
 - [x] 模型与视图完全分离
 - [x] 注解实例化 Presenter
 - [x] 继承 BaseActivity/BaseFragment 不需要关心Presenter/View绑定和释放
