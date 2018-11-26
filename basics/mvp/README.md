@@ -2,10 +2,15 @@
 Android Architecture components 和 MVP 模式结合使用，帮助您方便管理生命周期、设计健壮、可测试和可维护的程序。
 
 ## 优点
+- MVP (Model view Presenter) 
+- Lifecycle 可感知生命周期组件
+- ViewModel 提供UI界面和数据进行通信
+
 - [x] 模型与视图完全分离
-- [x] 屏幕发生改变时保持 Presenter 状态。
-- [x] Lifecycle、ViewModel 和 Presenter 生命周期绑定，Presenter 自己管理生命周期逻辑。
-- [x] 通过注解实例化 Presenter，Presenter不会被多次创建。
+- [x] 注解实例化 Presenter
+- [x] 继承 BaseActivity/BaseFragment 不需要关心Presenter/View绑定和释放
+- [x] Lifecycle、ViewModel和Presenter生命周期绑定, Presenter可以观察Activity/Fragment接口
+- [x] 屏幕方向发送改变, Presenter状态会保持
 
 
 ## 用法
@@ -77,6 +82,7 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
 
 ## 解析
 ![](https://upload-images.jianshu.io/upload_images/893513-071dc47f4a67d508.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 TODO
 
 
