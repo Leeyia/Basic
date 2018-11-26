@@ -1,4 +1,4 @@
-package com.racofix.basic.things.ui;
+package com.racofix.basic.things.mvp;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
@@ -11,19 +11,17 @@ public class LoginLogicImpl extends LogicImpl<LoginLogic.Vo> implements LoginLog
     @Override
     public void onLogicCreated() {
         super.onLogicCreated();
-        // LoginLogicImpl Created
         Log.e("Basic", "onLogicCreated()");
     }
 
     @Override
     public void onLogicDestroy() {
         super.onLogicDestroy();
-        // LoginLogicImpl Destroy
         Log.e("Basic", "onLogicDestroy()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    public void onLogicResume() {
+    public void onResume() {
         Log.e("Basic", "onLogicResume()");
     }
 

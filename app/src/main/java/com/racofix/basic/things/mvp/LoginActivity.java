@@ -1,4 +1,4 @@
-package com.racofix.basic.things.ui;
+package com.racofix.basic.things.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,17 +15,14 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getLogicImpl().login("admin", "admin");
-            }
-        });
+        findViewById(R.id.btn_login).setOnClickListener(view -> getLogicImpl().login("admin", "admin"));
     }
 
     @Override
-    public void successful(String message) { }
+    public void successful(String message) {
+    }
 
     @Override
-    public void failed(String failMsg) { }
+    public void failed(String failMsg) {
+    }
 }

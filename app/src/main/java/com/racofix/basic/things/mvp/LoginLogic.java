@@ -1,4 +1,4 @@
-package com.racofix.basic.things.ui;
+package com.racofix.basic.things.mvp;
 
 import com.racofix.basic.mvp.LogicI;
 

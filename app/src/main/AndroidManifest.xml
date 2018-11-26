@@ -18,7 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.racofix.basic.things.ui.LoginActivity">
+        <activity android:name="com.racofix.basic.things.mvp.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +26,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.racofix.basic.things.ui.CharacteristicActy" />
     </application>
 
 </manifest>
