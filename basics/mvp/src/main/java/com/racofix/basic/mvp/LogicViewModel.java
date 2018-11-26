@@ -2,13 +2,15 @@ package com.racofix.basic.mvp;
 
 import android.arch.lifecycle.ViewModel;
 
-public final class LogicViewModel<T extends BaseLogic> extends ViewModel {
+public final class LogicViewModel<T extends LogicI> extends ViewModel {
 
     private T mLogicImpl;
 
-    void setLogicImpl(T mLogicImpl) {
-        if (this.mLogicImpl == null)
-            this.mLogicImpl = mLogicImpl;
+    void setLogicImpl(T mLogic) {
+        if (this.mLogicImpl == null && mLogic != null) {
+            this.mLogicImpl = mLogic;
+            this.mLogicImpl.onLogicCreated();
+        }
     }
 
     T getLogicImpl() {
@@ -19,6 +21,7 @@ public final class LogicViewModel<T extends BaseLogic> extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         if (this.mLogicImpl != null) {
+            this.mLogicImpl.onLogicDestroy();
             this.mLogicImpl = null;
         }
     }

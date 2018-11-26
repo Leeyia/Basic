@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import java.lang.ref.WeakReference;
 
-public class BaseLogicImpl<V extends BaseLogic.Vo> implements BaseLogic<V>, LifecycleObserver {
+public class LogicImpl<V extends LogicI.Vo> implements LogicI<V>, LifecycleObserver {
 
     private Bundle stateBundle;
     private WeakReference<V> wrf;
@@ -19,22 +19,22 @@ public class BaseLogicImpl<V extends BaseLogic.Vo> implements BaseLogic<V>, Life
     }
 
     @Override
-    final public void attachLifecycle(Lifecycle lifecycle) {
+    final public void bindLifecycle(Lifecycle lifecycle) {
         lifecycle.addObserver(this);
     }
 
     @Override
-    final public void detachLifecycle(Lifecycle lifecycle) {
+    final public void unbindLifecycle(Lifecycle lifecycle) {
         lifecycle.removeObserver(this);
     }
 
     @Override
-    final public void attachVo(V vo) {
+    final public void bindView(V vo) {
         this.wrf = new WeakReference<>(vo);
     }
 
     @Override
-    final public void detachVo() {
+    final public void unbindView() {
         this.wrf.clear();
         this.wrf = null;
     }
@@ -51,11 +51,13 @@ public class BaseLogicImpl<V extends BaseLogic.Vo> implements BaseLogic<V>, Life
 
     /*Logic Created */
     @Override
+//    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onLogicCreated() {
 
     }
 
     @Override
+//    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onLogicDestroy() {
         if (stateBundle != null && !stateBundle.isEmpty()) {
             stateBundle.clear();

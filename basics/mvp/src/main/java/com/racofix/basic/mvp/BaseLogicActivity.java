@@ -7,45 +7,46 @@ import android.support.v4.app.FragmentActivity;
 
 import java.lang.ref.WeakReference;
 
-public class BaseAct<T extends BaseLogic> extends FragmentActivity implements BaseLogic.Vo {
+public class BaseLogicActivity<T extends LogicI> extends FragmentActivity implements LogicI.Vo {
 
     private WeakReference<T> mLogicWrf;
 
-    private T initLogic() {
+    protected T getLogicImpl() {
+        return this.mLogicWrf.get();
+    }
+
+    private T providerLogic() {
         return (T) LogicProviders.init(this.getClass());
     }
 
-    protected T getLogic() {
-        return this.mLogicWrf.get();
+    private boolean checkLogicNonNull() {
+        return this.mLogicWrf == null || this.mLogicWrf.get() == null;
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (initLogic() == null) return;
+        if (providerLogic() == null) return;
 
         LogicViewModel<T> viewModel = ViewModelProviders.of(this).get(LogicViewModel.class);
         if (viewModel.getLogicImpl() == null) {
-            viewModel.setLogicImpl(initLogic());
-            viewModel.getLogicImpl().onLogicCreated();
+            viewModel.setLogicImpl(providerLogic());
         }
 
         this.mLogicWrf = new WeakReference<>(viewModel.getLogicImpl());
-        if (this.mLogicWrf.get() != null) {
-            this.mLogicWrf.get().attachLifecycle(BaseAct.this.getLifecycle());
-            this.mLogicWrf.get().attachVo(BaseAct.this);
+        if (checkLogicNonNull()) {
+            getLogicImpl().bindLifecycle(this.getLifecycle());
+            getLogicImpl().bindView(this);
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (this.mLogicWrf != null
-                && this.mLogicWrf.get() != null
-                && this.mLogicWrf.get().isVoAttached()) {
-            this.mLogicWrf.get().detachLifecycle(getLifecycle());
-            this.mLogicWrf.get().detachVo();
+        if (checkLogicNonNull()) {
+            getLogicImpl().unbindLifecycle(this.getLifecycle());
+            getLogicImpl().unbindView();
         }
     }
 }

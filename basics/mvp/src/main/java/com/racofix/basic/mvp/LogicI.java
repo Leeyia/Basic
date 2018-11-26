@@ -3,17 +3,17 @@ package com.racofix.basic.mvp;
 import android.arch.lifecycle.Lifecycle;
 import android.os.Bundle;
 
-public interface BaseLogic<V extends BaseLogic.Vo> {
+public interface LogicI<V extends LogicI.Vo> {
 
     Bundle getStateBundle();
 
-    void attachLifecycle(Lifecycle lifecycle);
+    void bindLifecycle(Lifecycle lifecycle);
 
-    void detachLifecycle(Lifecycle lifecycle);
+    void unbindLifecycle(Lifecycle lifecycle);
 
-    void attachVo(V vo);
+    void bindView(V vo);
 
-    void detachVo();
+    void unbindView();
 
     V getVo();
 
