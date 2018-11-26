@@ -2,8 +2,8 @@
 
 module|describe|status
 ---|:-:|---:
-[Mvp](./basics/mvp)|屏幕方向改变Persenter状态保持/可观察Activity/Fragment生命周期|√
-[Http](./basics/http)|简洁/方便/解耦|X
+[MVP](./basics/mvp)|屏幕方向改变Persenter状态保持/可观察Activity/Fragment生命周期|√
+[HTTP](./basics/http)|简洁/方便/解耦|X
 
 ## 更新日志
 **v2.0：2018.11**
