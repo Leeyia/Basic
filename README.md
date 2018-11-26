@@ -2,12 +2,8 @@
 
 module|describe|status
 ---|:-:|---:
-[Mvp](./basics/mvp)|简洁/方便/解耦|√
-[Http](./basics/http)|简洁/方便/解耦|√
-[logger](./basics/http)|简洁/方便/解耦|√
-[base](./basics/http)|简洁/方便/解耦|√
-[image](./basics/http)|简洁/方便/解耦|√
-[bluetooth](./basics/http)|简洁/方便/解耦|√
+[Mvp](./basics/mvp)|屏幕方向改变Persenter状态保持/Persenter可观察Activity/Fragment生命周期|√
+[Http](./basics/http)|简洁/方便/解耦|X
 
 ## 更新日志
 
@@ -24,13 +20,19 @@ module|describe|status
 - Android 开发常用工具
 
 
-## 2018目标 
-2018.11.12 - 2018.12.31
-- [ ] 早睡（23点之前休息）
-- [ ] 书籍 (大话设计模式 09/400)
-- [ ] 博客
-- [ ] 更新简历 (性能优化、模块设计、架构设计、代码质量）
-- [ ] 设计模式 (单例、工厂、构造者、代理、观察者)
-- [ ] 控制游戏时间
-- [ ] Basic 框架/简介
-- [ ] 减肥（早粥、午好、晚青菜/水果/粥）
+## License
+```
+Copyright 2018 meikoz.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
