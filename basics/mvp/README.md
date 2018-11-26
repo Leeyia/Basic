@@ -1,9 +1,5 @@
 ## 简介
-showing the connection between Architecture components and MVP pattern,
-help you design robust, testable and maintainable apps.
-MVP 模式和 [Architecture components](https://developer.android.google.cn/topic/libraries/architecture/)
-结合使用，帮助您方便管理生命周期、设计健壮、可测试和可维护的程序。
-
+Android Architecture components 和 MVP 模式结合使用，帮助您方便管理生命周期、设计健壮、可测试和可维护的程序。
 
 ## 优点
 - [x] 模型与视图完全分离
