@@ -80,10 +80,10 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
 ```
 
 
-# 解析
+## 解析
 ![](https://upload-images.jianshu.io/upload_images/893513-071dc47f4a67d508.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-### BaseActivity
+### [BaseActivity](./basics/mvp/src/main/java/com/racofix/basic/mvp/BaseActivity.java)
 (1). 通过providerLogic()方法解析注解Implement实例化Presenter.
 ```
 private T providerLogic() {
