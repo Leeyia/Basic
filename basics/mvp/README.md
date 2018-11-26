@@ -1,5 +1,5 @@
 ## 简介
-Android Architecture components 和 MVP 模式结合使用，帮助您方便管理生命周期、设计健壮、可测试和可维护的程序。
+Android Architecture components 和 MVP 模式结合使用，帮助您设计健壮、可测试和可维护的程序。
 - MVP (Model view Presenter) 
 - Lifecycle 可感知生命周期组件
 - ViewModel 提供UI界面和数据进行通信
@@ -80,9 +80,42 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
 ```
 
 
-## 解析
+# 解析
 ![](https://upload-images.jianshu.io/upload_images/893513-071dc47f4a67d508.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+**BaseActivity**
+(1). 通过providerLogic()方法解析注解Implement实例化Presenter.
+```
+private T providerLogic() {
+    return (T) LogicProviders.init(this.getClass());
+}
+```
+
+(2). 将实例化的Presenter绑定ViewModel, 将Activity的生命周期通过Lifecycle交给Presenter后并绑定View.
+```
+LogicViewModel<T> viewModel = ViewModelProviders.of(this).get(LogicViewModel.class);
+if (viewModel.getLogicImpl() == null) {
+    viewModel.setLogicImpl(providerLogic());
+}
+
+this.mLogicWrf = new WeakReference<>(viewModel.getLogicImpl());
+if (checkLogicNonNull()) {
+    getLogicImpl().bindLifecycle(this.getLifecycle());
+    getLogicImpl().bindVo(this);
+}
+```
+
+(3). Activity页面销毁后onDestroy方法中移除生命周期方法并释放View资源
+```
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (checkLogicNonNull()) {
+            getLogicImpl().unbindLifecycle(this.getLifecycle());
+            getLogicImpl().unbindVo();
+        }
+    }
+```
 TODO
 
 
