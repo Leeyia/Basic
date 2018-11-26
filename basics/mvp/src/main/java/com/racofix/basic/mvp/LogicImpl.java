@@ -13,9 +13,8 @@ public class LogicImpl<V extends LogicI.Vo> implements LogicI<V>, LifecycleObser
 
     @Override
     public Bundle getStateBundle() {
-        return stateBundle == null
-                ? stateBundle = new Bundle()
-                : stateBundle;
+        return stateBundle == null ?
+                stateBundle = new Bundle() : stateBundle;
     }
 
     @Override
@@ -49,10 +48,8 @@ public class LogicImpl<V extends LogicI.Vo> implements LogicI<V>, LifecycleObser
         return isVoBind() ? wrf.get() : null;
     }
 
-
     @Override
     public void onLogicCreated() {
-
     }
 
     @Override
