@@ -11,13 +11,13 @@ public interface LogicI<V extends LogicI.Vo> {
 
     void unbindLifecycle(Lifecycle lifecycle);
 
-    void bindView(V vo);
+    void bindVo(V vo);
 
-    void unbindView();
+    void unbindVo();
 
     V getVo();
 
-    boolean isVoAttached();
+    boolean isVoBind();
 
     void onLogicCreated();
 

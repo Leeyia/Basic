@@ -2,12 +2,14 @@ package com.racofix.basic.mvp;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
+import android.view.View;
 
 import java.lang.ref.WeakReference;
 
-public class BaseLogicActivity<T extends LogicI> extends FragmentActivity implements LogicI.Vo {
+public class BaseFragment<T extends LogicI> extends Fragment implements LogicI.Vo {
 
     private WeakReference<T> mLogicWrf;
 
@@ -20,12 +22,12 @@ public class BaseLogicActivity<T extends LogicI> extends FragmentActivity implem
     }
 
     private boolean checkLogicNonNull() {
-        return this.mLogicWrf == null || this.mLogicWrf.get() == null;
+        return this.mLogicWrf != null && this.mLogicWrf.get() != null;
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         if (providerLogic() == null) return;
 
@@ -37,16 +39,16 @@ public class BaseLogicActivity<T extends LogicI> extends FragmentActivity implem
         this.mLogicWrf = new WeakReference<>(viewModel.getLogicImpl());
         if (checkLogicNonNull()) {
             getLogicImpl().bindLifecycle(this.getLifecycle());
-            getLogicImpl().bindView(this);
+            getLogicImpl().bindVo(this);
         }
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         if (checkLogicNonNull()) {
             getLogicImpl().unbindLifecycle(this.getLifecycle());
-            getLogicImpl().unbindView();
+            getLogicImpl().unbindVo();
         }
     }
 }

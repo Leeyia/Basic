@@ -29,35 +29,33 @@ public class LogicImpl<V extends LogicI.Vo> implements LogicI<V>, LifecycleObser
     }
 
     @Override
-    final public void bindView(V vo) {
+    final public void bindVo(V vo) {
         this.wrf = new WeakReference<>(vo);
     }
 
     @Override
-    final public void unbindView() {
+    final public void unbindVo() {
         this.wrf.clear();
         this.wrf = null;
     }
 
     @Override
-    final public boolean isVoAttached() {
+    final public boolean isVoBind() {
         return this.wrf != null && this.wrf.get() != null;
     }
 
     @Override
     final public V getVo() {
-        return isVoAttached() ? wrf.get() : null;
+        return isVoBind() ? wrf.get() : null;
     }
 
-    /*Logic Created */
+
     @Override
-//    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onLogicCreated() {
 
     }
 
     @Override
-//    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onLogicDestroy() {
         if (stateBundle != null && !stateBundle.isEmpty()) {
             stateBundle.clear();

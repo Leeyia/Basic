@@ -95,7 +95,7 @@ public class ViewHolder {
      */
 //    public ViewHolder setImageByUrl(int viewId, String url) {
 //        ImageLoadInterface.getInstance(3, Type.LIFO).loadImage(url,
-//                (ImageView) getView(viewId));
+//                (ImageView) getVo(viewId));
 //        return this;
 //    }
     public int getPosition() {

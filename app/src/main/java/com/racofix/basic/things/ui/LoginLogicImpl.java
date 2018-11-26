@@ -29,6 +29,6 @@ public class LoginLogicImpl extends LogicImpl<LoginLogic.Vo> implements LoginLog
 
     @Override
     public void login(String username, String password) {
-
+        //dosomething
     }
 }
