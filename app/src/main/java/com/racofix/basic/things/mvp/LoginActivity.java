@@ -2,7 +2,6 @@ package com.racofix.basic.things.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
 
 import com.racofix.basic.mvp.BaseActivity;
 import com.racofix.basic.mvp.annotation.Implement;

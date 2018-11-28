@@ -1,15 +1,16 @@
 ext.deps = [:]
 def versions = [:]
-versions.support = "26.1.0"
+versions.support = "28.0.0"
 versions.retrofit = "2.4.0"
 versions.lifecycle = "1.1.1"
+deps.versions =versions
 
 // support 相关的逻辑
 def support = [:]
+support.appcompat ="com.android.support:appcompat-v7:$versions.support"
 support.annotations = "com.android.support:support-annotations:$versions.support"
 support.lifecycle = "android.arch.lifecycle:extensions:$versions.lifecycle"
 deps.support = support
-
 
 def retrofit = [:]
 retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"

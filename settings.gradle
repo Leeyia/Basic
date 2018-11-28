@@ -1,6 +1,8 @@
 include ':app',
+        ':basics:ui',
         ':basics:mvp',
         ':basics:http',
+        ':basics:image',
         ':basics:logger',
         ':basics:bluetooth',
         ':basics:pattern'
