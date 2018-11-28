@@ -1,8 +1,9 @@
-## 组件库
+## 开发常用组件库
+本框架为方便开发常用组件库, 可以选择单独使用
 
 module|describe|status
 ---|:-:|---:
-[MVP](./basics/mvp)|屏幕方向改变Persenter状态保持/可观察Activity/Fragment生命周期|√
+[MVP](./basics/mvp)|MVP Architecture Components|√
 [HTTP](./basics/http)|简洁/方便/解耦|X
 
 ## 更新日志
