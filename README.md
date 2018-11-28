@@ -3,7 +3,7 @@
 
 module|describe|status
 ---|:-:|---:
-[MVP](./basics/mvp)|M Architecture Components|√
+[MVP](./basics/mvp)|MVP Architecture Components|√
 [HTTP](./basics/http)|简洁/方便/解耦|X
 
 ## 更新日志
