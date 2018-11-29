@@ -16,7 +16,7 @@ Android Architecture components 和 MVP 模式结合使用，帮助您设计健�
 ## 用法
 Download [the latest JAR](https://github.com/meikoz/Basic/tree/master/basics/mvp) or configure this dependency:
 ```
-implementation 'com.racofix.basic2:mvp:1.0.0'
+implementation 'com.racofix.basic2:mvp:1.0'
 ```
 
 #### Login Sample:

@@ -94,7 +94,7 @@ public class ViewHolder {
      * 为ImageView设置图片
      */
 //    public ViewHolder setImageByUrl(int viewId, String url) {
-//        ImageLoadInterface.getInstance(3, Type.LIFO).loadImage(url,
+//        ImageLoadInterface.create(3, Type.LIFO).loadImage(url,
 //                (ImageView) getVo(viewId));
 //        return this;
 //    }
