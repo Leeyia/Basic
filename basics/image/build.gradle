@@ -1,5 +1,5 @@
 apply from: rootProject.file('configure/library.gradle')
 
 dependencies {
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    api 'com.squareup.picasso:picasso:2.71828'
 }

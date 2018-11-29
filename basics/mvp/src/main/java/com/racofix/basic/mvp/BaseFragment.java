@@ -32,14 +32,18 @@ public class BaseFragment<T extends LogicI> extends Fragment implements LogicI.V
         if (providerLogic() == null) return;
 
         LogicViewModel<T> viewModel = ViewModelProviders.of(this).get(LogicViewModel.class);
+        boolean isLogicCreated = false;
         if (viewModel.getLogicImpl() == null) {
             viewModel.setLogicImpl(providerLogic());
+            isLogicCreated = true;
         }
 
         this.mLogicWrf = new WeakReference<>(viewModel.getLogicImpl());
         if (checkLogicNonNull()) {
             getLogicImpl().bindLifecycle(this.getLifecycle());
             getLogicImpl().bindVo(this);
+
+            if (isLogicCreated) getLogicImpl().onLogicCreated();
         }
     }
 

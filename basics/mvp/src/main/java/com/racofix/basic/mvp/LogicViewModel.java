@@ -9,7 +9,6 @@ public final class LogicViewModel<T extends LogicI> extends ViewModel {
     void setLogicImpl(T mLogic) {
         if (this.mLogicImpl == null && mLogic != null) {
             this.mLogicImpl = mLogic;
-            this.mLogicImpl.onLogicCreated();
         }
     }
 

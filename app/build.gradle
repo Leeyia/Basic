@@ -34,10 +34,12 @@ dependencies {
 
     implementation project(path: ':basics:ui')
     implementation project(path: ':basics:http')
+    implementation project(path: ':basics:image')
     implementation project(path: ':basics:bluetooth')
 
     implementation deps.retrofit.runtime
     implementation deps.retrofit.gson
 
-    implementation 'com.racofix.basic2:mvp:1.0'
+    implementation 'com.racofix.basic2:mvp:1.1'
+    api deps.support.lifecycle
 }

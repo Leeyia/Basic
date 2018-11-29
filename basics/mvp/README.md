@@ -16,8 +16,12 @@ Android Architecture components 和 MVP 模式结合使用，帮助您设计健�
 ## 用法
 Download [the latest JAR](https://github.com/meikoz/Basic/tree/master/basics/mvp) or configure this dependency:
 ```
-implementation 'com.racofix.basic2:mvp:1.0'
+implementation 'com.racofix.basic2:mvp:1.1'
 ```
+define
+`
+implementation 'android.arch.lifecycle:extensions:1.1.1'
+`
 
 #### Login Sample:
 **1. design our Presenter Contract and View**
@@ -94,14 +98,17 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
 (2). 将实例化的Presenter绑定ViewModel, 将Activity的生命周期通过Lifecycle交给Presenter后并绑定View.
 ```
     LogicViewModel<T> viewModel = ViewModelProviders.of(this).get(LogicViewModel.class);
+    boolean isLogicCreated = false;
     if (viewModel.getLogicImpl() == null) {
-        viewModel.setLogicImpl(providerLogic());
+         viewModel.setLogicImpl(providerLogic());
+         isLogicCreated = true;
     }
 
     this.mLogicWrf = new WeakReference<>(viewModel.getLogicImpl());
     if (checkLogicNonNull()) {
-        getLogicImpl().bindLifecycle(this.getLifecycle());
-        getLogicImpl().bindVo(this);
+         getLogicImpl().bindLifecycle(this.getLifecycle());
+         getLogicImpl().bindVo(this);
+         if (isLogicCreated) getLogicImpl().onLogicCreated();
     }
 ```
 
@@ -164,7 +171,6 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
     void setLogicImpl(T mLogic) {
         if (this.mLogicImpl == null && mLogic != null) {
             this.mLogicImpl = mLogic;
-            this.mLogicImpl.onLogicCreated();
         }
     }
 ```
