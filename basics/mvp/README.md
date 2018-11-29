@@ -19,9 +19,9 @@ Download [the latest JAR](https://github.com/meikoz/Basic/tree/master/basics/mvp
 implementation 'com.racofix.basic2:mvp:1.1'
 ```
 define
-`
+```
 implementation 'android.arch.lifecycle:extensions:1.1.1'
-`
+```
 
 #### Login Sample:
 **1. design our Presenter Contract and View**
