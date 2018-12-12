@@ -1,47 +1,50 @@
 package com.racofix.basic.image;
 
+import android.content.Context;
 import android.widget.ImageView;
+
+import java.lang.ref.WeakReference;
 
 public class ImageConfigure {
 
-    private final ImageConfigure.configure configure;
-    private String stringUrl;
-    private ImageEngine engine;
+    private final String imageUrl;
+    private final ImageView target;
+    private final Context context;
 
-    public ImageConfigure(ImageConfigure.configure configure) {
-        this.configure = configure;
-        this.engine = configure.engine;
-        this.stringUrl = configure.stringUrl;
+    private ImageConfigure(Configure configure) {
+        this.imageUrl = configure.mImageUrl;
+        this.target = configure.mTarget;
+        this.context = configure.wrf.get();
     }
 
-    public String getStringUrl() {
-        return stringUrl;
+    public Context getContext() {
+        return this.context;
     }
 
-    public ImageEngine getEngine() {
-        return engine;
+    public String getImageUrl() {
+        return this.imageUrl;
     }
 
-    public void into(ImageView target) {
-        this.getEngine().load(this, target);
+    public ImageView getTarget() {
+        return this.target;
     }
 
-    public static class configure {
+    public static class Configure {
+        private String mImageUrl;
+        private ImageView mTarget;
+        private WeakReference<Context> wrf;
 
-        private String stringUrl;
-        private ImageEngine engine = new PicassoEngine();
-
-        configure() {
-
+        public Configure() {
         }
 
-        public ImageConfigure.configure url(String url) {
-            this.stringUrl = url;
+        public Configure imageUrl(String url) {
+            this.mImageUrl = url;
             return this;
         }
 
-        public ImageConfigure.configure imageEngine(ImageEngine imageEngine) {
-            this.engine = imageEngine;
+        public Configure into(ImageView target) {
+            this.mTarget = target;
+            this.wrf = new WeakReference<>(mTarget.getContext());
             return this;
         }
 

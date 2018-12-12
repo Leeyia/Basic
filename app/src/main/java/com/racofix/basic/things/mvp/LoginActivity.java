@@ -2,17 +2,15 @@ package com.racofix.basic.things.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.ImageView;
 
-import com.racofix.basic.http.GsonService;
+import com.racofix.basic.image.GlideImageEngine;
+import com.racofix.basic.image.ImageConfigure;
 import com.racofix.basic.image.ImageLoader;
-import com.racofix.basic.image.PicassoEngine;
+import com.racofix.basic.image.PicassoImageEngine;
 import com.racofix.basic.mvp.BaseActivity;
 import com.racofix.basic.mvp.annotation.Implement;
 import com.racofix.basic.things.R;
-
-import java.util.List;
 
 @Implement(LoginLogicImpl.class)
 public class LoginActivity extends BaseActivity<LoginLogicImpl> implements LoginLogic.Vo {
@@ -26,11 +24,12 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
         ImageView target = findViewById(R.id.iv_avatar);
 
         ImageLoader
-                .configure()
-                .url("https://avatars2.githubusercontent.com/u/16660064?s=460&v=4")
-                .imageEngine(new PicassoEngine())
-                .build()
-                .into(target);
+                .getDefalut()
+                .engine(new GlideImageEngine())
+                .display(new ImageConfigure.Configure()
+                        .imageUrl("https://avatars2.githubusercontent.com/u/16660064?s=460&v=4")
+                        .into(target)
+                        .build());
     }
 
     @Override
