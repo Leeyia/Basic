@@ -4,5 +4,6 @@ include ':app',
         ':basics:http',
         ':basics:image',
         ':basics:logger',
+        ':basics:qrcode',
         ':basics:bluetooth',
         ':basics:pattern'
