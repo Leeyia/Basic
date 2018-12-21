@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 
 public class L {
 
-    private static final String TAG = "Basic-Bluetooth";
+    private static final String TAG = "Bluetooth";
     private static boolean ENABLE_DEBUG_LOGGING = true;
     private static boolean ENABLE_CRASHLYTICS_LOGGING = false;
     private static Method CRASHLYTICS_LOG_METHOD;
