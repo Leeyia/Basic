@@ -1,31 +1,32 @@
 package com.racofix.basic.bluetooth;
 
-import android.bluetooth.BluetoothAdapter;
+import android.app.Application;
 
-import com.racofix.basic.bluetooth.callback.BleScanCallback;
-import com.racofix.basic.bluetooth.model.BleDevice;
+import com.racofix.basic.bluetooth.conf.ContextWrf;
+import com.racofix.basic.bluetooth.scanning.BaseScanOperation;
+import com.racofix.basic.bluetooth.scanning.ScanOperation;
 
-public interface BluetoothKit {
+public class BluetoothKit {
 
-    void startLeScan();
+    private static BluetoothKit bluetoothKit;
 
-    void stopLeScan();
+    public static BluetoothKit getDefalut() {
+        if (bluetoothKit == null) {
+            synchronized (BluetoothKit.class) {
+                if (bluetoothKit == null) bluetoothKit = new BluetoothKit();
+            }
+        }
+        return bluetoothKit;
+    }
 
-    BluetoothGattControll getGattControll();
+    private BluetoothKit() {
+    }
 
-    void checkBleGattInterceptor();
+    public void initialize(Application application) {
+        ContextWrf.initialize(application.getApplicationContext());
+    }
 
-    boolean isScanning();
-
-    boolean isConnected(BleDevice device);
-
-    boolean isOpenFiltered();
-
-    void setBluetoothConfig(BluetoothConfig config);
-
-    void setBluetoothScanCallback(BleScanCallback scanCallback);
-
-    void onDestory();
-
-    BluetoothAdapter getBluetoothAdapter();
+    public ScanOperation getScanProxy() {
+        return BaseScanOperation.get();
+    }
 }

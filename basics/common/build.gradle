@@ -1,0 +1,5 @@
+apply from: rootProject.file('configure/library.gradle')
+//apply from: rootProject.file('configure/bintrayUpload.gradle')
+
+dependencies {
+}
