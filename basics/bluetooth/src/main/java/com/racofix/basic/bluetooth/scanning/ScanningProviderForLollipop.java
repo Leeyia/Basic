@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-class ScanOperationForLollipop extends BaseScanOperation {
+class ScanningProviderForLollipop extends ScanningProviderFactory {
 
     private long datatime = 0L;
     private BluetoothLeScanner bluetoothLeScanner;
@@ -28,7 +28,7 @@ class ScanOperationForLollipop extends BaseScanOperation {
             } else {
                 long currentTimeMillis = System.currentTimeMillis();
                 long intervalTimeMillis = currentTimeMillis - datatime;
-                ScanOperationForLollipop.this.datatime = currentTimeMillis;
+                ScanningProviderForLollipop.this.datatime = currentTimeMillis;
                 L.d("the time it took for the last reception:=====>" + intervalTimeMillis + "ms");
                 L.d("device.address:=====>" + scanResult.getDevice().getAddress());
             }

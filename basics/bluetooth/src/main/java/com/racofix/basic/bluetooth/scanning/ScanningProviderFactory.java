@@ -16,7 +16,7 @@ import com.racofix.basic.bluetooth.utils.Preconditions;
  * #小新.
  * #2018-12-21.
  */
-public abstract class BaseScanOperation implements ScanOperation {
+public abstract class ScanningProviderFactory implements ScanningProvider {
 
     private boolean scannerEnable;
     private boolean scanCycleStarted;
@@ -27,17 +27,17 @@ public abstract class BaseScanOperation implements ScanOperation {
 
     private Runnable scanCycleStartRunnanle = new Runnable() {
         public void run() {
-            BaseScanOperation.this.scanLeDevice(true);
+            ScanningProviderFactory.this.scanLeDevice(true);
         }
     };
     private Runnable scanCycleStopRunnanle = new Runnable() {
         public void run() {
-            BaseScanOperation.this.scanLeDevice(false);
-            BaseScanOperation.this.scanCycleComplete();
+            ScanningProviderFactory.this.scanLeDevice(false);
+            ScanningProviderFactory.this.scanCycleComplete();
         }
     };
 
-    public static ScanOperation get() {
+    public static ScanningProvider create() {
         if (Build.VERSION.SDK_INT < 18) {
             L.d("Not supported prior to API 18.");
             return null;
@@ -51,7 +51,7 @@ public abstract class BaseScanOperation implements ScanOperation {
                 useAndroidLeScanner = true;
             }
 
-            return useAndroidLeScanner ? new ScanOperationForLollipop() : new ScanOperationForJellyBean();
+            return useAndroidLeScanner ? new ScanningProviderForLollipop() : new ScanningProviderForJellyBean();
         }
     }
 
@@ -63,7 +63,7 @@ public abstract class BaseScanOperation implements ScanOperation {
             this.handler.removeCallbacks(this.scanCycleStartRunnanle);
             this.scanLeDevice(true);
         } else {
-            L.d("bluetooth scanning already started");
+            L.d("bluetooth scanning already start");
         }
 
     }
@@ -83,7 +83,7 @@ public abstract class BaseScanOperation implements ScanOperation {
     }
 
     @Override
-    public boolean isScanning() {
+    public boolean isActive() {
         return this.scanCycleStarted;
     }
 

@@ -9,7 +9,7 @@ import android.os.Build;
 import com.racofix.basic.bluetooth.utils.L;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-class ScanOperationForJellyBean extends BaseScanOperation {
+class ScanningProviderForJellyBean extends ScanningProviderFactory {
 
     private BluetoothAdapter.LeScanCallback leScanCallback = new BluetoothAdapter.LeScanCallback() {
         public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {

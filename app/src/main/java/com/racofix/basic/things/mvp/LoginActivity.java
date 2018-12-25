@@ -1,21 +1,19 @@
 package com.racofix.basic.things.mvp;
 
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.le.ScanRecord;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.racofix.basic.bluetooth.BlueRock;
 import com.racofix.basic.bluetooth.BluetoothKit;
 import com.racofix.basic.bluetooth.conf.ScanConfigure;
 import com.racofix.basic.bluetooth.scanning.ScanBLERecord;
-import com.racofix.basic.bluetooth.scanning.ScanOperation;
+import com.racofix.basic.bluetooth.scanning.ScanningProvider;
 import com.racofix.basic.image.GlideImageEngine;
 import com.racofix.basic.image.ImageConfigure;
 import com.racofix.basic.image.ImageLoader;
-import com.racofix.basic.image.PicassoImageEngine;
 import com.racofix.basic.mvp.BaseActivity;
 import com.racofix.basic.mvp.annotation.Implement;
 import com.racofix.basic.things.R;
@@ -46,7 +44,7 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
                 .filters("BA:S7:D5:U6")
                 .conf();
 
-        ScanOperation operation = BluetoothKit.getDefalut().getScanProxy();
+        ScanningProvider operation = BluetoothKit.getDefalut().getScanningProvider();
         operation.setScanConfig(configure);
         operation.addOnScanCallback(this);
         operation.start();
@@ -62,16 +60,16 @@ public class LoginActivity extends BaseActivity<LoginLogicImpl> implements Login
 
     @Override
     public void onLeScan(BluetoothDevice device, int rssi, ScanBLERecord scanRecord, long timestamp) {
-
+        Log.d(this.getClass().getSimpleName(), "device: " + device.getAddress() + " rssi: " + rssi + " timestamp: " + timestamp);
     }
 
     @Override
     public void onScanCycleCompleted() {
-
+        Log.d(this.getClass().getSimpleName(), "onScanCycleCompleted");
     }
 
     @Override
     public void onError(int errorId) {
-
+        Log.d(this.getClass().getSimpleName(), errorId + " ");
     }
 }
