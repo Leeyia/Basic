@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.racofix.develop.things"
-        minSdkVersion 18
+        minSdkVersion 19
         //noinspection ExpiringTargetSdkVersion
         targetSdkVersion 22
         versionCode 1
