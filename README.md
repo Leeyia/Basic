@@ -1,5 +1,5 @@
 ## 开发常用组件库
-[ ![Download](https://api.bintray.com/packages/meikoz/Basic/basic-http/images/download.svg) ](https://bintray.com/meikoz/Basic/basic-http/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/meikoz/Basic/basic-http/images/download.svg) ](https://bintray.com/meikoz/Basic/basic-http/_latestVersion)   
 本框架为方便开发常用组件库, 可以选择单独使用
 
 module|describe|status
