@@ -1,4 +1,4 @@
-package com.dintech.android.variants;
+package com.dintech.android.variants.api;
 
 import com.dintech.architecture.http.Network;
 import com.dintech.architecture.http.NetworkApi;

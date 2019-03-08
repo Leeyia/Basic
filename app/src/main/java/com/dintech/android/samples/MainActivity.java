@@ -4,8 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.dintech.android.variants.Api;
-import com.dintech.android.variants.Girls;
+import com.dintech.android.variants.gson.GsonConverterFactory;
+import com.dintech.android.variants.api.Api;
+import com.dintech.android.variants.api.Girls;
 import com.dintech.architecture.http.CallbackEvent;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         CallbackEvent<Girls> callbackEvent = new CallbackEvent<Girls>() {
             @Override
             public void done(Girls body) {
+                String object2Json = GsonConverterFactory.getDefalut().object2Json(body);
             }
 
             @Override

@@ -1,4 +1,4 @@
-package com.dintech.android.variants;
+package com.dintech.android.variants.api;
 
 import java.util.List;
 

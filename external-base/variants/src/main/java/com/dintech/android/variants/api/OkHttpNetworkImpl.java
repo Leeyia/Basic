@@ -1,4 +1,4 @@
-package com.dintech.android.variants;
+package com.dintech.android.variants.api;
 
 import com.dintech.architecture.http.CallbackEvent;
 import com.dintech.architecture.http.Network;
