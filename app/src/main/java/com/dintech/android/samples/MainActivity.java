@@ -1,13 +1,17 @@
 package com.dintech.android.samples;
 
+import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.dintech.android.variants.gson.GsonConverterFactory;
-import com.dintech.android.variants.api.Api;
-import com.dintech.android.variants.api.Girls;
+import com.dintech.android.outside.api.Api;
+import com.dintech.android.outside.api.Girls;
+import com.dintech.android.outside.bluetooth.BluetoothKit;
+import com.dintech.android.outside.bluetooth.OperationCallback;
+import com.dintech.android.outside.gson.GsonConverterFactory;
 import com.dintech.architecture.http.CallbackEvent;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,5 +33,20 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         Api.getDefalt().get("http://gank.io/api/data/福利/10/1", callbackEvent);
+
+
+        BluetoothKit.getDefalut().connect("sssss", new OperationCallback() {
+            @Override
+            public void done(BluetoothDevice device) {
+
+            }
+
+            @Override
+            public void fail(String message) {
+
+            }
+        });
+
+        BluetoothKit.getDefalut().notiy("sssss", "sss");
     }
 }
