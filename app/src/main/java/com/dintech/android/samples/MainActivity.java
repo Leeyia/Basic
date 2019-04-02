@@ -11,6 +11,7 @@ import com.dintech.android.outside.bluetooth.BluetoothKit;
 import com.dintech.android.outside.bluetooth.OperationCallback;
 import com.dintech.android.outside.gson.GsonConverterFactory;
 import com.dintech.architecture.http.CallbackEvent;
+import com.dintech.architecture.log.VLog;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        VLog.d("message","ssss");
 
         CallbackEvent<Girls> callbackEvent = new CallbackEvent<Girls>() {
             @Override

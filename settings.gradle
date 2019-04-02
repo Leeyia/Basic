@@ -1,2 +1,2 @@
-include ':app', ':internal-base:http', ':internal-base:image', ':internal-base:mvp', ':outside-base'
+include ':app', ':internal-basics:log', ':internal-basics:http', ':internal-basics:image', ':internal-basics:mvp', ':outside-base'
 //        ':external-base:variants'

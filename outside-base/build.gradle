@@ -1,7 +1,8 @@
-apply from: rootProject.file('internal-base/configure.gradle')
+apply from: rootProject.file('internal-basics/configure.gradle')
 
 dependencies {
-    api project(':internal-base:http')
-    implementation project(':internal-base:image')
+    api project(':internal-basics:http')
+    api project(':internal-basics:log')
+    implementation project(':internal-basics:image')
     implementation 'com.google.code.gson:gson:2.8.5'
 }

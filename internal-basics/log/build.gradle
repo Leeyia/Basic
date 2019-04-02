@@ -1,0 +1,4 @@
+apply from: rootProject.file('internal-basics/configure.gradle')
+
+dependencies {
+}
