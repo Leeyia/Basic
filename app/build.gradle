@@ -27,5 +27,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation project(':outside-base')
-    implementation project(':internal-basics:log')
+    implementation 'com.dintech.android:vlog:1.0.2'
 }

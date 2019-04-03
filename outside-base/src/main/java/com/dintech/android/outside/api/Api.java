@@ -1,8 +1,8 @@
 package com.dintech.android.outside.api;
 
-import com.dintech.architecture.http.Network;
-import com.dintech.architecture.http.NetworkApi;
-import com.dintech.architecture.http.NetworkProxy;
+import com.dintech.android.http.Network;
+import com.dintech.android.http.NetworkApi;
+import com.dintech.android.http.NetworkProxy;
 
 import java.lang.reflect.Proxy;
 

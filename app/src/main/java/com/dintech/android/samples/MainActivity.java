@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.dintech.android.log.VLog;
 import com.dintech.android.outside.api.Api;
 import com.dintech.android.outside.api.Girls;
 import com.dintech.android.outside.bluetooth.BluetoothKit;
 import com.dintech.android.outside.bluetooth.OperationCallback;
 import com.dintech.android.outside.gson.GsonConverterFactory;
-import com.dintech.architecture.http.CallbackEvent;
-import com.dintech.architecture.log.VLog;
-
+import com.dintech.android.http.CallbackEvent;
 
 public class MainActivity extends AppCompatActivity {
 

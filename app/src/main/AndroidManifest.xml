@@ -3,6 +3,7 @@
     package="com.dintech.android.samples">
 
     <application
+        android:name=".VApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

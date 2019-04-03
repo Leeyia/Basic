@@ -1,7 +1,7 @@
 package com.dintech.android.outside.api;
 
-import com.dintech.architecture.http.CallbackEvent;
-import com.dintech.architecture.http.Network;
+import com.dintech.android.http.CallbackEvent;
+import com.dintech.android.http.Network;
 
 import java.util.Map;
 
