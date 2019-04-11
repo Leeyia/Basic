@@ -3,14 +3,14 @@
     package="com.dintech.android.samples">
 
     <application
-        android:name=".VApplication"
+        android:name="com.dintech.api.samples.VApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.dintech.android.samples.MainActivity">
+        <activity android:name="com.dintech.android.samples.com.dintech.api.samples.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

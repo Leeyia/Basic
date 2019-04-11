@@ -1,8 +1,8 @@
-package com.dintech.android.mvp;
+package com.dintech.api.mvp;
 
 import android.util.Log;
 
-import com.dintech.android.mvp.annotation.Implement;
+import com.dintech.api.mvp.annotation.Implement;
 
 public final class LogicProviders {
 

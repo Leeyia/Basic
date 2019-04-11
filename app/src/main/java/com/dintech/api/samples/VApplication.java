@@ -1,10 +1,10 @@
-package com.dintech.android.samples;
+package com.dintech.api.samples;
 
 import android.app.Application;
 
-import com.dintech.android.log.AndroidLogTool;
-import com.dintech.android.log.VLog;
-import com.dintech.android.log.LogLevel;
+import com.dintech.api.log.AndroidLogTool;
+import com.dintech.api.log.VLog;
+import com.dintech.api.log.LogLevel;
 
 public class VApplication extends Application {
 

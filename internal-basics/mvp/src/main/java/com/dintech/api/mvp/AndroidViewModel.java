@@ -1,4 +1,4 @@
-package com.dintech.android.mvp;
+package com.dintech.api.mvp;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;

@@ -1,4 +1,4 @@
-package com.dintech.android.mvp.annotation;
+package com.dintech.api.mvp.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

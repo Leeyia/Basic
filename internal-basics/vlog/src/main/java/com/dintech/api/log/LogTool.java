@@ -1,4 +1,4 @@
-package com.dintech.android.log;
+package com.dintech.api.log;
 
 public interface LogTool {
 
