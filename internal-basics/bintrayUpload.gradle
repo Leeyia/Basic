@@ -2,7 +2,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 version = "1.0.1"
-group = "com.dintech.android"
+group = "com.dintech.api"
 
 def siteUrl = 'https://github.com/dintech-android/Basic'
 def gitUrl = 'https://github.com/dintech-android/Basic.git'

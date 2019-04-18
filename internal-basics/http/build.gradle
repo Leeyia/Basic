@@ -1,7 +1,7 @@
 apply from: rootProject.file('internal-basics/configure.gradle')
 apply from: rootProject.file('internal-basics/bintrayUpload.gradle')
 
-version = "1.0.3"
+version = "1.0.0"
 
 bintray {
     pkg {
