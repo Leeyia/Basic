@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dintech.android.outside" />
+    package="com.dintech.api.outside" />

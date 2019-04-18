@@ -27,5 +27,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation project(':outside-base')
-    implementation 'com.dintech.android:vlog:1.0.2'
+
+//    implementation 'com.dintech.api:vlog:1.0.3'
+//    implementation 'com.dintech.api:network:1.0.3'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 }

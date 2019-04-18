@@ -2,10 +2,10 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 version = "1.0.1"
-group = "com.dintech.api"
+group = "com.dintech.android"
 
-def siteUrl = 'https://github.com/dintech-api/Basic'
-def gitUrl = 'https://github.com/dintech-api/Basic.git'
+def siteUrl = 'https://github.com/dintech-android/Basic'
+def gitUrl = 'https://github.com/dintech-android/Basic.git'
 
 install {
     repositories.mavenInstaller {
@@ -85,6 +85,6 @@ javadoc {
         charSet 'UTF-8'
         author true
         version true
-        links "http://docs.oracle.com/javase/7/docs/api"
+        links "http://docs.oracle.com/javase/7/docs/android"
     }
 }

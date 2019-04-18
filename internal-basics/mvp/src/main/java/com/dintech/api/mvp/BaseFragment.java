@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment;
 
 import java.lang.ref.WeakReference;
 
-public class BaseFragment<T extends Logic> extends Fragment implements Logic.View {
+public class BaseFragment<T extends Logic> extends Fragment implements View {
 
     private WeakReference<T> mLogicWrf;
 

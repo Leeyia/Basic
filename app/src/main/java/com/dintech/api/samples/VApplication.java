@@ -11,7 +11,7 @@ public class VApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        VLog.initialize("com.dintech.api.log")
+        VLog.initialize("com.dintech.getApiService.log")
                 .logLevel(LogLevel.FULL)
                 .logTool(new AndroidLogTool())
                 .methodCount(3)
