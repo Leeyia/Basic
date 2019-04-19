@@ -17,7 +17,6 @@ public class Network {
         retrofit = new Retrofit.Builder()
                 .baseUrl(builder.baseUrl)
                 .addConverterFactory(builder.factory)
-                .addCallAdapterFactory(builder.callFactory)
                 .client(builder.client)
                 .build();
     }

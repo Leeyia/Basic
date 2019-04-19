@@ -14,9 +14,7 @@ public class NeT {
         neT = new Network.Builder()
                 .baseURL("http://www.dintech.com/getApiService/v2/")
                 .converter(GsonConverterFactory.create())
-                .client(new OkHttpClient.Builder()
-                        .addInterceptor(new HttpLogInterceptor())
-                        .build())
+                .client(new OkHttpClient.Builder().addInterceptor(new HttpLogInterceptor()).build())
                 .build();
     }
 
