@@ -1,0 +1,12 @@
+apply from: rootProject.file('internal-basics/configure.gradle')
+apply from: rootProject.file('internal-basics/bintrayUpload.gradle')
+
+bintray {
+    pkg {
+        name = "bleep"
+    }
+}
+
+version = "1.1.2"
+dependencies {}
+

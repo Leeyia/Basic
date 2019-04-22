@@ -1,2 +1,2 @@
-include ':app', ':internal-basics:vlog', ':internal-basics:http', ':internal-basics:image', ':internal-basics:mvp', ':internal-basics:bluetooth'
+include ':app', ':internal-basics:vlog', ':internal-basics:http', ':internal-basics:image', ':internal-basics:mvp', ':internal-basics:bleep'
 //        ':external-base:variants'

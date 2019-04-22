@@ -3,7 +3,7 @@ package com.dintech.api.samples;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.dintech.api.bluetooth.BluetoothKit;
+import com.dintech.api.bleep.BluetoothKit;
 
 public class MainActivity extends AppCompatActivity {
 

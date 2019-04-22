@@ -1,15 +1,15 @@
 apply from: rootProject.file('internal-basics/configure.gradle')
-apply from: rootProject.file('internal-basics/bintrayUpload.gradle')
+//apply from: rootProject.file('internal-basics/bintrayUpload.gradle')
 
-version = "1.0.1"
-
-bintray {
-    pkg {
-        repo = "dintech"
-        name = "network"
-    }
-}
-
+//bintray {
+//    pkg {
+//        repo = "dintech"
+//        name = "network"
+//    }
+//}
+//
+//version = "1.0.1"
+//
 dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
 }

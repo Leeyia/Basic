@@ -2,8 +2,9 @@ package com.dintech.api.samples;
 
 import android.app.Application;
 
-import com.dintech.api.bluetooth.BluetoothKit;
-import com.dintech.api.bluetooth.Configurations;
+import com.dintech.api.bleep.BluetoothKit;
+import com.dintech.api.bleep.Configurations;
+
 
 public class VApplication extends Application {
 
@@ -17,8 +18,6 @@ public class VApplication extends Application {
 //                .methodOffset(10);
 
         Configurations configuration = new Configurations.Builder().build();
-        BluetoothKit
-                .init(this)
-                .configurations(configuration);
+        BluetoothKit.init(this).configurations(configuration);
     }
 }
