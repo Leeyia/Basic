@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.dintech.api.bleep.BluetoothKit;
 import com.dintech.api.bleep.Configurations;
+import com.dintech.api.bleep.operation.SystemOperation;
 
 
 public class VApplication extends Application {
@@ -17,7 +18,13 @@ public class VApplication extends Application {
 //                .methodCount(3)
 //                .methodOffset(10);
 
-        Configurations configuration = new Configurations.Builder().build();
-        BluetoothKit.init(this).configurations(configuration);
+
+        Configurations configures = new Configurations.Builder()
+                .serviceUuid(Configurations.UUID.SERVICE_UUID)
+                .characterUuid(Configurations.UUID.CHARACTER_UUID)
+                .operation(new SystemOperation())
+                .setSplit(false)
+                .build();
+        BluetoothKit.init(this).configurations(configures);
     }
 }

@@ -2,7 +2,6 @@ package com.dintech.api.bleep;
 
 import android.app.Application;
 import android.bluetooth.BluetoothDevice;
-import android.content.Context;
 
 import com.dintech.api.bleep.callback.FailCallback;
 
@@ -19,9 +18,9 @@ public class BluetoothKit implements FailCallback {
         return bluetoothKit;
     }
 
-    public static Settings init(Context context) {
-        settings = new Settings();
-        settings.context(context);
+    public static Settings init(Application application) {
+        if (settings == null) settings = new Settings();
+        settings.application(application);
         return settings;
     }
 

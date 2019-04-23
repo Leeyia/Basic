@@ -1,19 +1,19 @@
 package com.dintech.api.bleep;
 
-import android.content.Context;
+import android.app.Application;
 
 public final class Settings {
 
-    private Context context;
+    private Application application;
     private Configurations configuration;
 
-    public Settings context(Context context) {
-        this.context = context;
+    public Settings application(Application application) {
+        this.application = application;
         return this;
     }
 
-    public Context getContext() {
-        return context;
+    public Application getApplication() {
+        return application;
     }
 
     public Settings configurations(Configurations configuration) {
