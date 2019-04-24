@@ -33,8 +33,8 @@ dependencies {
 
 //    implementation 'com.dintech.api:vlog:1.0.3'
     implementation 'com.dintech.api:http:1.0.1'
-    implementation 'com.dintech.api:bleep:1.1.6'
-//    implementation project(':internal-basics:bleep')
+//    implementation 'com.dintech.api:bleep:1.1.6'
+    implementation project(':internal-basics:bleep')
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'

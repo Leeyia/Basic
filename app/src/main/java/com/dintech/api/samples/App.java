@@ -7,7 +7,7 @@ import com.dintech.api.bleep.Configurations;
 import com.dintech.api.bleep.operation.SystemOperation;
 
 
-public class VApplication extends Application {
+public class App extends Application {
 
     @Override
     public void onCreate() {
@@ -19,7 +19,7 @@ public class VApplication extends Application {
 //                .methodOffset(10);
 
 
-        Configurations configures = new Configurations.Builder()
+        Configurations configures = Configurations.newBuilder()
                 .serviceUuid(Configurations.UUID.SERVICE_UUID)
                 .characterUuid(Configurations.UUID.CHARACTER_UUID)
                 .operation(new SystemOperation())

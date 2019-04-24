@@ -3,7 +3,7 @@ package com.dintech.api.bleep;
 import com.dintech.api.bleep.operation.Operation;
 import com.dintech.api.bleep.operation.SystemOperation;
 
-public class Configurations {
+public final class Configurations {
 
     private Builder builder;
 
@@ -27,7 +27,7 @@ public class Configurations {
         return Preconditions.checkNotNull(builder.split);
     }
 
-    public static class Builder {
+    public final static class Builder {
         private String serviceUuid = UUID.SERVICE_UUID;
         private String characteristicUuid = UUID.CHARACTER_UUID;
         private Operation operation = new SystemOperation();
@@ -58,8 +58,12 @@ public class Configurations {
         }
     }
 
-    public static final class UUID {
-        public final static String SERVICE_UUID = "0000fff0-0000-1000-8000-00805f9b34fb";
-        public final static String CHARACTER_UUID = "0000fff3-0000-1000-8000-00805f9b34fb";
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
+    public interface UUID {
+        String SERVICE_UUID = "0000fff0-0000-1000-8000-00805f9b34fb";
+        String CHARACTER_UUID = "0000fff3-0000-1000-8000-00805f9b34fb";
     }
 }
