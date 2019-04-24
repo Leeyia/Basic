@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">bleep</string>
+    <string name="exception_connected">Connect Exception Occurred!</string>
 </resources>

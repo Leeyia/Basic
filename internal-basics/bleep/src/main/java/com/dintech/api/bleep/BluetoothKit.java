@@ -8,7 +8,7 @@ import com.dintech.api.bleep.callback.FailCallback;
 public class BluetoothKit implements FailCallback {
 
     private RequestQueue mRequestQueue = new RequestQueue();
-    private static Settings settings;
+    private static Settings mSettings;
     private static BluetoothKit bluetoothKit;
 
     public static BluetoothKit get() {
@@ -19,13 +19,13 @@ public class BluetoothKit implements FailCallback {
     }
 
     public static Settings init(Application application) {
-        if (settings == null) settings = new Settings();
-        settings.application(application);
-        return settings;
+        if (mSettings == null) mSettings = new Settings();
+        mSettings.application(application);
+        return mSettings;
     }
 
     private BluetoothKit() {
-        Preconditions.checkNotNull(settings, "BluetoothKit NOT INIT");
+        Preconditions.checkNotNull(mSettings, "Low Energy Bluetooth not initialization configurations");
     }
 
     public final ConnectRequest connect(final BluetoothDevice device) {
@@ -44,12 +44,12 @@ public class BluetoothKit implements FailCallback {
         return Request.disconnet(device).setBluetoothKit(this);
     }
 
-    public Settings getSettings() {
-        return Preconditions.checkNotNull(settings);
+    public static Settings getSettings() {
+        return Preconditions.checkNotNull(mSettings);
     }
 
     public Configurations getConfigurations() {
-        return Preconditions.checkNotNull(settings.getConfiguration());
+        return Preconditions.checkNotNull(mSettings.getConfiguration());
     }
 
     public void onDestory() {
@@ -92,7 +92,7 @@ public class BluetoothKit implements FailCallback {
 
             case DISCONNECT:
                 ConnectRequest dr = (ConnectRequest) request;
-                settings.getConfiguration().getOperation().disconnect(dr.getDevice(), dr);
+                getConfigurations().getOperation().disconnect(dr.getDevice(), dr);
                 break;
             default:
                 break;

@@ -25,5 +25,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        BluetoothKit.get();
     }
 }

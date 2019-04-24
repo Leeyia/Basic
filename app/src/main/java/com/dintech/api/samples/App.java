@@ -2,10 +2,6 @@ package com.dintech.api.samples;
 
 import android.app.Application;
 
-import com.dintech.api.bleep.BluetoothKit;
-import com.dintech.api.bleep.Configurations;
-import com.dintech.api.bleep.operation.SystemOperation;
-
 
 public class App extends Application {
 
@@ -19,12 +15,12 @@ public class App extends Application {
 //                .methodOffset(10);
 
 
-        Configurations configures = Configurations.newBuilder()
-                .serviceUuid(Configurations.UUID.SERVICE_UUID)
-                .characterUuid(Configurations.UUID.CHARACTER_UUID)
-                .operation(new SystemOperation())
-                .setSplit(false)
-                .build();
-        BluetoothKit.init(this).configurations(configures);
+//        Configurations configures = Configurations.newBuilder()
+//                .serviceUuid(Configurations.UUID.SERVICE_UUID)
+//                .characterUuid(Configurations.UUID.CHARACTER_UUID)
+//                .operation(new SystemEngine())
+//                .setSplit(false)
+//                .build();
+//        BluetoothKit.init(this).configurations(configures);
     }
 }

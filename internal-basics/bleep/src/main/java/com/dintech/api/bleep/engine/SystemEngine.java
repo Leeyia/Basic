@@ -1,4 +1,4 @@
-package com.dintech.api.bleep.operation;
+package com.dintech.api.bleep.engine;
 
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -10,17 +10,19 @@ import android.content.Context;
 
 import com.dintech.api.bleep.BluetoothKit;
 import com.dintech.api.bleep.Request;
+import com.dintech.api.bleep.exception.ConnectedException;
+import com.dintech.api.bleep.exception.event.DefalutBleExceptionEvent;
 
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SystemOperation implements Operation {
+public class SystemEngine implements Engine {
 
     private final Context context;
     private Map<BluetoothDevice, BluetoothGatt> mDeviceGattHashMap = new ConcurrentHashMap<>();
 
-    public SystemOperation() {
+    public SystemEngine() {
         this.context = BluetoothKit.get()
                 .getSettings()
                 .getApplication()
@@ -45,6 +47,7 @@ public class SystemOperation implements Operation {
                         }
                         break;
                     default:
+                        new DefalutBleExceptionEvent().onEvent(new ConnectedException(gatt, newState));
                         break;
                 }
 

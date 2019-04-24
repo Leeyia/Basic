@@ -1,10 +1,10 @@
-package com.dintech.api.bleep.operation;
+package com.dintech.api.bleep.engine;
 
 import android.bluetooth.BluetoothDevice;
 
 import com.dintech.api.bleep.Request;
 
-public interface Operation {
+public interface Engine {
 
     void connect(BluetoothDevice device, Request request);
 

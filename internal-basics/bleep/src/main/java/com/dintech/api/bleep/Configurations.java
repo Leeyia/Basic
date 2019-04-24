@@ -1,7 +1,7 @@
 package com.dintech.api.bleep;
 
-import com.dintech.api.bleep.operation.Operation;
-import com.dintech.api.bleep.operation.SystemOperation;
+import com.dintech.api.bleep.engine.Engine;
+import com.dintech.api.bleep.engine.SystemEngine;
 
 public final class Configurations {
 
@@ -19,7 +19,7 @@ public final class Configurations {
         return Preconditions.checkNotNull(builder.characteristicUuid);
     }
 
-    public Operation getOperation() {
+    public Engine getOperation() {
         return Preconditions.checkNotNull(builder.operation);
     }
 
@@ -30,7 +30,7 @@ public final class Configurations {
     public final static class Builder {
         private String serviceUuid = UUID.SERVICE_UUID;
         private String characteristicUuid = UUID.CHARACTER_UUID;
-        private Operation operation = new SystemOperation();
+        private Engine operation = new SystemEngine();
         private boolean split;
 
         public Builder serviceUuid(String serviceUuid) {
@@ -43,7 +43,7 @@ public final class Configurations {
             return this;
         }
 
-        public Builder operation(Operation operation) {
+        public Builder operation(Engine operation) {
             this.operation = operation;
             return this;
         }
