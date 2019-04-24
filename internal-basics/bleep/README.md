@@ -58,14 +58,14 @@ BluetoothKit
         .enqueue();
 ```
 
-## download
+## Download
 ```
 dependencies {
     implementation 'com.dintech.api:bleep:1.1.6'
 }
 ```
 
-## feature
+## Future
 1.2.0  
 [ ] 连接超时    
 [x] 代码优化
