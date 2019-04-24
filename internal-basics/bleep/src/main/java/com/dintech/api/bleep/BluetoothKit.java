@@ -11,7 +11,7 @@ public class BluetoothKit implements FailCallback {
     private static Settings settings;
     private static BluetoothKit bluetoothKit;
 
-    public static BluetoothKit getInstance() {
+    public static BluetoothKit get() {
         if (bluetoothKit == null) synchronized (BluetoothKit.class) {
             if (bluetoothKit == null) bluetoothKit = new BluetoothKit();
         }
@@ -68,7 +68,7 @@ public class BluetoothKit implements FailCallback {
 
     private void nextRequest() {
         Request request = null;
-        // If Request set is present, try taking next request from it
+        // If Request set is present, try taking next request get it
         if (mRequestQueue.hasMore()) {
             request = mRequestQueue.getNext();
         }

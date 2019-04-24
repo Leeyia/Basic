@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
-        BluetoothKit instance = BluetoothKit.getInstance();
 
     }
 }

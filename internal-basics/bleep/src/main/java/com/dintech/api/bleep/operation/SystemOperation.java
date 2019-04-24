@@ -21,7 +21,7 @@ public class SystemOperation implements Operation {
     private Map<BluetoothDevice, BluetoothGatt> mDeviceGattHashMap = new ConcurrentHashMap<>();
 
     public SystemOperation() {
-        this.context = BluetoothKit.getInstance()
+        this.context = BluetoothKit.get()
                 .getSettings()
                 .getApplication()
                 .getApplicationContext();
