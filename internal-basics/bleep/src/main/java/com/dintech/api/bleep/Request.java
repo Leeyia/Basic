@@ -42,14 +42,14 @@ public abstract class Request {
     }
 
     /**
-     * Creates a new connect request. This allows to set a callback to the connect event,
+     * Creates a new newConnectRequest request. This allows to set a callback to the newConnectRequest event,
      * just like any other request.
      *
-     * @param device the device to connect to.
-     * @return The new connect request.
+     * @param device the device to newConnectRequest to.
+     * @return The new newConnectRequest request.
      */
     
-    static ConnectRequest connect( final BluetoothDevice device) {
+    static ConnectRequest newConnectRequest(final BluetoothDevice device) {
         return new ConnectRequest(Type.CONNECT, device);
     }
 

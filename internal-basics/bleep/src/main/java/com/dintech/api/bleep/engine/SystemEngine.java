@@ -23,7 +23,7 @@ public class SystemEngine implements Engine {
     private Map<BluetoothDevice, BluetoothGatt> mDeviceGattHashMap = new ConcurrentHashMap<>();
 
     public SystemEngine() {
-        this.context = BluetoothKit.get()
+        this.context = BluetoothKit
                 .getSettings()
                 .getApplication()
                 .getApplicationContext();

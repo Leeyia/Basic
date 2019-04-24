@@ -28,8 +28,8 @@ public class BluetoothKit implements FailCallback {
         Preconditions.checkNotNull(mSettings, "Low Energy Bluetooth not initialization configurations");
     }
 
-    public final ConnectRequest connect(final BluetoothDevice device) {
-        return Request.connect(device).setBluetoothKit(this);
+    public final ConnectRequest connect(BluetoothDevice device) {
+        return Request.newConnectRequest(device).setBluetoothKit(this);
     }
 
     public final NotificationRequest notification(final BluetoothDevice device) {
