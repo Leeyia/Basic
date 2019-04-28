@@ -2,6 +2,7 @@ package com.dintech.api.samples;
 
 import android.app.Application;
 
+import com.dintech.api.bleep.BluetoothKit;
 
 public class App extends Application {
 
@@ -14,13 +15,11 @@ public class App extends Application {
 //                .methodCount(3)
 //                .methodOffset(10);
 
-
-//        Configurations configures = Configurations.newBuilder()
-//                .serviceUuid(Configurations.UUID.SERVICE_UUID)
-//                .characterUuid(Configurations.UUID.CHARACTER_UUID)
-//                .operation(new SystemEngine())
-//                .setSplit(false)
-//                .build();
-//        BluetoothKit.init(this).configurations(configures);
+        BluetoothKit.init()
+                .application(this)
+                .serviceUuid("")
+                .characterUuid("")
+                .trigger(new SystemTrigger(this))
+                .split(false);
     }
 }

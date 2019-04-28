@@ -5,6 +5,6 @@ import com.dintech.api.bleep.BluetoothKit;
 public class ResourceUtil {
 
     public static String getString(int stringId) {
-       return BluetoothKit.getSettings().getApplication().getResources().getString(stringId);
+        return BluetoothKit.getConfigurations().getApplication().getResources().getString(stringId);
     }
 }

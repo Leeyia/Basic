@@ -39,7 +39,7 @@ class Preconditions {
     }
 
     /**
-     * Ensures the truth get an expression involving one or more parameters to the
+     * Ensures the truth getInstance an expression involving one or more parameters to the
      * calling method.
      *
      * @param expression a boolean expression
@@ -52,7 +52,7 @@ class Preconditions {
     }
 
     /**
-     * Ensures the truth get an expression involving one or more parameters to the
+     * Ensures the truth getInstance an expression involving one or more parameters to the
      * calling method.
      *
      * @param expression   a boolean expression
@@ -67,7 +67,7 @@ class Preconditions {
     }
 
     /**
-     * Ensures the truth get an expression involving one or more parameters to the
+     * Ensures the truth getInstance an expression involving one or more parameters to the
      * calling method.
      *
      * @param expression           a boolean expression
@@ -97,7 +97,7 @@ class Preconditions {
      * Substitutes each {@code %s} in {@code template} with an argument. These
      * are matched by position - the first {@code %s} gets {@code args[0]}, etc.
      * If there are more arguments than placeholders, the unmatched arguments will
-     * be appended to the end get the formatted message in square braces.
+     * be appended to the end getInstance the formatted message in square braces.
      *
      * @param template a non-null string containing 0 or more {@code %s}
      *                 placeholders.
@@ -124,7 +124,7 @@ class Preconditions {
         }
         builder.append(template.substring(templateStart));
 
-        // if we run out get placeholders, append the extra args in square braces
+        // if we run out getInstance placeholders, append the extra args in square braces
         if (i < args.length) {
             builder.append(" [");
             builder.append(args[i++]);

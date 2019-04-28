@@ -1,9 +1,10 @@
 package com.dintech.api.bleep;
 
-import com.dintech.api.bleep.engine.Engine;
-import com.dintech.api.bleep.engine.SystemEngine;
+import android.app.Application;
 
-public final class Configurations {
+import static com.dintech.api.bleep.Preconditions.checkNotNull;
+
+public class Configurations {
 
     private Builder builder;
 
@@ -11,26 +12,35 @@ public final class Configurations {
         this.builder = builder;
     }
 
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
     public String getServiceUuid() {
-        return Preconditions.checkNotNull(builder.serviceUuid);
+        return checkNotNull(builder.serviceUuid);
     }
 
-    public String getCharacteristicUuid() {
-        return Preconditions.checkNotNull(builder.characteristicUuid);
+    public String getCharacterUuid() {
+        return checkNotNull(builder.characterUuid);
     }
 
-    public Engine getOperation() {
-        return Preconditions.checkNotNull(builder.operation);
+    public Application getApplication() {
+        return checkNotNull(builder.application);
+    }
+
+    public Trigger getTrigger() {
+        return checkNotNull(builder.trigger);
     }
 
     public boolean isSplit() {
-        return Preconditions.checkNotNull(builder.split);
+        return checkNotNull(builder.split);
     }
 
     public final static class Builder {
-        private String serviceUuid = UUID.SERVICE_UUID;
-        private String characteristicUuid = UUID.CHARACTER_UUID;
-        private Engine operation = new SystemEngine();
+        private String serviceUuid;
+        private String characterUuid;
+        private Application application;
+        private Trigger trigger;
         private boolean split;
 
         public Builder serviceUuid(String serviceUuid) {
@@ -38,32 +48,28 @@ public final class Configurations {
             return this;
         }
 
-        public Builder characterUuid(String characteristicUuid) {
-            this.characteristicUuid = characteristicUuid;
+        public Builder characterUuid(String characterUuid) {
+            this.characterUuid = characterUuid;
             return this;
         }
 
-        public Builder operation(Engine operation) {
-            this.operation = operation;
+        public Builder application(Application application) {
+            this.application = application;
             return this;
         }
 
-        public Builder setSplit(boolean split) {
+        public Builder trigger(Trigger trigger) {
+            this.trigger = trigger;
+            return this;
+        }
+
+        public Builder split(boolean split) {
             this.split = split;
             return this;
         }
 
-        public Configurations build() {
+        public Configurations newInstance() {
             return new Configurations(this);
         }
-    }
-
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
-    public interface UUID {
-        String SERVICE_UUID = "0000fff0-0000-1000-8000-00805f9b34fb";
-        String CHARACTER_UUID = "0000fff3-0000-1000-8000-00805f9b34fb";
     }
 }

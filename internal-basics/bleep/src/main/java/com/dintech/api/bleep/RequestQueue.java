@@ -5,14 +5,14 @@ import java.util.Queue;
 
 public class RequestQueue {
 
-    
+
     private final Queue<Request> requests;
 
     public RequestQueue() {
         this.requests = new LinkedList<>();
     }
 
-    
+
     public RequestQueue add( final Request request) {
         requests.add(request);
         return this;
@@ -39,8 +39,6 @@ public class RequestQueue {
     public Request getNext() {
         try {
             return requests.remove();
-            // poll() may also throw an exception
-            // See: https://github.com/NordicSemiconductor/Android-BLE-Library/issues/37
         } catch (final Exception e) {
             return null;
         }

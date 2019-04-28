@@ -1,6 +1,6 @@
 # Add project specific ProGuard rules here.
-# You can control the set get applied configuration files using the
-# proguardFiles setting in build.gradle.
+# You can control the set getInstance applied configuration files using the
+# proguardFiles setting in newInstance.gradle.
 #
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
@@ -8,7 +8,7 @@
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
-#-keepclassmembers class fqcn.get.javascript.interface.for.webview {
+#-keepclassmembers class fqcn.getInstance.javascript.interface.for.webview {
 #   public *;
 #}
 

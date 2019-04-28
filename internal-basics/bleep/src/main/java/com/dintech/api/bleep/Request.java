@@ -2,10 +2,10 @@ package com.dintech.api.bleep;
 
 import android.bluetooth.BluetoothDevice;
 
-import com.dintech.api.bleep.callback.DisConnectionCallback;
 import com.dintech.api.bleep.callback.FailCallback;
-import com.dintech.api.bleep.callback.NotificationCallback;
+import com.dintech.api.bleep.callback.ReceiveCallback;
 import com.dintech.api.bleep.callback.SuccessCallback;
+import com.dintech.api.bleep.exception.BleException;
 
 public abstract class Request {
 
@@ -19,10 +19,9 @@ public abstract class Request {
     private final Type type;
     private final BluetoothDevice device;
 
-    FailCallback failCallback;
-    SuccessCallback successCallback;
-    NotificationCallback notificationCallback;
-    DisConnectionCallback disConnectionCallback;
+    private FailCallback failCallback;
+    private SuccessCallback successCallback;
+    private ReceiveCallback receiveCallback;
     private BluetoothKit manager;
 
     public Request(Type type, BluetoothDevice device) {
@@ -35,8 +34,8 @@ public abstract class Request {
      *
      * @param manager the manager in which the request will be executed.
      */
-    
-    Request setBluetoothKit( final BluetoothKit manager) {
+
+    Request setBluetoothKit(final BluetoothKit manager) {
         this.manager = manager;
         return this;
     }
@@ -48,47 +47,36 @@ public abstract class Request {
      * @param device the device to newConnectRequest to.
      * @return The new newConnectRequest request.
      */
-    
-    static ConnectRequest newConnectRequest(final BluetoothDevice device) {
-        return new ConnectRequest(Type.CONNECT, device);
+
+    static ConnectedRequest newConnectRequest(final BluetoothDevice device) {
+        return new ConnectedRequest(Type.CONNECT, device);
     }
 
-    
-    static NotificationRequest notify( final BluetoothDevice device) {
+    static NotificationRequest newNotificationRequest(final BluetoothDevice device) {
         return new NotificationRequest(Type.NOTIFICATION, device);
     }
 
-    
-    static WriteRequest write( final BluetoothDevice device,  byte[] data) {
+    static WriteRequest newWriteRequest(final BluetoothDevice device, byte[] data) {
         return new WriteRequest(Type.WRITE, device, data);
     }
 
-    
-    static ConnectRequest disconnet( final BluetoothDevice device) {
-        return new ConnectRequest(Type.DISCONNECT, device);
+    static DisConnectedRequest newDisConnectedRequest(final BluetoothDevice device) {
+        return new DisConnectedRequest(Type.DISCONNECT, device);
     }
 
-    
-    protected Request done( final SuccessCallback callback) {
+
+    Request done(final SuccessCallback callback) {
         this.successCallback = callback;
         return this;
     }
 
-    
-    protected Request fail( final FailCallback callback) {
+    Request fail(final FailCallback callback) {
         this.failCallback = callback;
         return this;
     }
 
-    
-    protected Request notify( final NotificationCallback callback) {
-        this.notificationCallback = callback;
-        return this;
-    }
-
-    
-    protected Request discall( final DisConnectionCallback callback) {
-        this.disConnectionCallback = callback;
+    Request receive(final ReceiveCallback callback) {
+        this.receiveCallback = callback;
         return this;
     }
 
@@ -96,24 +84,19 @@ public abstract class Request {
         manager.enqueue(this);
     }
 
-    public void notifySuccess( final BluetoothDevice device) {
+    public void notifySuccess(final BluetoothDevice device) {
         if (successCallback != null)
             successCallback.onSuccessful(device);
     }
 
-    public void notifyFail( final BluetoothDevice device, final String message) {
+    public void notifyFail(final BluetoothDevice device, final BleException e) {
         if (failCallback != null)
-            failCallback.onRequestFailed(device, message);
+            failCallback.onRequestFailed(device, e);
     }
 
-    public void notifyNotification( final BluetoothDevice device, byte[] data) {
-        if (notificationCallback != null)
-            notificationCallback.onNotificationChanged(device, data);
-    }
-
-    public void notifyDisConnected( final BluetoothDevice device) {
-        if (disConnectionCallback != null)
-            disConnectionCallback.onDisConnected(device);
+    public void notifyNotification(final BluetoothDevice device, byte[] bytes) {
+        if (receiveCallback != null)
+            receiveCallback.onRequestReceive(device, bytes);
     }
 
     public Type getType() {

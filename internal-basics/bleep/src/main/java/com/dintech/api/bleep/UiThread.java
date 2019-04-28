@@ -19,7 +19,7 @@ public class UiThread {
         return mUiThread;
     }
 
-    public void runOnUiThread(final Runnable runnable) {
+    void runOnUiThread(final Runnable runnable) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             mHandler.post(runnable);
         } else {

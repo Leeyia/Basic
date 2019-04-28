@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 /**
- * Instrumented test, which will execute on an Android device.
+ * Instrumented test, which will enqueue on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() {
-        // Context get the app under test.
+        // Context getInstance the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.dintech.android.samples", appContext.getPackageName());
