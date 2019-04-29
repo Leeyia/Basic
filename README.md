@@ -1,7 +1,7 @@
 [ ![Download](https://api.bintray.com/packages/meikoz/dintech/bleep/images/download.svg?version=1.1.6) ](https://bintray.com/meikoz/dintech/bleep/1.1.6/link)
 
 # Business
-DINTech Android Architecture!
+Best practices in Android develop(final).
 
 
 ## 建议
