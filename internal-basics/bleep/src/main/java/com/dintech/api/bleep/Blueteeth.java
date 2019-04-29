@@ -4,20 +4,20 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.support.annotation.NonNull;
 
-public class BluetoothKit {
+public class Blueteeth {
 
-    private RequestQueue requestQueue;
-    private static BluetoothKit bluetoothKit;
+    private RequestQueue mInitRequestQueue;
+    private static Blueteeth bluetoothKit;
     private static Configurations.Builder newBuilder;
 
-    private BluetoothKit() {
-        if (newBuilder == null) throw new RuntimeException("BluetoothKit application not init");
-        this.requestQueue = new RequestQueue();
+    private Blueteeth() {
+        if (newBuilder == null) throw new RuntimeException("Blueteeth application not init");
+        this.mInitRequestQueue = new RequestQueue();
     }
 
-    public static BluetoothKit getInstance() {
-        if (bluetoothKit == null) synchronized (BluetoothKit.class) {
-            if (bluetoothKit == null) bluetoothKit = new BluetoothKit();
+    public static Blueteeth getInstance() {
+        if (bluetoothKit == null) synchronized (Blueteeth.class) {
+            if (bluetoothKit == null) bluetoothKit = new Blueteeth();
         }
         return bluetoothKit;
     }
@@ -38,61 +38,65 @@ public class BluetoothKit {
 
     @NonNull
     public final ConnectedRequest connect(@NonNull final BluetoothDevice device) {
-        return Request.newConnectRequest(device).setBluetoothKit(this);
+        return Request.newConnectRequest(device).setManager(this);
     }
 
     @NonNull
     public final NotificationRequest notification(@NonNull final BluetoothDevice device) {
-        return Request.newNotificationRequest(device).setBluetoothKit(this);
+        return Request.newNotificationRequest(device).setManager(this);
     }
 
     @NonNull
-    public final WriteRequest write(@NonNull final BluetoothDevice device, byte[] data) {
-        return Request.newWriteRequest(device, data).setBluetoothKit(this);
+    public final WritedRequest write(@NonNull final BluetoothDevice device, byte[] data) {
+        return Request.newWriteRequest(device, data).setManager(this);
     }
 
     @NonNull
     public final DisConnectedRequest disconnect(@NonNull final BluetoothDevice device) {
-        return Request.newDisConnectedRequest(device).setBluetoothKit(this);
+        return Request.newDisConnectedRequest(device).setManager(this);
     }
 
     public static Configurations getConfigurations() {
         return newBuilder.newInstance();
     }
 
+    // Caller controls Request execution order
     final void enqueue(final Request request) {
-        this.requestQueue.add(request);
+        this.mInitRequestQueue.add(request);
         UiThread.getInstance().runOnUiThread(this::nextRequest);
     }
 
     private void nextRequest() {
-        Request request = null;
+        Request mRequest = null;
         // If Request set is present, try taking next request getInstance it
-        if (requestQueue.hasMore()) {
-            request = requestQueue.getNext();
+        if (mInitRequestQueue.hasMore()) {
+            mRequest = mInitRequestQueue.getNext();
         }
-        if (request == null) return;
-        request.fail((device, message) -> UiThread.getInstance().runOnUiThread(this::nextRequest));
+
+        if (!mInitRequestQueue.hasMore() || mRequest == null) return;
+
+        mRequest.fail((device, message) ->
+                UiThread.getInstance().runOnUiThread(this::nextRequest));
 
         Trigger trigger = getConfigurations().getTrigger();
-        switch (request.getType()) {
+        switch (mRequest.getType()) {
             case CONNECT:
-                ConnectedRequest cr = (ConnectedRequest) request;
+                ConnectedRequest cr = (ConnectedRequest) mRequest;
                 trigger.connect(cr.getDevice(), cr);
                 break;
 
             case NOTIFICATION:
-                NotificationRequest nr = (NotificationRequest) request;
+                NotificationRequest nr = (NotificationRequest) mRequest;
                 trigger.notification(nr.getDevice(), nr);
                 break;
 
             case WRITE:
-                WriteRequest wr = (WriteRequest) request;
+                WritedRequest wr = (WritedRequest) mRequest;
                 trigger.write(wr.getDevice(), wr.getBytes(), wr);
                 break;
 
             case DISCONNECT:
-                ConnectedRequest dr = (ConnectedRequest) request;
+                ConnectedRequest dr = (ConnectedRequest) mRequest;
                 trigger.disconnect(dr.getDevice(), dr);
                 break;
             default:

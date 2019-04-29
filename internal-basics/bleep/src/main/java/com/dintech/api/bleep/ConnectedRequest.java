@@ -19,8 +19,8 @@ public class ConnectedRequest extends TimeoutRequest {
     }
 
     @Override
-    ConnectedRequest setBluetoothKit(final BluetoothKit manager) {
-        super.setBluetoothKit(manager);
+    ConnectedRequest setManager(final Blueteeth manager) {
+        super.setManager(manager);
         return this;
     }
 
@@ -39,12 +39,6 @@ public class ConnectedRequest extends TimeoutRequest {
     @Override
     public ConnectedRequest timeout(int timeout) {
         super.timeout(timeout);
-        return this;
-    }
-
-    @Override
-    protected Request discall(DisConnectionCallback callback) {
-        super.discall(callback);
         return this;
     }
 

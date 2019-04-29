@@ -4,7 +4,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.util.Log;
 
-import com.dintech.api.bleep.BluetoothKit;
+import com.dintech.api.bleep.Blueteeth;
 import com.dintech.api.bleep.ConnectedRequest;
 import com.dintech.api.bleep.Request;
 import com.dintech.api.bleep.exception.BleException;
@@ -27,7 +27,7 @@ public class SystemTrigger implements Trigger {
     @Override
     public void connect(BluetoothDevice device, Request request) {
         ConnectedRequest cr = (ConnectedRequest) request;
-        BleConnectOptions options = new BleConnectOptions.Builder().setConnectRetry(cr.getRetries()).setConnectTimeout(cr.getTimeout()).build();
+        BleConnectOptions options = new BleConnectOptions.Builder().setConnectTimeout(10000).setConnectRetry(cr.getRetries()).setConnectTimeout(cr.getTimeout()).build();
         this.mClient.connect(device.getAddress(), options, (code, data) -> {
             if (code == Code.REQUEST_SUCCESS) {
                 Log.d("ConnectEvent", "Connect Succ: " + device.getAddress());
@@ -45,8 +45,8 @@ public class SystemTrigger implements Trigger {
 
     @Override
     public void notification(BluetoothDevice device, Request request) {
-        UUID serviceUuid = UUID.fromString(BluetoothKit.getConfigurations().getServiceUuid());
-        UUID characterUuid = UUID.fromString(BluetoothKit.getConfigurations().getCharacterUuid());
+        UUID serviceUuid = UUID.fromString(Blueteeth.getConfigurations().getServiceUuid());
+        UUID characterUuid = UUID.fromString(Blueteeth.getConfigurations().getCharacterUuid());
 
         mClient.notify(device.getAddress(), serviceUuid, characterUuid, new BleNotifyResponse() {
             @Override
@@ -67,8 +67,8 @@ public class SystemTrigger implements Trigger {
 
     @Override
     public void write(BluetoothDevice device, byte[] bytes, Request request) {
-        UUID serviceUuid = UUID.fromString(BluetoothKit.getConfigurations().getServiceUuid());
-        UUID characterUuid = UUID.fromString(BluetoothKit.getConfigurations().getCharacterUuid());
+        UUID serviceUuid = UUID.fromString(Blueteeth.getConfigurations().getServiceUuid());
+        UUID characterUuid = UUID.fromString(Blueteeth.getConfigurations().getCharacterUuid());
 
         mClient.write(device.getAddress(), serviceUuid, characterUuid, bytes, code -> {
             if (code == Code.REQUEST_SUCCESS) {

@@ -1,9 +1,11 @@
 package com.dintech.api.samples;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 
-import com.dintech.api.bleep.BluetoothKit;
+import com.dintech.api.bleep.Blueteeth;
+import com.dintech.api.bleep.exception.BleException;
 
 public class MainActivity extends Activity {
 
@@ -25,13 +27,16 @@ public class MainActivity extends Activity {
 //            }
 //        });
 
-        BluetoothKit
+        Blueteeth
                 .getInstance()
-                .connect("")
+                .connect("BA:03:54:52:C6:D5")
                 .timeout(10000)
                 .done(device -> {
+                    BluetoothDevice device1 = device;
                 })
                 .fail((device, ex) -> {
+                    BluetoothDevice device1 = device;
+                    BleException ex1 = ex;
                 })
                 .enqueue();
 

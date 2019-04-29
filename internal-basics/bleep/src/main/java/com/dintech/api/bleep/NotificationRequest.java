@@ -13,8 +13,8 @@ public class NotificationRequest extends Request {
     }
 
     @Override
-    NotificationRequest setBluetoothKit(final BluetoothKit manager) {
-        super.setBluetoothKit(manager);
+    NotificationRequest setManager(final Blueteeth manager) {
+        super.setManager(manager);
         return this;
     }
 

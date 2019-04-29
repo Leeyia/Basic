@@ -1,6 +1,7 @@
 package com.dintech.api.bleep;
 
 import android.bluetooth.BluetoothDevice;
+import android.os.Looper;
 
 import com.dintech.api.bleep.callback.FailCallback;
 import com.dintech.api.bleep.callback.ReceiveCallback;
@@ -22,20 +23,20 @@ public abstract class Request {
     private FailCallback failCallback;
     private SuccessCallback successCallback;
     private ReceiveCallback receiveCallback;
-    private BluetoothKit manager;
+    private Blueteeth manager;
 
-    public Request(Type type, BluetoothDevice device) {
+    Request(Type type, BluetoothDevice device) {
         this.type = type;
         this.device = device;
     }
 
     /**
-     * Sets the {@link BluetoothKit} instance.
+     * Sets the {@link Blueteeth} instance.
      *
      * @param manager the manager in which the request will be executed.
      */
 
-    Request setBluetoothKit(final BluetoothKit manager) {
+    Request setManager(final Blueteeth manager) {
         this.manager = manager;
         return this;
     }
@@ -56,8 +57,8 @@ public abstract class Request {
         return new NotificationRequest(Type.NOTIFICATION, device);
     }
 
-    static WriteRequest newWriteRequest(final BluetoothDevice device, byte[] data) {
-        return new WriteRequest(Type.WRITE, device, data);
+    static WritedRequest newWriteRequest(final BluetoothDevice device, byte[] data) {
+        return new WritedRequest(Type.WRITE, device, data);
     }
 
     static DisConnectedRequest newDisConnectedRequest(final BluetoothDevice device) {
@@ -105,5 +106,16 @@ public abstract class Request {
 
     public BluetoothDevice getDevice() {
         return device;
+    }
+
+    /**
+     * Asserts that the synchronous method was not called from the UI thread.
+     *
+     * @throws IllegalStateException when called from a UI thread.
+     */
+    public void assertNotMainThread() throws IllegalStateException {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            throw new IllegalStateException("Cannot execute synchronous operation from the UI thread.");
+        }
     }
 }

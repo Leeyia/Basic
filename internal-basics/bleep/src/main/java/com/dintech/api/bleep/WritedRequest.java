@@ -5,30 +5,30 @@ import android.bluetooth.BluetoothDevice;
 import com.dintech.api.bleep.callback.FailCallback;
 import com.dintech.api.bleep.callback.SuccessCallback;
 
-public class WriteRequest extends Request {
+public class WritedRequest extends Request {
 
     private byte[] bytes;
 
-    WriteRequest(final Type type, final BluetoothDevice device, byte[] bytes) {
+    WritedRequest(final Type type, final BluetoothDevice device, byte[] bytes) {
         super(type, device);
         this.bytes = bytes;
     }
 
     @Override
-    WriteRequest setBluetoothKit(final BluetoothKit manager) {
-        super.setBluetoothKit(manager);
+    WritedRequest setManager(final Blueteeth manager) {
+        super.setManager(manager);
         return this;
     }
 
 
     @Override
-    public WriteRequest done(final SuccessCallback callback) {
+    public WritedRequest done(final SuccessCallback callback) {
         super.done(callback);
         return this;
     }
 
     @Override
-    public WriteRequest fail(final FailCallback callback) {
+    public WritedRequest fail(final FailCallback callback) {
         super.fail(callback);
         return this;
     }

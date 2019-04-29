@@ -12,8 +12,8 @@ public class DisConnectedRequest extends Request {
     }
 
     @Override
-    DisConnectedRequest setBluetoothKit(final BluetoothKit manager) {
-        super.setBluetoothKit(manager);
+    DisConnectedRequest setManager(final Blueteeth manager) {
+        super.setManager(manager);
         return this;
     }
 

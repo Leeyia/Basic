@@ -2,9 +2,9 @@ package com.dintech.api.samples;
 
 import android.app.Application;
 
-import com.dintech.api.bleep.BluetoothKit;
+import com.dintech.api.bleep.Blueteeth;
 
-public class App extends Application {
+public class MainApp extends Application {
 
     @Override
     public void onCreate() {
@@ -15,7 +15,7 @@ public class App extends Application {
 //                .methodCount(3)
 //                .methodOffset(10);
 
-        BluetoothKit.init()
+        Blueteeth.init()
                 .application(this)
                 .serviceUuid("")
                 .characterUuid("")
