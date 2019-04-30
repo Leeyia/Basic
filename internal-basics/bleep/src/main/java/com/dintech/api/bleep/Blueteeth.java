@@ -11,7 +11,8 @@ public class Blueteeth {
     private static Configurations.Builder newBuilder;
 
     private Blueteeth() {
-        if (newBuilder == null) throw new RuntimeException("Blueteeth application not init");
+        if (newBuilder == null)
+            throw new RuntimeException("Blueteeth Occurred Initialize Exception!");
         this.mInitRequestQueue = new RequestQueue();
     }
 

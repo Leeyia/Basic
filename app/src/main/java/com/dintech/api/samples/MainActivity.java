@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 
         Blueteeth
                 .getInstance()
-                .connect("BA:03:54:52:C6:D5")
+                .connect("BA:03:54:52:C6:D5", 1)
                 .timeout(10000)
                 .done(device -> {
                     BluetoothDevice device1 = device;
