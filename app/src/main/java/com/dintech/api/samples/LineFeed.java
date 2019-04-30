@@ -33,6 +33,6 @@ public class LineFeed {
         LineFeed lf = new LineFeed();
         System.out
                 .println(lf
-                        .makelinefeed("The function returns the string, but with line breaks inserted at just the right places to make sure that no line is longer than the column number."));
+                        .makelinefeed("The function returns the string, but getInstance line breaks inserted at just the right places to make sure that no line is longer than the column number."));
     }
 }

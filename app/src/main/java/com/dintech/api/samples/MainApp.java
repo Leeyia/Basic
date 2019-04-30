@@ -2,7 +2,7 @@ package com.dintech.api.samples;
 
 import android.app.Application;
 
-import com.dintech.api.bleep.Blueteeth;
+import com.dintech.api.bleep.Bleep;
 
 public class MainApp extends Application {
 
@@ -15,7 +15,7 @@ public class MainApp extends Application {
 //                .methodCount(3)
 //                .methodOffset(10);
 
-        Blueteeth.init()
+        Bleep.init()
                 .application(this)
                 .serviceUuid("")
                 .characterUuid("")

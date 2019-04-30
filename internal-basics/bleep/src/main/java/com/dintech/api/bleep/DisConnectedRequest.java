@@ -12,7 +12,7 @@ public class DisConnectedRequest extends Request {
     }
 
     @Override
-    DisConnectedRequest setManager(final Blueteeth manager) {
+    DisConnectedRequest setManager(final Bleep manager) {
         super.setManager(manager);
         return this;
     }

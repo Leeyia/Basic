@@ -15,7 +15,7 @@ public class WritedRequest extends Request {
     }
 
     @Override
-    WritedRequest setManager(final Blueteeth manager) {
+    WritedRequest setManager(final Bleep manager) {
         super.setManager(manager);
         return this;
     }

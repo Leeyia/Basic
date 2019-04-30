@@ -15,7 +15,7 @@ public class TimeoutRequest extends Request {
     }
 
     @Override
-    TimeoutRequest setManager(final Blueteeth manager) {
+    TimeoutRequest setManager(final Bleep manager) {
         super.setManager(manager);
         return this;
     }

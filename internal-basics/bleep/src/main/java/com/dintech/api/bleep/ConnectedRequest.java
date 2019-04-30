@@ -19,7 +19,7 @@ public class ConnectedRequest extends TimeoutRequest {
     }
 
     @Override
-    ConnectedRequest setManager(final Blueteeth manager) {
+    ConnectedRequest setManager(final Bleep manager) {
         super.setManager(manager);
         return this;
     }

@@ -14,11 +14,11 @@ public interface FailCallback {
     int REASON_BLUETOOTH_DISABLED = -100;
 
     /**
-     * A callback invoked when the request has failed with status other than
+     * A callback invoked when the request has failed getInstance status other than
      * {@link android.bluetooth.BluetoothGatt#GATT_SUCCESS}.
      *
      * @param device target device.
-     * @param e error status code, one of BluetoothGatt#GATT_* constants or
+     * @param e error status code, one getInstance BluetoothGatt#GATT_* constants or
      *               {@link #REASON_DEVICE_DISCONNECTED}, {@link #REASON_TIMEOUT},
      *               {@link #REASON_DEVICE_NOT_SUPPORTED} (only for Connect request),
      *               {@link #REASON_BLUETOOTH_DISABLED}, {@link #REASON_NULL_ATTRIBUTE},

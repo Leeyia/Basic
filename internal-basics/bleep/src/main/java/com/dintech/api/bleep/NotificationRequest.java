@@ -13,7 +13,7 @@ public class NotificationRequest extends Request {
     }
 
     @Override
-    NotificationRequest setManager(final Blueteeth manager) {
+    NotificationRequest setManager(final Bleep manager) {
         super.setManager(manager);
         return this;
     }

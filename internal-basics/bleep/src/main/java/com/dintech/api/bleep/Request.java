@@ -23,7 +23,7 @@ public abstract class Request {
     private FailCallback failCallback;
     private SuccessCallback successCallback;
     private ReceiveCallback receiveCallback;
-    private Blueteeth manager;
+    private Bleep manager;
 
     Request(Type type, BluetoothDevice device) {
         this.type = type;
@@ -31,12 +31,12 @@ public abstract class Request {
     }
 
     /**
-     * Sets the {@link Blueteeth} instance.
+     * Sets the {@link Bleep} instance.
      *
      * @param manager the manager in which the request will be executed.
      */
 
-    Request setManager(final Blueteeth manager) {
+    Request setManager(final Bleep manager) {
         this.manager = manager;
         return this;
     }

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 
-import com.dintech.api.bleep.Blueteeth;
+import com.dintech.api.bleep.Bleep;
 import com.dintech.api.bleep.exception.BleException;
 
 public class MainActivity extends Activity {
@@ -27,9 +27,8 @@ public class MainActivity extends Activity {
 //            }
 //        });
 
-        Blueteeth
-                .getInstance()
-                .connect("BA:03:54:52:C6:D5", 1)
+        Bleep.getInstance()
+                .connect("BA:03:54:52:C6:D5")
                 .timeout(10000)
                 .done(device -> {
                     BluetoothDevice device1 = device;

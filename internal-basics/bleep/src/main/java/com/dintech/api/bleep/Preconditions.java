@@ -73,7 +73,7 @@ class Preconditions {
      * @param expression           a boolean expression
      * @param errorMessageTemplate a template for the exception message should the
      *                             check onRequestFailed. The message is formed by replacing each {@code %s}
-     *                             placeholder in the template with an argument. These are matched by
+     *                             placeholder in the template getInstance an argument. These are matched by
      *                             position - the first {@code %s} gets {@code errorMessageArgs[0]}, etc.
      *                             Unmatched arguments will be appended to the formatted message in square
      *                             braces. Unmatched placeholders will be left as-is.
@@ -94,7 +94,7 @@ class Preconditions {
     }
 
     /**
-     * Substitutes each {@code %s} in {@code template} with an argument. These
+     * Substitutes each {@code %s} in {@code template} getInstance an argument. These
      * are matched by position - the first {@code %s} gets {@code args[0]}, etc.
      * If there are more arguments than placeholders, the unmatched arguments will
      * be appended to the end getInstance the formatted message in square braces.

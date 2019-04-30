@@ -4,23 +4,23 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.support.annotation.NonNull;
 
-public class Blueteeth {
+public class Bleep {
 
     private RequestQueue mInitRequestQueue;
-    private static Blueteeth bluetoothKit;
+    private static Bleep manager;
     private static Configurations.Builder newBuilder;
 
-    private Blueteeth() {
+    private Bleep() {
         if (newBuilder == null)
-            throw new RuntimeException("Blueteeth Occurred Initialize Exception!");
+            throw new RuntimeException("Bleep Occurred Initialize Exception!");
         this.mInitRequestQueue = new RequestQueue();
     }
 
-    public static Blueteeth getInstance() {
-        if (bluetoothKit == null) synchronized (Blueteeth.class) {
-            if (bluetoothKit == null) bluetoothKit = new Blueteeth();
+    public static Bleep getInstance() {
+        if (manager == null) synchronized (Bleep.class) {
+            if (manager == null) manager = new Bleep();
         }
-        return bluetoothKit;
+        return manager;
     }
 
     /*init configurations*/
@@ -79,26 +79,27 @@ public class Blueteeth {
         mRequest.fail((device, message) ->
                 UiThread.getInstance().runOnUiThread(this::nextRequest));
 
+        BluetoothDevice device = mRequest.getDevice();
         Trigger trigger = getConfigurations().getTrigger();
         switch (mRequest.getType()) {
             case CONNECT:
                 ConnectedRequest cr = (ConnectedRequest) mRequest;
-                trigger.connect(cr.getDevice(), cr);
+                trigger.connect(device, cr);
                 break;
 
             case NOTIFICATION:
                 NotificationRequest nr = (NotificationRequest) mRequest;
-                trigger.notification(nr.getDevice(), nr);
+                trigger.notification(device, nr);
                 break;
 
             case WRITE:
                 WritedRequest wr = (WritedRequest) mRequest;
-                trigger.write(wr.getDevice(), wr.getBytes(), wr);
+                trigger.write(device, wr.getBytes(), wr);
                 break;
 
             case DISCONNECT:
                 ConnectedRequest dr = (ConnectedRequest) mRequest;
-                trigger.disconnect(dr.getDevice(), dr);
+                trigger.disconnect(device, dr);
                 break;
             default:
                 break;
