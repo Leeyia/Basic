@@ -6,14 +6,14 @@ import android.support.annotation.NonNull;
 
 public class Bleep {
 
-    private RequestQueue mInitRequestQueue;
+    private RequestQueue mRequestQueue;
     private static Bleep manager;
     private static Configurations.Builder newBuilder;
 
     private Bleep() {
         if (newBuilder == null)
             throw new RuntimeException("Bleep Occurred Initialize Exception!");
-        this.mInitRequestQueue = new RequestQueue();
+        this.mRequestQueue = new RequestQueue();
     }
 
     public static Bleep getInstance() {
@@ -63,18 +63,18 @@ public class Bleep {
 
     // Caller controls Request execution order
     final void enqueue(final Request request) {
-        this.mInitRequestQueue.add(request);
+        this.mRequestQueue.add(request);
         UiThread.getInstance().runOnUiThread(this::nextRequest);
     }
 
     private void nextRequest() {
         Request mRequest = null;
         // If Request set is present, try taking next request getInstance it
-        if (mInitRequestQueue.hasMore()) {
-            mRequest = mInitRequestQueue.getNext();
+        if (mRequestQueue.hasMore()) {
+            mRequest = mRequestQueue.getNext();
         }
 
-        if (!mInitRequestQueue.hasMore() || mRequest == null) return;
+        if (mRequest == null) return;
 
         mRequest.fail((device, message) ->
                 UiThread.getInstance().runOnUiThread(this::nextRequest));
