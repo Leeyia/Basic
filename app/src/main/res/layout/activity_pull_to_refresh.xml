@@ -4,19 +4,24 @@
     android:layout_height="match_parent"
     tools:context=".PullToRefreshActivity">
 
-    <com.dintech.api.refresh.PullToRefreshView
+    <ImageView
+        android:id="@+id/iv_animal"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+    <com.dintech.api.scorpius.ScorpiusView
         android:id="@+id/pull_to_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ListView
             android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:divider="@null"
             android:dividerHeight="0dp"
-            android:fadingEdge="none"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:fadingEdge="none" />
 
-    </com.dintech.api.refresh.PullToRefreshView>
+    </com.dintech.api.scorpius.ScorpiusView>
 
 </RelativeLayout>

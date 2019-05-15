@@ -1,4 +1,4 @@
-package com.dintech.api.refresh;
+package com.dintech.api.scorpius;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -14,11 +14,13 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 import android.widget.AbsListView;
-import android.widget.ImageView;
 
-public class PullToRefreshView extends ViewGroup {
+/**
+ * 天蝎座
+ */
+public class ScorpiusView extends ViewGroup {
 
-    private static final int DRAG_MAX_DISTANCE = 120;
+    private static final int DRAG_MAX_DISTANCE = 80;
     private static final float DRAG_RATE = .5f;
     private static final float DECELERATE_INTERPOLATION_FACTOR = 2f;
 
@@ -28,11 +30,10 @@ public class PullToRefreshView extends ViewGroup {
     private static final int INVALID_POINTER = -1;
 
     private View mTarget;
-    private ImageView mRefreshImageView;
     private Interpolator mDecelerateInterpolator;
     private int mTouchSlop;
     private int mTotalDragDistance;
-    private RefreshView mRefreshView;
+    private ScorpiusTop scorpiusTop;
     private float mCurrentDragPercent;
     private int mCurrentOffsetTop;
     private boolean mRefreshing;
@@ -43,12 +44,13 @@ public class PullToRefreshView extends ViewGroup {
     private float mFromDragPercent;
     private boolean mNotify;
     private OnRefreshListener mListener;
+    private Scorpius scorpius;
 
-    public PullToRefreshView(Context context) {
+    public ScorpiusView(Context context) {
         this(context, null);
     }
 
-    public PullToRefreshView(Context context, AttributeSet attrs) {
+    public ScorpiusView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         //动画插值器 由快变慢
@@ -59,11 +61,10 @@ public class PullToRefreshView extends ViewGroup {
         //取整
         mTotalDragDistance = Math.round((float) DRAG_MAX_DISTANCE * density);
 
-        mRefreshImageView = new ImageView(context);
-        mRefreshView = new RefreshView(getContext(), this);
-        mRefreshImageView.setImageDrawable(mRefreshView);
-
-        addView(mRefreshImageView);
+        scorpiusTop = new ScorpiusTop(context);
+        scorpius = scorpiusTop.getScorpius();
+        scorpius.setAlpha(110);
+        addView(scorpiusTop);
         //不绘制
         setWillNotDraw(false);
         ViewCompat.setChildrenDrawingOrderEnabled(this, true);
@@ -85,7 +86,7 @@ public class PullToRefreshView extends ViewGroup {
         widthMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredWidth() - getPaddingRight() - getPaddingLeft(), MeasureSpec.EXACTLY);
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredHeight() - getPaddingTop() - getPaddingBottom(), MeasureSpec.EXACTLY);
         mTarget.measure(widthMeasureSpec, heightMeasureSpec);
-        mRefreshImageView.measure(widthMeasureSpec, heightMeasureSpec);
+        scorpiusTop.measure(widthMeasureSpec, heightMeasureSpec);
     }
 
     //确认目标View
@@ -95,7 +96,7 @@ public class PullToRefreshView extends ViewGroup {
         if (getChildCount() > 0) {
             for (int i = 0; i < getChildCount(); i++) {
                 View child = getChildAt(i);
-                if (child != mRefreshImageView)
+                if (child != scorpiusTop)
                     mTarget = child;
             }
         }
@@ -167,6 +168,12 @@ public class PullToRefreshView extends ViewGroup {
                 final float yDiff = y - mInitialMotionY;
                 final float scrollTop = yDiff * DRAG_RATE;
                 mCurrentDragPercent = scrollTop / mTotalDragDistance;
+
+                //移动时候 图片变大变小
+                float v = mCurrentDragPercent * DRAG_RATE;
+                scorpiusTop.scaleYFloats = new float[]{v * 1f, v * 1.5f, v * 2f, v * 2.5f, v * 3f};
+                scorpius.postInvalidate();
+
                 if (mCurrentDragPercent < 0) {
                     return false;
                 }
@@ -180,7 +187,7 @@ public class PullToRefreshView extends ViewGroup {
                 float extraMove = (slingshotDist) * tensionPercent / 2;
                 int targetY = (int) ((slingshotDist * boundedDragPercent) + extraMove);
 
-                mRefreshView.setPercent(mCurrentDragPercent);
+//                mRefreshView.setPercent(mCurrentDragPercent);
                 setTargetOffsetTop(targetY - mCurrentOffsetTop, true);
                 break;
             }
@@ -223,8 +230,8 @@ public class PullToRefreshView extends ViewGroup {
         animation.setDuration(animationDuration);
         animation.setInterpolator(mDecelerateInterpolator);
         animation.setAnimationListener(mToStartListener);
-        mRefreshImageView.clearAnimation();
-        mRefreshImageView.startAnimation(animation);
+        scorpiusTop.clearAnimation();
+        scorpiusTop.startAnimation(animation);
     }
 
     private void animateOffsetToCorrectPosition() {
@@ -234,18 +241,18 @@ public class PullToRefreshView extends ViewGroup {
         mAnimateToCorrectPosition.reset();
         mAnimateToCorrectPosition.setDuration(RESTORE_ANIMATION_DURATION);
         mAnimateToCorrectPosition.setInterpolator(mDecelerateInterpolator);
-        mRefreshImageView.clearAnimation();
-        mRefreshImageView.startAnimation(mAnimateToCorrectPosition);
+        scorpiusTop.clearAnimation();
+        scorpiusTop.startAnimation(mAnimateToCorrectPosition);
 
         if (mRefreshing) {
-            mRefreshView.start();
+            scorpius.start();
             if (mNotify) {
                 if (mListener != null) {
                     mListener.onRefresh();
                 }
             }
         } else {
-            mRefreshView.stop();
+            scorpius.stop();
             animateOffsetToPosition(mAnimateToStartPosition);
         }
         mCurrentOffsetTop = mTarget.getTop();
@@ -274,8 +281,7 @@ public class PullToRefreshView extends ViewGroup {
             int offset = targetTop - mTarget.getTop();
 
             mCurrentDragPercent = mFromDragPercent - (mFromDragPercent - 1.0f) * interpolatedTime;
-            mRefreshView.setPercent(mCurrentDragPercent);
-
+//            mRefreshView.setPercent(mCurrentDragPercent);
             setTargetOffsetTop(offset, false /* requires update */);
         }
 
@@ -287,7 +293,7 @@ public class PullToRefreshView extends ViewGroup {
         int offset = targetTop - mTarget.getTop();
 
         mCurrentDragPercent = targetPercent;
-        mRefreshView.setPercent(mCurrentDragPercent);
+//        mRefreshView.setPercent(mCurrentDragPercent);
         setTargetOffsetTop(offset, false);
     }
 
@@ -297,7 +303,7 @@ public class PullToRefreshView extends ViewGroup {
         int offset = targetTop - mTarget.getTop();
 
         mCurrentDragPercent = targetPercent;
-        mRefreshView.setPercent(mCurrentDragPercent);
+//        mRefreshView.setPercent(mCurrentDragPercent);
         setTargetOffsetTop(offset, false);
     }
 
@@ -313,10 +319,10 @@ public class PullToRefreshView extends ViewGroup {
             ensureTarget();
             mRefreshing = refreshing;
             if (mRefreshing) {
-                mRefreshView.setPercent(1f);
+//                mRefreshView.setPercent(1f);
                 animateOffsetToCorrectPosition();
             } else {
-                mRefreshView.setEndOfRefreshing(true);
+//                mRefreshView.setEndOfRefreshing(true);
                 animateOffsetToPosition(mAnimateToEndPosition);
             }
         }
@@ -333,7 +339,7 @@ public class PullToRefreshView extends ViewGroup {
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            mRefreshView.stop();
+            scorpius.stop();
             mCurrentOffsetTop = mTarget.getTop();
         }
     };
@@ -357,7 +363,7 @@ public class PullToRefreshView extends ViewGroup {
 
     private void setTargetOffsetTop(int offset, boolean requiresUpdate) {
         mTarget.offsetTopAndBottom(offset);
-        mRefreshView.offsetTopAndBottom(offset);
+//        mRefreshView.offsetTopAndBottom(offset);
         mCurrentOffsetTop = mTarget.getTop();
         if (requiresUpdate && android.os.Build.VERSION.SDK_INT < 11) {
             invalidate();
@@ -394,7 +400,8 @@ public class PullToRefreshView extends ViewGroup {
         int bottom = getPaddingBottom();
 
         mTarget.layout(left, top + mCurrentOffsetTop, left + width - right, top + height - bottom + mCurrentOffsetTop);
-        mRefreshImageView.layout(left, top, left + width - right, top + height - bottom);
+//        scorpiusTop.layout(width-left, top, left + width - right, top + height - bottom);
+        scorpiusTop.layout(left, top, width, top + 155 - bottom);
     }
 
     public void setOnRefreshListener(OnRefreshListener listener) {

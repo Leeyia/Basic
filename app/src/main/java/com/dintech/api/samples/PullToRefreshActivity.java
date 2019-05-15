@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.dintech.api.refresh.PullToRefreshView;
+import com.dintech.api.scorpius.ScorpiusView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,14 +20,19 @@ import java.util.Map;
 
 public class PullToRefreshActivity extends AppCompatActivity {
 
-    public static final int REFRESH_DELAY = 4000;
+    public static final int REFRESH_DELAY = 10000;
 
-    private PullToRefreshView mPullToRefreshView;
+    private ScorpiusView mPullToRefreshView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pull_to_refresh);
+
+//        Indicator indicator = new LineScalePulseOutIndicator(this);
+//        ImageView viewById = findViewById(R.id.iv_animal);
+//        viewById.setBackground(indicator);
+//        indicator.start();
 
         Map<String, Integer> map;
         List<Map<String, Integer>> sampleList = new ArrayList<>();
@@ -53,8 +58,8 @@ public class PullToRefreshActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(new SampleAdapter(this, R.layout.list_item, sampleList));
 
-        mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
-        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+        mPullToRefreshView = (ScorpiusView) findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView.setOnRefreshListener(new ScorpiusView.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 mPullToRefreshView.postDelayed(new Runnable() {

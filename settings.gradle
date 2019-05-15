@@ -1,2 +1,2 @@
-include ':app', ':internal-basics:vlog', ':internal-basics:http', ':internal-basics:image', ':internal-basics:mvp', ':internal-basics:bleep', ':internal-basics:refresh'
+include ':app', ':internal-basics:vlog', ':internal-basics:http', ':internal-basics:image', ':internal-basics:mvp', ':internal-basics:bleep', ':internal-basics:scorpius'
 //        ':external-base:variants'

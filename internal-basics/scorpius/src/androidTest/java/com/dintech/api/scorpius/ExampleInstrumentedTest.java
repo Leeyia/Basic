@@ -1,4 +1,4 @@
-package com.dintech.api.refresh;
+package com.dintech.api.scorpius;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

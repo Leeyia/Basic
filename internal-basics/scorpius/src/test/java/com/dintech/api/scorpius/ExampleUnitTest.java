@@ -1,4 +1,4 @@
-package com.dintech.api.refresh;
+package com.dintech.api.scorpius;
 
 import org.junit.Test;
 
