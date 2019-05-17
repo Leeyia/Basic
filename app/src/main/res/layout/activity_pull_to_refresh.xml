@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +13,10 @@
     <com.dintech.api.scorpius.ScorpiusView
         android:id="@+id/pull_to_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:scorpius_color="@color/colorAccent"
+        app:scorpius_text="下次再来"
+        app:scorpius_text_color="@color/colorAccent">
 
         <ListView
             android:id="@+id/list_view"

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Scorpius_Top">
+        <attr name="scorpius_color" format="color" />
+        <attr name="scorpius_text" format="string" />
+        <attr name="scorpius_text_color" format="color" />
+    </declare-styleable>
+</resources>

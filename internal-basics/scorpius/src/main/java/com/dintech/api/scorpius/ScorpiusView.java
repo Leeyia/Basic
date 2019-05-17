@@ -16,11 +16,11 @@ import android.view.animation.Transformation;
 import android.widget.AbsListView;
 
 /**
- * 天蝎座
+ * ScorpiusView Pull-To-Refresh
  */
 public class ScorpiusView extends ViewGroup {
 
-    private static final int DRAG_MAX_DISTANCE = 80;
+    private static final int DRAG_MAX_DISTANCE = 60;
     private static final float DRAG_RATE = .5f;
     private static final float DECELERATE_INTERPOLATION_FACTOR = 2f;
 
@@ -44,7 +44,6 @@ public class ScorpiusView extends ViewGroup {
     private float mFromDragPercent;
     private boolean mNotify;
     private OnRefreshListener mListener;
-    private Scorpius scorpius;
 
     public ScorpiusView(Context context) {
         this(context, null);
@@ -58,16 +57,17 @@ public class ScorpiusView extends ViewGroup {
         //视为移动的最小距离
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         float density = context.getResources().getDisplayMetrics().density;
-        //取整
         mTotalDragDistance = Math.round((float) DRAG_MAX_DISTANCE * density);
 
-        scorpiusTop = new ScorpiusTop(context);
-        scorpius = scorpiusTop.getScorpius();
-        scorpius.setAlpha(110);
+        scorpiusTop = new ScorpiusTop(context, attrs);
         addView(scorpiusTop);
         //不绘制
         setWillNotDraw(false);
         ViewCompat.setChildrenDrawingOrderEnabled(this, true);
+    }
+
+    public void setScorpiusText(String text) {
+        this.scorpiusTop.setScorpiusText(text);
     }
 
     //刷新总移动距离
@@ -85,6 +85,7 @@ public class ScorpiusView extends ViewGroup {
 
         widthMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredWidth() - getPaddingRight() - getPaddingLeft(), MeasureSpec.EXACTLY);
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredHeight() - getPaddingTop() - getPaddingBottom(), MeasureSpec.EXACTLY);
+
         mTarget.measure(widthMeasureSpec, heightMeasureSpec);
         scorpiusTop.measure(widthMeasureSpec, heightMeasureSpec);
     }
@@ -169,11 +170,6 @@ public class ScorpiusView extends ViewGroup {
                 final float scrollTop = yDiff * DRAG_RATE;
                 mCurrentDragPercent = scrollTop / mTotalDragDistance;
 
-                //移动时候 图片变大变小
-                float v = mCurrentDragPercent * DRAG_RATE;
-                scorpiusTop.scaleYFloats = new float[]{v * 1f, v * 1.5f, v * 2f, v * 2.5f, v * 3f};
-                scorpius.postInvalidate();
-
                 if (mCurrentDragPercent < 0) {
                     return false;
                 }
@@ -187,7 +183,7 @@ public class ScorpiusView extends ViewGroup {
                 float extraMove = (slingshotDist) * tensionPercent / 2;
                 int targetY = (int) ((slingshotDist * boundedDragPercent) + extraMove);
 
-//                mRefreshView.setPercent(mCurrentDragPercent);
+                scorpiusTop.setPercent(mCurrentDragPercent);
                 setTargetOffsetTop(targetY - mCurrentOffsetTop, true);
                 break;
             }
@@ -245,14 +241,14 @@ public class ScorpiusView extends ViewGroup {
         scorpiusTop.startAnimation(mAnimateToCorrectPosition);
 
         if (mRefreshing) {
-            scorpius.start();
+            scorpiusTop.start();
             if (mNotify) {
                 if (mListener != null) {
                     mListener.onRefresh();
                 }
             }
         } else {
-            scorpius.stop();
+            scorpiusTop.stop();
             animateOffsetToPosition(mAnimateToStartPosition);
         }
         mCurrentOffsetTop = mTarget.getTop();
@@ -281,7 +277,7 @@ public class ScorpiusView extends ViewGroup {
             int offset = targetTop - mTarget.getTop();
 
             mCurrentDragPercent = mFromDragPercent - (mFromDragPercent - 1.0f) * interpolatedTime;
-//            mRefreshView.setPercent(mCurrentDragPercent);
+            scorpiusTop.setPercent(mCurrentDragPercent);
             setTargetOffsetTop(offset, false /* requires update */);
         }
 
@@ -293,7 +289,7 @@ public class ScorpiusView extends ViewGroup {
         int offset = targetTop - mTarget.getTop();
 
         mCurrentDragPercent = targetPercent;
-//        mRefreshView.setPercent(mCurrentDragPercent);
+        scorpiusTop.setPercent(mCurrentDragPercent);
         setTargetOffsetTop(offset, false);
     }
 
@@ -303,7 +299,7 @@ public class ScorpiusView extends ViewGroup {
         int offset = targetTop - mTarget.getTop();
 
         mCurrentDragPercent = targetPercent;
-//        mRefreshView.setPercent(mCurrentDragPercent);
+        scorpiusTop.setPercent(mCurrentDragPercent);
         setTargetOffsetTop(offset, false);
     }
 
@@ -319,7 +315,7 @@ public class ScorpiusView extends ViewGroup {
             ensureTarget();
             mRefreshing = refreshing;
             if (mRefreshing) {
-//                mRefreshView.setPercent(1f);
+                scorpiusTop.setPercent(1f);
                 animateOffsetToCorrectPosition();
             } else {
 //                mRefreshView.setEndOfRefreshing(true);
@@ -339,7 +335,8 @@ public class ScorpiusView extends ViewGroup {
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            scorpius.stop();
+            scorpiusTop.stop();
+            scorpiusTop.reset();
             mCurrentOffsetTop = mTarget.getTop();
         }
     };
@@ -400,8 +397,7 @@ public class ScorpiusView extends ViewGroup {
         int bottom = getPaddingBottom();
 
         mTarget.layout(left, top + mCurrentOffsetTop, left + width - right, top + height - bottom + mCurrentOffsetTop);
-//        scorpiusTop.layout(width-left, top, left + width - right, top + height - bottom);
-        scorpiusTop.layout(left, top, width, top + 155 - bottom);
+        scorpiusTop.layout(left, top, left + width - right, top + getTotalDragDistance() - bottom);
     }
 
     public void setOnRefreshListener(OnRefreshListener listener) {

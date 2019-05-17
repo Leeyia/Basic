@@ -1,10 +1,7 @@
 package com.dintech.api.scorpius;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
@@ -24,22 +21,6 @@ public abstract class Scorpius extends Drawable implements Animatable {
 
     private boolean mHasAnimators;
 
-    private Paint mPaint = new Paint();
-
-    public Scorpius(Context context) {
-        mPaint.setColor(context.getResources().getColor(R.color.sienna));
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setAntiAlias(true);
-    }
-
-    public int getColor() {
-        return mPaint.getColor();
-    }
-
-    public void setColor(int color) {
-        mPaint.setColor(color);
-    }
-
     @Override
     public void setAlpha(int alpha) {
         this.alpha = alpha;
@@ -57,22 +38,14 @@ public abstract class Scorpius extends Drawable implements Animatable {
 
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
-
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        dispatchDraw(canvas, mPaint);
     }
 
     @Override
     public void start() {
         ensureAnimators();
-
         if (mAnimators == null) {
             return;
         }
-
         // If the animators has not ended, do nothing.
         if (isStarted()) {
             return;
@@ -190,8 +163,6 @@ public abstract class Scorpius extends Drawable implements Animatable {
     public float exactCenterY() {
         return drawBounds.exactCenterY();
     }
-
-    public abstract void dispatchDraw(Canvas canvas, Paint paint);
 
     public abstract ArrayList<ValueAnimator> animators();
 }

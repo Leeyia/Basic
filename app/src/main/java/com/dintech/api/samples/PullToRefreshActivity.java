@@ -59,6 +59,7 @@ public class PullToRefreshActivity extends AppCompatActivity {
         listView.setAdapter(new SampleAdapter(this, R.layout.list_item, sampleList));
 
         mPullToRefreshView = (ScorpiusView) findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView.setScorpiusText("感谢来到灯影科技");
         mPullToRefreshView.setOnRefreshListener(new ScorpiusView.OnRefreshListener() {
             @Override
             public void onRefresh() {
