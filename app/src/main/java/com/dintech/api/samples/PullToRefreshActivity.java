@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.dintech.api.scorpius.LoadView;
 import com.dintech.api.scorpius.ScorpiusView;
 
 import java.util.ArrayList;
@@ -34,6 +35,9 @@ public class PullToRefreshActivity extends AppCompatActivity {
 //        viewById.setBackground(indicator);
 //        indicator.start();
 
+        LoadView viewById = findViewById(R.id.load_view);
+        viewById.start();
+
         Map<String, Integer> map;
         List<Map<String, Integer>> sampleList = new ArrayList<>();
 
@@ -55,22 +59,22 @@ public class PullToRefreshActivity extends AppCompatActivity {
             sampleList.add(map);
         }
 
-        ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(new SampleAdapter(this, R.layout.list_item, sampleList));
+//        ListView listView = (ListView) findViewById(R.id.list_view);
+//        listView.setAdapter(new SampleAdapter(this, R.layout.list_item, sampleList));
 
-        mPullToRefreshView = (ScorpiusView) findViewById(R.id.pull_to_refresh);
-        mPullToRefreshView.setScorpiusText("感谢来到灯影科技");
-        mPullToRefreshView.setOnRefreshListener(new ScorpiusView.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPullToRefreshView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mPullToRefreshView.setRefreshing(false);
-                    }
-                }, REFRESH_DELAY);
-            }
-        });
+//        mPullToRefreshView = (ScorpiusView) findViewById(R.id.pull_to_refresh);
+//        mPullToRefreshView.setScorpiusText("感谢来到灯影科技");
+//        mPullToRefreshView.setOnRefreshListener(new ScorpiusView.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                mPullToRefreshView.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mPullToRefreshView.setRefreshing(false);
+//                    }
+//                }, REFRESH_DELAY);
+//            }
+//        });
     }
 
     class SampleAdapter extends ArrayAdapter<Map<String, Integer>> {

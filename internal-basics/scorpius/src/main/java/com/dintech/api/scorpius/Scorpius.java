@@ -13,11 +13,10 @@ import java.util.HashMap;
 public abstract class Scorpius extends Drawable implements Animatable {
 
     private HashMap<ValueAnimator, ValueAnimator.AnimatorUpdateListener> mUpdateListeners = new HashMap<>();
-
     private ArrayList<ValueAnimator> mAnimators;
     private int alpha = 255;
     private static final Rect ZERO_BOUNDS_RECT = new Rect();
-    protected Rect drawBounds = ZERO_BOUNDS_RECT;
+    private Rect drawBounds = ZERO_BOUNDS_RECT;
 
     private boolean mHasAnimators;
 
@@ -64,7 +63,6 @@ public abstract class Scorpius extends Drawable implements Animatable {
             if (updateListener != null) {
                 animator.addUpdateListener(updateListener);
             }
-
             animator.start();
         }
     }

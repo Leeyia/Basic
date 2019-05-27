@@ -33,7 +33,7 @@ dependencies {
 
 //    implementation 'com.dintech.api:vlog:1.0.3'
     implementation 'com.dintech.api:http:1.0.1'
-//    implementation 'com.dintech.api:scorpius:1.0.0'
+//    implementation 'com.dintech.api:scorpius:1.0.1'
     implementation project(':internal-basics:bleep')
     implementation project(':internal-basics:scorpius')
 

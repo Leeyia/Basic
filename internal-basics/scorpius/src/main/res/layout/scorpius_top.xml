@@ -9,8 +9,7 @@
     <ImageView
         android:id="@+id/scorpius_top_iv"
         android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="@color/scorpius_color" />
+        android:layout_height="20dp" />
 
     <TextView
         android:id="@+id/scorpius_tip_tv"
