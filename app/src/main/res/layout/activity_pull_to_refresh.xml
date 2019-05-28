@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".PullToRefreshActivity">
 
-    <ImageView
-        android:id="@+id/iv_animal"
-        android:layout_width="25dp"
-        android:layout_height="25dp" />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_animal"-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="25dp" />-->
 
     <com.dintech.api.scorpius.LoadView
         android:id="@+id/load_view"
@@ -24,7 +24,7 @@
         app:scorpius_text="下次再来"
         app:scorpius_text_color="@color/colorAccent">
 
-        <ExpandableListView
+        <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

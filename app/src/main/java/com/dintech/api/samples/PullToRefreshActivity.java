@@ -37,6 +37,11 @@ public class PullToRefreshActivity extends AppCompatActivity {
 
         LoadView viewById = findViewById(R.id.load_view);
         viewById.start();
+        LoadView loadView = new LoadView(this);
+//        loadView.start();
+//
+//        addContentView(loadView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//
 
         Map<String, Integer> map;
         List<Map<String, Integer>> sampleList = new ArrayList<>();
@@ -59,22 +64,22 @@ public class PullToRefreshActivity extends AppCompatActivity {
             sampleList.add(map);
         }
 
-//        ListView listView = (ListView) findViewById(R.id.list_view);
-//        listView.setAdapter(new SampleAdapter(this, R.layout.list_item, sampleList));
+        ListView listView = (ListView) findViewById(R.id.list_view);
+        listView.setAdapter(new SampleAdapter(this, R.layout.list_item, sampleList));
 
-//        mPullToRefreshView = (ScorpiusView) findViewById(R.id.pull_to_refresh);
-//        mPullToRefreshView.setScorpiusText("感谢来到灯影科技");
-//        mPullToRefreshView.setOnRefreshListener(new ScorpiusView.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                mPullToRefreshView.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mPullToRefreshView.setRefreshing(false);
-//                    }
-//                }, REFRESH_DELAY);
-//            }
-//        });
+        mPullToRefreshView = (ScorpiusView) findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView.setScorpiusText("感谢来到灯影科技");
+        mPullToRefreshView.setOnRefreshListener(new ScorpiusView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshView.setRefreshing(false);
+                    }
+                }, REFRESH_DELAY);
+            }
+        });
     }
 
     class SampleAdapter extends ArrayAdapter<Map<String, Integer>> {
