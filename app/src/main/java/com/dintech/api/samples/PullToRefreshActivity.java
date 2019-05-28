@@ -37,49 +37,55 @@ public class PullToRefreshActivity extends AppCompatActivity {
 
         LoadView viewById = findViewById(R.id.load_view);
         viewById.start();
-        LoadView loadView = new LoadView(this);
+        viewById.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                viewById.stop();
+            }
+        }, 5000);
+//        LoadView loadView = new LoadView(this);
 //        loadView.start();
 //
 //        addContentView(loadView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 //
 
-        Map<String, Integer> map;
-        List<Map<String, Integer>> sampleList = new ArrayList<>();
-
-
-        int[] colors = {
-                R.color.saffron,
-                R.color.eggplant,
-                R.color.sienna};
-
-        int[] tripNames = {
-                R.string.trip_to_india,
-                R.string.trip_to_italy,
-                R.string.trip_to_indonesia};
-
-        for (int i = 0; i < tripNames.length; i++) {
-            map = new HashMap<>();
-            map.put(SampleAdapter.KEY_NAME, tripNames[i]);
-            map.put(SampleAdapter.KEY_COLOR, colors[i]);
-            sampleList.add(map);
-        }
-
-        ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(new SampleAdapter(this, R.layout.list_item, sampleList));
-
-        mPullToRefreshView = (ScorpiusView) findViewById(R.id.pull_to_refresh);
-        mPullToRefreshView.setScorpiusText("感谢来到灯影科技");
-        mPullToRefreshView.setOnRefreshListener(new ScorpiusView.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPullToRefreshView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mPullToRefreshView.setRefreshing(false);
-                    }
-                }, REFRESH_DELAY);
-            }
-        });
+//        Map<String, Integer> map;
+//        List<Map<String, Integer>> sampleList = new ArrayList<>();
+//
+//
+//        int[] colors = {
+//                R.color.saffron,
+//                R.color.eggplant,
+//                R.color.sienna};
+//
+//        int[] tripNames = {
+//                R.string.trip_to_india,
+//                R.string.trip_to_italy,
+//                R.string.trip_to_indonesia};
+//
+//        for (int i = 0; i < tripNames.length; i++) {
+//            map = new HashMap<>();
+//            map.put(SampleAdapter.KEY_NAME, tripNames[i]);
+//            map.put(SampleAdapter.KEY_COLOR, colors[i]);
+//            sampleList.add(map);
+//        }
+//
+//        ListView listView = (ListView) findViewById(R.id.list_view);
+//        listView.setAdapter(new SampleAdapter(this, R.layout.list_item, sampleList));
+//
+//        mPullToRefreshView = (ScorpiusView) findViewById(R.id.pull_to_refresh);
+//        mPullToRefreshView.setScorpiusText("感谢来到灯影科技");
+//        mPullToRefreshView.setOnRefreshListener(new ScorpiusView.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                mPullToRefreshView.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mPullToRefreshView.setRefreshing(false);
+//                    }
+//                }, REFRESH_DELAY);
+//            }
+//        });
     }
 
     class SampleAdapter extends ArrayAdapter<Map<String, Integer>> {

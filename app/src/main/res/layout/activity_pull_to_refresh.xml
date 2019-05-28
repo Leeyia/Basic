@@ -6,33 +6,35 @@
     tools:context=".PullToRefreshActivity">
 
     <!--<ImageView-->
-        <!--android:id="@+id/iv_animal"-->
-        <!--android:layout_width="25dp"-->
-        <!--android:layout_height="25dp" />-->
+    <!--android:id="@+id/iv_animal"-->
+    <!--android:layout_width="25dp"-->
+    <!--android:layout_height="25dp" />-->
 
     <com.dintech.api.scorpius.LoadView
         android:id="@+id/load_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:scorpius_image_color="@color/saffron"
+        app:scorpius_text_color="@color/saffron" />
 
-    <com.dintech.api.scorpius.ScorpiusView
-        android:id="@+id/pull_to_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        app:scorpius_color="@color/colorAccent"
-        app:scorpius_text="下次再来"
-        app:scorpius_text_color="@color/colorAccent">
+    <!--<com.dintech.api.scorpius.ScorpiusView-->
+    <!--android:id="@+id/pull_to_refresh"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:visibility="gone"-->
+    <!--app:scorpius_color="@color/colorAccent"-->
+    <!--app:scorpius_text="下次再来"-->
+    <!--app:scorpius_text_color="@color/colorAccent">-->
 
-        <ListView
-            android:id="@+id/list_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:fadingEdge="none" />
+    <!--<ListView-->
+    <!--android:id="@+id/list_view"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:divider="@null"-->
+    <!--android:dividerHeight="0dp"-->
+    <!--android:fadingEdge="none" />-->
 
-    </com.dintech.api.scorpius.ScorpiusView>
+    <!--</com.dintech.api.scorpius.ScorpiusView>-->
 
 </RelativeLayout>

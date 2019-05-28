@@ -7,19 +7,27 @@ import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public abstract class Scorpius extends Drawable implements Animatable {
 
-    private HashMap<ValueAnimator, ValueAnimator.AnimatorUpdateListener> mUpdateListeners = new HashMap<>();
-    private ArrayList<ValueAnimator> mAnimators;
-    private int alpha = 255;
-    private static final Rect ZERO_BOUNDS_RECT = new Rect();
-    private Rect drawBounds = ZERO_BOUNDS_RECT;
+    private int alpha;
+    private boolean isReady;
+    private List<ValueAnimator> mAnimators;
+    private Rect drawBounds = new Rect();
+    private HashMap<ValueAnimator, ValueAnimator.AnimatorUpdateListener> mListenerMap = new HashMap<>();
 
-    private boolean mHasAnimators;
+    abstract List<ValueAnimator> animators();
 
+    /*当View的大小位置改变时回调*/
+    @Override
+    protected void onBoundsChange(Rect bounds) {
+        super.onBoundsChange(bounds);
+        this.drawBounds = bounds;
+    }
+
+    /*设置当前Drawable的透明度*/
     @Override
     public void setAlpha(int alpha) {
         this.alpha = alpha;
@@ -30,36 +38,40 @@ public abstract class Scorpius extends Drawable implements Animatable {
         return alpha;
     }
 
+    /*设置颜色滤镜*/
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+
+    }
+
+    /*返回Drawable的具体类型，可以是透明、半透明、全透明*/
     @Override
     public int getOpacity() {
         return PixelFormat.OPAQUE;
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    @Override
     public void start() {
-        ensureAnimators();
-        if (mAnimators == null) {
-            return;
-        }
+        onReadyAnimators();
+
         // If the animators has not ended, do nothing.
         if (isStarted()) {
             return;
         }
         startAnimators();
-        invalidateSelf();
+    }
+
+    @Override
+    public void stop() {
+        stopAnimators();
     }
 
     private void startAnimators() {
         for (int i = 0; i < mAnimators.size(); i++) {
             ValueAnimator animator = mAnimators.get(i);
-
             //when the animator restart , add the updateListener again because they
             // was removed by animator stop .
-            ValueAnimator.AnimatorUpdateListener updateListener = mUpdateListeners.get(animator);
+            ValueAnimator.AnimatorUpdateListener updateListener = mListenerMap.get(animator);
             if (updateListener != null) {
                 animator.addUpdateListener(updateListener);
             }
@@ -78,16 +90,17 @@ public abstract class Scorpius extends Drawable implements Animatable {
         }
     }
 
-    private void ensureAnimators() {
-        if (!mHasAnimators) {
-            mAnimators = animators();
-            mHasAnimators = true;
-        }
+    @Override
+    public boolean isRunning() {
+        return false;
     }
 
-    @Override
-    public void stop() {
-        stopAnimators();
+    private void onReadyAnimators() {
+        if (!isReady) {
+            this.mAnimators = animators();
+            if (mAnimators == null) return;
+            this.isReady = true;
+        }
     }
 
     private boolean isStarted() {
@@ -97,70 +110,7 @@ public abstract class Scorpius extends Drawable implements Animatable {
         return false;
     }
 
-    @Override
-    public boolean isRunning() {
-        for (ValueAnimator animator : mAnimators) {
-            return animator.isRunning();
-        }
-        return false;
-    }
-
-    /**
-     * Your should use this to add AnimatorUpdateListener when
-     * create animator , otherwise , animator doesn't work when
-     * the animation restart .
-     *
-     * @param updateListener
-     */
     public void addUpdateListener(ValueAnimator animator, ValueAnimator.AnimatorUpdateListener updateListener) {
-        mUpdateListeners.put(animator, updateListener);
+        this.mListenerMap.put(animator, updateListener);
     }
-
-    @Override
-    protected void onBoundsChange(Rect bounds) {
-        super.onBoundsChange(bounds);
-        setDrawBounds(bounds);
-    }
-
-    public void setDrawBounds(Rect drawBounds) {
-        setDrawBounds(drawBounds.left, drawBounds.top, drawBounds.right, drawBounds.bottom);
-    }
-
-    public void setDrawBounds(int left, int top, int right, int bottom) {
-        this.drawBounds = new Rect(left, top, right, bottom);
-    }
-
-    public void postInvalidate() {
-        invalidateSelf();
-    }
-
-    public Rect getDrawBounds() {
-        return drawBounds;
-    }
-
-    public int getWidth() {
-        return drawBounds.width();
-    }
-
-    public int getHeight() {
-        return drawBounds.height();
-    }
-
-    public int centerX() {
-        return drawBounds.centerX();
-    }
-
-    public int centerY() {
-        return drawBounds.centerY();
-    }
-
-    public float exactCenterX() {
-        return drawBounds.exactCenterX();
-    }
-
-    public float exactCenterY() {
-        return drawBounds.exactCenterY();
-    }
-
-    public abstract ArrayList<ValueAnimator> animators();
 }

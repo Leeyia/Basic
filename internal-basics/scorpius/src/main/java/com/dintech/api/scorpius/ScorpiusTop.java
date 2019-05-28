@@ -47,7 +47,7 @@ public class ScorpiusTop extends LinearLayout {
         @SuppressLint("CustomViewStyleable")
         TypedArray ty = getContext().obtainStyledAttributes(attrs, R.styleable.Scorpius_Top);
         @ColorInt int mScorpiusColor = ty.getColor(R.styleable.Scorpius_Top_scorpius_color, getResources().getColor(R.color.scorpius_color));
-        ColorStateList scorpius_text_color = ty.getColorStateList(R.styleable.Scorpius_Top_scorpius_text_color);
+        ColorStateList scorpius_text_color = ty.getColorStateList(R.styleable.Scorpius_Top_scorpius_text_color2);
 
         mScorpiusText = ty.getString(R.styleable.Scorpius_Top_scorpius_text);
         ty.recycle();
@@ -85,7 +85,7 @@ public class ScorpiusTop extends LinearLayout {
         if (scorpius != null) scorpius.stop();
     }
 
-    private Scorpius scorpius = new Scorpius() {
+    private Scorpius2 scorpius = new Scorpius2() {
         @Override
         public void draw(Canvas canvas) {
             float translateX = getWidth() / 11;

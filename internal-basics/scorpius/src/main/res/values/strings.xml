@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">refresh</string>
-    <string name="scorpius_tip_text">正在刷新</string>
+    <string name="scorpius_tip_text">加载中</string>
 </resources>

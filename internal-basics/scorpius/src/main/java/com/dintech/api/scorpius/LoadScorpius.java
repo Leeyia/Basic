@@ -2,7 +2,6 @@ package com.dintech.api.scorpius;
 
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.NonNull;
@@ -10,18 +9,15 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoadScorpio extends Scorpio {
+public class LoadScorpius extends Scorpius {
 
-    private Paint paint = new Paint();
+    private Paint paint;
     private float[] fractions = new float[]{
             1f, 1f, 1f, 1f
     };
 
-    LoadScorpio() {
-        paint.setColor(Color.BLACK);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setAntiAlias(true);
+    LoadScorpius(Paint paint) {
+        this.paint = paint;
     }
 
     @Override
@@ -49,7 +45,7 @@ public class LoadScorpio extends Scorpio {
             animator.setDuration(900L);
             animator.setRepeatCount(-1);
             animator.setStartDelay(i * 200);
-            animator.addUpdateListener(valueAnimator -> {
+            addUpdateListener(animator, valueAnimator -> {
                 fractions[index] = (float) valueAnimator.getAnimatedValue();
                 invalidateSelf();
             });

@@ -3,6 +3,18 @@
     <declare-styleable name="Scorpius_Top">
         <attr name="scorpius_color" format="color" />
         <attr name="scorpius_text" format="string" />
+        <attr name="scorpius_text_color2" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="Load_View">
+        <attr name="scorpius_interval" format="dimension" />
+        <attr name="scorpius_image_width" format="dimension" />
+        <attr name="scorpius_image_height" format="dimension" />
+        <attr name="scorpius_image_color" format="color" />
+
         <attr name="scorpius_text_color" format="color" />
+        <attr name="scorpius_text_size" format="dimension" />
+        <attr name="scorpius_text_tip" format="string" />
+        <attr name="scorpius_text_tip_res" format="reference" />
     </declare-styleable>
 </resources>
