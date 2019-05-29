@@ -15,10 +15,9 @@ import android.widget.TextView;
 public class LoadView extends LinearLayout {
 
     private Paint paint = new Paint();
-    private LoadScorpius scorpio;
+    private LoadScorpius scorpius;
     private int widthPixel, heightPixel, intervalPixel;
     private int textSize, imageColor, textColor, textTipRes;
-    private String textTip;
 
     public LoadView(Context context) {
         this(context, null);
@@ -52,8 +51,8 @@ public class LoadView extends LinearLayout {
         ImageView imageView = new ImageView(getContext());
         ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(widthPixel, heightPixel);
         imageView.setLayoutParams(lp);
-        scorpio = new LoadScorpius(paint);
-        imageView.setBackground(scorpio);
+        scorpius = new LoadScorpius(paint);
+        imageView.setBackground(scorpius);
         addView(imageView);
 
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -68,11 +67,75 @@ public class LoadView extends LinearLayout {
         addView(textView);
     }
 
+    public void setScorpius(LoadScorpius scorpius) {
+        this.scorpius = scorpius;
+    }
+
+    public void setWidthPixel(int widthPixel) {
+        this.widthPixel = widthPixel;
+    }
+
+    public void setHeightPixel(int heightPixel) {
+        this.heightPixel = heightPixel;
+    }
+
+    public void setIntervalPixel(int intervalPixel) {
+        this.intervalPixel = intervalPixel;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
+    }
+
+    public void setImageColor(int imageColor) {
+        this.imageColor = imageColor;
+    }
+
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+    }
+
+    public void setTextTipRes(int textTipRes) {
+        this.textTipRes = textTipRes;
+    }
+
+    public LoadScorpius getScorpius() {
+        return scorpius;
+    }
+
+    public int getWidthPixel() {
+        return widthPixel;
+    }
+
+    public int getHeightPixel() {
+        return heightPixel;
+    }
+
+    public int getIntervalPixel() {
+        return intervalPixel;
+    }
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public int getImageColor() {
+        return imageColor;
+    }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public int getTextTipRes() {
+        return textTipRes;
+    }
+
     public void start() {
-        scorpio.start();
+        scorpius.start();
     }
 
     public void stop() {
-        scorpio.stop();
+        scorpius.stop();
     }
 }

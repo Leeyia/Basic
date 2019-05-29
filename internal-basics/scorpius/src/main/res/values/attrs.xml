@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="Scorpius_Top">
-        <attr name="scorpius_color" format="color" />
-        <attr name="scorpius_text" format="string" />
-        <attr name="scorpius_text_color2" format="color" />
-    </declare-styleable>
-
     <declare-styleable name="Load_View">
         <attr name="scorpius_interval" format="dimension" />
         <attr name="scorpius_image_width" format="dimension" />

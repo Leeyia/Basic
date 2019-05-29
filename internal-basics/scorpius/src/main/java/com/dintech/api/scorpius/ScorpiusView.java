@@ -33,7 +33,7 @@ public class ScorpiusView extends ViewGroup {
     private Interpolator mDecelerateInterpolator;
     private int mTouchSlop;
     private int mTotalDragDistance;
-    private ScorpiusTop scorpiusTop;
+    private LoadView scorpiusTop;
     private float mCurrentDragPercent;
     private int mCurrentOffsetTop;
     private boolean mRefreshing;
@@ -59,15 +59,11 @@ public class ScorpiusView extends ViewGroup {
         float density = context.getResources().getDisplayMetrics().density;
         mTotalDragDistance = Math.round((float) DRAG_MAX_DISTANCE * density);
 
-        scorpiusTop = new ScorpiusTop(context, attrs);
+        scorpiusTop = new LoadView(getContext());
         addView(scorpiusTop);
         //不绘制
         setWillNotDraw(false);
         ViewCompat.setChildrenDrawingOrderEnabled(this, true);
-    }
-
-    public void setScorpiusText(String text) {
-        this.scorpiusTop.setScorpiusText(text);
     }
 
     //刷新总移动距离
@@ -173,6 +169,7 @@ public class ScorpiusView extends ViewGroup {
                 if (mCurrentDragPercent < 0) {
                     return false;
                 }
+
                 float boundedDragPercent = Math.min(1f, Math.abs(mCurrentDragPercent));
                 float extraOS = Math.abs(scrollTop) - mTotalDragDistance;
                 float slingshotDist = mTotalDragDistance;
@@ -183,7 +180,7 @@ public class ScorpiusView extends ViewGroup {
                 float extraMove = (slingshotDist) * tensionPercent / 2;
                 int targetY = (int) ((slingshotDist * boundedDragPercent) + extraMove);
 
-                scorpiusTop.setPercent(mCurrentDragPercent);
+//                scorpiusTop.setPercent(mCurrentDragPercent);
                 setTargetOffsetTop(targetY - mCurrentOffsetTop, true);
                 break;
             }
@@ -277,7 +274,7 @@ public class ScorpiusView extends ViewGroup {
             int offset = targetTop - mTarget.getTop();
 
             mCurrentDragPercent = mFromDragPercent - (mFromDragPercent - 1.0f) * interpolatedTime;
-            scorpiusTop.setPercent(mCurrentDragPercent);
+//            scorpiusTop.setPercent(mCurrentDragPercent);
             setTargetOffsetTop(offset, false /* requires update */);
         }
 
@@ -289,7 +286,7 @@ public class ScorpiusView extends ViewGroup {
         int offset = targetTop - mTarget.getTop();
 
         mCurrentDragPercent = targetPercent;
-        scorpiusTop.setPercent(mCurrentDragPercent);
+//        scorpiusTop.setPercent(mCurrentDragPercent);
         setTargetOffsetTop(offset, false);
     }
 
@@ -299,7 +296,7 @@ public class ScorpiusView extends ViewGroup {
         int offset = targetTop - mTarget.getTop();
 
         mCurrentDragPercent = targetPercent;
-        scorpiusTop.setPercent(mCurrentDragPercent);
+//        scorpiusTop.setPercent(mCurrentDragPercent);
         setTargetOffsetTop(offset, false);
     }
 
@@ -315,7 +312,7 @@ public class ScorpiusView extends ViewGroup {
             ensureTarget();
             mRefreshing = refreshing;
             if (mRefreshing) {
-                scorpiusTop.setPercent(1f);
+//                scorpiusTop.setPercent(1f);
                 animateOffsetToCorrectPosition();
             } else {
 //                mRefreshView.setEndOfRefreshing(true);
@@ -336,7 +333,7 @@ public class ScorpiusView extends ViewGroup {
         @Override
         public void onAnimationEnd(Animation animation) {
             scorpiusTop.stop();
-            scorpiusTop.reset();
+//            scorpiusTop.reset();
             mCurrentOffsetTop = mTarget.getTop();
         }
     };
