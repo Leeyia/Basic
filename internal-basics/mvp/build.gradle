@@ -1,4 +1,11 @@
 apply from: rootProject.file('internal-basics/configure.gradle')
+apply from: rootProject.file('internal-basics/upload.gradle')
+
+bintray {
+    pkg {
+        name = "mvp"
+    }
+}
 
 dependencies {
     implementation 'android.arch.lifecycle:extensions:1.1.1'

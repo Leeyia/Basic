@@ -37,6 +37,7 @@ dependencies {
     implementation project(':internal-basics:bleep')
     implementation project(':internal-basics:scorpius')
     implementation project(':internal-basics:widgets')
+    implementation project(':internal-basics:mvp')
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'

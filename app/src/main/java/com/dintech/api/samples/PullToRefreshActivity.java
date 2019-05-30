@@ -3,7 +3,6 @@ package com.dintech.api.samples;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.dintech.api.mvp.LogiActivity;
 import com.dintech.api.scorpius.ScorpiusView;
-import com.dintech.api.widget.BaseExpandableAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PullToRefreshActivity extends AppCompatActivity {
+public class PullToRefreshActivity extends LogiActivity {
 
     public static final int REFRESH_DELAY = 10000;
 
@@ -84,25 +83,6 @@ public class PullToRefreshActivity extends AppCompatActivity {
                 }, REFRESH_DELAY);
             }
         });
-        List<Metting> mettings = new ArrayList<>();
-        mettings.add(new Metting());
-//        Metting metting = new Metting();
-//        mettings.add(metting);
-
-
-        BaseExpandableAdapter<Metting, String> adapter = new BaseExpandableAdapter<Metting, String>(this, R.layout.list_item2, R.layout.list_item2) {
-            @Override
-            public void transformGroup(ViewHolder holder, Metting item, int groupPosition) {
-                ((TextView) holder.findViewById(R.id.text_view_name)).setText(item.getName());
-            }
-
-            @Override
-            public void transformChild(ViewHolder holder, String item, int groupPosition, int childPosition) {
-
-            }
-        };
-        adapter.syncGroupItems(mettings);
-        listView.setAdapter(adapter);
     }
 
     class SampleAdapter extends ArrayAdapter<Map<String, Integer>> {
@@ -124,7 +104,7 @@ public class PullToRefreshActivity extends AppCompatActivity {
             final ViewHolder viewHolder;
             if (convertView == null) {
                 viewHolder = new ViewHolder();
-                convertView = mInflater.inflate(R.layout.list_item2, parent, false);
+                convertView = mInflater.inflate(R.layout.list_item, parent, false);
                 viewHolder.textViewName = (TextView) convertView.findViewById(R.id.text_view_name);
                 convertView.setTag(viewHolder);
             } else {

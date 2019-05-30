@@ -1,8 +1,8 @@
 apply from: rootProject.file('internal-basics/configure.gradle')
-apply from: rootProject.file('internal-basics/upload.gradle')
-
-bintray {
-    pkg {
-        name = "scorpius"
-    }
-}
+//apply from: rootProject.file('internal-basics/upload.gradle')
+//
+//bintray {
+//    pkg {
+//        name = "scorpius"
+//    }
+//}

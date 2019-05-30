@@ -2,20 +2,20 @@ package com.dintech.api.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import java.lang.ref.WeakReference;
 
-public class BaseActivity<T extends Logic> extends FragmentActivity implements View {
+public class LogiActivity<T extends BaseLogi> extends AppCompatActivity {
 
     private WeakReference<T> mLogicWrf;
 
-    protected T getLogicImpl() {
+    protected T getLogiImpl() {
         return this.mLogicWrf.get();
     }
 
     private T providerLogic() {
-        return (T) LogicProviders.init(this.getClass());
+        return (T) LogiProviders.init(this.getClass());
     }
 
     private boolean checkLogicNonNull() {
@@ -28,7 +28,7 @@ public class BaseActivity<T extends Logic> extends FragmentActivity implements V
 
         if (providerLogic() == null) return;
 
-        AndroidViewModel<T> viewModel = AndroidViewModel.of(this);
+        LogiViewModel<T> viewModel = LogiViewModel.of(this);
         boolean isLogicCreated = false;
         if (viewModel.getPresenterImpl() == null) {
             viewModel.setLogicImpl(providerLogic());
@@ -37,9 +37,9 @@ public class BaseActivity<T extends Logic> extends FragmentActivity implements V
 
         this.mLogicWrf = new WeakReference<>(viewModel.getPresenterImpl());
         if (checkLogicNonNull()) {
-            getLogicImpl().bindLifecycle(this.getLifecycle());
-            getLogicImpl().bindView(this);
-            if (isLogicCreated) getLogicImpl().onCreated();
+            getLogiImpl().bindLifecycle(this.getLifecycle());
+            getLogiImpl().bindView(this);
+            if (isLogicCreated) getLogiImpl().onCreated();
         }
     }
 
@@ -47,8 +47,8 @@ public class BaseActivity<T extends Logic> extends FragmentActivity implements V
     protected void onDestroy() {
         super.onDestroy();
         if (checkLogicNonNull()) {
-            getLogicImpl().unbindLifecycle(this.getLifecycle());
-            getLogicImpl().unbindView();
+            getLogiImpl().unbindLifecycle(this.getLifecycle());
+            getLogiImpl().unbindView();
         }
     }
 }

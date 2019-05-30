@@ -3,7 +3,7 @@ package com.dintech.api.mvp;
 import android.arch.lifecycle.Lifecycle;
 import android.os.Bundle;
 
-public interface Logic<V extends View> {
+interface BaseLogi<V> {
 
     Bundle getStateBundle();
 

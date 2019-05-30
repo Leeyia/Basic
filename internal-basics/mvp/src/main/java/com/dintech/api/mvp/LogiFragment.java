@@ -8,16 +8,16 @@ import android.support.v4.app.Fragment;
 
 import java.lang.ref.WeakReference;
 
-public class BaseFragment<T extends Logic> extends Fragment implements View {
+public class LogiFragment<T extends BaseLogi> extends Fragment {
 
     private WeakReference<T> mLogicWrf;
 
-    protected T getLogicImpl() {
+    protected T getLogiImpl() {
         return this.mLogicWrf.get();
     }
 
     private T providerLogic() {
-        return (T) LogicProviders.init(this.getClass());
+        return (T) LogiProviders.init(this.getClass());
     }
 
     private boolean checkLogicNonNull() {
@@ -30,7 +30,7 @@ public class BaseFragment<T extends Logic> extends Fragment implements View {
 
         if (providerLogic() == null) return;
 
-        AndroidViewModel<T> viewModel = ViewModelProviders.of(this).get(AndroidViewModel.class);
+        LogiViewModel<T> viewModel = ViewModelProviders.of(this).get(LogiViewModel.class);
         boolean isLogicCreated = false;
         if (viewModel.getPresenterImpl() == null) {
             viewModel.setLogicImpl(providerLogic());
@@ -39,10 +39,10 @@ public class BaseFragment<T extends Logic> extends Fragment implements View {
 
         this.mLogicWrf = new WeakReference<>(viewModel.getPresenterImpl());
         if (checkLogicNonNull()) {
-            getLogicImpl().bindLifecycle(this.getLifecycle());
-            getLogicImpl().bindView(this);
+            getLogiImpl().bindLifecycle(this.getLifecycle());
+            getLogiImpl().bindView(this);
 
-            if (isLogicCreated) getLogicImpl().onCreated();
+            if (isLogicCreated) getLogiImpl().onCreated();
         }
     }
 
@@ -50,8 +50,8 @@ public class BaseFragment<T extends Logic> extends Fragment implements View {
     public void onDestroyView() {
         super.onDestroyView();
         if (checkLogicNonNull()) {
-            getLogicImpl().unbindLifecycle(this.getLifecycle());
-            getLogicImpl().unbindView();
+            getLogiImpl().unbindLifecycle(this.getLifecycle());
+            getLogiImpl().unbindView();
         }
     }
 }
