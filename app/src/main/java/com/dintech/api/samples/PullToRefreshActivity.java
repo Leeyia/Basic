@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.dintech.api.mvp.Logi;
 import com.dintech.api.mvp.LogiActivity;
 import com.dintech.api.scorpius.ScorpiusView;
 
@@ -18,7 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PullToRefreshActivity extends LogiActivity {
+@Logi(LoginLogiImpl.class)
+public class PullToRefreshActivity extends LogiActivity<LoginLogiImpl> {
 
     public static final int REFRESH_DELAY = 10000;
 

@@ -32,12 +32,12 @@ public class LogiFragment<T extends BaseLogi> extends Fragment {
 
         LogiViewModel<T> viewModel = ViewModelProviders.of(this).get(LogiViewModel.class);
         boolean isLogicCreated = false;
-        if (viewModel.getPresenterImpl() == null) {
+        if (viewModel.getLogiImpl() == null) {
             viewModel.setLogicImpl(providerLogic());
             isLogicCreated = true;
         }
 
-        this.mLogicWrf = new WeakReference<>(viewModel.getPresenterImpl());
+        this.mLogicWrf = new WeakReference<>(viewModel.getLogiImpl());
         if (checkLogicNonNull()) {
             getLogiImpl().bindLifecycle(this.getLifecycle());
             getLogiImpl().bindView(this);

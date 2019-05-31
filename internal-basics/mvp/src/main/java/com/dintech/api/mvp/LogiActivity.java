@@ -1,12 +1,13 @@
 package com.dintech.api.mvp;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import java.lang.ref.WeakReference;
 
-public class LogiActivity<T extends BaseLogi> extends AppCompatActivity {
+public abstract class LogiActivity<T extends BaseLogi> extends AppCompatActivity {
 
     private WeakReference<T> mLogicWrf;
 
@@ -28,14 +29,14 @@ public class LogiActivity<T extends BaseLogi> extends AppCompatActivity {
 
         if (providerLogic() == null) return;
 
-        LogiViewModel<T> viewModel = LogiViewModel.of(this);
+        LogiViewModel<T> viewModel = ViewModelProviders.of(this).get(LogiViewModel.class);
         boolean isLogicCreated = false;
-        if (viewModel.getPresenterImpl() == null) {
+        if (viewModel.getLogiImpl() == null) {
             viewModel.setLogicImpl(providerLogic());
             isLogicCreated = true;
         }
 
-        this.mLogicWrf = new WeakReference<>(viewModel.getPresenterImpl());
+        this.mLogicWrf = new WeakReference<>(viewModel.getLogiImpl());
         if (checkLogicNonNull()) {
             getLogiImpl().bindLifecycle(this.getLifecycle());
             getLogiImpl().bindView(this);

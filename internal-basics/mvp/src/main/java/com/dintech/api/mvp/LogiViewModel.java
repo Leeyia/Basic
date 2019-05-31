@@ -1,14 +1,8 @@
 package com.dintech.api.mvp;
 
 import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.v4.app.FragmentActivity;
 
-final class LogiViewModel<T extends BaseLogi> extends ViewModel {
-
-    public static LogiViewModel of(FragmentActivity activity) {
-        return ViewModelProviders.of(activity).get(LogiViewModel.class);
-    }
+public final class LogiViewModel<T extends BaseLogi> extends ViewModel {
 
     private T mLogiImpl;
 
