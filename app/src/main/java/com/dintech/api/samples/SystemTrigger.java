@@ -9,7 +9,7 @@ import com.dintech.api.bleep.ConnectedRequest;
 import com.dintech.api.bleep.Request;
 import com.dintech.api.bleep.exception.BleException;
 import com.dintech.api.bleep.exception.ConnectedException;
-import com.dintech.api.bleep.Trigger;
+import com.dintech.api.bleep.internal.Operation;
 import com.inuker.bluetooth.library.BluetoothClient;
 import com.inuker.bluetooth.library.Code;
 import com.inuker.bluetooth.library.connect.options.BleConnectOptions;
@@ -17,7 +17,7 @@ import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 
 import java.util.UUID;
 
-public class SystemTrigger implements Trigger {
+public class SystemTrigger implements Operation {
     private final BluetoothClient mClient;
 
     public SystemTrigger(Context context) {
@@ -27,7 +27,7 @@ public class SystemTrigger implements Trigger {
     @Override
     public void connect(BluetoothDevice device, Request request) {
         ConnectedRequest cr = (ConnectedRequest) request;
-        BleConnectOptions options = new BleConnectOptions.Builder().setConnectTimeout(10000).setConnectRetry(cr.getRetries()).setConnectTimeout(cr.getTimeout()).build();
+        BleConnectOptions options = new BleConnectOptions.Builder().setConnectTimeout(2000).setConnectRetry(cr.getRetries()).setConnectTimeout(cr.getTimeout()).build();
         this.mClient.connect(device.getAddress(), options, (code, data) -> {
             if (code == Code.REQUEST_SUCCESS) {
                 Log.d("ConnectEvent", "Connect Succ: " + device.getAddress());

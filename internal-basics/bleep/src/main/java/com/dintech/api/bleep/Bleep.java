@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.support.annotation.NonNull;
 
+import com.dintech.api.bleep.internal.Operation;
+
 public class Bleep {
 
     private RequestQueue mRequestQueue;
@@ -12,7 +14,7 @@ public class Bleep {
 
     private Bleep() {
         if (newBuilder == null)
-            throw new RuntimeException("Bleep Occurred Initialize Exception!");
+            throw new RuntimeException("Bluetooth Occurred Initialize Exception!");
         this.mRequestQueue = new RequestQueue();
     }
 
@@ -76,11 +78,10 @@ public class Bleep {
 
         if (mRequest == null) return;
 
-        mRequest.fail((device, message) ->
-                UiThread.getInstance().runOnUiThread(this::nextRequest));
+//        mRequest.fail((device, message) -> UiThread.getInstance().runOnUiThread(this::nextRequest));
 
         BluetoothDevice device = mRequest.getDevice();
-        Trigger trigger = getConfigurations().getTrigger();
+        Operation trigger = getConfigurations().getTrigger();
         switch (mRequest.getType()) {
             case CONNECT:
                 ConnectedRequest cr = (ConnectedRequest) mRequest;
@@ -98,7 +99,7 @@ public class Bleep {
                 break;
 
             case DISCONNECT:
-                ConnectedRequest dr = (ConnectedRequest) mRequest;
+                DisConnectedRequest dr = (DisConnectedRequest) mRequest;
                 trigger.disconnect(device, dr);
                 break;
             default:

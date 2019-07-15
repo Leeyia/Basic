@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 
 import com.dintech.api.bleep.Bleep;
+import com.dintech.api.bleep.callback.FailCallback;
 import com.dintech.api.bleep.exception.BleException;
 
 public class MainActivity extends Activity {
@@ -28,14 +29,16 @@ public class MainActivity extends Activity {
 //        });
 
         Bleep.getInstance()
-                .connect("BA:03:54:52:C6:D5")
+                .connect("BA:03:29:36:9A:B5")
                 .timeout(10000)
                 .done(device -> {
                     BluetoothDevice device1 = device;
                 })
-                .fail((device, ex) -> {
-                    BluetoothDevice device1 = device;
-                    BleException ex1 = ex;
+                .fail(new FailCallback() {
+                    @Override
+                    public void onRequestFailed(BluetoothDevice device, BleException e) {
+                        BluetoothDevice device1 = device;
+                    }
                 })
                 .enqueue();
 

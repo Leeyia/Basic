@@ -20,9 +20,9 @@ public abstract class BaseExpandableAdapter<G extends GroupItem<C>, C> extends B
     private int childLayoutRes;
     private List<G> groupItems = new ArrayList<>();
 
-    public abstract void transformGroup(ViewHolder holder, G item, int groupPosition);
+    public abstract void transformGroup(ViewHolder holder, G item, boolean isExpanded, int groupPosition);
 
-    public abstract void transformChild(ViewHolder holder, C item, int groupPosition, int childPosition);
+    public abstract void transformChild(ViewHolder holder, C item, boolean isLastChild, int groupPosition, int childPosition);
 
     public BaseExpandableAdapter(Context context, @LayoutRes int groupLayoutRes, @LayoutRes int childLayoutRes) {
         this.context = context;
@@ -70,12 +70,12 @@ public abstract class BaseExpandableAdapter<G extends GroupItem<C>, C> extends B
 
     @Override
     public long getGroupId(int groupPosition) {
-        return 0;
+        return groupPosition;
     }
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return 0;
+        return childPosition;
     }
 
     @Override
@@ -93,7 +93,7 @@ public abstract class BaseExpandableAdapter<G extends GroupItem<C>, C> extends B
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        transformGroup(viewHolder, getGroup(groupPosition), groupPosition);
+        transformGroup(viewHolder, getGroup(groupPosition), isExpanded, groupPosition);
         return convertView;
     }
 
@@ -107,7 +107,7 @@ public abstract class BaseExpandableAdapter<G extends GroupItem<C>, C> extends B
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        transformChild(viewHolder, getChild(groupPosition, childPosition), groupPosition, childPosition);
+        transformChild(viewHolder, getChild(groupPosition, childPosition), isLastChild, groupPosition, childPosition);
         return convertView;
     }
 

@@ -2,6 +2,8 @@ package com.dintech.api.bleep;
 
 import android.app.Application;
 
+import com.dintech.api.bleep.internal.Operation;
+
 import static com.dintech.api.bleep.Preconditions.checkNotNull;
 
 public class Configurations {
@@ -28,7 +30,7 @@ public class Configurations {
         return checkNotNull(builder.application);
     }
 
-    public Trigger getTrigger() {
+    public Operation getTrigger() {
         return checkNotNull(builder.trigger);
     }
 
@@ -40,7 +42,7 @@ public class Configurations {
         private String serviceUuid;
         private String characterUuid;
         private Application application;
-        private Trigger trigger;
+        private Operation trigger;
         private boolean split;
 
         public Builder serviceUuid(String serviceUuid) {
@@ -58,7 +60,7 @@ public class Configurations {
             return this;
         }
 
-        public Builder trigger(Trigger trigger) {
+        public Builder trigger(Operation trigger) {
             this.trigger = trigger;
             return this;
         }

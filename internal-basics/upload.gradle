@@ -4,7 +4,7 @@ apply plugin: 'com.jfrog.bintray'
 def siteUrl = 'https://github.com/racofix/Basic'
 def gitUrl = 'https://github.com/racofix/Basic.git'
 
-version = "1.0.7"
+version = "1.0.4"
 group = "com.dintech.api"
 
 install {
