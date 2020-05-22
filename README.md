@@ -1,7 +1,7 @@
 # Logic-x
 
 > 大家好，我是小新
-> [https://github.com/racofix](https://github.com/racofix/Basic)
+[https://github.com/racofix](https://github.com/racofix/Basic)
 
 
 <br />MVP，顾名思义：<br />View 对应于Activity，fragment，负责View的绘制以及与用户交互<br />Model 依然是业务逻辑和实体模型<br />Presenter 负责完成View于Model间的交互Talk is cheap. Show me the code.<br />
