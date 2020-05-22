@@ -1,41 +1,36 @@
-MVP，顾名思义：
-View 对应于Activity，fragment，负责View的绘制以及与用户交互
-Model 依然是业务逻辑和实体模型
-Presenter 负责完成View于Model间的交互
-![1090080-4635fc0a530a058c.webp](https://cdn.nlark.com/yuque/0/2020/webp/644743/1589972143902-0110cdaa-d2c2-4e81-a45c-c2c85806f4e6.webp)
+# Logic-x
 
-优点
-- 低耦合高复用
-- 低耦合 视图/模型/逻辑 相互分离
-- 高复用 多个视图复用相同逻辑
-- 可单独进行数据和逻辑测试（单元测试）
+> 大家好，我是小新
 
-缺点
-- 定义大量接口和实现类，创建对象浪费内存
-- 视图销毁，逻辑层异步请求会导致持有视图引用内存泄漏
-- 多视图复用会导致实现一些用不到的方法
-- 视图层实例化逻辑对象的方法相似
+> [https://github.com/racofix](https://github.com/racofix/Basic)
 
 
-## 示例
-那么，怎样可以又扩展它的优点又避免它的缺点呢?
-这个问题困扰了很久，也想了很久，想到了一些解决办法并且已经实践很长时间了，并未发现严重问题。
-今天分享出来，只是个人想法，如有错误欢迎大神指导改进。
+<br />MVP，顾名思义：<br />View 对应于Activity，fragment，负责View的绘制以及与用户交互<br />Model 依然是业务逻辑和实体模型<br />Presenter 负责完成View于Model间的交互Talk is cheap. Show me the code.<br />
+<br />优点我就不介绍了，缺点可能都我一样的困扰：
+
+- M/P 层都需要定义接口和实现类，创建对象占用内存
+- 每一个页面都需要创建P实例并绑定View（重复代码）
+- P层逻辑比较多的时候，开发时不容易考虑其他页面调用，复用难
+- 页面销毁，P层执行异步操作，持有的View 引用造成内存泄露，程序崩溃
 
 
-### 使用（Usage）
-```
-repositories {
-	maven { url 'https://dl.bintray.com/meikoz/Things2' }
-}
+<br />我们既然知道它的缺点了，那我们就想办法解决
 
-dependencies {
-    // androidx
-    implementation 'com.racofix.things2:logic-x:1.1.4'
-}
-```
+- 减少接口和类的定义，数据模型定义为Model，数据复杂的情况引入 Repository
+- 利用用注解和反射，自动实现 P层实例化和View绑定/解绑 
+- P层逻辑范围减少，页面（Activity/Fragment）可以多次复用，低耦合高复用
+- 生成代理View，页面销毁不需要 `getView()!=null` 并不会造成内存泄露
 
-### 逻辑层（Logic )
+
+
+
+---
+
+<a name="ohjEV"></a>
+## Usage
+Talk is cheap. Show me the code.
+<a name="EsfUL"></a>
+### P层（逻辑）
 ```
 public interface LoginI {
     interface Logic {
@@ -51,13 +46,15 @@ public class Login extends BaseLogicImpl<LoginI.View> implements LoginI.Logic {
 
     @Override
     public void sign_in(String username, String password) {
-        /*do some things*/
-        getView().sign_in_success();
+    		if(successfully) getView().sign_in_success();
     }
 }
 ```
 
-### 视图层（View）
+
+<a name="b7Sa6"></a>
+### V层（Activity/Fragment）
+获取P实例 `getLogic(Login.class)` <br />缩小逻辑层的方法范围，降低到最小力度，比如说：登录页需要登录和注册功能，注册页需要注册功能。<br />那么登录和注册就可以作为逻辑层来实现，那登录页实现 登录/注册逻辑，注册页实现注册逻辑。
 ```
 @LogicArr({Login.class, Register.class})
 public class LoginActivity extends BaseLogicActivity implements
@@ -79,18 +76,8 @@ public class LoginActivity extends BaseLogicActivity implements
         Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
     }
 }
-```
 
 
-## 原理解析
-> 减少接口和类的数量
-ILogin 作为 LoginContract 定义方法和View，数据实体对象作为Model，数据复杂的情况可以创建一个DataRepository 用于本地数据和远程数据切换。
-
-
-> 低耦合高复用
-缩小逻辑层的方法范围，降低到最小力度，比如说：登录页需要登录和注册功能，注册页需要注册功能。
-那么登录和注册就可以作为逻辑层来实现，那登录页实现 登录/注册逻辑，注册页实现注册逻辑。
-```
 @LogicArr(Register.class)
 public class RegisterActivity extends BaseLogicActivity
         implements RegisterI.View {
@@ -103,10 +90,97 @@ public class RegisterActivity extends BaseLogicActivity
 ```
 
 
-> 视图销毁，逻辑层异步请求会导致持有视图引用内存泄漏
-页面销毁之后，逻辑层的View会变成空，在绑定的时候使用 `WeakReference` 存储 View 这样利于Gc 回收对象，
-为了避免在逻辑层调用 `getView()` 做非空判断，在绑定View 时创建 View 代理 使用  `getView()`返回代理对象，
-如果View 是空的时候，代理对象就什么都不做.
+> 
+> 
+
+这样，就实现一个使用简单，结构清晰的MVP结构。<br />解决这些缺点思考了很久，如果你觉得新颖、实用、可以帮到您的话，给一份关注和鼓励。<br />同样，欢迎各位大神相互指导改进。准备做一些常用的框架 [Things2](https://github.com/Things2)<br />
+
+> [更多示例：](https://github.com/racofix/Basic)[https://github.com/racofix/Basic](https://github.com/racofix/Basic)
+> [框架实现：](https://github.com/Things2/Logic-x)[https://github.com/Things2/Logic-x](https://github.com/Things2/Logic-x)
+
+
+---
+
+<a name="50d77e6a"></a>
+## 设计思路
+<a name="xyXAA"></a>
+### 核心类 LogicProvider
+利用注解 `@LogicArr` 返回逻辑数组类，利用反射初始化逻辑类，然后绑定/解绑View放入Map中<br />上层通过 `getLogic(xxx.class)` 从Map中获取逻辑实例，页面销毁逻辑实例会自动从Map中释放
+```
+class LogicProvider {
+
+    private static volatile LogicProvider logicProvider;
+    private Map<Object, HashSet<BaseLogic>> logicCaches = new LinkedHashMap<>();
+
+    static LogicProvider getInstance() {
+        if (logicProvider == null) {
+            synchronized (LogicProvider.class) {
+                if (logicProvider == null) {
+                    logicProvider = new LogicProvider();
+                }
+            }
+        }
+        return logicProvider;
+    }
+
+    <V> void put(V view) {
+        LogicArr logicArr = view.getClass().getAnnotation(LogicArr.class);
+        if (logicArr == null) return;
+
+        if (logicCaches.containsKey(view)) return;
+        HashSet<BaseLogic> logics = new HashSet<>();
+
+        Class[] classes = logicArr.value();
+        for (Class clazz : classes) {
+            try {
+                BaseLogic<V> baseLogic = Util.castTo(clazz.newInstance());
+                baseLogic.bindView(view);
+                baseLogic.onLogicCreated();
+                logics.add(baseLogic);
+
+            } catch (IllegalAccessException | InstantiationException e) {
+                e.printStackTrace();
+            }
+        }
+        if (logics.isEmpty()) return;
+        logicCaches.put(view, logics);
+    }
+
+    <V, T extends BaseLogic> T get(V view, Class<T> clazz) {
+        HashSet<BaseLogic> logics = logicCaches.get(view);
+        if (logics == null || logics.isEmpty()) {
+            throw new NullPointerException(view.getClass().getName() + " @LogicArr is empty.");
+        }
+
+        T baseLogic = null;
+        for (BaseLogic logic : logics) {
+            String logicName = logic.getClass().getName();
+            if (logicName.equals(clazz.getName())) {
+                baseLogic = Util.castTo(logic);
+                break;
+            }
+        }
+        return baseLogic;
+    }
+
+    <V> void remove(V view) {
+        HashSet<BaseLogic> logics = logicCaches.get(view);
+        if (logics == null || logics.isEmpty()) {
+            return;
+        }
+        for (BaseLogic logic : logics) {
+            if (logic.isViewBind()) logic.unbindView();
+            logic.onLogicDestroy();
+        }
+        logicCaches.remove(view);
+    }
+}
+```
+
+
+<a name="WrqDp"></a>
+### 核心类 BaseLogicImpl
+利用WeakReference存储View，便于View对象回收，使用动态代理 `bindView(view)` 生成代理View，<br />页面销毁时，代理对象还存在，调用方法时候发现View是空了, 代理对象就什么都不做了. 这样既不用判断 `getView()!=null` 并且不会内存泄露。
 ```
 public class BaseLogicImpl<V> implements BaseLogic<V> {
 
@@ -123,11 +197,20 @@ public class BaseLogicImpl<V> implements BaseLogic<V> {
                         new InvocationHandler() {
                             @Override
                             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                                if (isViewBind())
+                                if (isViewBind()){
                                     return method.invoke(weakReference.get(), args);
+                                }
                                 return null;
                             }
                         }));
+    }
+
+    @Override
+    public void unbindView() {
+        if (isViewBind()) {
+            weakReference.clear();
+            weakReference = null;
+        }
     }
 
     @Override
@@ -139,106 +222,15 @@ public class BaseLogicImpl<V> implements BaseLogic<V> {
     public V getView() {
         return viewProxy;
     }
-
-    @Override
-    public void unbindView() {
-        if (isViewBind()) {
-            weakReference.clear();
-            weakReference = null;
-        }
-    }
 }
 ```
 
 
-> 视图层实例化逻辑对象
-利用注解和反射实现自动实例化逻辑对象，自动绑定/解绑 View
-那么视图层想要实例化时只需要添加 [@LogicArr](https://github.com/Things2/Logic/blob/master/logic-x/src/main/java/com/racofix/things2/mvp/LogicArr.java) 注解， 获取逻辑对象 `getLogic(xxx.class)`
-使用非常简单方便！！!
-```
-class LogicProvider {
-
-    private static volatile LogicProvider logicProvider;
-    private Map<String, HashSet<BaseLogic>> logicCaches = new LinkedHashMap<>();
-
-    static LogicProvider getInstance() {
-        if (logicProvider == null) {
-            synchronized (LogicProvider.class) {
-                if (logicProvider == null) {
-                    logicProvider = new LogicProvider();
-                }
-            }
-        }
-        return logicProvider;
-    }
-
-	/*解析注解-> 反射实例化-> 绑定View*/
-    <V> void put(V view) {
-        LogicArr logicArr = view.getClass().getAnnotation(LogicArr.class);
-        if (logicArr == null) return;
-
-        String viewKey = view.getClass().getName();
-        if (logicCaches.containsKey(viewKey)) return;
-
-        HashSet<BaseLogic> logics = new HashSet<>();
-
-        Class[] classes = logicArr.value();
-        for (Class clazz : classes) {
-            try {
-                BaseLogic<V> baseLogic = Util.castTo(clazz.newInstance());
-                baseLogic.attach(view);
-                baseLogic.onLogicCreated();
-                logics.add(baseLogic);
-
-            } catch (IllegalAccessException | InstantiationException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (logics.isEmpty()) return;
-        logicCaches.put(viewKey, logics);
-    }
-
-    /*缓存获取逻辑对象*/
-    <V, T extends BaseLogic> T get(V view, Class<T> clazz) {
-        String viewKey = view.getClass().getName();
-        HashSet<BaseLogic> logics = logicCaches.get(viewKey);
-        if (logics == null || logics.isEmpty()) {
-            throw new NullPointerException(viewKey + " @LogicArr is empty.");
-        }
-
-        T baseLogic = null;
-        for (BaseLogic logic : logics) {
-            String logicName = logic.getClass().getName();
-            if (logicName.equals(clazz.getName())) {
-                baseLogic = Util.castTo(logic);
-                break;
-            }
-        }
-
-        return baseLogic;
-    }
-
-    <V> void remove(V view) {
-        String viewKey = view.getClass().getName();
-        HashSet<BaseLogic> logics = logicCaches.get(viewKey);
-        if (logics == null || logics.isEmpty()) {
-            return;
-        }
-        for (BaseLogic logic : logics) {
-            logic.detach();
-            logic.onLogicDestroy();
-        }
-        logicCaches.remove(viewKey);
-    }
-}
-```
-
-
+<a name="uDSbq"></a>
 ## 最后
-- [项目示例代码](https://github.com/racofix/Basic) （https://github.com/racofix/Basic）
-- [开源框架Things2-Logic] (https://github.com/Things2/Logic)
 
-希望利用业余时间和工作的积累，贡献更多有意义、有价值的项目。
-如果有待改进，请大神们多多指导。
-感谢大家耐心的阅读，如果项目对你有所帮助，希望大家给个关注，大家一起进步。
+- [项目示例代码](https://github.com/racofix/Basic) （[https://github.com/racofix/Basic](https://github.com/racofix/Basic)）
+- [开源框架Things2-Logic-x](https://github.com/Things2/Logic-x) （[https://github.com/Things2/Logic-x](https://github.com/Things2/Logic-x)）
+
+
+<br />希望利用业余时间和工作的积累，贡献更多有意义、有价值的项目。<br />如果有待改进，请大神们多多指导。<br />感谢大家耐心的阅读，如果项目对你有所帮助，希望大家给个关注，大家一起进步。
