@@ -1,7 +1,6 @@
 # Logic-x
 
 > 大家好，我是小新
-
 > [https://github.com/racofix](https://github.com/racofix/Basic)
 
 
@@ -24,7 +23,6 @@
 
 
 
----
 
 <a name="ohjEV"></a>
 ## Usage
@@ -99,7 +97,6 @@ public class RegisterActivity extends BaseLogicActivity
 > [框架实现：](https://github.com/Things2/Logic-x)[https://github.com/Things2/Logic-x](https://github.com/Things2/Logic-x)
 
 
----
 
 <a name="50d77e6a"></a>
 ## 设计思路
